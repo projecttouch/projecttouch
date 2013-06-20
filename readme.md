@@ -8,6 +8,10 @@ There are three tough challenges in developing the web-based video editor for To
 - Video loading, sequencing and manipulation
 - Effects, overlays, and transitions
 
-[Click here](http://www.theinternetoftouch.com/assets/videos/videos.zip) to download videos to test with.
+Videos you can use for testing:
+- [Street](https://www.theinternetoftouch.com/videos/street.zip) 
+- [Human Flight](https://www.theinternetoftouch.com/videos/humanflight.zip) 
+- [Nature](https://www.theinternetoftouch.com/videos/nature.zip) 
+- [Trailer](https://www.theinternetoftouch.com/videos/trailer.zip) 
 
 Check out the [ProjectTouch microsite](http://www.theinternetoftouch.com) for updates.
