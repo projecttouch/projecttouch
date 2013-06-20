@@ -19,7 +19,6 @@ define(['backbone', 'app/views/player', 'app/filters'], function (Backbone, Play
         },
 
         initialize: function () {
-            console.log('application initiated');
 
             this.player = new Player();
 
