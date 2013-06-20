@@ -2,11 +2,11 @@ ProjectTouch
 =======
 
 HTML 5 video-editor
-There are four tough challenges in developing the web-based video editor for Touch:
-- Core functionalities
-- Touch gestures
-- Filters, effects, animations
-- Overlays
+
+There are three tough challenges in developing the web-based video editor for Touch:
+- UX and touch input
+- Video loading, sequencing and manipulation
+- Effects, overlays, and transitions
 
 [Click here to download videos to test with.](http://www.theinternetoftouch.com/assets/videos/videos.zip)
 
