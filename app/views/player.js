@@ -12,7 +12,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
     return Backbone.View.extend({
 
-        tageName: 'canvas',
+        tagName: 'canvas',
         id: 'player',
 
         initialize: function () {
@@ -62,7 +62,6 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             this.effectCanvas.width = this.width;
             this.effectCanvas.height = this.height;
 
-            this.el = document.createElement('CANVAS');
             this.el.setAttribute('id', 'player');
 
             this.el.width = this.width;
@@ -84,7 +83,6 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         },
 
         toggleEffect: function () {
-            console.log('effect');
             this.effect = this.effect === false;
         },
 
@@ -104,8 +102,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
                 if (window.App.filter !== null) {
 
-                    var pixelData,
-                    filter;
+                    var pixelData;
 
                     this.effectContext.drawImage(this.source, 0, 0, this.source.videoWidth, this.source.videoHeight, posX, posY, width, height);
                     pixelData = this.filterImage(App.filter, this.effectContext.getImageData(0, 0, this.width, this.height));

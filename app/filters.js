@@ -57,7 +57,7 @@ define([], function () {
                         count = 0;
 
                     // Average our pixels and count the amount of averaged pixels
-                    // We need to coutn them because of edge pixels
+                    // We need to count them because of edge pixels
                     for (var rX = x; rX < Math.min(x + radius, pixels.width); rX++) {
                         for (var rY = y; rY < Math.min(y + radius, pixels.height); rY++) {
                             var pos = (rY * pixels.width + rX) * 4;
