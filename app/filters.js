@@ -45,31 +45,11 @@ define([], function () {
                 b: App.B
             };
 
-            var d = pixels.data;
-
-//            var buf = new ArrayBuffer(d.buffer);
-            var buf8 = new Uint8ClampedArray(d.buffer);
-            var data32 = new Uint32Array(d.buffer);
-
-//            for (var i = 0; i < d.length; i += 4) {
-////                var r = d[i];
-////                var g = d[i + 1];
-////                var b = d[i + 2];
-////
-////                d[i] = r * rgb.r;
-////                d[i + 1] = g * rgb.g;
-////                d[i + 2] = b * rgb.b;
-//            }
+            var source = pixels.data;
+            var data32 = new Uint32Array(source.buffer);
 
             for (var y = 0; y < 360; ++y) {
                 for (var x = 0; x < 720; ++x) {
-
-//                    var test = data32[y * 720 + x].toString(2);//data32[y * 720 + x];
-//console.log(d[(y * 720 + x) * 4]);
-//console.log(d[(y * 720 + x) * 4 + 1]);
-//console.log(d[(y * 720 + x) * 4 + 2]);
-//console.log(d[(y * 720 + x) * 4 + 3]);
-                    var a = ((data32[y * 720 + x] >> 24) & 0xff);
                     var b = ((data32[y * 720 + x] >> 16) & 0xff) * rgb.b;
                     var g = ((data32[y * 720 + x] >> 8) & 0xff) * rgb.g;
                     var r = ((data32[y * 720 + x] >> 0) & 0xff) * rgb.r;
@@ -79,14 +59,12 @@ define([], function () {
                     if(b > 255) b = 255;
 
                     data32[y * 720 + x] =
-                        (a   << 24) |    // alpha
-                            (b << 16) |    // blue
-                            (g <<  8) |    // green
-                            r;            // red
+                        (255    << 24)   |
+                        (b      << 16)   |
+                        (g      <<  8)   |
+                         r;
                 }
             }
-
-            pixels.data.set(buf8);
 
             return pixels;
         },
