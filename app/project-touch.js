@@ -18,9 +18,21 @@ define(['backbone', 'app/views/player', 'app/filters'], function (Backbone, Play
             "click button": "handler"
         },
 
+        R: 1,
+        G: 1,
+        B: 1,
+
         initialize: function () {
 
             this.player = new Player();
+
+            setInterval(this.getRGB, 1000);
+
+
+            console.log((4278452999 >> 0) & 0xff);
+            console.log((4278452999 >> 16) & 0xff);
+            console.log((4278452999 >> 8) & 0xff);
+            console.log((4278452999 >> 24) & 0xff);
 
         },
 
@@ -66,15 +78,26 @@ define(['backbone', 'app/views/player', 'app/filters'], function (Backbone, Play
             case "grayscale":
             case "threshold":
             case "pixelize":
+            case "red":
+            case "green":
+            case "blue":
+            case "hipster":
                 if (this.filter === Filters[className]) {
+                    console.log('disabling filter', className);
                     this.filter = null;
                 } else {
+                    console.log('enabling filter', className);
                     this.filter = Filters[className];
                 }
                 break;
 
             }
+        },
+
+        getRGB: function() {
+            App.R = parseFloat(document.getElementById('r').value);
+            App.G = parseFloat(document.getElementById('g').value);
+            App.B = parseFloat(document.getElementById('b').value);
         }
     });
-
 });

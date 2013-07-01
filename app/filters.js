@@ -38,6 +38,79 @@ define([], function () {
             return pixels;
         },
 
+        hipster: function (pixels) {
+            var rgb = {
+                r: App.R,
+                g: App.G,
+                b: App.B
+            };
+
+            var source = pixels.data;
+            var data32 = new Uint32Array(source.buffer);
+
+            for (var y = 0; y < 360; ++y) {
+                for (var x = 0; x < 720; ++x) {
+                    var b = ((data32[y * 720 + x] >> 16) & 0xff) * rgb.b;
+                    var g = ((data32[y * 720 + x] >> 8) & 0xff) * rgb.g;
+                    var r = ((data32[y * 720 + x] >> 0) & 0xff) * rgb.r;
+
+                    if(r > 255) r = 255;
+                    if(g > 255) g = 255;
+                    if(b > 255) b = 255;
+
+                    data32[y * 720 + x] =
+                        (255    << 24)   |
+                        (b      << 16)   |
+                        (g      <<  8)   |
+                         r;
+                }
+            }
+
+            return pixels;
+        },
+
+        red: function (pixels) {
+            var d = pixels.data;
+            for (var i = 0; i < d.length; i += 4) {
+                var r = d[i];
+                var g = d[i + 1];
+                var b = d[i + 2];
+
+                d[i] = r;
+                d[i + 1] = 0;
+                d[i + 2] = 0;
+            }
+            return pixels;
+        },
+
+        green: function (pixels) {
+            var d = pixels.data;
+            for (var i = 0; i < d.length; i += 4) {
+                var r = d[i];
+                var g = d[i + 1];
+                var b = d[i + 2];
+
+                d[i] = 0;
+                d[i + 1] = g;
+                d[i + 2] = 0;
+            }
+            return pixels;
+        },
+
+        blue: function (pixels) {
+            var d = pixels.data;
+            for (var i = 0; i < d.length; i += 4) {
+                var r = d[i];
+                var g = d[i + 1];
+                var b = d[i + 2];
+
+                d[i] = 0;
+                d[i + 1] = 0;
+                d[i + 2] = b;
+            }
+            return pixels;
+        },
+
         pixelize: function (pixels) {
 
             var radius = 10,
@@ -55,6 +128,8 @@ define([], function () {
                         g = 0,
                         b = 0,
                         count = 0;
+
+
 
                     // Average our pixels and count the amount of averaged pixels
                     // We need to count them because of edge pixels
