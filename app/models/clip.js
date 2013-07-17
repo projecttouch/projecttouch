@@ -65,6 +65,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                     self.set('frames', parseInt(self.video.duration * 1000 / 40)); 
                     self.set('status', 'idle');
                 });
+                this.video.muted = true;
                 this.video.src = this.get('media').get('blob');
                 this.video.addEventListener('ended', this.ended, false);
                 this.set('status', 'idle');
@@ -91,8 +92,10 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
         stop: function () {
 
+            log(this.video)
+
             this.video.pause();
-            this.video.currentTime = parseInt(this.get('offset-start')) / 25;
+//            this.video.currentTime = parseInt(this.get('offset-start')) / 25;
             this.set('status', 'idle');
 
         },

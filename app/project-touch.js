@@ -22,8 +22,10 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/collections/library'
         R: 1,
         G: 1,
         B: 1,
+        C: 0,
 
         initialize: function () {
+
 
             var self = this;
 
@@ -43,12 +45,6 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/collections/library'
             }, this);
 
             setInterval(this.getRGB, 1000);
-
-
-            console.log((4278452999 >> 0) & 0xff);
-            console.log((4278452999 >> 16) & 0xff);
-            console.log((4278452999 >> 8) & 0xff);
-            console.log((4278452999 >> 24) & 0xff);
 
         },
 
@@ -136,7 +132,7 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/collections/library'
             case "pixelize":
             case "red":
             case "green":
-            case "blue":
+            case "contrast":
             case "hipster":
                 if (this.filter === Filters[className]) {
                     console.log('disabling filter', className);
@@ -151,9 +147,11 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/collections/library'
         },
 
         getRGB: function() {
-            App.R = parseFloat(document.getElementById('r').value);
-            App.G = parseFloat(document.getElementById('g').value);
-            App.B = parseFloat(document.getElementById('b').value);
+            
+            App.R = (parseFloat(document.getElementById('r').value));
+            App.G = (parseFloat(document.getElementById('g').value));
+            App.B = (parseFloat(document.getElementById('b').value));
+            App.C = (parseFloat(document.getElementById('c').value));
         }
 
     });
