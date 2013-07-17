@@ -11,7 +11,8 @@ requirejs.config({
     paths: {
         "backbone": ["//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min", "libs/backbone-1.0.0.min"],
         "underscore": ["//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min", "libs/underscore-1.4.4.min"],
-        "jquery": ["//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min", "libs/jquery-2.0.2.min"]
+        "jquery": ["//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min", "libs/jquery-2.0.2.min"],
+        "hammer": ["//cdnjs.cloudflare.com/ajax/libs/hammer.js/1.0.5/hammer.min", "libs/hammer-1.0.5.min"]
     },
     shim: {
         "underscore": {
@@ -24,7 +25,7 @@ requirejs.config({
     }
 });
 
-require(['app/project-touch'], function (PT) {
+require(['app/project-touch', 'hammer'], function (PT) {
 
     'use strict';
 

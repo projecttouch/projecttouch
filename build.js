@@ -7,6 +7,7 @@
     paths: {
         backbone: "empty:",
         underscore: "empty:",
-        jquery: "empty:"
+        jquery: "empty:",
+        hammer: "empty:"
     }    
 })

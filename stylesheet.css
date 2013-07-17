@@ -110,6 +110,24 @@ button.threshold {
 button.grayscale { 
   background-image: url(images/grayscale.png); 
   margin: 200px 0 0 220px;}
+  
+#library {
+  position: absolute;
+  top: 300px;
+}  
+
+#library li {
+  background: white;
+  color: black;
+  font-size: 20px;
+  padding: 10px;
+  margin: 3px 0 0;
+  text-transform: uppercase;
+}
+
+#library li:first-child {
+  margin: 0;
+}
 
 
 
