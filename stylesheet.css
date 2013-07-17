@@ -12,69 +12,71 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font: inherit;
-  font-size: 100%;
-  vertical-align: baseline;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	font-size: 100%;
+	vertical-align: baseline;
 }
 
 html {
-  line-height: 1;
+	line-height: 1;
 }
 
 ol, ul {
-  list-style: none;
+	list-style: none;
 }
 
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
 caption, th, td {
-  text-align: left;
-  font-weight: normal;
-  vertical-align: middle;
+	text-align: left;
+	font-weight: normal;
+	vertical-align: middle;
 }
 
 q, blockquote {
-  quotes: none;
+	quotes: none;
 }
+
 q:before, q:after, blockquote:before, blockquote:after {
-  content: "";
-  content: none;
+	content: "";
+	content: none;
 }
 
 a img {
-  border: none;
+	border: none;
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
-  display: block;
+	display: block;
 }
 
 html {
-  height: 100%;
+	height: 100%;
 }
 
 body {
-  height: 100%;
-  background: #111111;
-  background: -moz-linear-gradient(top,  #000000 0%, #111111 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#000000), color-stop(100%,#111111));
-  background: -webkit-linear-gradient(top,  #000000 0%,#111111 100%);
-  background: -o-linear-gradient(top,  #000000 0%,#111111 100%);
-  background: -ms-linear-gradient(top,  #000000 0%,#111111 100%);
-  background: linear-gradient(to bottom,  #000000 0%,#111111 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#111111',GradientType=0 );
+	height: 100%;
+	background: #111111;
+	background: -moz-linear-gradient(top, #000000 0%, #111111 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #000000), color-stop(100%, #111111));
+	background: -webkit-linear-gradient(top, #000000 0%, #111111 100%);
+	background: -o-linear-gradient(top, #000000 0%, #111111 100%);
+	background: -ms-linear-gradient(top, #000000 0%, #111111 100%);
+	background: linear-gradient(to bottom, #000000 0%, #111111 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#111111', GradientType=0);
+	color: #fff;
 }
 
 #player {
-  -webkit-box-shadow: 0px 9px 12px rgba(0, 0, 0, 0.9);
-  -moz-box-shadow:    0px 9px 12px rgba(0, 0, 0, 0.9);
-  box-shadow:         0px 9px 12px rgba(0, 0, 0, 0.9);
+	-webkit-box-shadow: 0px 9px 12px rgba(0, 0, 0, 0.9);
+	-moz-box-shadow: 0px 9px 12px rgba(0, 0, 0, 0.9);
+	box-shadow: 0px 9px 12px rgba(0, 0, 0, 0.9);
 }
 
 button {
@@ -127,8 +129,69 @@ button.grayscale {
 
 #library li:first-child {
   margin: 0;
+	width: 40px;
+	height: 40px;
+	border: 0;
+	background: center center no-repeat;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	cursor: pointer;
 }
 
+button:hover {
+	opacity: 0.8;
+}
+
+button.play {
+	background-image: url(images/play.png);
+	margin: 200px 0 0 -360px;
+}
+
+button.pause {
+	background-image: url(images/pause.png);
+	margin: 200px 0 0 -360px;
+}
+
+button.stop {
+	background-image: url(images/stop.png);
+	margin: 200px 0 0 -310px;
+}
+
+button.pixelize {
+	background-image: url(images/pixelize.png);
+	margin: 200px 0 0 320px;
+}
+
+button.threshold {
+	background-image: url(images/threshold.png);
+	margin: 200px 0 0 270px;
+}
+
+button.grayscale {
+	background-image: url(images/grayscale.png);
+	margin: 200px 0 0 220px;
+}
+
+button.red {
+	margin: 200px 0 0 370px;
+	background-color: red;
+}
+
+button.green {
+	margin: 200px 0 0 420px;
+	background-color: green;
+}
+
+button.blue {
+	margin: 200px 0 0 470px;
+	background-color: blue;
+}
+
+button.hipster {
+	margin: 200px 0 0 520px;
+	background-color: yellowgreen;
+}
 
 
 

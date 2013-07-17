@@ -19,6 +19,10 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/collections/library'
             "click button": "handler"
         },
 
+        R: 1,
+        G: 1,
+        B: 1,
+
         initialize: function () {
 
             var self = this;
@@ -37,6 +41,14 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/collections/library'
             this.library.on('add', function (model) {
                 log('model', this.library.models.length, model)
             }, this);
+
+            setInterval(this.getRGB, 1000);
+
+
+            console.log((4278452999 >> 0) & 0xff);
+            console.log((4278452999 >> 16) & 0xff);
+            console.log((4278452999 >> 8) & 0xff);
+            console.log((4278452999 >> 24) & 0xff);
 
         },
 
@@ -122,16 +134,27 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/collections/library'
             case "grayscale":
             case "threshold":
             case "pixelize":
+            case "red":
+            case "green":
+            case "blue":
+            case "hipster":
                 if (this.filter === Filters[className]) {
+                    console.log('disabling filter', className);
                     this.filter = null;
                 } else {
+                    console.log('enabling filter', className);
                     this.filter = Filters[className];
                 }
                 break;
 
             }
+        },
+
+        getRGB: function() {
+            App.R = parseFloat(document.getElementById('r').value);
+            App.G = parseFloat(document.getElementById('g').value);
+            App.B = parseFloat(document.getElementById('b').value);
         }
 
     });
-
 });
