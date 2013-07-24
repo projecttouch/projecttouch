@@ -26,7 +26,6 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/collections/library'
 
         initialize: function () {
 
-
             var self = this;
 
             window.log = function () {
@@ -44,7 +43,7 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/collections/library'
                 log('model', this.library.models.length, model)
             }, this);
 
-            setInterval(this.getRGB, 1000);
+            setInterval(this.getRGB, 600);
 
         },
 
@@ -116,7 +115,7 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/collections/library'
                 e.currentTarget.setAttribute('class', 'pause');
                 break;
             case "pause":
-                
+
                 e.currentTarget.setAttribute('class', 'play');
                 break;
             case "stop":
@@ -146,12 +145,15 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/collections/library'
             }
         },
 
-        getRGB: function() {
-            
-            App.R = (parseFloat(document.getElementById('r').value));
-            App.G = (parseFloat(document.getElementById('g').value));
-            App.B = (parseFloat(document.getElementById('b').value));
-            App.C = (parseFloat(document.getElementById('c').value));
+        getRGB: function () {
+
+            (Math.floor(Math.random() * 11)) / 10
+
+            App.R = (Math.floor(Math.random() * 11)) / 10;
+            App.G = (Math.floor(Math.random() * 11)) / 10;
+            App.B = (Math.floor(Math.random() * 11)) / 10;
+            App.C = (parseFloat(document.getElementById('c')
+                .value));
         }
 
     });

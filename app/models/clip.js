@@ -32,18 +32,11 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             if (this.get("type") === "video") {
                 this.collection.on('frame-sync', this.sync, this);
                 this.collection.on('kill', this.kill, this);
-                this.initializeVideo();    
-            }
-                  
-        },
-
-        previewOffset: function (offset) {
-
-            if (!isNaN(offset)) {
-                this.video.currentTime = (offset * this.get('frames')) / 25;
+                this.initializeVideo();
             }
 
         },
+
 
         setOffset: function (offset) {
 
@@ -56,25 +49,21 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         },
 
         initializeVideo: function () {
-            
+
             var self = this;
-            
-            try {
-                this.video = document.createElement('video');
-                this.video.addEventListener('loadedmetadata', function() {
-                    self.set('frames', parseInt(self.video.duration * 1000 / 40)); 
-                    self.set('status', 'idle');
-                });
-                this.video.muted = true;
-                this.video.src = this.get('media').get('blob');
-                this.video.addEventListener('ended', this.ended, false);
-                this.set('status', 'idle');
-                return true;
-            } catch (e) {
-                log(e);
-                alert('not enough allocated memory');
-                return false;
-            }
+
+            this.video = document.createElement('video');
+            this.video.addEventListener('loadedmetadata', function () {
+                self.set('frames', parseInt(self.video.duration * 1000 / 40));
+                self.set('status', 'idle');
+            });
+            this.video.muted = true;
+            this.video.src = this.get('media')
+                .get('blob');
+            this.video.addEventListener('ended', this.ended, false);
+            this.set('status', 'idle');
+            return true;
+
         },
 
         play: function () {
@@ -92,10 +81,8 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
         stop: function () {
 
-            log(this.video)
-
             this.video.pause();
-//            this.video.currentTime = parseInt(this.get('offset-start')) / 25;
+            //            this.video.currentTime = parseInt(this.get('offset-start')) / 25;
             this.set('status', 'idle');
 
         },
@@ -103,7 +90,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         syncTime: function () {
 
             var frame,
-                start = this.get('start'),
+            start = this.get('start'),
                 offset = this.get('offset-start');
 
             if (start < 0) {
@@ -116,14 +103,14 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             this.video.currentTime = frame / 25;
 
         },
-        
+
         kill: function () {
             this.stop();
             this.syncTime();
         },
 
         sync: function (frame) {
-            
+
             var start = this.get('start'),
                 offset = this.get('offset-start'),
                 end = this.get('offset-end'),
@@ -135,6 +122,14 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 this.play();
             } else if (frame === (start + frames - end)) {
                 this.stop();
+            }
+
+        },
+        
+        seek: function (frame) {
+
+            if (!isNaN(offset)) {
+                this.video.currentTime = (frame * this.get('frames')) / 25;
             }
 
         },

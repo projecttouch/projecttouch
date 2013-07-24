@@ -28,8 +28,8 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             this.source = null;
             this.effect = false;
 
-            this.width = 720;
-            this.height = 360;
+            this.width = 1280;
+            this.height = 720;
 
         },
 

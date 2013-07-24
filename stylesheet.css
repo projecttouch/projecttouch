@@ -56,6 +56,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 	display: block;
 }
 
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+       -o-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 html {
 	height: 100%;
 }
@@ -96,26 +103,27 @@ button:hover {
 
 button.play { 
   background-image: url(images/play.png); 
-  margin: 200px 0 0 -360px;}
+  margin: 400px 0 0 -360px;}
 button.pause { 
   background-image: url(images/pause.png); 
-  margin: 200px 0 0 -360px;}
+  margin: 400px 0 0 -360px;}
 button.stop { 
   background-image: url(images/stop.png);
-  margin: 200px 0 0 -310px;}
+  margin: 400px 0 0 -310px;}
 button.pixelize { 
   background-image: url(images/pixelize.png); 
-  margin: 200px 0 0 320px;}
+  margin: 400px 0 0 320px;}
 button.threshold { 
   background-image: url(images/threshold.png);
-    margin: 200px 0 0 270px;}
+    margin: 400px 0 0 270px;}
 button.grayscale { 
   background-image: url(images/grayscale.png); 
-  margin: 200px 0 0 220px;}
+  margin: 400px 0 0 220px;}
   
 #library {
   position: absolute;
-  top: 300px;
+  top: 20px;
+  left: 20px;
 }  
 
 #library li {
@@ -123,19 +131,29 @@ button.grayscale {
   color: black;
   font-size: 20px;
   padding: 10px;
-  margin: 3px 0 0;
+  position: relative;
   text-transform: uppercase;
+	cursor: pointer;
+  width: 280px;
+  height: 160px;
+  margin: 5px 0;
+}
+
+#library li>div {
+  margin: 56px 0;
+  width: 100%;
+  text-align: center;
+  color: white;
+}
+
+#library li>img {
+ position: absolute;
+ top: 10px; 
 }
 
 #library li:first-child {
-  margin: 0;
-	width: 40px;
-	height: 40px;
-	border: 0;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	cursor: pointer;
+
+
 }
 
 button:hover {
@@ -144,51 +162,51 @@ button:hover {
 
 button.play {
 	background-image: url(images/play.png);
-	margin: 200px 0 0 -360px;
+	margin: 400px 0 0 -360px;
 }
 
 button.pause {
 	background-image: url(images/pause.png);
-	margin: 200px 0 0 -360px;
+	margin: 400px 0 0 -360px;
 }
 
 button.stop {
 	background-image: url(images/stop.png);
-	margin: 200px 0 0 -310px;
+	margin: 400px 0 0 -310px;
 }
 
 button.pixelize {
 	background-image: url(images/pixelize.png);
-	margin: 200px 0 0 320px;
+	margin: 400px 0 0 320px;
 }
 
 button.threshold {
 	background-image: url(images/threshold.png);
-	margin: 200px 0 0 270px;
+	margin: 400px 0 0 270px;
 }
 
 button.grayscale {
 	background-image: url(images/grayscale.png);
-	margin: 200px 0 0 220px;
+	margin: 400px 0 0 220px;
 }
 
 button.red {
-	margin: 200px 0 0 370px;
+	margin: 400px 0 0 370px;
 	background-color: red;
 }
 
 button.green {
-	margin: 200px 0 0 420px;
+	margin: 400px 0 0 420px;
 	background-color: green;
 }
 
 button.contrast {
-	margin: 200px 0 0 470px;
+	margin: 400px 0 0 470px;
 	background-color: blue;
 }
 
 button.hipster {
-	margin: 200px 0 0 520px;
+	margin: 400px 0 0 520px;
 	background-color: yellowgreen;
 }
 

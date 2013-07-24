@@ -48,7 +48,6 @@ define([], function () {
                 b,
                 g,
                 r;
-                
 
             for (ii = 0; ii < tt; ii+=1) {
                 b = ((data32[ii] >> 16) & 0xff) * App.B;

@@ -21,8 +21,29 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
         initialize: function () {
             this.set('blob', window.URL.createObjectURL(this.get('file')));
+            this.getThumb();
         },
-        
+
+        getThumb: function () {
+
+            var self = this,
+                canvas = document.createElement('canvas'),
+                video = document.createElement('video'),
+                ctx = canvas.getContext('2d');
+
+            canvas.width = 260;
+            canvas.height = 140;
+
+            video.addEventListener('canplaythrough', function () {
+
+                ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight, 0, 0, 263, 140);
+                self.set('thumb', canvas.toDataURL('image/jpeg'));
+
+            });
+
+            video.src = this.get('blob');
+        },
+
         clear: function () {
             window.URL.revokeObjectURL(this.get('blob'));
             Backbone.Model.prototype.clear.apply(this, arguments);
