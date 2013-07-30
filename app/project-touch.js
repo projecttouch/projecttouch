@@ -21,19 +21,13 @@ define(['backbone', 'app/views/player', 'app/filters'], function (Backbone, Play
         R: 1,
         G: 1,
         B: 1,
+        Sat: 100,
 
         initialize: function () {
 
             this.player = new Player();
 
             setInterval(this.getRGB, 1000);
-
-
-            console.log((4278452999 >> 0) & 0xff);
-            console.log((4278452999 >> 16) & 0xff);
-            console.log((4278452999 >> 8) & 0xff);
-            console.log((4278452999 >> 24) & 0xff);
-
         },
 
         render: function () {
@@ -98,6 +92,15 @@ define(['backbone', 'app/views/player', 'app/filters'], function (Backbone, Play
             App.R = parseFloat(document.getElementById('r').value);
             App.G = parseFloat(document.getElementById('g').value);
             App.B = parseFloat(document.getElementById('b').value);
+            App.Sat = parseFloat(document.getElementById('saturation').value);
+        },
+
+        diff: function(number1, number2) {
+            if(number1 > number2) {
+                return number1 - number2;
+            } else {
+                return number2 - number1;
+            }
         }
     });
 });

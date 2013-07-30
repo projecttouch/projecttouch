@@ -25,38 +25,88 @@ define([], function () {
         },
 
         grayscale: function (pixels) {
-            var d = pixels.data;
-            for (var i = 0; i < d.length; i += 4) {
-                var r = d[i];
-                var g = d[i + 1];
-                var b = d[i + 2];
-                // CIE luminance for the RGB
-                // The human eye is bad at seeing red and blue, so we de-emphasize them.
-                var v = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-                d[i] = d[i + 1] = d[i + 2] = v
+            var source = pixels.data,
+                data32 = new Uint32Array(source.buffer),
+                r = 0,
+                g = 0,
+                b = 0,
+                v = 0;
+
+            for (var y = 0; y < 360; ++y) {
+                for (var x = 0; x < 720; ++x) {
+                    var b = (data32[y * 720 + x] >> 16) & 0xff;
+                    var g = (data32[y * 720 + x] >> 8) & 0xff;
+                    var r = (data32[y * 720 + x] >> 0) & 0xff;
+
+                    var v = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+
+                    data32[y * 720 + x] =
+                        (255    << 24)   |
+                        (v      << 16)   |
+                        (v      <<  8)   |
+                         v;
+                }
             }
+
             return pixels;
         },
 
         hipster: function (pixels) {
             var rgb = {
-                r: App.R,
-                g: App.G,
-                b: App.B
-            };
-
-            var source = pixels.data;
-            var data32 = new Uint32Array(source.buffer);
+                    r: App.R,
+                    g: App.G,
+                    b: App.B,
+                    sat: -(App.Sat / 100)
+                },
+                r = 0,
+                g = 0,
+                b = 0,
+                avg = 100,
+                diff = 0,
+                source = pixels.data,
+                data32 = new Uint32Array(source.buffer);
 
             for (var y = 0; y < 360; ++y) {
                 for (var x = 0; x < 720; ++x) {
-                    var b = ((data32[y * 720 + x] >> 16) & 0xff) * rgb.b;
-                    var g = ((data32[y * 720 + x] >> 8) & 0xff) * rgb.g;
-                    var r = ((data32[y * 720 + x] >> 0) & 0xff) * rgb.r;
+                    b = ((data32[y * 720 + x] >> 16) & 0xff) * rgb.b;
+                    g = ((data32[y * 720 + x] >> 8) & 0xff) * rgb.g;
+                    r = ((data32[y * 720 + x] >> 0) & 0xff) * rgb.r;
+
+                    if(rgb.sat < 2) {
+                        avg = (r + g + b) / 3;
+
+                        // R saturation
+                        diff = this.diff(avg, r) * rgb.sat;
+                        if(r > avg) {
+                            r = r - diff;
+                        } else {
+                            r = r + diff;
+                        }
+
+                        // G saturation
+                        diff = this.diff(avg, g) * rgb.sat;
+                        if(g > avg) {
+                            g = g - diff;
+                        } else {
+                            g = g + diff;
+                        }
+
+                        // B saturation
+                        diff = this.diff(avg, b) * rgb.sat;
+                        if(b > avg) {
+                            b = b - diff;
+                        } else {
+                            b = b + diff;
+                        }
+                    }
 
                     if(r > 255) r = 255;
                     if(g > 255) g = 255;
                     if(b > 255) b = 255;
+
+                    if(r < 0) r = 0;
+                    if(g < 0) g = 0;
+                    if(b < 0) b = 0;
 
                     data32[y * 720 + x] =
                         (255    << 24)   |
