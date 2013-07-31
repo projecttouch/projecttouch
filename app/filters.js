@@ -52,112 +52,24 @@ define([], function () {
         },
 
         hipster: function (pixels) {
-            var rgb = {
-                    r: App.R,
-                    g: App.G,
-                    b: App.B,
-                    sat: -(App.Sat / 100)
-                },
-                r = 0,
-                g = 0,
-                b = 0,
-                avg = 100,
-                diff = 0,
-                source = pixels.data,
-                data32 = new Uint32Array(source.buffer);
+            var ar = App.R,
+                ag = App.G,
+                ab = App.B,
+                data32 = new Uint32Array(pixels.data.buffer), // use Uint32Array directly for faster manipulation
+                ii,
+                tt = data32.length,
+                b,
+                g,
+                r;
 
-            for (var y = 0; y < 360; ++y) {
-                for (var x = 0; x < 720; ++x) {
-                    b = ((data32[y * 720 + x] >> 16) & 0xff) * rgb.b;
-                    g = ((data32[y * 720 + x] >> 8) & 0xff) * rgb.g;
-                    r = ((data32[y * 720 + x] >> 0) & 0xff) * rgb.r;
+            for (ii = 0; ii < tt; ii+=1) {
+                b = ((data32[ii] >> 16) & 0xff) * App.B;
+                g = ((data32[ii] >> 8) & 0xff) * App.G;
+                r = ((data32[ii] >> 0) & 0xff) * App.R;
 
-                    if(rgb.sat < 2) {
-                        avg = (r + g + b) / 3;
-
-                        // R saturation
-                        diff = this.diff(avg, r) * rgb.sat;
-                        if(r > avg) {
-                            r = r - diff;
-                        } else {
-                            r = r + diff;
-                        }
-
-                        // G saturation
-                        diff = this.diff(avg, g) * rgb.sat;
-                        if(g > avg) {
-                            g = g - diff;
-                        } else {
-                            g = g + diff;
-                        }
-
-                        // B saturation
-                        diff = this.diff(avg, b) * rgb.sat;
-                        if(b > avg) {
-                            b = b - diff;
-                        } else {
-                            b = b + diff;
-                        }
-                    }
-
-                    if(r > 255) r = 255;
-                    if(g > 255) g = 255;
-                    if(b > 255) b = 255;
-
-                    if(r < 0) r = 0;
-                    if(g < 0) g = 0;
-                    if(b < 0) b = 0;
-
-                    data32[y * 720 + x] =
-                        (255    << 24)   |
-                        (b      << 16)   |
-                        (g      <<  8)   |
-                         r;
-                }
+                data32[ii] = (255 << 24) | ((b > 255 ? 255 : b) << 16) | ((g > 255 ? 255 : g) << 8) | (r > 255 ? 255 : r);
             }
 
-            return pixels;
-        },
-
-        red: function (pixels) {
-            var d = pixels.data;
-            for (var i = 0; i < d.length; i += 4) {
-                var r = d[i];
-                var g = d[i + 1];
-                var b = d[i + 2];
-
-                d[i] = r;
-                d[i + 1] = 0;
-                d[i + 2] = 0;
-            }
-            return pixels;
-        },
-
-        green: function (pixels) {
-            var d = pixels.data;
-            for (var i = 0; i < d.length; i += 4) {
-                var r = d[i];
-                var g = d[i + 1];
-                var b = d[i + 2];
-
-                d[i] = 0;
-                d[i + 1] = g;
-                d[i + 2] = 0;
-            }
-            return pixels;
-        },
-
-        blue: function (pixels) {
-            var d = pixels.data;
-            for (var i = 0; i < d.length; i += 4) {
-                var r = d[i];
-                var g = d[i + 1];
-                var b = d[i + 2];
-
-                d[i] = 0;
-                d[i + 1] = 0;
-                d[i + 2] = b;
-            }
             return pixels;
         },
 
@@ -178,8 +90,6 @@ define([], function () {
                         g = 0,
                         b = 0,
                         count = 0;
-
-
 
                     // Average our pixels and count the amount of averaged pixels
                     // We need to count them because of edge pixels

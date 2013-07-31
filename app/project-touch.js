@@ -6,13 +6,14 @@
 
 /*global define, window, document, $, requirejs, require, console  */
 
-define(['backbone', 'app/views/player', 'app/filters'], function (Backbone, Player, Filters) {
+define(['backbone', 'app/views/player', 'app/filters', 'app/collections/library', 'app/collections/timeline', 'app/controllers/timeline', 'app/models/media', 'app/views/library/list'], function (Backbone, Player, Filters, Library, Timeline, TimelineController, Media, LibView) {
 
     'use strict';
 
     return Backbone.View.extend({
 
         filter: null,
+        debug: true,
 
         events: {
             "click button": "handler"
@@ -22,28 +23,83 @@ define(['backbone', 'app/views/player', 'app/filters'], function (Backbone, Play
         G: 1,
         B: 1,
         Sat: 100,
+        C: 0,
 
         initialize: function () {
 
-            this.player = new Player();
+            var self = this;
 
-            setInterval(this.getRGB, 1000);
+            window.log = function () {
+                if (self.debug) {
+                    console.log.apply(console, arguments);
+                }
+            }
+
+            this.library = new Library();
+            this.player = new Player();
+            this.timeline = new Timeline();
+            this.timelineController = new TimelineController(this.timeline);
+
+            this.library.on('add', function (model) {
+                log('model', this.library.models.length, model)
+            }, this);
+
+            //setInterval(this.getRGB, 600);
         },
 
         render: function () {
 
+            _.bindAll(this, 'handleFileSelect');
+
             this.el.appendChild(this.player.render()
                 .el);
 
-            this.video = document.createElement('video');
-//            this.video.muted = true;
-            this.video.src = "clip.mp4";
+            this.form = document.createElement('form');
+            this.input = document.createElement('input');
+            this.input.setAttribute('type', 'file');
+            this.input.setAttribute('name', 'file-upload');
+            this.input.setAttribute('style', 'position: absolute; display: block; height: 10%; width: 10%;');
 
-            this.player.setSource(this.video);
+            this.form.appendChild(this.input);
+            this.el.insertBefore(this.form, this.el.firstChild);
 
-            this.video.play();
-            document.querySelector('.play')
-                .setAttribute('class', 'pause');
+            this.el.addEventListener('dragenter', this.dragEscape, false);
+            this.el.addEventListener('dragexit', this.dragEscape, false);
+
+            this.el.addEventListener('dragover', this.handleDragOver, false);
+            this.el.addEventListener('drop', this.handleFileSelect, false);
+
+            this.input.addEventListener('change', this.handleFileSelect, false);
+
+            this.libView = new LibView();
+            this.el.appendChild(this.libView.render()
+                .el);
+            this.library.on('add', this.libView.add);
+
+        },
+
+        handleFileSelect: function (evt) {
+
+            var files;
+
+            if (evt.type === 'change') {
+                files = evt.target.files;
+            } else {
+                files = evt.dataTransfer.files;
+                evt.preventDefault();
+                evt.stopPropagation();
+            }
+
+            _.each(files, function (file) {
+
+                if (file.type !== "video/mp4") {
+                    console.warn('file must be mp4');
+                } else {
+                    this.library.add(new Media({
+                        file: file
+                    }));
+                }
+            }, this);
 
         },
 
@@ -53,17 +109,16 @@ define(['backbone', 'app/views/player', 'app/filters'], function (Backbone, Play
 
             switch (className) {
             case "play":
-                this.video.play();
+                this.timelineController.play();
                 e.currentTarget.setAttribute('class', 'pause');
                 break;
             case "pause":
-                this.video.pause();
+
                 e.currentTarget.setAttribute('class', 'play');
                 break;
             case "stop":
-                this.video.pause();
-                this.video.load();
                 if (document.querySelector('.pause')) {
+                    this.timelineController.stop();
                     document.querySelector('.pause')
                         .setAttribute('class', 'play');
                 }
@@ -74,7 +129,7 @@ define(['backbone', 'app/views/player', 'app/filters'], function (Backbone, Play
             case "pixelize":
             case "red":
             case "green":
-            case "blue":
+            case "contrast":
             case "hipster":
                 if (this.filter === Filters[className]) {
                     console.log('disabling filter', className);
@@ -88,19 +143,15 @@ define(['backbone', 'app/views/player', 'app/filters'], function (Backbone, Play
             }
         },
 
-        getRGB: function() {
-            App.R = parseFloat(document.getElementById('r').value);
-            App.G = parseFloat(document.getElementById('g').value);
-            App.B = parseFloat(document.getElementById('b').value);
-            App.Sat = parseFloat(document.getElementById('saturation').value);
-        },
+        getRGB: function () {
 
-        diff: function(number1, number2) {
-            if(number1 > number2) {
-                return number1 - number2;
-            } else {
-                return number2 - number1;
-            }
+            (Math.floor(Math.random() * 11)) / 10
+
+            App.R = 0;//(Math.floor(Math.random() * 11)) / 10;
+            App.G = 0;//(Math.floor(Math.random() * 11)) / 10;
+            App.B = 0;//(Math.floor(Math.random() * 11)) / 10;
+            App.C = 0;//(parseFloat(document.getElementById('c').value));
         }
+
     });
 });

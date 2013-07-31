@@ -28,20 +28,28 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             this.source = null;
             this.effect = false;
 
-            this.width = 720;
-            this.height = 360;
+            this.width = 1280;
+            this.height = 720;
 
         },
 
-        setSource: function (video) {
+        setSource: function (model) {
 
-            if (video !== undefined && video !== null) {
-                this.source = video;
+            if (model !== undefined && model !== null) {
+                this.source = model.video;
             } else {
                 this.source = null;
                 this.context.clearRect(0, 0, this.width, this.height);
             }
 
+        },
+        
+        setEffect: function (effect) {
+            
+        },
+        
+        setOverLay: function (overlay) {
+            
         },
 
         filterImage: function (filter, data, var_args) {
