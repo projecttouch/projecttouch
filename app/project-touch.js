@@ -58,7 +58,7 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/collections/library'
             this.input = document.createElement('input');
             this.input.setAttribute('type', 'file');
             this.input.setAttribute('name', 'file-upload');
-            this.input.setAttribute('style', 'position: absolute; display: block; height: 100%; width: 100%; background: black; ');
+            this.input.setAttribute('style', 'position: absolute; display: block; opacity: 0; height: 100%; width: 100%; background: black; ');
 
             this.form.appendChild(this.input);
             this.el.insertBefore(this.form, this.el.firstChild);

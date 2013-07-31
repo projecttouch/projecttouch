@@ -39,6 +39,7 @@ define([], function () {
         },
 
         hipster: function (pixels) {
+            
             var ar = App.R,
                 ag = App.G,
                 ab = App.B,
@@ -48,6 +49,8 @@ define([], function () {
                 b,
                 g,
                 r;
+                
+                log(tt)
 
             for (ii = 0; ii < tt; ii+=1) {
                 b = ((data32[ii] >> 16) & 0xff) * App.B;
