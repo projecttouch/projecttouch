@@ -59,7 +59,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 args.push(arg);
             });
 
-            return filter.apply(null, args);
+            return filter.apply(App, args);
         },
 
         render: function () {

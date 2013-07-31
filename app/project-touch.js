@@ -22,6 +22,7 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/collections/library'
         R: 1,
         G: 1,
         B: 1,
+        Sat: 100,
         C: 0,
 
         initialize: function () {
@@ -43,8 +44,7 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/collections/library'
                 log('model', this.library.models.length, model)
             }, this);
 
-            setInterval(this.getRGB, 600);
-
+            //setInterval(this.getRGB, 600);
         },
 
         render: function () {
@@ -58,7 +58,7 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/collections/library'
             this.input = document.createElement('input');
             this.input.setAttribute('type', 'file');
             this.input.setAttribute('name', 'file-upload');
-            this.input.setAttribute('style', 'position: absolute; display: block; height: 100%; width: 100%; background: black; ');
+            this.input.setAttribute('style', 'position: absolute; display: block; height: 10%; width: 10%;');
 
             this.form.appendChild(this.input);
             this.el.insertBefore(this.form, this.el.firstChild);
@@ -89,8 +89,6 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/collections/library'
                 evt.preventDefault();
                 evt.stopPropagation();
             }
-
-            this.el.style.backgroundColor = '#002b36';
 
             _.each(files, function (file) {
 
@@ -149,11 +147,10 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/collections/library'
 
             (Math.floor(Math.random() * 11)) / 10
 
-            App.R = (Math.floor(Math.random() * 11)) / 10;
-            App.G = (Math.floor(Math.random() * 11)) / 10;
-            App.B = (Math.floor(Math.random() * 11)) / 10;
-            App.C = (parseFloat(document.getElementById('c')
-                .value));
+            App.R = 0;//(Math.floor(Math.random() * 11)) / 10;
+            App.G = 0;//(Math.floor(Math.random() * 11)) / 10;
+            App.B = 0;//(Math.floor(Math.random() * 11)) / 10;
+            App.C = 0;//(parseFloat(document.getElementById('c').value));
         }
 
     });
