@@ -18,20 +18,13 @@ define(['backbone',
     return Backbone.View.extend({
 
         filter: null,
-        debug: true,
-
+        
         initialize: function () {
 
             var self = this,
                 Timeline = require('app/controllers/timeline'),
                 Player = require('app/views/player'),
                 Filter = require('app/filters');
-
-            window.log = function () {
-                if (self.debug) {
-                    console.log.apply(console, arguments);
-                }
-            }
 
             this.views = {};
             this.player = new Player();

@@ -43,7 +43,6 @@ define(['app/views/ui/panel',
             li.appendChild(form);
 
             this.ul.appendChild(li);
-            
             this.delegateEvents();
 
             return this;
@@ -51,7 +50,6 @@ define(['app/views/ui/panel',
         
         openFileSelect: function () {
             log('a')
-            this.$("input").trigger('click');
         },
 
         handleFileSelect: function (evt) {
