@@ -39,8 +39,8 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         addEventListeners: function () {
 
             //   this.collection.initTime();
-            this.collection.on('play', this.play);
-            this.collection.on('stop', this.stop);
+//            this.collection.on('play', this.play);
+//            this.collection.on('stop', this.stop);
             //  App.Views.interface.effects.on('change', this.changeFilter);
 
         },

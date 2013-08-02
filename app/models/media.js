@@ -20,6 +20,9 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         },
 
         initialize: function () {
+            
+            log('bam', this.get('file'));
+            
             this.set('blob', window.URL.createObjectURL(this.get('file')));
             this.getThumb();
         },

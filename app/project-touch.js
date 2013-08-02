@@ -6,7 +6,12 @@
 
 /*global define, window, document, $, requirejs, require, console  */
 
-define(['backbone', 'app/views/player', 'app/filters', 'app/collections/library', 'app/collections/timeline', 'app/controllers/timeline', 'app/models/media', 'app/views/library/list'], function (Backbone, Player, Filters, Library, Timeline, TimelineController, Media, LibView) {
+define(['backbone', 
+        'app/views/player', 
+        'app/filters', 
+        'app/views/ui/library',
+        'app/views/ui/effects', 
+        'app/controllers/timeline'], function (Backbone) {
 
     'use strict';
 
@@ -15,18 +20,12 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/collections/library'
         filter: null,
         debug: true,
 
-        events: {
-            "click button": "handler"
-        },
-
-        R: 1,
-        G: 1,
-        B: 1,
-        C: 0,
-
         initialize: function () {
 
-            var self = this;
+            var self = this,
+                Timeline = require('app/controllers/timeline'),
+                Player = require('app/views/player'),
+                Filter = require('app/filters');
 
             window.log = function () {
                 if (self.debug) {
@@ -34,127 +33,68 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/collections/library'
                 }
             }
 
-            this.library = new Library();
+            this.views = {};
             this.player = new Player();
             this.timeline = new Timeline();
-            this.timelineController = new TimelineController(this.timeline);
 
-            this.library.on('add', function (model) {
-                log('model', this.library.models.length, model)
-            }, this);
-
-            setInterval(this.getRGB, 600);
-
+            //setInterval(this.getRGB, 600);
         },
 
         render: function () {
 
-            _.bindAll(this, 'handleFileSelect');
+            var Library = require('app/views/ui/library'),
+                Effects = require('app/views/ui/effects');
 
+            this.views.library = new Library({title:'My Content', position:'left'});
+            this.el.appendChild(this.views.library.render()
+                .el);
+                
+            this.views.effects = new Effects({title:'My Effects', position:'right'});
+            this.el.appendChild(this.views.effects.render()
+                .el);
+            
             this.el.appendChild(this.player.render()
                 .el);
-
-            this.form = document.createElement('form');
-            this.input = document.createElement('input');
-            this.input.setAttribute('type', 'file');
-            this.input.setAttribute('name', 'file-upload');
-            this.input.setAttribute('style', 'position: absolute; display: block; height: 100%; width: 100%; background: black; ');
-
-            this.form.appendChild(this.input);
-            this.el.insertBefore(this.form, this.el.firstChild);
-
-            this.el.addEventListener('dragenter', this.dragEscape, false);
-            this.el.addEventListener('dragexit', this.dragEscape, false);
-
-            this.el.addEventListener('dragover', this.handleDragOver, false);
-            this.el.addEventListener('drop', this.handleFileSelect, false);
-
-            this.input.addEventListener('change', this.handleFileSelect, false);
-
-            this.libView = new LibView();
-            this.el.appendChild(this.libView.render()
-                .el);
-            this.library.on('add', this.libView.add);
-
-        },
-
-        handleFileSelect: function (evt) {
-
-            var files;
-
-            if (evt.type === 'change') {
-                files = evt.target.files;
-            } else {
-                files = evt.dataTransfer.files;
-                evt.preventDefault();
-                evt.stopPropagation();
-            }
-
-            this.el.style.backgroundColor = '#002b36';
-
-            _.each(files, function (file) {
-
-                if (file.type !== "video/mp4") {
-                    console.warn('file must be mp4');
-                } else {
-                    this.library.add(new Media({
-                        file: file
-                    }));
-                }
-            }, this);
-
-        },
-
-        handler: function (e) {
-
-            var className = e.currentTarget.getAttribute('class');
-
-            switch (className) {
-            case "play":
-                this.timelineController.play();
-                e.currentTarget.setAttribute('class', 'pause');
-                break;
-            case "pause":
-
-                e.currentTarget.setAttribute('class', 'play');
-                break;
-            case "stop":
-                if (document.querySelector('.pause')) {
-                    this.timelineController.stop();
-                    document.querySelector('.pause')
-                        .setAttribute('class', 'play');
-                }
-                break;
-
-            case "grayscale":
-            case "threshold":
-            case "pixelize":
-            case "red":
-            case "green":
-            case "contrast":
-            case "hipster":
-                if (this.filter === Filters[className]) {
-                    console.log('disabling filter', className);
-                    this.filter = null;
-                } else {
-                    console.log('enabling filter', className);
-                    this.filter = Filters[className];
-                }
-                break;
-
-            }
-        },
-
-        getRGB: function () {
-
-            (Math.floor(Math.random() * 11)) / 10
-
-            App.R = (Math.floor(Math.random() * 11)) / 10;
-            App.G = (Math.floor(Math.random() * 11)) / 10;
-            App.B = (Math.floor(Math.random() * 11)) / 10;
-            App.C = (parseFloat(document.getElementById('c')
-                .value));
         }
 
+//        handler: function (e) {
+//
+//            var className = e.currentTarget.getAttribute('class');
+//
+//            switch (className) {
+//            case "play":
+//                this.timelineController.play();
+//                e.currentTarget.setAttribute('class', 'pause');
+//                break;
+//            case "pause":
+//
+//                e.currentTarget.setAttribute('class', 'play');
+//                break;
+//            case "stop":
+//                if (document.querySelector('.pause')) {
+//                    this.timelineController.stop();
+//                    document.querySelector('.pause')
+//                        .setAttribute('class', 'play');
+//                }
+//                break;
+//
+//            case "grayscale":
+//            case "threshold":
+//            case "pixelize":
+//            case "red":
+//            case "green":
+//            case "contrast":
+//            case "hipster":
+//                if (this.filter === Filters[className]) {
+//                    console.log('disabling filter', className);
+//                    this.filter = null;
+//                } else {
+//                    console.log('enabling filter', className);
+//                    this.filter = Filters[className];
+//                }
+//                break;
+//
+//            }
+//        }
     });
 });
