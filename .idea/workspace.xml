@@ -2,33 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="02ce185b-6af3-4691-b610-13ef2751b6bb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/clip.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/hammer-1.0.5.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/collections/library.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/library/list.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/media.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/library/media.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/stats.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/ui/timeclip.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/collections/timeline.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/timeline.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/utils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application.js" afterPath="$PROJECT_DIR$/application.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.js" afterPath="$PROJECT_DIR$/build.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/filters.js" afterPath="$PROJECT_DIR$/app/filters.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/player.js" afterPath="$PROJECT_DIR$/app/views/player.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/project-touch.js" afterPath="$PROJECT_DIR$/app/project-touch.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stylesheet.css" afterPath="$PROJECT_DIR$/stylesheet.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="projecttouch.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="02ce185b-6af3-4691-b610-13ef2751b6bb" time="1375259088026" ignored="false" />
+    <file path="/Dummy.txt" changelist="02ce185b-6af3-4691-b610-13ef2751b6bb" time="1375275578098" ignored="false" />
     <file path="/filters.js" changelist="02ce185b-6af3-4691-b610-13ef2751b6bb" time="1372676664489" ignored="false" />
-    <file path="/index.html" changelist="02ce185b-6af3-4691-b610-13ef2751b6bb" time="1375197485069" ignored="false" />
-    <file path="/stylesheet.css" changelist="02ce185b-6af3-4691-b610-13ef2751b6bb" time="1375194777740" ignored="false" />
+    <file path="/index.html" changelist="02ce185b-6af3-4691-b610-13ef2751b6bb" time="1375282125918" ignored="false" />
+    <file path="/stylesheet.css" changelist="02ce185b-6af3-4691-b610-13ef2751b6bb" time="1375282140795" ignored="false" />
     <file path="/project-touch.js" changelist="02ce185b-6af3-4691-b610-13ef2751b6bb" time="1372670006266" ignored="false" />
     <file path="/player.js" changelist="02ce185b-6af3-4691-b610-13ef2751b6bb" time="1372670660451" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -50,19 +32,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="58" selection-start="30" selection-end="85" vertical-scroll-proportion="0.041705284">
-              <folding />
+            <state line="34" column="14" selection-start="749" selection-end="758" vertical-scroll-proportion="-21.25">
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#4;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="stylesheet.css" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="stylesheet.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/stylesheet.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="0" selection-start="975" selection-end="1005" vertical-scroll-proportion="0.0">
+            <state line="125" column="29" selection-start="2123" selection-end="2123" vertical-scroll-proportion="0.47243345">
               <folding />
             </state>
           </provider>
@@ -145,8 +132,8 @@
         <option value="$PROJECT_DIR$/app/filters.js" />
         <option value="$PROJECT_DIR$/application.js" />
         <option value="$PROJECT_DIR$/app/project-touch.js" />
-        <option value="$PROJECT_DIR$/stylesheet.css" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/stylesheet.css" />
       </list>
     </option>
   </component>
@@ -254,7 +241,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1200" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CSS-X-Fire" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -348,7 +335,12 @@
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="23" column="44" selection-start="792" selection-end="792" vertical-scroll-proportion="0.0">
-          <folding />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#4;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -422,13 +414,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="24" selection-start="1318" selection-end="1318" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/project-touch.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="10" selection-start="562" selection-end="562" vertical-scroll-proportion="0.0">
@@ -436,16 +421,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/stylesheet.css">
+    <entry file="file://$PROJECT_DIR$/application.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="0" selection-start="975" selection-end="1005" vertical-scroll-proportion="0.0">
+        <state line="45" column="24" selection-start="1318" selection-end="1318" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="58" selection-start="30" selection-end="85" vertical-scroll-proportion="0.041705284">
+        <state line="34" column="14" selection-start="749" selection-end="758" vertical-scroll-proportion="-21.25">
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#4;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stylesheet.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="125" column="29" selection-start="2123" selection-end="2123" vertical-scroll-proportion="0.47243345">
           <folding />
         </state>
       </provider>
