@@ -8,13 +8,13 @@
  */
 /*global views, console, $, $$, TweenLite, TweenMax, TimelineLite, TimelineMax, Ease, Linear, Power0, Power1, Power2, Power3, Power4, Quad, Cubic, Quart, Strong, Back, Bounce, Circ, Elastic, Expo, Sine, SlowMo  */
 
-define(['backbone', 'underscore'], function (Backbone, _) {
+define(['backbone', 'underscore', 'app/collections/timeline'], function (Backbone, _, Collection) {
 
     'use strict';
 
-    var Timeline = function (collection) {
+    var Timeline = function () {
 
-        this.initialize(collection);
+        this.initialize();
 
     };
 
@@ -24,12 +24,12 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         seek: 0,
         playing: false,
 
-        initialize: function (collection) {
+        initialize: function () {
 
             this.layers = [];
             this.videos = [];
             this.filter = null;
-            this.collection = collection;
+            this.collection = new Collection();
 
             _.bindAll(this, 'addEventListeners', 'changeFilter', 'play', 'stop', 'frame');
 

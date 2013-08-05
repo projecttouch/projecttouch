@@ -18,6 +18,12 @@ define(['backbone',
 
         model: Media,
         
+        initialize: function () {
+          this.on('layer', function (model) {
+            window.App.timeline.collection.add({type:"video",media:model});  
+          });
+        },
+        
         add: function (model) {
             var exist = 0;
             _.each(this.models, function (m) {                        

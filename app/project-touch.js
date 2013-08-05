@@ -11,7 +11,8 @@ define(['backbone',
         'app/filters', 
         'app/views/ui/library',
         'app/views/ui/effects', 
-        'app/controllers/timeline'], function (Backbone) {
+        'app/controllers/timeline',
+        'app/views/ui/timeline'], function (Backbone) {
 
     'use strict';
 
@@ -36,7 +37,8 @@ define(['backbone',
         render: function () {
 
             var Library = require('app/views/ui/library'),
-                Effects = require('app/views/ui/effects');
+                Effects = require('app/views/ui/effects'),
+                Timeline = require('app/views/ui/timeline');
 
             this.views.library = new Library({title:'My Content', position:'left'});
             this.el.appendChild(this.views.library.render()
@@ -45,6 +47,8 @@ define(['backbone',
             this.views.effects = new Effects({title:'My Effects', position:'right'});
             this.el.appendChild(this.views.effects.render()
                 .el);
+                
+            this.views.timeline = new Timeline({el:document.querySelector('footer')});
             
             this.el.appendChild(this.player.render()
                 .el);

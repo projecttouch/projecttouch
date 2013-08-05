@@ -15,10 +15,7 @@ define(['backbone', 'underscore', 'app/models/clip'], function (Backbone, _, Mod
     return Backbone.Collection.extend({
 
         model: Model,
-
-        initialize: function () {
-
-        },
+        totalFrames: 5000,
 
         getActive: function () {
 
