@@ -70,14 +70,20 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   -moz-box-sizing: border-box;
   -o-box-sizing: border-box;
   box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: moz-none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-/* line 11, stylesheet.scss */
+/* line 17, stylesheet.scss */
 html {
   height: 100%;
 }
 
-/* line 15, stylesheet.scss */
+/* line 21, stylesheet.scss */
 body {
   height: 100%;
   background: #1d1d1d;
@@ -86,7 +92,7 @@ body {
   font-weight: 300;
 }
 
-/* line 23, stylesheet.scss */
+/* line 29, stylesheet.scss */
 header {
   background: #333333;
   height: 50px;
@@ -109,57 +115,98 @@ footer div:first-child {
   background: none;
 }
 /* line 14, ui/footer.scss */
-footer div:first-child .line {
+footer div:first-child .layer {
   background: none;
   background-color: #2d2c2d;
   padding-left: 6px;
 }
 /* line 21, ui/footer.scss */
-footer .bar, footer .layer {
+footer .bar {
   background-color: #2d2c2d;
   padding: 3px 30px;
   position: relative;
   margin-bottom: 10px;
 }
-/* line 28, ui/footer.scss */
-footer .bar .line, footer .layer .media {
+/* line 30, ui/footer.scss */
+footer .bar .layer {
   position: absolute;
   right: 0;
   top: 0;
   left: 170px;
   height: 100%;
   font-size: 11px;
-  line-height: 20px;
+  layer-height: 20px;
   background: #282628;
+  overflow: hidden;
 }
-/* line 39, ui/footer.scss */
-footer .bar .line span {
+/* line 42, ui/footer.scss */
+footer .bar .layer .media {
+  position: absolute;
+  height: 100%;
+  cursor: move;
+  overflow: hidden;
+}
+/* line 49, ui/footer.scss */
+footer .bar .layer .media .left {
+  -ms-touch-action: none;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 26px;
+  width: 26px;
+  cursor: e-resize;
+  z-index: 99;
+}
+/* line 64, ui/footer.scss */
+footer .bar .layer .media .middle {
+  -ms-touch-action: none;
+  display: block;
+  position: relative;
+  height: 26px;
+  width: 100%;
+  z-index: 80;
+}
+/* line 76, ui/footer.scss */
+footer .bar .layer .media .right {
+  -ms-touch-action: none;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 26px;
+  width: 26px;
+  cursor: w-resize;
+  z-index: 99;
+}
+/* line 95, ui/footer.scss */
+footer .bar .layer span {
   float: right;
   margin-right: 6px;
 }
-/* line 44, ui/footer.scss */
-footer .bar .line .part {
+/* line 100, ui/footer.scss */
+footer .bar .layer .part {
   position: absolute;
   height: 100%;
   background: #24687d;
   /* Old browsers */
-  background: -moz-linear-gradient(top, #24687d 0%, #144454 100%);
+  background: -moz-layerar-gradient(top, #24687d 0%, #144454 100%);
   /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #24687d), color-stop(100%, #144454));
+  background: -webkit-gradient(layerar, left top, left bottom, color-stop(0%, #24687d), color-stop(100%, #144454));
   /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #24687d 0%, #144454 100%);
+  background: -webkit-layerar-gradient(top, #24687d 0%, #144454 100%);
   /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #24687d 0%, #144454 100%);
+  background: -o-layerar-gradient(top, #24687d 0%, #144454 100%);
   /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #24687d 0%, #144454 100%);
+  background: -ms-layerar-gradient(top, #24687d 0%, #144454 100%);
   /* IE10+ */
-  background: linear-gradient(to bottom, #24687d 0%, #144454 100%);
+  background: layerar-gradient(to bottom, #24687d 0%, #144454 100%);
   /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#24687d', endColorstr='#144454',GradientType=0 );
   /* IE6-9 */
 }
 
-/* line 59, ui/footer.scss */
+/* line 115, ui/footer.scss */
 footer .part .left, footer .part .right {
   position: absolute;
   width: 40px;
@@ -168,35 +215,35 @@ footer .part .left, footer .part .right {
   top: -10px;
 }
 
-/* line 67, ui/footer.scss */
+/* line 123, ui/footer.scss */
 footer .part .left {
   left: -10px;
 }
 
-/* line 71, ui/footer.scss */
+/* line 127, ui/footer.scss */
 footer .part .right {
   right: -10px;
 }
 
-/* line 75, ui/footer.scss */
-footer .bar.effects .line .part {
-  background: -moz-linear-gradient(top, #4cffa7 0%, #36d486 100%);
+/* line 131, ui/footer.scss */
+footer .bar.effects .layer .part {
+  background: -moz-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
   /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4cffa7), color-stop(100%, #36d486));
+  background: -webkit-gradient(layerar, left top, left bottom, color-stop(0%, #4cffa7), color-stop(100%, #36d486));
   /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #4cffa7 0%, #36d486 100%);
+  background: -webkit-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
   /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #4cffa7 0%, #36d486 100%);
+  background: -o-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
   /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #4cffa7 0%, #36d486 100%);
+  background: -ms-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
   /* IE10+ */
-  background: linear-gradient(to bottom, #4cffa7 0%, #36d486 100%);
+  background: layerar-gradient(to bottom, #4cffa7 0%, #36d486 100%);
   /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4cffa7', endColorstr='#36d486',GradientType=0 );
   /* IE6-9 */
 }
 
-/* line 34, stylesheet.scss */
+/* line 40, stylesheet.scss */
 button {
   width: 40px;
   height: 40px;
@@ -205,12 +252,12 @@ button {
   cursor: pointer;
 }
 
-/* line 43, stylesheet.scss */
+/* line 49, stylesheet.scss */
 button:hover {
   opacity: 0.8;
 }
 
-/* line 47, stylesheet.scss */
+/* line 53, stylesheet.scss */
 button.play {
   position: absolute;
   left: 50%;
@@ -219,7 +266,7 @@ button.play {
   background-image: url(images/play.png);
 }
 
-/* line 55, stylesheet.scss */
+/* line 61, stylesheet.scss */
 button.pause {
   position: absolute;
   background-image: url(images/pause.png);
@@ -228,7 +275,7 @@ button.pause {
   margin: 0 0 0 -50px;
 }
 
-/* line 64, stylesheet.scss */
+/* line 70, stylesheet.scss */
 button.stop {
   position: absolute;
   background-image: url(images/stop.png);
@@ -237,42 +284,42 @@ button.stop {
   margin: 0 0 0 -50px;
 }
 
-/* line 72, stylesheet.scss */
+/* line 78, stylesheet.scss */
 button.pixelize {
   background-image: url(images/pixelize.png);
 }
 
-/* line 76, stylesheet.scss */
+/* line 82, stylesheet.scss */
 button.threshold {
   background-image: url(images/threshold.png);
 }
 
-/* line 80, stylesheet.scss */
+/* line 86, stylesheet.scss */
 button.grayscale {
   background-image: url(images/grayscale.png);
 }
 
-/* line 84, stylesheet.scss */
+/* line 90, stylesheet.scss */
 button.red {
   background-color: red;
 }
 
-/* line 88, stylesheet.scss */
+/* line 94, stylesheet.scss */
 button.green {
   background-color: green;
 }
 
-/* line 92, stylesheet.scss */
+/* line 98, stylesheet.scss */
 button.contrast {
   background-color: blue;
 }
 
-/* line 96, stylesheet.scss */
+/* line 102, stylesheet.scss */
 button.hipster {
   background-color: yellowgreen;
 }
 
-/* line 100, stylesheet.scss */
+/* line 106, stylesheet.scss */
 #rgb {
   position: absolute;
   z-index: 99;
@@ -280,12 +327,12 @@ button.hipster {
   display: none;
 }
 
-/* line 107, stylesheet.scss */
+/* line 113, stylesheet.scss */
 #rgb input {
   width: 300px;
 }
 
-/* line 111, stylesheet.scss */
+/* line 117, stylesheet.scss */
 #fps {
   position: absolute;
   bottom: 10px;
@@ -295,7 +342,7 @@ button.hipster {
 /* =================================================================
    ===- PANEL
    ================================================================= */
-/* line 121, stylesheet.scss */
+/* line 127, stylesheet.scss */
 .ui-panel {
   width: 280px;
   top: 150px;
@@ -303,23 +350,23 @@ button.hipster {
   bottom: 80px;
 }
 
-/* line 128, stylesheet.scss */
+/* line 134, stylesheet.scss */
 .ui-panel.left {
   left: 20px;
 }
 
-/* line 132, stylesheet.scss */
+/* line 138, stylesheet.scss */
 .ui-panel.right {
   right: 20px;
 }
 
-/* line 136, stylesheet.scss */
+/* line 142, stylesheet.scss */
 .ui-panel h2 {
   font-size: 30px;
   margin: 10px 0 10px 20px;
 }
 
-/* line 141, stylesheet.scss */
+/* line 147, stylesheet.scss */
 .ui-panel ul {
   width: 100%;
   height: 100%;
@@ -327,14 +374,14 @@ button.hipster {
   overflow-y: scroll;
 }
 
-/* line 147, stylesheet.scss */
+/* line 153, stylesheet.scss */
 .ui-panel ul li {
   width: 100%;
   height: 155px;
   margin: 10px 0 0;
 }
 
-/* line 152, stylesheet.scss */
+/* line 158, stylesheet.scss */
 .ui-panel ul li:first-child {
   margin: 0;
 }

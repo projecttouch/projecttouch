@@ -1,2 +1,2 @@
-css_dir = ""
+css_dir = "styles"
 sass_path = "styles"
