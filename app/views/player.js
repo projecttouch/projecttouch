@@ -81,11 +81,6 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
             this.el.addEventListener('click', this.toggleEffect, false);
 
-            this.el.style.position = "absolute";
-            this.el.style.top = "50%";
-            this.el.style.left = "50%";
-            this.el.style.margin = '-' + (this.height / 2) + 'px 0 0 -' + (this.width / 2) + 'px';
-
             return this;
 
         },

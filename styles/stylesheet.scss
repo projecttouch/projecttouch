@@ -1,6 +1,13 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
 @import "compass/reset";
 
+$headerHeight: 50px;
+$footerHeight: 125px;
+$panelWidth: 280px;
+
+$panelMargin: 10px;
+$panelHeight: 75%;
+
 * {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -28,13 +35,37 @@ body {
 
 header {
 	background: #333333;
-	height: 50px;
+	height: 5%;
+	min-height: $headerHeight;
+}
+
+.video {
+	height: $panelHeight;
 }
 
 @import "ui/footer";
+#composition {
+	position: absolute;
+	background: darkslateblue;
+	left: $panelWidth;
+	right: $panelWidth;
+	height: 75%;
+	//top: $headerHeight;
+	//bottom: $footerHeight;
 
+	.controls {
+		position: absolute;
+		vertical-position: bottom;
+		top: 450px;
+		left: 20px;
+	}
+
+}
 #player {
- 
+	width: 100%;
+	opacity: 0.9;
+ 	pointer-events: none;
+	background: darkolivegreen;
 }
 
 button {
@@ -43,7 +74,6 @@ button {
 	border: 0;
 	background: center center no-repeat;
 	cursor: pointer;
-  
 }
 
 button:hover {
@@ -51,40 +81,28 @@ button:hover {
 }
 
 button.play {
-  position: absolute;
-  left: 50%;
-  top: 50px;
-  margin: 0 0 0 -100px;
-	background-image: url(images/play.png);
+	background-image: url(/images/play.png);
 }
  
 button.pause {
-  position: absolute;
-  background-image: url(images/pause.png);
-  left: 50%;
-  top: 50px;
-  margin: 0 0 0 -50px;
+  background-image: url(/images/pause.png);
 
 }
 
 button.stop {
-	position: absolute;
-  background-image: url(images/stop.png);
-  left: 50%;
-  top: 50px;
-  margin: 0 0 0 -50px;
+  background-image: url(/images/stop.png);
 }
 
 button.pixelize {
-	background-image: url(images/pixelize.png);
+	background-image: url(/images/pixelize.png);
 }
 
 button.threshold {
-	background-image: url(images/threshold.png);
+	background-image: url(/images/threshold.png);
 }
 
 button.grayscale {
-	background-image: url(images/grayscale.png);
+	background-image: url(/images/grayscale.png);
 }
 
 button.red {
@@ -125,10 +143,9 @@ button.hipster {
    ================================================================= */
 
 .ui-panel {
-  width: 280px;
-  top: 150px;
-  position: absolute;
-  bottom: 80px;
+  	width: $panelWidth;
+	height: $panelHeight;
+  	position: absolute;
 }
 
 .ui-panel.left {
@@ -145,7 +162,7 @@ button.hipster {
 }
 
 .ui-panel ul {
-  width: 100%;
+  width: 90%; // TODO: fix vertical scrollbar position and UL indent
   height: 100%;
   overflow: hidden;
   overflow-y: scroll; }
