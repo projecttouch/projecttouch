@@ -20,9 +20,6 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         },
 
         initialize: function () {
-            
-            log('bam', this.get('file'));
-            
             this.set('blob', window.URL.createObjectURL(this.get('file')));
             this.getThumb();
         },
@@ -38,10 +35,8 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             canvas.height = 140;
 
             video.addEventListener('canplaythrough', function () {
-
                 ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight, 0, 0, 263, 140);
                 self.set('thumb', canvas.toDataURL('image/jpeg'));
-
             });
 
             video.src = this.get('blob');
