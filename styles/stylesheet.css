@@ -64,7 +64,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-/* line 11, stylesheet.scss */
+/* line 12, stylesheet.scss */
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -78,12 +78,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   user-select: none;
 }
 
-/* line 24, stylesheet.scss */
+/* line 25, stylesheet.scss */
 html {
   height: 100%;
 }
 
-/* line 28, stylesheet.scss */
+/* line 29, stylesheet.scss */
 body {
   height: 100%;
   background: #1d1d1d;
@@ -92,16 +92,21 @@ body {
   font-weight: 300;
 }
 
-/* line 36, stylesheet.scss */
+/* line 37, stylesheet.scss */
 header {
+  position: absolute;
+  top: 0;
+  width: 100%;
   background: #333333;
-  height: 5%;
   min-height: 50px;
 }
 
-/* line 42, stylesheet.scss */
+/* line 45, stylesheet.scss */
 .video {
-  height: 75%;
+  position: absolute;
+  top: 50px;
+  width: 100%;
+  height: 80%;
 }
 
 /* line 1, ui/footer.scss */
@@ -250,31 +255,29 @@ footer .bar.effects .layer .part {
   /* IE6-9 */
 }
 
-/* line 47, stylesheet.scss */
+/* line 53, stylesheet.scss */
 #composition {
   position: absolute;
-  background: darkslateblue;
-  left: 280px;
-  right: 280px;
-  height: 75%;
+  left: 310px;
+  right: 310px;
+  height: 80%;
 }
-/* line 56, stylesheet.scss */
+/* line 60, stylesheet.scss */
 #composition .controls {
+  z-index: 1;
   position: absolute;
   vertical-position: bottom;
-  top: 450px;
+  top: 500px;
   left: 20px;
 }
 
-/* line 64, stylesheet.scss */
+/* line 70, stylesheet.scss */
 #player {
   width: 100%;
-  opacity: 0.9;
   pointer-events: none;
-  background: darkolivegreen;
 }
 
-/* line 71, stylesheet.scss */
+/* line 76, stylesheet.scss */
 button {
   width: 40px;
   height: 40px;
@@ -283,62 +286,62 @@ button {
   cursor: pointer;
 }
 
-/* line 79, stylesheet.scss */
+/* line 84, stylesheet.scss */
 button:hover {
   opacity: 0.8;
 }
 
-/* line 83, stylesheet.scss */
+/* line 88, stylesheet.scss */
 button.play {
-  background-image: url(/images/play.png);
-}
-
-/* line 87, stylesheet.scss */
-button.pause {
-  background-image: url(/images/pause.png);
+  background-image: url(../images/play.png);
 }
 
 /* line 92, stylesheet.scss */
-button.stop {
-  background-image: url(/images/stop.png);
+button.pause {
+  background-image: url(../images/pause.png);
 }
 
 /* line 96, stylesheet.scss */
-button.pixelize {
-  background-image: url(/images/pixelize.png);
+button.stop {
+  background-image: url(../images/stop.png);
 }
 
 /* line 100, stylesheet.scss */
-button.threshold {
-  background-image: url(/images/threshold.png);
+button.pixelize {
+  background-image: url(../images/pixelize.png);
 }
 
 /* line 104, stylesheet.scss */
-button.grayscale {
-  background-image: url(/images/grayscale.png);
+button.threshold {
+  background-image: url(../images/threshold.png);
 }
 
 /* line 108, stylesheet.scss */
+button.grayscale {
+  background-image: url(../images/grayscale.png);
+}
+
+/* line 112, stylesheet.scss */
 button.red {
   background-color: red;
 }
 
-/* line 112, stylesheet.scss */
+/* line 116, stylesheet.scss */
 button.green {
   background-color: green;
 }
 
-/* line 116, stylesheet.scss */
+/* line 120, stylesheet.scss */
 button.contrast {
   background-color: blue;
 }
 
-/* line 120, stylesheet.scss */
+/* line 124, stylesheet.scss */
 button.hipster {
   background-color: yellowgreen;
 }
 
-/* line 124, stylesheet.scss */
+/* line 128, stylesheet.scss */
 #rgb {
   position: absolute;
   z-index: 99;
@@ -346,12 +349,12 @@ button.hipster {
   display: none;
 }
 
-/* line 131, stylesheet.scss */
+/* line 135, stylesheet.scss */
 #rgb input {
   width: 300px;
 }
 
-/* line 135, stylesheet.scss */
+/* line 139, stylesheet.scss */
 #fps {
   position: absolute;
   bottom: 10px;
@@ -361,45 +364,57 @@ button.hipster {
 /* =================================================================
    ===- PANEL
    ================================================================= */
-/* line 145, stylesheet.scss */
+/* line 149, stylesheet.scss */
 .ui-panel {
   width: 280px;
-  height: 75%;
   position: absolute;
+  top: 0;
+  bottom: 50px;
 }
 
-/* line 151, stylesheet.scss */
+/* line 156, stylesheet.scss */
 .ui-panel.left {
   left: 20px;
 }
 
-/* line 155, stylesheet.scss */
+/* line 160, stylesheet.scss */
 .ui-panel.right {
   right: 20px;
 }
 
-/* line 159, stylesheet.scss */
-.ui-panel h2 {
+/* line 164, stylesheet.scss */
+h1 {
+  color: #0CF;
+  font-size: 30px;
+  line-height: 50px;
+  vertical-align: middle;
+  text-indent: 40px;
+}
+
+/* line 172, stylesheet.scss */
+h2 {
   font-size: 30px;
   margin: 10px 0 10px 20px;
 }
 
-/* line 164, stylesheet.scss */
+/* line 177, stylesheet.scss */
 .ui-panel ul {
-  width: 90%;
-  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 50px;
+  bottom: 0;
   overflow: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
-/* line 170, stylesheet.scss */
+/* line 188, stylesheet.scss */
 .ui-panel ul li {
   width: 100%;
   height: 155px;
   margin: 10px 0 0;
 }
 
-/* line 175, stylesheet.scss */
+/* line 194, stylesheet.scss */
 .ui-panel ul li:first-child {
   margin: 0;
 }
