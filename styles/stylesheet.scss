@@ -1,0 +1,167 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
+@import "compass/reset";
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: moz-none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	background: #1d1d1d;
+	color: #fff;
+	font-family: 'Open Sans';
+	font-weight: 300;
+} 
+
+header {
+	background: #333333;
+	height: 50px;
+}
+
+@import "ui/footer";
+
+#player {
+
+}
+
+button {
+	width: 40px;
+	height: 40px;
+	border: 0;
+	background: center center no-repeat;
+	cursor: pointer;
+  
+}
+
+button:hover {
+	opacity: 0.8;
+}
+
+button.play {
+  position: absolute;
+  left: 50%;
+  top: 50px;
+  margin: 0 0 0 -100px;
+	background-image: url(images/play.png);
+}
+ 
+button.pause {
+  position: absolute;
+  background-image: url(images/pause.png);
+  left: 50%;
+  top: 50px;
+  margin: 0 0 0 -50px;
+
+}
+
+button.stop {
+	position: absolute;
+  background-image: url(images/stop.png);
+  left: 50%;
+  top: 50px;
+  margin: 0 0 0 -50px;
+}
+
+button.pixelize {
+	background-image: url(images/pixelize.png);
+}
+
+button.threshold {
+	background-image: url(images/threshold.png);
+}
+
+button.grayscale {
+	background-image: url(images/grayscale.png);
+}
+
+button.red {
+	background-color: red;
+}
+
+button.green {
+	background-color: green;
+}
+
+button.contrast {
+	background-color: blue;
+}
+
+button.hipster {
+	background-color: yellowgreen;
+}
+
+#rgb {
+	position: absolute;
+	z-index: 99;
+	right: 0;
+	display: none;
+}
+
+#rgb input {
+	width: 300px;
+}
+
+#fps {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+}
+
+/* =================================================================
+   ===- PANEL
+   ================================================================= */
+
+.ui-panel {
+  width: 280px;
+  top: 150px;
+  position: absolute;
+  bottom: 80px;
+}
+
+.ui-panel.left {
+  left: 20px;
+}
+
+.ui-panel.right {
+  right: 20px;
+}
+
+.ui-panel h2 {
+  font-size: 30px;
+  margin: 10px 0 10px 20px;
+}
+
+.ui-panel ul {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overflow-y: scroll; }
+
+  .ui-panel ul li {
+    width: 100%;
+    height: 155px;
+    margin: 10px 0 0; }
+
+    .ui-panel ul li:first-child {
+      margin: 0; }
+
+/* ==============================
+   ===- PANEL - LIBRARY
+   ============================== */
+
+#library.ui-panel li.file-selector input{
+
+}

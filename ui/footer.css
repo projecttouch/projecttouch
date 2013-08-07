@@ -1,0 +1,144 @@
+/* line 1, ../styles/ui/footer.scss */
+footer {
+  background: #333333;
+  min-height: 50px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 30px;
+  padding-bottom: 20px;
+  color: #999999;
+  font-size: 14px;
+}
+/* line 12, ../styles/ui/footer.scss */
+footer div:first-child {
+  background: none;
+}
+/* line 14, ../styles/ui/footer.scss */
+footer div:first-child .layer {
+  background: none;
+  background-color: #2d2c2d;
+  padding-left: 6px;
+}
+/* line 21, ../styles/ui/footer.scss */
+footer .bar {
+  background-color: #2d2c2d;
+  padding: 3px 30px;
+  position: relative;
+  margin-bottom: 10px;
+}
+/* line 30, ../styles/ui/footer.scss */
+footer .bar .layer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 170px;
+  height: 100%;
+  font-size: 11px;
+  layer-height: 20px;
+  background: #282628;
+  overflow: hidden;
+}
+/* line 42, ../styles/ui/footer.scss */
+footer .bar .layer .media {
+  position: absolute;
+  height: 100%;
+  cursor: move;
+  overflow: hidden;
+}
+/* line 49, ../styles/ui/footer.scss */
+footer .bar .layer .media .left {
+  -ms-touch-action: none;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 26px;
+  width: 26px;
+  cursor: e-resize;
+  z-index: 99;
+}
+/* line 64, ../styles/ui/footer.scss */
+footer .bar .layer .media .middle {
+  -ms-touch-action: none;
+  display: block;
+  position: relative;
+  height: 26px;
+  width: 100%;
+  z-index: 80;
+}
+/* line 76, ../styles/ui/footer.scss */
+footer .bar .layer .media .right {
+  -ms-touch-action: none;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 26px;
+  width: 26px;
+  cursor: w-resize;
+  z-index: 99;
+}
+/* line 95, ../styles/ui/footer.scss */
+footer .bar .layer span {
+  float: right;
+  margin-right: 6px;
+}
+/* line 100, ../styles/ui/footer.scss */
+footer .bar .layer .part {
+  position: absolute;
+  height: 100%;
+  background: #24687d;
+  /* Old browsers */
+  background: -moz-layerar-gradient(top, #24687d 0%, #144454 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(layerar, left top, left bottom, color-stop(0%, #24687d), color-stop(100%, #144454));
+  /* Chrome,Safari4+ */
+  background: -webkit-layerar-gradient(top, #24687d 0%, #144454 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-layerar-gradient(top, #24687d 0%, #144454 100%);
+  /* Opera 11.10+ */
+  background: -ms-layerar-gradient(top, #24687d 0%, #144454 100%);
+  /* IE10+ */
+  background: layerar-gradient(to bottom, #24687d 0%, #144454 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#24687d', endColorstr='#144454',GradientType=0 );
+  /* IE6-9 */
+}
+
+/* line 115, ../styles/ui/footer.scss */
+footer .part .left, footer .part .right {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.3);
+  top: -10px;
+}
+
+/* line 123, ../styles/ui/footer.scss */
+footer .part .left {
+  left: -10px;
+}
+
+/* line 127, ../styles/ui/footer.scss */
+footer .part .right {
+  right: -10px;
+}
+
+/* line 131, ../styles/ui/footer.scss */
+footer .bar.effects .layer .part {
+  background: -moz-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(layerar, left top, left bottom, color-stop(0%, #4cffa7), color-stop(100%, #36d486));
+  /* Chrome,Safari4+ */
+  background: -webkit-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
+  /* Opera 11.10+ */
+  background: -ms-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
+  /* IE10+ */
+  background: layerar-gradient(to bottom, #4cffa7 0%, #36d486 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4cffa7', endColorstr='#36d486',GradientType=0 );
+  /* IE6-9 */
+}

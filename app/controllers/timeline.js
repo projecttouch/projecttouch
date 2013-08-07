@@ -21,7 +21,7 @@ define(['backbone', 'underscore', 'app/collections/timeline'], function (Backbon
     Timeline.prototype = {
 
         totalTime: 1000,
-        seek: 0,
+        _frame: 0,
         playing: false,
 
         initialize: function () {
@@ -30,6 +30,11 @@ define(['backbone', 'underscore', 'app/collections/timeline'], function (Backbon
             this.videos = [];
             this.filter = null;
             this.collection = new Collection();
+            
+            this.collection.on('offset:start', this.seek, this);
+            this.collection.on('change:offset', function (e) {
+                log(e);
+            })
 
             _.bindAll(this, 'addEventListeners', 'changeFilter', 'play', 'stop', 'frame');
 
@@ -72,6 +77,10 @@ define(['backbone', 'underscore', 'app/collections/timeline'], function (Backbon
             this.playing = true;
             this.timer = window.setInterval(this.frame, 40);
 
+        },
+        
+        seek: function (model) {
+            window.App.player.setSource(model);
         },
 
         /*

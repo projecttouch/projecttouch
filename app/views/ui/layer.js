@@ -6,150 +6,101 @@
 
 /*global define, window, document, $, requirejs, require  */
 
-define(['backbone', 'underscore'], function (Backbone, _) {
+define(['backbone', 'underscore', 'app/views/ui/layer-thumb'], function (Backbone, _, Thumb) {
 
     'use strict';
 
     return Backbone.View.extend({
 
-        tagName: 'div',
+        tageName: 'div',
         className: 'bar',
-        offset: {},
-
-        events: {
-            "mousedown .left": "mouseDownLeft",
-            "mousedown .right": "mouseDownRight"
-        },
 
         initialize: function () {
 
-            _.bindAll(this, 'resize', 'shrinkMedia');
+            _.bindAll(this, 'resize', 'endMove', 'mouseDown', 'moveMedia', 'resize');
 
-            this.options.model.collection.on('resize', this.resize, this);
-            this.options.model.on('change:frames', this.resize, this);
+            this.moving = false;
+            this.startMove = 0;
+
+            this.options.model.on("change:frames", this.resize, this);
+
         },
 
         render: function () {
 
-            var line = document.createElement('div');
+            var self = this;
 
-            this.part = this.constructHandler();
+            this.layer = document.createElement('div');
+            this.layer.classList.add('layer');
+            log(this.options.model)
+            this.el.innerHTML = this.options.model.get('media').get('file').name;
+            this.el.appendChild(this.layer);
 
-            line.setAttribute('class', 'line');
-            this.el.innerHTML = this.options.model.get('media')
-                .get('file')
-                .name;
+            this.media = new Thumb({
+                color: "#00ffff",
+                model: this.options.model
+            });
+            this.layer.appendChild(this.media.render()
+                .el);
 
-            this.el.appendChild(line);
-            line.appendChild(this.part);
-
+            this.media.el.addEventListener('mousedown', this.mouseDown, false);
+            window.addEventListener('mouseup', this.endMove, false);
+            window.addEventListener('resize', this.resize, false);
 
             return this;
 
         },
 
-        constructHandler: function () {
-            var handler = document.createElement('div'),
-                left = document.createElement('div'),
-                rigth = document.createElement('div');
+        mouseDown: function (e) {
 
-            handler.classList.add('part');
-            left.classList.add('left');
-            rigth.classList.add('right');
-
-            handler.appendChild(left);
-            handler.appendChild(rigth);
-
-            return handler;
-        },
-
-        mouseDownLeft: function () {
-
-            this.moving = 'left';
-
-            window.addEventListener('mousemove', this.shrinkMedia, true);
-
-            this.trigger('offsetpreviewstart');
-
-        },
-
-        mouseDownRight: function () {
-
-            this.moving = 'right';
-
-            window.addEventListener('mousemove', this.shrinkMedia, true);
-
-            this.trigger('offsetpreviewstart');
-
-        },
-
-        shrinkMedia: function (e) {
-
-            var left,
-            offset,
-            margin,
-            _left = this.el.querySelector('.left'),
-            _right = this.el.querySelector('.right');
-
-            if (this.moving === 'left') {
-
-                left = e.clientX + this.el.parentNode.parentNode.parentNode.scrollLeft;
-                offset = parseInt(this.el.style.left);
-                margin = left - offset;
-
-                if (margin < 0) {
-                    margin = 0;
-                }
-
-                this.el.style.paddingLeft = margin + 'px';
-                _left.style.left = margin + 'px';
-
-                this.offset.start = margin / parseInt(this.el.style.width);
-
+            if (e.target.getAttribute('class') === 'left' || e.target.getAttribute('class') === 'right') {
+                return;
             }
 
-            if (this.moving === 'right') {
+            this.startMove = e.clientX - parseInt(this.media.el.style.left);
+            this.moving = true;
 
-                left = e.clientX + this.el.parentNode.parentNode.parentNode.scrollLeft;
-                offset = parseInt(this.el.style.left);
-                margin = left - (offset + parseInt(this.el.style.width));
+            window.addEventListener('mousemove', this.moveMedia, true);
 
-                if (margin > 0) {
-                    margin = 0;
-                }
+        },
 
-                margin = Math.abs(margin);
+        moveMedia: function (e) {
 
-                this.el.style.paddingRight = margin + 'px';
-                _right.style.right = margin + 'px';
-
-                this.offset.end = margin / parseInt(this.el.style.width);
-
-                margin = left - offset;
+            if (this.moving) {
+                this.media.el.style.left = (e.clientX - this.startMove) + 'px';
             }
 
-            this.trigger('offsetpreview', margin / parseInt(this.el.style.width));
         },
 
         endMove: function () {
 
+            this.media.endMove();
+
             if (this.moving) {
-                window.removeEventListener('mousemove', this.shrinkMedia, true);
+                var percentage = parseInt(this.media.el.style.left) / this.$('.layer')
+                    .width();
+
+                window.removeEventListener('mousemove', this.moveMedia, true);
+
+                //             this.options.m.setPosition(parseInt(App.timeline.totalTime * percentage));
                 this.moving = false;
-                this.trigger('offset', this.offset);
             }
 
         },
 
-        resize: function (e) {
+        resize: function () {
 
-            this.part.style.width = ((e.get('frames') / e.collection.totalFrames) * 100) + '%';
+            var percentage = this.options.model.get('frames') / this.options.model.collection.totalFrames;
 
-            //            this.el.style.paddingLeft = (this.offset.start * parseInt(this.el.style.width)) + 'px';
-            //            this.left.style.left = (this.offset.start * parseInt(this.el.style.width)) + 'px';
-            //
-            //            this.el.style.paddingRight = (this.offset.end * parseInt(this.el.style.width)) + 'px';
-            //            this.right.style.right = (this.offset.end * parseInt(this.el.style.width)) + 'px';
+            this.media.el.style.width = percentage * this.$('.layer')
+                .width() + 'px';
+            this.media.resize();
+
+            if (this.options.model.get('start') < 0) {
+                //this.media.el.style.left = '-' + ((Math.abs(this.options.model.get('start')) / this.options.model.collection.totalFrames) * this.$('.layer').width()) + 'px';
+            } else {
+                //       this.media.el.style.left = ((this.options.m.get('start') / App.timeline.totalTime) * this.$('.layer').width()) + 'px';
+            }
 
         }
 

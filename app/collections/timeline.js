@@ -16,7 +16,7 @@ define(['backbone', 'underscore', 'app/models/clip'], function (Backbone, _, Mod
 
         model: Model,
         totalFrames: 5000,
-
+        
         getActive: function () {
 
             var targetModel;
