@@ -34,13 +34,17 @@ require(['app/project-touch', 'hammer', 'stats'], function (PT) {
 
     'use strict';
     
-//    var stats = new Stats();
-//
-//    stats.domElement.style.position = 'absolute';
-//    stats.domElement.style.left = '0px';
-//    stats.domElement.style.bottom = '0px';
-//
-//    document.body.appendChild( stats.domElement );
+    var stats = new Stats();
+
+    stats.domElement.style.position = 'absolute';
+    stats.domElement.style.left = '0px';
+    stats.domElement.style.bottom = '0px';
+
+    document.body.appendChild( stats.domElement );
+
+    window.log = function () {
+        console.log.apply(console, arguments);
+    }
 
     window.App = new PT({el: document.querySelector('.video')});
     window.App.render();

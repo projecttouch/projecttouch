@@ -24,6 +24,7 @@ define(['app/views/ui/panel',
             Panel.prototype.initialize.call(this);
             var Collection = require('app/collections/library')
             this.collection = new Collection();
+            this.collection.on('add', this.add, this);
             
             _.bindAll(this, 'handleFileSelect', 'add');
         },
@@ -43,15 +44,9 @@ define(['app/views/ui/panel',
             li.appendChild(form);
 
             this.ul.appendChild(li);
-            
             this.delegateEvents();
 
             return this;
-        },
-        
-        openFileSelect: function () {
-            log('a')
-            this.$("input").trigger('click');
         },
 
         handleFileSelect: function (evt) {

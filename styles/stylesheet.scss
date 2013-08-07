@@ -1,68 +1,17 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
-
-@CHARSET "UTF-8";
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-
-html {
-	line-height: 1;
-}
-
-ol, ul {
-	list-style: none;
-}
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-caption, th, td {
-	text-align: left;
-	font-weight: normal;
-	vertical-align: middle;
-}
-
-q, blockquote {
-	quotes: none;
-}
-
-q:before, q:after, blockquote:before, blockquote:after {
-	content: "";
-	content: none;
-}
-
-a img {
-	border: none;
-}
-
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
-	display: block;
-}
+@import "compass/reset";
 
 * {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	-o-box-sizing: border-box;
 	box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: moz-none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 html {
@@ -75,24 +24,17 @@ body {
 	color: #fff;
 	font-family: 'Open Sans';
 	font-weight: 300;
-}
+} 
 
 header {
 	background: #333333;
 	height: 50px;
 }
 
-footer {
-	background: #333333;
-	min-height: 50px;
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	padding: 30px;
-}
+@import "ui/footer";
 
 #player {
-
+ 
 }
 
 button {
@@ -101,6 +43,7 @@ button {
 	border: 0;
 	background: center center no-repeat;
 	cursor: pointer;
+  
 }
 
 button:hover {
@@ -108,18 +51,28 @@ button:hover {
 }
 
 button.play {
+  position: absolute;
+  left: 50%;
+  top: 50px;
+  margin: 0 0 0 -100px;
 	background-image: url(images/play.png);
-	margin-top: 200px;
 }
-
+ 
 button.pause {
-	background-image: url(images/pause.png);
-	margin-top: 200px;
+  position: absolute;
+  background-image: url(images/pause.png);
+  left: 50%;
+  top: 50px;
+  margin: 0 0 0 -50px;
+
 }
 
 button.stop {
-	background-image: url(images/stop.png);
-	margin-top: 200px;
+	position: absolute;
+  background-image: url(images/stop.png);
+  left: 50%;
+  top: 50px;
+  margin: 0 0 0 -50px;
 }
 
 button.pixelize {
@@ -193,21 +146,22 @@ button.hipster {
 
 .ui-panel ul {
   width: 100%;
+  height: 100%;
   overflow: hidden;
-  overflow-y: scroll;
-}
+  overflow-y: scroll; }
 
-.ui-panel ul li {
-  width: 100%;
-  height: 155px;
-  background: gray;
-}
+  .ui-panel ul li {
+    width: 100%;
+    height: 155px;
+    margin: 10px 0 0; }
+
+    .ui-panel ul li:first-child {
+      margin: 0; }
 
 /* ==============================
    ===- PANEL - LIBRARY
    ============================== */
 
 #library.ui-panel li.file-selector input{
-  opacity: 0;
-  display: none;
+
 }

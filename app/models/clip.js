@@ -16,13 +16,14 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
         defaults: {
             "media": null,
-            "video": null,
             "type": "video",
             "frames": 0,
             "status": "notready",
             "start": 0,
-            "offset-start": 0,
-            "offset-end": 0,
+            "offset": {
+                start: 0,
+                end: 0
+            },
             "scale": "stretch-to-fit",
             "position": 0
         },
@@ -30,21 +31,11 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         initialize: function () {
 
             if (this.get("type") === "video") {
+                this.on('offset:preview', this.seek, this);
                 this.collection.on('frame-sync', this.sync, this);
                 this.collection.on('kill', this.kill, this);
                 this.initializeVideo();
             }
-
-        },
-
-
-        setOffset: function (offset) {
-
-            this.set('offset-start', parseInt(offset.start * this.get('frames')));
-            this.set('offset-end', parseInt(offset.end * this.get('frames')));
-
-            this.trigger('offset');
-            this.syncTime();
 
         },
 
@@ -125,11 +116,11 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             }
 
         },
-        
+
         seek: function (frame) {
 
-            if (!isNaN(offset)) {
-                this.video.currentTime = (frame * this.get('frames')) / 25;
+            if (!isNaN(frame)) {
+                this.video.currentTime = frame / 25;
             }
 
         },
