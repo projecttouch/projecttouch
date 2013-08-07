@@ -2,6 +2,7 @@
 footer {
   background: #333333;
   min-height: 50px;
+  height: 20%;
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -10,24 +11,24 @@ footer {
   color: #999999;
   font-size: 14px;
 }
-/* line 12, footer.scss */
+/* line 13, footer.scss */
 footer div:first-child {
   background: none;
 }
-/* line 14, footer.scss */
+/* line 15, footer.scss */
 footer div:first-child .layer {
   background: none;
   background-color: #2d2c2d;
   padding-left: 6px;
 }
-/* line 21, footer.scss */
+/* line 22, footer.scss */
 footer .bar {
   background-color: #2d2c2d;
   padding: 3px 30px;
   position: relative;
   margin-bottom: 10px;
 }
-/* line 30, footer.scss */
+/* line 31, footer.scss */
 footer .bar .layer {
   position: absolute;
   right: 0;
@@ -39,14 +40,14 @@ footer .bar .layer {
   background: #282628;
   overflow: hidden;
 }
-/* line 42, footer.scss */
+/* line 43, footer.scss */
 footer .bar .layer .media {
   position: absolute;
   height: 100%;
   cursor: move;
   overflow: hidden;
 }
-/* line 49, footer.scss */
+/* line 50, footer.scss */
 footer .bar .layer .media .left {
   -ms-touch-action: none;
   display: block;
@@ -58,7 +59,7 @@ footer .bar .layer .media .left {
   cursor: e-resize;
   z-index: 99;
 }
-/* line 64, footer.scss */
+/* line 65, footer.scss */
 footer .bar .layer .media .middle {
   -ms-touch-action: none;
   display: block;
@@ -67,7 +68,7 @@ footer .bar .layer .media .middle {
   width: 100%;
   z-index: 80;
 }
-/* line 76, footer.scss */
+/* line 77, footer.scss */
 footer .bar .layer .media .right {
   -ms-touch-action: none;
   display: block;
@@ -79,12 +80,12 @@ footer .bar .layer .media .right {
   cursor: w-resize;
   z-index: 99;
 }
-/* line 95, footer.scss */
+/* line 96, footer.scss */
 footer .bar .layer span {
   float: right;
   margin-right: 6px;
 }
-/* line 100, footer.scss */
+/* line 101, footer.scss */
 footer .bar .layer .part {
   position: absolute;
   height: 100%;
@@ -106,7 +107,7 @@ footer .bar .layer .part {
   /* IE6-9 */
 }
 
-/* line 115, footer.scss */
+/* line 116, footer.scss */
 footer .part .left, footer .part .right {
   position: absolute;
   width: 40px;
@@ -115,17 +116,17 @@ footer .part .left, footer .part .right {
   top: -10px;
 }
 
-/* line 123, footer.scss */
+/* line 124, footer.scss */
 footer .part .left {
   left: -10px;
 }
 
-/* line 127, footer.scss */
+/* line 128, footer.scss */
 footer .part .right {
   right: -10px;
 }
 
-/* line 131, footer.scss */
+/* line 132, footer.scss */
 footer .bar.effects .layer .part {
   background: -moz-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
   /* FF3.6+ */

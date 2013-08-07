@@ -17,7 +17,7 @@ define(['app/views/ui/panel',
 
         events: {
             'change input': 'handleFileSelect',
-            'click .file-selector': 'openFileSelect'
+            'click .file-selector': 'handleFileSelect'
         },
 
         initialize: function () {
