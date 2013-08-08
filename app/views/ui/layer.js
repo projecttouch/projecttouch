@@ -17,7 +17,7 @@ define(['backbone', 'underscore', 'app/views/ui/layer-thumb'], function (Backbon
 
         initialize: function () {
 
-            _.bindAll(this, 'resize', 'endMove', 'mouseDown', 'moveMedia', 'resize');
+            _.bindAll(this, 'resize', 'endTrim', 'mouseDown', 'moveMedia', 'resize');
 
             this.moving = false;
             this.startMove = 0;
@@ -45,7 +45,7 @@ define(['backbone', 'underscore', 'app/views/ui/layer-thumb'], function (Backbon
                 .el);
 
             this.media.el.addEventListener('mousedown', this.mouseDown, false);
-            window.addEventListener('mouseup', this.endMove, false);
+            window.addEventListener('mouseup', this.endTrim, false);
             window.addEventListener('resize', this.resize, false);
 
             return this;
@@ -73,9 +73,9 @@ define(['backbone', 'underscore', 'app/views/ui/layer-thumb'], function (Backbon
 
         },
 
-        endMove: function () {
+        endTrim: function () {
 
-            this.media.endMove();
+            this.media.endTrim();
 
             if (this.moving) {
                 
