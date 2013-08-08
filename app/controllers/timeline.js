@@ -41,7 +41,7 @@ define(['backbone', 'underscore', 'app/collections/timeline'], function (Backbon
         },
 
         addEventListeners: function () {
-
+            document.querySelector('header').addEventListener('click', this.play);
             //   this.collection.initTime();
 //            this.collection.on('play', this.play);
 //            this.collection.on('stop', this.stop);
@@ -88,13 +88,13 @@ define(['backbone', 'underscore', 'app/collections/timeline'], function (Backbon
 
         frame: function () {
 
-            this.collection.trigger('frame-sync', this.seek);
+            this.collection.trigger('frame-sync', this._frame);
             window.App.player.setSource(this.collection.getActive());
 
-            if (this.seek === this.totalTime) {
+            if (this._frame === this.collection.totalFrames) {
                 this.stopTimeline();
             } else {
-                this.seek += 1;
+                this._frame += 1;
             }
 
         },

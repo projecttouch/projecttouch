@@ -1,4 +1,4 @@
-/* line 1, footer.scss */
+/* line 1, footer.sass */
 footer {
   background: #333333;
   min-height: 50px;
@@ -11,24 +11,24 @@ footer {
   color: #999999;
   font-size: 14px;
 }
-/* line 12, footer.scss */
+/* line 13, footer.sass */
 footer div:first-child {
   background: none;
 }
-/* line 14, footer.scss */
+/* line 16, footer.sass */
 footer div:first-child .layer {
   background: none;
   background-color: #2d2c2d;
   padding-left: 6px;
 }
-/* line 20, footer.scss */
+/* line 21, footer.sass */
 footer .bar {
   background-color: #2d2c2d;
   padding: 3px 30px;
   position: relative;
   margin-bottom: 10px;
 }
-/* line 26, footer.scss */
+/* line 27, footer.sass */
 footer .bar .layer {
   position: absolute;
   right: 0;
@@ -40,14 +40,14 @@ footer .bar .layer {
   background: #282628;
   overflow: hidden;
 }
-/* line 36, footer.scss */
+/* line 38, footer.sass */
 footer .bar .layer .media {
   position: absolute;
   height: 100%;
   cursor: move;
   overflow: hidden;
 }
-/* line 41, footer.scss */
+/* line 44, footer.sass */
 footer .bar .layer .media .left {
   -ms-touch-action: none;
   display: block;
@@ -59,7 +59,7 @@ footer .bar .layer .media .left {
   cursor: e-resize;
   z-index: 99;
 }
-/* line 52, footer.scss */
+/* line 55, footer.sass */
 footer .bar .layer .media .middle {
   -ms-touch-action: none;
   display: block;
@@ -68,7 +68,7 @@ footer .bar .layer .media .middle {
   width: 100%;
   z-index: 80;
 }
-/* line 60, footer.scss */
+/* line 63, footer.sass */
 footer .bar .layer .media .right {
   -ms-touch-action: none;
   display: block;
@@ -80,34 +80,26 @@ footer .bar .layer .media .right {
   cursor: w-resize;
   z-index: 99;
 }
-/* line 73, footer.scss */
+/* line 74, footer.sass */
 footer .bar .layer span {
   float: right;
   margin-right: 6px;
 }
-/* line 77, footer.scss */
+/* line 78, footer.sass */
 footer .bar .layer .part {
   position: absolute;
   height: 100%;
   background: #24687d;
-  /* Old browsers */
   background: -moz-layerar-gradient(top, #24687d 0%, #144454 100%);
-  /* FF3.6+ */
   background: -webkit-gradient(layerar, left top, left bottom, color-stop(0%, #24687d), color-stop(100%, #144454));
-  /* Chrome,Safari4+ */
   background: -webkit-layerar-gradient(top, #24687d 0%, #144454 100%);
-  /* Chrome10+,Safari5.1+ */
   background: -o-layerar-gradient(top, #24687d 0%, #144454 100%);
-  /* Opera 11.10+ */
   background: -ms-layerar-gradient(top, #24687d 0%, #144454 100%);
-  /* IE10+ */
   background: layerar-gradient(to bottom, #24687d 0%, #144454 100%);
-  /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#24687d', endColorstr='#144454',GradientType=0 );
-  /* IE6-9 */
 }
 
-/* line 99, footer.scss */
+/* line 90, footer.sass */
 footer .part .left, footer .part .right {
   position: absolute;
   width: 40px;
@@ -116,30 +108,23 @@ footer .part .left, footer .part .right {
   top: -10px;
 }
 
-/* line 107, footer.scss */
+/* line 97, footer.sass */
 footer .part .left {
   left: -10px;
 }
 
-/* line 111, footer.scss */
+/* line 100, footer.sass */
 footer .part .right {
   right: -10px;
 }
 
-/* line 115, footer.scss */
+/* line 103, footer.sass */
 footer .bar.effects .layer .part {
   background: -moz-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
-  /* FF3.6+ */
   background: -webkit-gradient(layerar, left top, left bottom, color-stop(0%, #4cffa7), color-stop(100%, #36d486));
-  /* Chrome,Safari4+ */
   background: -webkit-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
-  /* Chrome10+,Safari5.1+ */
   background: -o-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
-  /* Opera 11.10+ */
   background: -ms-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
-  /* IE10+ */
   background: layerar-gradient(to bottom, #4cffa7 0%, #36d486 100%);
-  /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4cffa7', endColorstr='#36d486',GradientType=0 );
-  /* IE6-9 */
 }

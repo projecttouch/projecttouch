@@ -1,0 +1,132 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300)
+
+@import compass/reset
+
+$headerHeight: 50px
+$footerHeight: 125px
+$panelWidth: 280px
+
+$sideMargin: 20px
+$panelMargin: 10px
+$panelHeightPct: 80%
+
+*
+  -webkit-box-sizing: border-box
+  -moz-box-sizing: border-box
+  -o-box-sizing: border-box
+  box-sizing: border-box
+  -webkit-touch-callout: none
+  -webkit-user-select: none
+  -khtml-user-select: none
+  -moz-user-select: moz-none
+  -ms-user-select: none
+  user-select: none
+
+html
+  height: 100%
+
+body
+  height: 100%
+  background: #1d1d1d
+  color: #fff
+  font-family: 'Open Sans'
+  font-weight: 300
+
+header
+  position: absolute
+  top: 0
+  width: 100%
+  background: #333333
+  min-height: $headerHeight
+
+h1
+  color: #0CF
+  font-size: 30px
+  line-height: 50px
+  vertical-align: middle
+  text-indent: 40px
+
+h2
+  font-size: 30px
+  margin: 10px 0 10px 20px
+
+.video
+  position: absolute
+  top: $headerHeight
+  width: 100%
+  height: $panelHeightPct
+
+@import ui/footer
+
+#composition
+  position: absolute
+  //background: darkslateblue;
+  left: $panelWidth + $sideMargin + $panelMargin
+  right: $panelWidth + $sideMargin + $panelMargin
+  height: $panelHeightPct
+  
+  .controls
+    z-index: 1
+    position: absolute
+    vertical-position: bottom
+    top: 500px
+    left: 20px
+
+#player
+  width: 100%
+  pointer-events: none
+  //background: darkolivegreen;
+
+button
+  width: 40px
+  height: 40px
+  border: 0
+  background: center center no-repeat
+  cursor: pointer
+  &:hover
+    opacity: 0.8
+
+#fps
+  position: absolute
+  top: 10px
+  right: 10px
+
+/* =================================================================
+ * ===- PANEL
+ * =================================================================
+
+.ui-panel
+  width: $panelWidth
+  position: absolute
+  top: 0
+  bottom: $headerHeight
+
+.ui-panel.left
+  left: $sideMargin
+
+.ui-panel.right
+  right: $sideMargin
+
+.ui-panel ul
+  width: 100%
+  // TODO: fix vertical scrollbar position and UL indent
+  position: absolute
+  top: 50px
+  bottom: 0
+  //height: 100%;
+  overflow: hidden
+  overflow-y: auto
+
+.ui-panel ul li
+  width: 100%
+  height: 155px
+  margin: 10px 0 0
+
+.ui-panel ul li:first-child
+  margin: 0
+
+/* ==============================
+ * ===- PANEL - LIBRARY
+ * ==============================
+
+#library.ui-panel li.file-selector input
