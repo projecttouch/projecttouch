@@ -12,7 +12,8 @@ define(['backbone',
         'app/views/ui/library',
         'app/views/ui/effects', 
         'app/controllers/timeline',
-        'app/views/ui/timeline'], function (Backbone) {
+        'app/views/ui/timeline',
+		'app/views/composition'], function (Backbone) {
 
     'use strict';
 
@@ -25,11 +26,13 @@ define(['backbone',
             var self = this,
                 Timeline = require('app/controllers/timeline'),
                 Player = require('app/views/player'),
-                Filter = require('app/filters');
+                Filter = require('app/filters'),
+                Composition = require('app/views/composition');
 
             this.views = {};
             this.player = new Player();
             this.timeline = new Timeline();
+	        this.composition = new Composition();
 
             //setInterval(this.getRGB, 600);
         },
@@ -50,7 +53,7 @@ define(['backbone',
                 
             this.views.timeline = new Timeline({el:document.querySelector('footer')});
             
-            this.el.appendChild(this.player.render()
+            this.composition.el.appendChild(this.player.render()
                 .el);
         }
 
