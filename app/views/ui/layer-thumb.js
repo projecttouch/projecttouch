@@ -19,7 +19,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
         initialize: function () {
 
-            this.offset = {
+            this._trim = {
                 start: 0,
                 end: 0
             };
@@ -27,8 +27,8 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             _.bindAll(this,
                 'mouseDownLeft',
                 'mouseDownRight',
-                'shrinkMedia',
-                'endMove',
+                'trim',
+                'endTrim',
                 'resize');
 
             this.moving = false;
@@ -76,20 +76,20 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         mouseDownLeft: function () {
 
             this.moving = 'left';
-            window.addEventListener('mousemove', this.shrinkMedia, true);
-            this.options.model.trigger('offset:start', this.options.model);
+            window.addEventListener('mousemove', this.trim, true);
+            this.options.model.trigger('trim:start', this.options.model);
 
         },
 
         mouseDownRight: function () {
 
             this.moving = 'right';
-            window.addEventListener('mousemove', this.shrinkMedia, true);
-            this.options.model.trigger('offset:start', this.options.model);
+            window.addEventListener('mousemove', this.trim, true);
+            this.options.model.trigger('trim:start', this.options.model);
 
         },
 
-        shrinkMedia: function (e) {
+        trim: function (e) {
 
             var left,
                 offset,
@@ -108,7 +108,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 this.el.style.paddingLeft = margin + 'px';
                 this.left.style.left = margin + 'px';
 
-                this.offset.start = parseInt((margin / parseInt(this.el.style.width)) * this.options.model.get('frames'));
+                this._trim.start = parseInt((margin / parseInt(this.el.style.width)) * this.options.model.get('frames'));
 
             }
 
@@ -127,32 +127,35 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 this.el.style.paddingRight = margin + 'px';
                 this.right.style.right = margin + 'px';
 
-                this.offset.end = parseInt((margin / parseInt(this.el.style.width)) * this.options.model.get('frames'));
+                this._trim.end = parseInt((margin / parseInt(this.el.style.width)) * this.options.model.get('frames'));
                 
                 margin = left - offset;
             }
 
-            this.options.model.trigger('offset:preview', parseInt((margin / parseInt(this.el.style.width)) * this.options.model.get('frames')));
+            this.options.model.trigger('trim:preview', parseInt((margin / parseInt(this.el.style.width)) * this.options.model.get('frames')));
         },
 
-        endMove: function () {
+        endTrim: function () {
 
             if (this.moving) {
-                window.removeEventListener('mousemove', this.shrinkMedia, true);
+                window.removeEventListener('mousemove', this.trim, true);
                 
                 this.moving = false;
-                this.options.model.set('offset', {start:this.offset.start, end:this.offset.end});
+                this.options.model.set('trim', {start:this._trim.start, end:this._trim.end});
             }
 
         },
 
         resize: function () {
+            
+            var trim = this.options.model.get('trim'),
+                frames = this.options.model.get('frames');
 
-            this.el.style.paddingLeft = (this.offset.start * parseInt(this.el.style.width)) + 'px';
-            this.left.style.left = (this.offset.start * parseInt(this.el.style.width)) + 'px';
+            this.el.style.paddingLeft = ((trim.start / frames) * parseInt(this.el.style.width)) + 'px';
+            this.left.style.left = ((trim.start / frames) * parseInt(this.el.style.width)) + 'px';
 
-            this.el.style.paddingRight = (this.offset.end * parseInt(this.el.style.width)) + 'px';
-            this.right.style.right = (this.offset.end * parseInt(this.el.style.width)) + 'px';
+            this.el.style.paddingRight = ((trim.end / frames) * parseInt(this.el.style.width)) + 'px';
+            this.right.style.right = ((trim.end / frames) * parseInt(this.el.style.width)) + 'px';
 
         }
 

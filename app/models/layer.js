@@ -19,8 +19,8 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             "type": "video",
             "frames": 0,
             "status": "notready",
-            "start": 0,
-            "offset": {
+            "offset": 0,
+            "trim": {
                 start: 0,
                 end: 0
             },
@@ -31,13 +31,18 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         initialize: function () {
 
             if (this.get("type") === "video") {
-                this.on('offset:preview', this.seek, this);
+                this.on('trim:preview', this.trim, this);
+                this.collection.on('seek', this.seek, this);
                 this.collection.on('frame-sync', this.sync, this);
                 this.collection.on('kill', this.kill, this);
                 this.initializeVideo();
             }
 
         },
+        
+        /**
+         * INITIALIZES THE VIDEO ELEMENT
+         */
 
         initializeVideo: function () {
 
@@ -56,6 +61,10 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             return true;
 
         },
+        
+        /**
+         * THIS WILL PLAY THE VIDEO
+         */ 
 
         play: function () {
 
@@ -69,71 +78,94 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             }
 
         },
+        
+        /**
+         * THIS WILL STOP THE VIDEO
+         */
 
         stop: function () {
-
             this.video.pause();
-            //            this.video.currentTime = parseInt(this.get('offset-start')) / 25;
+            this.video.currentTime = parseInt(this.get('trim').start) / 25;
             this.set('status', 'idle');
-
         },
+        
+        /**
+         * THIS SETS ALL THE POSITIONS OF THE TRIM TO THE VALUES
+         */
 
-        syncTime: function () {
+        syncFrame: function () {
 
             var frame,
-            start = this.get('start'),
-                offset = this.get('offset-start');
+                offset = this.get('offset'),
+                trim = this.get('trim');
 
-            if (start < 0) {
-                start = Math.abs(start);
-                frame = (start > offset) ? start : offset;
+            if (offset < 0) {
+                trim.start = Math.abs(offset);
+                frame = (offset > trim.start) ? offset : trim.start;
             } else {
-                frame = offset;
+                frame = trim.start;
             }
 
             this.video.currentTime = frame / 25;
 
         },
-
-        kill: function () {
-            this.stop();
-            this.syncTime();
-        },
-
+        
+        /**
+         * THIS CHECKS IF THE CLIP NEEDS TO BE PLAYED ACORDING TO THE CURRENT FRAME OF THE TIMELINE
+         */
+       
         sync: function (frame) {
 
-            var start = this.get('start'),
-                offset = this.get('offset-start'),
-                end = this.get('offset-end'),
+            var offset = this.get('offset'),
+                trim = this.get('trim'),
                 frames = this.get('frames'),
                 status = this.get('status');
 
-            if (frame >= (start + offset) && frame < (start + frames - end) && status !== 'playing') {
-                log('PLAY');
+            if (frame >= (trim.start + offset) && frame < (trim.start + frames - trim.end) && status !== 'playing') {
                 this.play();
-            } else if (frame === (start + frames - end)) {
+            } else if (frame === (trim.start + frames - trim.end)) {
                 this.stop();
             }
 
         },
+        
+        /**
+         * THIS SETS THE FRAME OF THE VIDEO IF IT NEEDS TO BE SET
+         */
 
         seek: function (frame) {
-
-            if (!isNaN(frame)) {
-                this.video.currentTime = frame / 25;
-            }
-
+            var offset = this.get('offset'),
+                trim = this.get('trim'),
+                frames = this.get('frames');
+                
+            if(frame >= (trim.start + offset) && frame < (trim.start + frames - trim.end)) {
+                this.video.currentTime = frame / 25;    
+            }            
         },
+        
+        /**
+         * THIS SETS THE CURRENTFRAME OF THE VIDEO TO PREVIEW THE SEEK POSITION
+         */
 
-        setPosition: function (frame) {
-
-            this.set('start', frame);
-            this.syncTime();
-
+        trim: function (frame) {
+            this.video.currentTime = frame / 25;
         },
+        
+        /**
+         * THIS WILL KILL THE VIDEO
+         */
+        
+        kill: function () {
+            this.stop();
+            this.syncFrame();
+        },
+        
+        /**
+         * THIS WILL RETURN THE STARTFRAME RELATIVE TO THE TIMELINE
+         */
 
         getStart: function () {
-            return this.get('start') + this.get('offset-start');
+            return this.get('offset') + this.get('trim').start;
         }
 
     });

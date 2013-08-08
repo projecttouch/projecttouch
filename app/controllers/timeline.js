@@ -20,7 +20,6 @@ define(['backbone', 'underscore', 'app/collections/timeline'], function (Backbon
 
     Timeline.prototype = {
 
-        totalTime: 1000,
         _frame: 0,
         playing: false,
 
@@ -31,8 +30,8 @@ define(['backbone', 'underscore', 'app/collections/timeline'], function (Backbon
             this.filter = null;
             this.collection = new Collection();
             
-            this.collection.on('offset:start', this.seek, this);
-            this.collection.on('change:offset', function (e) {
+            this.collection.on('trim:start', this.seek, this);
+            this.collection.on('change:trim', function (e) {
                 log(e);
             })
 
