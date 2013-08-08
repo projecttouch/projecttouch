@@ -64,7 +64,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-/* line 13, stylesheet.scss */
+/* line 13, stylesheet.sass */
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -78,21 +78,21 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   user-select: none;
 }
 
-/* line 26, stylesheet.scss */
+/* line 25, stylesheet.sass */
 html {
   height: 100%;
 }
 
-/* line 30, stylesheet.scss */
+/* line 28, stylesheet.sass */
 body {
   height: 100%;
   background: #1d1d1d;
-  color: #fff;
-  font-family: 'Open Sans';
+  color: white;
+  font-family: "Open Sans";
   font-weight: 300;
 }
 
-/* line 38, stylesheet.scss */
+/* line 35, stylesheet.sass */
 header {
   position: absolute;
   top: 0;
@@ -101,22 +101,22 @@ header {
   min-height: 50px;
 }
 
-/* line 46, stylesheet.scss */
+/* line 42, stylesheet.sass */
 h1 {
-  color: #0CF;
+  color: #00ccff;
   font-size: 30px;
   line-height: 50px;
   vertical-align: middle;
   text-indent: 40px;
 }
 
-/* line 54, stylesheet.scss */
+/* line 49, stylesheet.sass */
 h2 {
   font-size: 30px;
   margin: 10px 0 10px 20px;
 }
 
-/* line 59, stylesheet.scss */
+/* line 53, stylesheet.sass */
 .video {
   position: absolute;
   top: 50px;
@@ -124,7 +124,7 @@ h2 {
   height: 80%;
 }
 
-/* line 1, ui/footer.scss */
+/* line 1, ui/footer.sass */
 footer {
   background: #333333;
   min-height: 50px;
@@ -137,24 +137,24 @@ footer {
   color: #999999;
   font-size: 14px;
 }
-/* line 12, ui/footer.scss */
+/* line 13, ui/footer.sass */
 footer div:first-child {
   background: none;
 }
-/* line 14, ui/footer.scss */
+/* line 16, ui/footer.sass */
 footer div:first-child .layer {
   background: none;
   background-color: #2d2c2d;
   padding-left: 6px;
 }
-/* line 20, ui/footer.scss */
+/* line 21, ui/footer.sass */
 footer .bar {
   background-color: #2d2c2d;
   padding: 3px 30px;
   position: relative;
   margin-bottom: 10px;
 }
-/* line 26, ui/footer.scss */
+/* line 27, ui/footer.sass */
 footer .bar .layer {
   position: absolute;
   right: 0;
@@ -166,14 +166,14 @@ footer .bar .layer {
   background: #282628;
   overflow: hidden;
 }
-/* line 36, ui/footer.scss */
+/* line 38, ui/footer.sass */
 footer .bar .layer .media {
   position: absolute;
   height: 100%;
   cursor: move;
   overflow: hidden;
 }
-/* line 41, ui/footer.scss */
+/* line 44, ui/footer.sass */
 footer .bar .layer .media .left {
   -ms-touch-action: none;
   display: block;
@@ -185,7 +185,7 @@ footer .bar .layer .media .left {
   cursor: e-resize;
   z-index: 99;
 }
-/* line 52, ui/footer.scss */
+/* line 55, ui/footer.sass */
 footer .bar .layer .media .middle {
   -ms-touch-action: none;
   display: block;
@@ -194,7 +194,7 @@ footer .bar .layer .media .middle {
   width: 100%;
   z-index: 80;
 }
-/* line 60, ui/footer.scss */
+/* line 63, ui/footer.sass */
 footer .bar .layer .media .right {
   -ms-touch-action: none;
   display: block;
@@ -206,34 +206,26 @@ footer .bar .layer .media .right {
   cursor: w-resize;
   z-index: 99;
 }
-/* line 73, ui/footer.scss */
+/* line 74, ui/footer.sass */
 footer .bar .layer span {
   float: right;
   margin-right: 6px;
 }
-/* line 77, ui/footer.scss */
+/* line 78, ui/footer.sass */
 footer .bar .layer .part {
   position: absolute;
   height: 100%;
   background: #24687d;
-  /* Old browsers */
   background: -moz-layerar-gradient(top, #24687d 0%, #144454 100%);
-  /* FF3.6+ */
   background: -webkit-gradient(layerar, left top, left bottom, color-stop(0%, #24687d), color-stop(100%, #144454));
-  /* Chrome,Safari4+ */
   background: -webkit-layerar-gradient(top, #24687d 0%, #144454 100%);
-  /* Chrome10+,Safari5.1+ */
   background: -o-layerar-gradient(top, #24687d 0%, #144454 100%);
-  /* Opera 11.10+ */
   background: -ms-layerar-gradient(top, #24687d 0%, #144454 100%);
-  /* IE10+ */
   background: layerar-gradient(to bottom, #24687d 0%, #144454 100%);
-  /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#24687d', endColorstr='#144454',GradientType=0 );
-  /* IE6-9 */
 }
 
-/* line 99, ui/footer.scss */
+/* line 90, ui/footer.sass */
 footer .part .left, footer .part .right {
   position: absolute;
   width: 40px;
@@ -242,42 +234,35 @@ footer .part .left, footer .part .right {
   top: -10px;
 }
 
-/* line 107, ui/footer.scss */
+/* line 97, ui/footer.sass */
 footer .part .left {
   left: -10px;
 }
 
-/* line 111, ui/footer.scss */
+/* line 100, ui/footer.sass */
 footer .part .right {
   right: -10px;
 }
 
-/* line 115, ui/footer.scss */
+/* line 103, ui/footer.sass */
 footer .bar.effects .layer .part {
   background: -moz-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
-  /* FF3.6+ */
   background: -webkit-gradient(layerar, left top, left bottom, color-stop(0%, #4cffa7), color-stop(100%, #36d486));
-  /* Chrome,Safari4+ */
   background: -webkit-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
-  /* Chrome10+,Safari5.1+ */
   background: -o-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
-  /* Opera 11.10+ */
   background: -ms-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
-  /* IE10+ */
   background: layerar-gradient(to bottom, #4cffa7 0%, #36d486 100%);
-  /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4cffa7', endColorstr='#36d486',GradientType=0 );
-  /* IE6-9 */
 }
 
-/* line 68, stylesheet.scss */
+/* line 61, stylesheet.sass */
 #composition {
   position: absolute;
   left: 310px;
   right: 310px;
   height: 80%;
 }
-/* line 74, stylesheet.scss */
+/* line 68, stylesheet.sass */
 #composition .controls {
   z-index: 1;
   position: absolute;
@@ -286,13 +271,13 @@ footer .bar.effects .layer .part {
   left: 20px;
 }
 
-/* line 83, stylesheet.scss */
+/* line 75, stylesheet.sass */
 #player {
   width: 100%;
   pointer-events: none;
 }
 
-/* line 89, stylesheet.scss */
+/* line 80, stylesheet.sass */
 button {
   width: 40px;
   height: 40px;
@@ -300,12 +285,12 @@ button {
   background: center center no-repeat;
   cursor: pointer;
 }
-/* line 95, stylesheet.scss */
+/* line 86, stylesheet.sass */
 button:hover {
   opacity: 0.8;
 }
 
-/* line 100, stylesheet.scss */
+/* line 89, stylesheet.sass */
 #fps {
   position: absolute;
   top: 10px;
@@ -313,9 +298,9 @@ button:hover {
 }
 
 /* =================================================================
-   ===- PANEL
-   ================================================================= */
-/* line 110, stylesheet.scss */
+ * ===- PANEL
+ * ================================================================= */
+/* line 98, stylesheet.sass */
 .ui-panel {
   width: 280px;
   position: absolute;
@@ -323,17 +308,17 @@ button:hover {
   bottom: 50px;
 }
 
-/* line 117, stylesheet.scss */
+/* line 104, stylesheet.sass */
 .ui-panel.left {
   left: 20px;
 }
 
-/* line 121, stylesheet.scss */
+/* line 107, stylesheet.sass */
 .ui-panel.right {
   right: 20px;
 }
 
-/* line 125, stylesheet.scss */
+/* line 110, stylesheet.sass */
 .ui-panel ul {
   width: 100%;
   position: absolute;
@@ -343,18 +328,18 @@ button:hover {
   overflow-y: auto;
 }
 
-/* line 136, stylesheet.scss */
+/* line 120, stylesheet.sass */
 .ui-panel ul li {
   width: 100%;
   height: 155px;
   margin: 10px 0 0;
 }
 
-/* line 142, stylesheet.scss */
+/* line 125, stylesheet.sass */
 .ui-panel ul li:first-child {
   margin: 0;
 }
 
 /* ==============================
-   ===- PANEL - LIBRARY
-   ============================== */
+ * ===- PANEL - LIBRARY
+ * ============================== */
