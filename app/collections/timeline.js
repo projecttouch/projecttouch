@@ -8,7 +8,7 @@
  */
 /*global views, console, $, $$, TweenLite, TweenMax, TimelineLite, TimelineMax, Ease, Linear, Power0, Power1, Power2, Power3, Power4, Quad, Cubic, Quart, Strong, Back, Bounce, Circ, Elastic, Expo, Sine, SlowMo  */
 
-define(['backbone', 'underscore', 'app/models/clip'], function (Backbone, _, Model) {
+define(['backbone', 'underscore', 'app/models/layer'], function (Backbone, _, Model) {
 
     'use strict';
 

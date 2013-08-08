@@ -32,8 +32,9 @@ define(['backbone', 'underscore', 'app/views/ui/layer-thumb'], function (Backbon
 
             this.layer = document.createElement('div');
             this.layer.classList.add('layer');
-            log(this.options.model)
-            this.el.innerHTML = this.options.model.get('media').get('file').name;
+            this.el.innerHTML = this.options.model.get('media')
+                .get('file')
+                .name;
             this.el.appendChild(this.layer);
 
             this.media = new Thumb({
@@ -77,12 +78,12 @@ define(['backbone', 'underscore', 'app/views/ui/layer-thumb'], function (Backbon
             this.media.endMove();
 
             if (this.moving) {
-                var percentage = parseInt(this.media.el.style.left) / this.$('.layer')
-                    .width();
-
+                
+                var frame = (parseInt(this.media.el.style.left) / this.$('.layer').width()) * this.options.model.collection.totalFrames;
+                this.options.model.set('offset', Math.round(frame));
+                this.options.model.syncFrame();
+                
                 window.removeEventListener('mousemove', this.moveMedia, true);
-
-                //             this.options.m.setPosition(parseInt(App.timeline.totalTime * percentage));
                 this.moving = false;
             }
 
@@ -96,10 +97,10 @@ define(['backbone', 'underscore', 'app/views/ui/layer-thumb'], function (Backbon
                 .width() + 'px';
             this.media.resize();
 
-            if (this.options.model.get('start') < 0) {
-                //this.media.el.style.left = '-' + ((Math.abs(this.options.model.get('start')) / this.options.model.collection.totalFrames) * this.$('.layer').width()) + 'px';
+            if (this.options.model.get('offset') < 0) {
+                this.media.el.style.left = '-' + ((Math.abs(this.options.model.get('offset')) / this.options.model.collection.totalFrames) * this.$('.layer').width()) + 'px';
             } else {
-                //       this.media.el.style.left = ((this.options.m.get('start') / App.timeline.totalTime) * this.$('.layer').width()) + 'px';
+                this.media.el.style.left = ((this.options.model.get('offset') / this.options.model.collection.totalFrames) * this.$('.layer').width()) + 'px';
             }
 
         }

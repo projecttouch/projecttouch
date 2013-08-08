@@ -1,5 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
-/* line 17, ../../../Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 17, ../../../../../../Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -21,50 +21,50 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../../Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../../Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../../Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../../Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../../Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../../Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../../Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../../Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
 
-/* line 12, stylesheet.scss */
+/* line 13, stylesheet.scss */
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -78,12 +78,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   user-select: none;
 }
 
-/* line 25, stylesheet.scss */
+/* line 26, stylesheet.scss */
 html {
   height: 100%;
 }
 
-/* line 29, stylesheet.scss */
+/* line 30, stylesheet.scss */
 body {
   height: 100%;
   background: #1d1d1d;
@@ -92,7 +92,7 @@ body {
   font-weight: 300;
 }
 
-/* line 37, stylesheet.scss */
+/* line 38, stylesheet.scss */
 header {
   position: absolute;
   top: 0;
@@ -101,7 +101,22 @@ header {
   min-height: 50px;
 }
 
-/* line 45, stylesheet.scss */
+/* line 46, stylesheet.scss */
+h1 {
+  color: #0CF;
+  font-size: 30px;
+  line-height: 50px;
+  vertical-align: middle;
+  text-indent: 40px;
+}
+
+/* line 54, stylesheet.scss */
+h2 {
+  font-size: 30px;
+  margin: 10px 0 10px 20px;
+}
+
+/* line 59, stylesheet.scss */
 .video {
   position: absolute;
   top: 50px;
@@ -122,24 +137,24 @@ footer {
   color: #999999;
   font-size: 14px;
 }
-/* line 13, ui/footer.scss */
+/* line 12, ui/footer.scss */
 footer div:first-child {
   background: none;
 }
-/* line 15, ui/footer.scss */
+/* line 14, ui/footer.scss */
 footer div:first-child .layer {
   background: none;
   background-color: #2d2c2d;
   padding-left: 6px;
 }
-/* line 22, ui/footer.scss */
+/* line 20, ui/footer.scss */
 footer .bar {
   background-color: #2d2c2d;
   padding: 3px 30px;
   position: relative;
   margin-bottom: 10px;
 }
-/* line 31, ui/footer.scss */
+/* line 26, ui/footer.scss */
 footer .bar .layer {
   position: absolute;
   right: 0;
@@ -151,14 +166,14 @@ footer .bar .layer {
   background: #282628;
   overflow: hidden;
 }
-/* line 43, ui/footer.scss */
+/* line 36, ui/footer.scss */
 footer .bar .layer .media {
   position: absolute;
   height: 100%;
   cursor: move;
   overflow: hidden;
 }
-/* line 50, ui/footer.scss */
+/* line 41, ui/footer.scss */
 footer .bar .layer .media .left {
   -ms-touch-action: none;
   display: block;
@@ -170,7 +185,7 @@ footer .bar .layer .media .left {
   cursor: e-resize;
   z-index: 99;
 }
-/* line 65, ui/footer.scss */
+/* line 52, ui/footer.scss */
 footer .bar .layer .media .middle {
   -ms-touch-action: none;
   display: block;
@@ -179,7 +194,7 @@ footer .bar .layer .media .middle {
   width: 100%;
   z-index: 80;
 }
-/* line 77, ui/footer.scss */
+/* line 60, ui/footer.scss */
 footer .bar .layer .media .right {
   -ms-touch-action: none;
   display: block;
@@ -191,12 +206,12 @@ footer .bar .layer .media .right {
   cursor: w-resize;
   z-index: 99;
 }
-/* line 96, ui/footer.scss */
+/* line 73, ui/footer.scss */
 footer .bar .layer span {
   float: right;
   margin-right: 6px;
 }
-/* line 101, ui/footer.scss */
+/* line 77, ui/footer.scss */
 footer .bar .layer .part {
   position: absolute;
   height: 100%;
@@ -218,7 +233,7 @@ footer .bar .layer .part {
   /* IE6-9 */
 }
 
-/* line 116, ui/footer.scss */
+/* line 99, ui/footer.scss */
 footer .part .left, footer .part .right {
   position: absolute;
   width: 40px;
@@ -227,17 +242,17 @@ footer .part .left, footer .part .right {
   top: -10px;
 }
 
-/* line 124, ui/footer.scss */
+/* line 107, ui/footer.scss */
 footer .part .left {
   left: -10px;
 }
 
-/* line 128, ui/footer.scss */
+/* line 111, ui/footer.scss */
 footer .part .right {
   right: -10px;
 }
 
-/* line 132, ui/footer.scss */
+/* line 115, ui/footer.scss */
 footer .bar.effects .layer .part {
   background: -moz-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
   /* FF3.6+ */
@@ -255,14 +270,14 @@ footer .bar.effects .layer .part {
   /* IE6-9 */
 }
 
-/* line 53, stylesheet.scss */
+/* line 68, stylesheet.scss */
 #composition {
   position: absolute;
   left: 310px;
   right: 310px;
   height: 80%;
 }
-/* line 60, stylesheet.scss */
+/* line 74, stylesheet.scss */
 #composition .controls {
   z-index: 1;
   position: absolute;
@@ -271,13 +286,13 @@ footer .bar.effects .layer .part {
   left: 20px;
 }
 
-/* line 70, stylesheet.scss */
+/* line 83, stylesheet.scss */
 #player {
   width: 100%;
   pointer-events: none;
 }
 
-/* line 76, stylesheet.scss */
+/* line 89, stylesheet.scss */
 button {
   width: 40px;
   height: 40px;
@@ -285,86 +300,22 @@ button {
   background: center center no-repeat;
   cursor: pointer;
 }
-
-/* line 84, stylesheet.scss */
+/* line 95, stylesheet.scss */
 button:hover {
   opacity: 0.8;
 }
 
-/* line 88, stylesheet.scss */
-button.play {
-  background-image: url(../images/play.png);
-}
-
-/* line 92, stylesheet.scss */
-button.pause {
-  background-image: url(../images/pause.png);
-}
-
-/* line 96, stylesheet.scss */
-button.stop {
-  background-image: url(../images/stop.png);
-}
-
 /* line 100, stylesheet.scss */
-button.pixelize {
-  background-image: url(../images/pixelize.png);
-}
-
-/* line 104, stylesheet.scss */
-button.threshold {
-  background-image: url(../images/threshold.png);
-}
-
-/* line 108, stylesheet.scss */
-button.grayscale {
-  background-image: url(../images/grayscale.png);
-}
-
-/* line 112, stylesheet.scss */
-button.red {
-  background-color: red;
-}
-
-/* line 116, stylesheet.scss */
-button.green {
-  background-color: green;
-}
-
-/* line 120, stylesheet.scss */
-button.contrast {
-  background-color: blue;
-}
-
-/* line 124, stylesheet.scss */
-button.hipster {
-  background-color: yellowgreen;
-}
-
-/* line 128, stylesheet.scss */
-#rgb {
-  position: absolute;
-  z-index: 99;
-  right: 0;
-  display: none;
-}
-
-/* line 135, stylesheet.scss */
-#rgb input {
-  width: 300px;
-}
-
-/* line 139, stylesheet.scss */
 #fps {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
+  top: 10px;
+  right: 10px;
 }
 
 /* =================================================================
    ===- PANEL
    ================================================================= */
-/* line 149, stylesheet.scss */
+/* line 110, stylesheet.scss */
 .ui-panel {
   width: 280px;
   position: absolute;
@@ -372,32 +323,17 @@ button.hipster {
   bottom: 50px;
 }
 
-/* line 156, stylesheet.scss */
+/* line 117, stylesheet.scss */
 .ui-panel.left {
   left: 20px;
 }
 
-/* line 160, stylesheet.scss */
+/* line 121, stylesheet.scss */
 .ui-panel.right {
   right: 20px;
 }
 
-/* line 164, stylesheet.scss */
-h1 {
-  color: #0CF;
-  font-size: 30px;
-  line-height: 50px;
-  vertical-align: middle;
-  text-indent: 40px;
-}
-
-/* line 172, stylesheet.scss */
-h2 {
-  font-size: 30px;
-  margin: 10px 0 10px 20px;
-}
-
-/* line 177, stylesheet.scss */
+/* line 125, stylesheet.scss */
 .ui-panel ul {
   width: 100%;
   position: absolute;
@@ -407,14 +343,14 @@ h2 {
   overflow-y: auto;
 }
 
-/* line 188, stylesheet.scss */
+/* line 136, stylesheet.scss */
 .ui-panel ul li {
   width: 100%;
   height: 155px;
   margin: 10px 0 0;
 }
 
-/* line 194, stylesheet.scss */
+/* line 142, stylesheet.scss */
 .ui-panel ul li:first-child {
   margin: 0;
 }

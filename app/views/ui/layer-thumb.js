@@ -19,7 +19,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
         initialize: function () {
 
-            this.offset = {
+            this.trim = {
                 start: 0,
                 end: 0
             };
@@ -77,7 +77,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
             this.moving = 'left';
             window.addEventListener('mousemove', this.shrinkMedia, true);
-            this.options.model.trigger('offset:start', this.options.model);
+            this.options.model.trigger('trim:start', this.options.model);
 
         },
 
@@ -85,7 +85,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
             this.moving = 'right';
             window.addEventListener('mousemove', this.shrinkMedia, true);
-            this.options.model.trigger('offset:start', this.options.model);
+            this.options.model.trigger('trim:start', this.options.model);
 
         },
 
@@ -108,7 +108,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 this.el.style.paddingLeft = margin + 'px';
                 this.left.style.left = margin + 'px';
 
-                this.offset.start = parseInt((margin / parseInt(this.el.style.width)) * this.options.model.get('frames'));
+                this.trim.start = parseInt((margin / parseInt(this.el.style.width)) * this.options.model.get('frames'));
 
             }
 
@@ -127,12 +127,12 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 this.el.style.paddingRight = margin + 'px';
                 this.right.style.right = margin + 'px';
 
-                this.offset.end = parseInt((margin / parseInt(this.el.style.width)) * this.options.model.get('frames'));
+                this.trim.end = parseInt((margin / parseInt(this.el.style.width)) * this.options.model.get('frames'));
                 
                 margin = left - offset;
             }
 
-            this.options.model.trigger('offset:preview', parseInt((margin / parseInt(this.el.style.width)) * this.options.model.get('frames')));
+            this.options.model.trigger('trim:preview', parseInt((margin / parseInt(this.el.style.width)) * this.options.model.get('frames')));
         },
 
         endMove: function () {
@@ -141,18 +141,20 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 window.removeEventListener('mousemove', this.shrinkMedia, true);
                 
                 this.moving = false;
-                this.options.model.set('offset', {start:this.offset.start, end:this.offset.end});
+                this.options.model.set('trim', {start:this.trim.start, end:this.trim.end});
             }
 
         },
 
         resize: function () {
+            
+            var trim = this.options.model.get('trim');
 
-            this.el.style.paddingLeft = (this.offset.start * parseInt(this.el.style.width)) + 'px';
-            this.left.style.left = (this.offset.start * parseInt(this.el.style.width)) + 'px';
+            this.el.style.paddingLeft = (trim.start * parseInt(this.el.style.width)) + 'px';
+            this.left.style.left = (trim.start * parseInt(this.el.style.width)) + 'px';
 
-            this.el.style.paddingRight = (this.offset.end * parseInt(this.el.style.width)) + 'px';
-            this.right.style.right = (this.offset.end * parseInt(this.el.style.width)) + 'px';
+            this.el.style.paddingRight = (trim.end * parseInt(this.el.style.width)) + 'px';
+            this.right.style.right = (trim.end * parseInt(this.el.style.width)) + 'px';
 
         }
 
