@@ -1,140 +1,130 @@
 footer {
-	background     : #333333;
-	min-height     : 50px;
-	height         : 20%;
-	position       : absolute;
-	bottom         : 0;
-	width          : 100%;
-	padding        : 30px;
-	padding-bottom : 20px;
-	color          : #999999;
-	font-size      : 14px;
-  
+  background: #333333;
+  min-height: 50px;
+  height: 20%;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 30px;
+  padding-bottom: 20px;
+  color: #999999;
+  font-size: 14px;
   div:first-child {
-		background: none;
+    background: none;
     .layer {
-    			background       : none;
-    			background-color : #2d2c2d;
-    			padding-left     : 6px;
-    		}
-	}
-  
+      background: none;
+      background-color: #2d2c2d;
+      padding-left: 6px;
+    }
+  }
   .bar {
-    
-  		background-color : #2d2c2d;
-  		padding          : 3px 30px;
-  		position         : relative;
-  		margin-bottom    : 10px;
-      
-  	}
-    
-	.bar .layer {
-    
-		position     : absolute;
-		right        : 0;
-		top          : 0;
-    left      : 170px;
-		height       : 100%;
-		font-size    : 11px;
-		layer-height : 20px;
-		background   : #282628;
-    overflow  : hidden;
-    
+    background-color: #2d2c2d;
+    padding: 3px 30px;
+    position: relative;
+    margin-bottom: 10px;
+  }
+  .bar .layer {
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 170px;
+    height: 100%;
+    font-size: 11px;
+    layer-height: 20px;
+    background: #282628;
+    overflow: hidden;
     .media {
-
       position: absolute;
       height: 100%;
       cursor: move;
       overflow: hidden;
-
       .left {
-
         -ms-touch-action: none;
-
-        display  : block;
-        position : absolute;
-        left     : 0;
-        top      : 0;
-        height   : 26px;
-        width    : 26px;
-        cursor   : e-resize;
-        z-index  : 99;
-
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 26px;
+        width: 26px;
+        cursor: e-resize;
+        z-index: 99;
       }
-
       .middle {
-
         -ms-touch-action: none;
-
-        display  : block;
-        position : relative;
-        height   : 26px;
-        width    : 100%;
-        z-index  : 80;
-
+        display: block;
+        position: relative;
+        height: 26px;
+        width: 100%;
+        z-index: 80;
       }
-
       .right {
-
         -ms-touch-action: none;
-
-        display  : block;
-        position : absolute;
-        right    : 0;
-        top      : 0;
-        height   : 26px;
-        width    : 26px;
-        cursor   : w-resize;
-        z-index  : 99;
-
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 26px;
+        width: 26px;
+        cursor: w-resize;
+        z-index: 99;
       }
-
     }
-    
-	}
-    
-    .bar .layer span {
-    				float: right;
-    				margin-right: 6px;
-    			}
-          
-          .bar .layer .part {
-          			position   : absolute;
-          			height     : 100%;
-          			background : #24687d; /* Old browsers */
-          			background : -moz-layerar-gradient(top,  #24687d 0%, #144454 100%); /* FF3.6+ */
-          			background : -webkit-gradient(layerar, left top, left bottom, color-stop(0%,#24687d), color-stop(100%,#144454)); /* Chrome,Safari4+ */
-          			background : -webkit-layerar-gradient(top,  #24687d 0%,#144454 100%); /* Chrome10+,Safari5.1+ */
-          			background : -o-layerar-gradient(top,  #24687d 0%,#144454 100%); /* Opera 11.10+ */
-          			background : -ms-layerar-gradient(top,  #24687d 0%,#144454 100%); /* IE10+ */
-          			background : layerar-gradient(to bottom,  #24687d 0%,#144454 100%); /* W3C */
-          			filter     : progid:DXImageTransform.Microsoft.gradient( startColorstr='#24687d', endColorstr='#144454',GradientType=0 ); /* IE6-9 */
-          		}
+  }
+  .bar .layer span {
+    float: right;
+    margin-right: 6px;
+  }
+  .bar .layer .part {
+    position: absolute;
+    height: 100%;
+    background: #24687d;
+    /* Old browsers */
+    background: -moz-layerar-gradient(top, #24687d 0%, #144454 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(layerar, left top, left bottom, color-stop(0%, #24687d), color-stop(100%, #144454));
+    /* Chrome,Safari4+ */
+    background: -webkit-layerar-gradient(top, #24687d 0%, #144454 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-layerar-gradient(top, #24687d 0%, #144454 100%);
+    /* Opera 11.10+ */
+    background: -ms-layerar-gradient(top, #24687d 0%, #144454 100%);
+    /* IE10+ */
+    background: layerar-gradient(to bottom, #24687d 0%, #144454 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#24687d', endColorstr='#144454',GradientType=0 );
+    /* IE6-9 */
+  }
 }
- 
-		
-    footer .part .left, footer .part .right {
-      position   : absolute; 
-      width      : 40px;
-      height     : 40px;
-      background : rgba(255,255,255,0.3);
-      top        : -10px;
-    }   
-    
-    footer .part .left {
-      left: -10px;
-    }
-    
-    footer .part .right {
-      right: -10px;
-    }
 
-		footer .bar.effects .layer .part {
-			background : -moz-layerar-gradient(top,  #4cffa7 0%, #36d486 100%); /* FF3.6+ */
-			background : -webkit-gradient(layerar, left top, left bottom, color-stop(0%,#4cffa7), color-stop(100%,#36d486)); /* Chrome,Safari4+ */
-			background : -webkit-layerar-gradient(top,  #4cffa7 0%,#36d486 100%); /* Chrome10+,Safari5.1+ */
-			background : -o-layerar-gradient(top,  #4cffa7 0%,#36d486 100%); /* Opera 11.10+ */
-			background : -ms-layerar-gradient(top,  #4cffa7 0%,#36d486 100%); /* IE10+ */
-			background : layerar-gradient(to bottom,  #4cffa7 0%,#36d486 100%); /* W3C */
-			filter     : progid:DXImageTransform.Microsoft.gradient( startColorstr='#4cffa7', endColorstr='#36d486',GradientType=0 ); /* IE6-9 */
-		}
+footer .part .left, footer .part .right {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.3);
+  top: -10px;
+}
+
+footer .part .left {
+  left: -10px;
+}
+
+footer .part .right {
+  right: -10px;
+}
+
+footer .bar.effects .layer .part {
+  background: -moz-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(layerar, left top, left bottom, color-stop(0%, #4cffa7), color-stop(100%, #36d486));
+  /* Chrome,Safari4+ */
+  background: -webkit-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
+  /* Opera 11.10+ */
+  background: -ms-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
+  /* IE10+ */
+  background: layerar-gradient(to bottom, #4cffa7 0%, #36d486 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4cffa7', endColorstr='#36d486',GradientType=0 );
+  /* IE6-9 */
+}
