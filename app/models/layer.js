@@ -139,7 +139,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 frames = this.get('frames');
                 
             if(frame >= (trim.start + offset) && frame < (trim.start + frames - trim.end)) {
-                this.video.currentTime = frame -  / 25;    
+                this.video.currentTime = frame / 25;    
             }            
         },
         
