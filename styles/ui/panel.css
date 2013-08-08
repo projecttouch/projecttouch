@@ -1,0 +1,34 @@
+/* line 11, panel.sass */
+.ui-panel {
+  width: 280px;
+  position: absolute;
+  top: 0;
+  bottom: 50px;
+}
+/* line 17, panel.sass */
+.ui-panel.left {
+  left: 20px;
+}
+/* line 20, panel.sass */
+.ui-panel.right {
+  right: 20px;
+}
+/* line 23, panel.sass */
+.ui-panel ul {
+  width: 100%;
+  position: absolute;
+  top: 50px;
+  bottom: 0;
+  overflow: hidden;
+  overflow-y: auto;
+}
+/* line 33, panel.sass */
+.ui-panel ul li {
+  width: 100%;
+  height: 155px;
+  margin: 10px 0 0;
+}
+/* line 38, panel.sass */
+.ui-panel ul li:first-child {
+  margin: 0;
+}
