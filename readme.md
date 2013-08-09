@@ -3,6 +3,8 @@ ProjectTouch
 
 **Community built HTML 5 video editor.**
 
+![Editor](http://staging.codedazur.nl/projecttouch/screens/1.0-Full-view-full.jpg)
+
 There are three tough challenges in developing the web-based video editor for Touch:
 - UX and touch input
 - Video loading, sequencing and manipulation
