@@ -1,9 +1,9 @@
 /*
 Syntax error: Undefined variable: "$titleBlue".
-        on line 50 of /Users/michiel/Projects/projecttouch/styles/ui/panel.sass
+        on line 52 of /Users/michiel/Projects/projecttouch/styles/ui/panel.sass
 
 Backtrace:
-/Users/michiel/Projects/projecttouch/styles/ui/panel.sass:50
+/Users/michiel/Projects/projecttouch/styles/ui/panel.sass:52
 /Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/script/variable.rb:49:in `_perform'
 /Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/script/node.rb:40:in `perform'
 /Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/perform.rb:296:in `visit_prop'
@@ -71,4 +71,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$titleBlue\".\A         on line 50 of /Users/michiel/Projects/projecttouch/styles/ui/panel.sass"; }
+  content: "Syntax error: Undefined variable: \"$titleBlue\".\A         on line 52 of /Users/michiel/Projects/projecttouch/styles/ui/panel.sass"; }

@@ -12,12 +12,11 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
     return Backbone.View.extend({
 
+	    tagName: 'li',
 	    className: 'mediaLibraryItem',
 	    template: _.template('\
-	        <li data-id="<%= cid %>">\
 	            <h3><%= filename %></h3>\
 	            <button>Add</button>\
-	        </li>\
 	      '),
 
         events: {
@@ -31,9 +30,12 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         },
 
         render: function () {
-	        var templateVars = { cid: this.options.model.cid, filename: this.options.model.get('file').name },
+	        var cid = this.options.model.cid,
+		        filename = this.options.model.get('file').name,
+		        templateVars = { filename: filename },
 		        templateResult = this.template( templateVars );
 
+	        this.$el.attr('data-id', cid);
 	        this.$el.html( templateResult );
 
             return this;
@@ -45,7 +47,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
         addThumb: function () {
             var img = new Image();
-            this.el.appendChild(img);
+            this.$el.prepend(img);
             img.src = this.options.model.get('thumb');
         }
 
