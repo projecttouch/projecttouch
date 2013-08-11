@@ -12,10 +12,16 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
     return Backbone.View.extend({
 
-        tagName: 'li',
+	    className: 'mediaLibraryItem',
+	    template: _.template('\
+	        <li data-id="<%= cid %>">\
+	            <h3><%= filename %></h3>\
+	            <button>Add</button>\
+	        </li>\
+	      '),
 
         events: {
-            "click button": "add"
+            'click button': 'add'
         },
 
         initialize: function () {
@@ -25,20 +31,12 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         },
 
         render: function () {
+	        var templateVars = { cid: this.options.model.cid, filename: this.options.model.get('file').name },
+		        templateResult = this.template( templateVars );
 
-            var title = document.createElement('div'),
-                button = document.createElement('button');
-
-            this.el.setAttribute('data-id', this.options.model.cid);
-            title.innerHTML = this.options.model.get('file')
-                .name;
-            this.el.appendChild(title);
-
-            button.innerHTML = 'Add';
-            this.el.appendChild(button);
+	        this.$el.html( templateResult );
 
             return this;
-
         },
 
         add: function () {

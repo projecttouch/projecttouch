@@ -6,6 +6,7 @@
 
 /*global define, window, document, $, requirejs, require  */
 
+/* seems unused at 2013.08.11. Commented out to prevent confusion
 define(['backbone', 'underscore', 'app/views/library/media'], function (Backbone, _, Media) {
 
     'use strict';

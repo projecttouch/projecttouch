@@ -7,7 +7,7 @@
 /*global define, window, document, $, requirejs, require  */
 
 define(['app/views/ui/panel', 
-        'app/views/ui/media', 
+        'app/views/ui/mediaLibraryItem',
         'app/collections/library', 
         'app/models/media'], function (Panel) {
 
@@ -56,7 +56,7 @@ define(['app/views/ui/panel',
 
             if (evt.type === 'change') {
                 files = evt.target.files;
-            } else {
+            } else if( evt.dataTransfer ) {
                 files = evt.dataTransfer.files;
                 evt.preventDefault();
                 evt.stopPropagation();
@@ -76,7 +76,7 @@ define(['app/views/ui/panel',
         },
 
         add: function (model) {
-            var Media = require('app/views/ui/media'),
+            var Media = require('app/views/ui/mediaLibraryItem'),
                 item = new Media({
                     model: model
                 });
