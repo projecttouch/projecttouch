@@ -10,7 +10,7 @@ define(['app/views/ui/panel'], function (Panel) {
 
     return Panel.extend({
 
-        id: 'effects',
+        id: 'effectsPanel',
 
 //        events: {
 //            'change input': 'handleFileSelect'

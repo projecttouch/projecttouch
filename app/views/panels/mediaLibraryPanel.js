@@ -13,7 +13,7 @@ define(['app/views/ui/panel',
 
     return Panel.extend({
 
-        id: 'library',
+        id: 'mediaLibraryPanel',
 
         events: {
             'change input': 'handleFileSelect',
