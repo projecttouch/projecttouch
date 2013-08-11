@@ -12,11 +12,18 @@
     background-color: $titleBlue
 
 .mediaLibraryItem
+  width: $panelWidth
+  height: $libraryItemHeight
+
   > *
     position: absolute
 
   h3
     opacity: 0
+    background: rgba( 0, 0, 0, 0.5 )
+    width: 100%
+    line-height: 1.5em
+    text-indent: 5px
 
   button
     background: $titleBlue
@@ -24,8 +31,9 @@
     border-radius: 3px
     height: auto
     width: auto
-    right: 5px
-    bottom: 10px
+    float: right
+    margin: $libraryItemHeight - 30 5px 0 -2px
+    position: relative
 
   img
     width: 100%

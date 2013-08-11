@@ -255,22 +255,22 @@ footer .bar.effects .layer .part {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4cffa7', endColorstr='#36d486',GradientType=0 );
 }
 
-/* line 11, ui/panel.sass */
+/* line 13, panels/panel.sass */
 .ui-panel {
   width: 280px;
   position: absolute;
   top: 0;
   bottom: 50px;
 }
-/* line 17, ui/panel.sass */
+/* line 19, panels/panel.sass */
 .ui-panel.left {
   left: 20px;
 }
-/* line 20, ui/panel.sass */
+/* line 22, panels/panel.sass */
 .ui-panel.right {
   right: 20px;
 }
-/* line 23, ui/panel.sass */
+/* line 25, panels/panel.sass */
 .ui-panel ul {
   width: 100%;
   position: absolute;
@@ -279,59 +279,69 @@ footer .bar.effects .layer .part {
   overflow: hidden;
   overflow-y: auto;
 }
-/* line 33, ui/panel.sass */
+/* line 35, panels/panel.sass */
 .ui-panel ul li {
   position: relative;
   width: 100%;
   height: 155px;
   margin: 10px 0 0;
 }
-/* line 39, ui/panel.sass */
+/* line 41, panels/panel.sass */
 .ui-panel ul li:first-child {
   margin: 0;
 }
 
-/* line 1, ui/medialibrary.sass */
+/* line 1, panels/medialibrary.sass */
 .file-selector {
   background: #333333 url("../../images/whitecross.png") no-repeat center center;
   width: 280px;
 }
-/* line 5, ui/medialibrary.sass */
+/* line 5, panels/medialibrary.sass */
 .file-selector form, .file-selector input {
   cursor: pointer;
   opacity: 0;
   width: 280px;
   height: 100%;
 }
-/* line 11, ui/medialibrary.sass */
+/* line 11, panels/medialibrary.sass */
 .file-selector:hover {
   background-color: #00ccff;
 }
 
-/* line 15, ui/medialibrary.sass */
+/* line 14, panels/medialibrary.sass */
+.mediaLibraryItem {
+  width: 280px;
+  height: 155px;
+}
+/* line 18, panels/medialibrary.sass */
 .mediaLibraryItem > * {
   position: absolute;
 }
-/* line 18, ui/medialibrary.sass */
+/* line 21, panels/medialibrary.sass */
 .mediaLibraryItem h3 {
   opacity: 0;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  line-height: 1.5em;
+  text-indent: 5px;
 }
-/* line 21, ui/medialibrary.sass */
+/* line 28, panels/medialibrary.sass */
 .mediaLibraryItem button {
   background: #00ccff;
   color: black;
   border-radius: 3px;
   height: auto;
   width: auto;
-  right: 5px;
-  bottom: 10px;
+  float: right;
+  margin: 125px 5px 0 -2px;
+  position: relative;
 }
-/* line 30, ui/medialibrary.sass */
+/* line 38, panels/medialibrary.sass */
 .mediaLibraryItem img {
   width: 100%;
   height: auto;
 }
-/* line 35, ui/medialibrary.sass */
+/* line 43, panels/medialibrary.sass */
 .mediaLibraryItem:hover h3 {
   opacity: 1;
 }

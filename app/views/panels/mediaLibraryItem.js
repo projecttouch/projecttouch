@@ -16,11 +16,13 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 	    className: 'mediaLibraryItem',
 	    template: _.template('\
 	            <h3><%= filename %></h3>\
-	            <button>Add</button>\
+	            <button class="play">Play</button>\
+	            <button class="add">Add</button>\
 	      '),
 
         events: {
-            'click button': 'add'
+            'click .add': 'add',
+            'click .play': 'play'
         },
 
         initialize: function () {
@@ -43,6 +45,10 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
         add: function () {
             this.options.model.collection.trigger('layer', this.options.model);
+        },
+
+        play: function () {
+            console.log('play');
         },
 
         addThumb: function () {
