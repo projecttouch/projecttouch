@@ -49,6 +49,12 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
         play: function () {
             console.log('play');
+	        var video = document.createElement('video');
+	        video.src = this.options.model.get('blob');
+
+	        this.$el.find('img').after( video );
+
+	        video.play();
         },
 
         addThumb: function () {

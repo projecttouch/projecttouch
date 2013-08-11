@@ -337,11 +337,11 @@ footer .bar.effects .layer .part {
   position: relative;
 }
 /* line 38, panels/medialibrary.sass */
-.mediaLibraryItem img {
+.mediaLibraryItem img, .mediaLibraryItem video {
   width: 100%;
   height: auto;
 }
-/* line 43, panels/medialibrary.sass */
+/* line 45, panels/medialibrary.sass */
 .mediaLibraryItem:hover h3 {
   opacity: 1;
 }
