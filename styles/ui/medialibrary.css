@@ -1,0 +1,65 @@
+/*
+Syntax error: Undefined variable: "$panelWidth".
+        on line 3 of /Users/michiel/Projects/projecttouch/styles/ui/medialibrary.sass
+
+1: /Users/michiel/Projects/projecttouch/styles/ui/medialibrary.sass
+
+Backtrace:
+/Users/michiel/Projects/projecttouch/styles/ui/medialibrary.sass:3
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/script/variable.rb:49:in `_perform'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/script/node.rb:40:in `perform'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/perform.rb:296:in `visit_prop'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/perform.rb:98:in `visit'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/perform.rb:107:in `visit_children'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/perform.rb:119:in `with_environment'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/perform.rb:106:in `visit_children'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/perform.rb:318:in `visit_rule'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/perform.rb:98:in `visit'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/perform.rb:107:in `visit_children'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/perform.rb:119:in `with_environment'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/perform.rb:106:in `visit_children'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/perform.rb:126:in `visit_root'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/perform.rb:98:in `visit'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/perform.rb:7:in `send'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/visitors/perform.rb:7:in `visit'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/tree/root_node.rb:20:in `render'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/engine.rb:315:in `_render'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/sass/lib/sass/../sass/engine.rb:262:in `render'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/lib/compass/compiler.rb:140:in `compile'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/lib/compass/compiler.rb:126:in `timed'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/lib/compass/compiler.rb:139:in `compile'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/lib/compass/logger.rb:45:in `red'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/lib/compass/compiler.rb:138:in `compile'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/lib/compass/compiler.rb:118:in `compile_if_required'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/lib/compass/compiler.rb:103:in `run'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/lib/compass/compiler.rb:101:in `each'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/lib/compass/compiler.rb:101:in `run'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/lib/compass/compiler.rb:126:in `timed'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/lib/compass/compiler.rb:100:in `run'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/lib/compass/commands/update_project.rb:45:in `perform'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/lib/compass/commands/base.rb:18:in `execute'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/lib/compass/commands/project_base.rb:19:in `execute'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/lib/compass/exec/sub_command_ui.rb:15:in `run!'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/bin/compass:30
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/bin/compass:44:in `call'
+/Users/michiel/Library/LiveReload/Plugins/SASS.lrplugin/lib/compass/bin/compass:44
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Undefined variable: \"$panelWidth\".\A         on line 3 of /Users/michiel/Projects/projecttouch/styles/ui/medialibrary.sass\A \A 1: /Users/michiel/Projects/projecttouch/styles/ui/medialibrary.sass"; }

@@ -287,19 +287,36 @@ footer .bar.effects .layer .part {
   margin: 10px 0 0;
 }
 /* line 39, ui/panel.sass */
-.ui-panel ul li.file-selector {
-  height: auto;
-}
-/* line 42, ui/panel.sass */
 .ui-panel ul li:first-child {
   margin: 0;
 }
 
-/* line 48, ui/panel.sass */
+/* line 1, ui/medialibrary.sass */
+.file-selector {
+  background: #333333 url("../../images/whitecross.png") no-repeat center center;
+  width: 280px;
+}
+/* line 5, ui/medialibrary.sass */
+.file-selector form, .file-selector input {
+  cursor: pointer;
+  opacity: 0;
+  width: 280px;
+  height: 100%;
+}
+/* line 11, ui/medialibrary.sass */
+.file-selector:hover {
+  background-color: #00ccff;
+}
+
+/* line 15, ui/medialibrary.sass */
 .mediaLibraryItem > * {
   position: absolute;
 }
-/* line 51, ui/panel.sass */
+/* line 18, ui/medialibrary.sass */
+.mediaLibraryItem h3 {
+  opacity: 0;
+}
+/* line 21, ui/medialibrary.sass */
 .mediaLibraryItem button {
   background: #00ccff;
   color: black;
@@ -309,20 +326,24 @@ footer .bar.effects .layer .part {
   right: 5px;
   bottom: 10px;
 }
-/* line 60, ui/panel.sass */
+/* line 30, ui/medialibrary.sass */
 .mediaLibraryItem img {
   width: 100%;
   height: auto;
 }
+/* line 35, ui/medialibrary.sass */
+.mediaLibraryItem:hover h3 {
+  opacity: 1;
+}
 
-/* line 65, stylesheet.sass */
+/* line 66, stylesheet.sass */
 #composition {
   position: absolute;
   left: 310px;
   right: 310px;
   height: 80%;
 }
-/* line 72, stylesheet.sass */
+/* line 73, stylesheet.sass */
 #composition .controls {
   z-index: 1;
   position: absolute;
@@ -331,13 +352,13 @@ footer .bar.effects .layer .part {
   left: 20px;
 }
 
-/* line 79, stylesheet.sass */
+/* line 80, stylesheet.sass */
 #player {
   width: 100%;
   pointer-events: none;
 }
 
-/* line 84, stylesheet.sass */
+/* line 85, stylesheet.sass */
 button {
   width: 40px;
   height: 40px;
@@ -345,12 +366,12 @@ button {
   background: center center no-repeat;
   cursor: pointer;
 }
-/* line 90, stylesheet.sass */
+/* line 91, stylesheet.sass */
 button:hover {
   opacity: 0.8;
 }
 
-/* line 93, stylesheet.sass */
+/* line 94, stylesheet.sass */
 #fps {
   position: absolute;
   top: 10px;
