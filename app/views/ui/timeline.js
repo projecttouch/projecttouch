@@ -6,7 +6,7 @@
 
 /*global define, window, document, $, requirejs, require  */
 
-define(['backbone', 'underscore', 'app/views/ui/layer'], function (Backbone, _, Layer) {
+define(['backbone', 'underscore', 'app/views/ui/timeline-layer'], function (Backbone, _, Layer) {
 
     'use strict';
 

@@ -30,10 +30,11 @@ define(['backbone', 'underscore', 'app/collections/timeline'], function (Backbon
             this.filter = null;
             this.collection = new Collection();
             
-            this.collection.on('trim:start', this.seek, this);
-            this.collection.on('change:trim', function (e) {
-                log(e);
-            })
+            this.collection.on('trim:start', function (model) {
+                window.App.player.setSource(model);
+            }, this);
+            
+            this.collection.on('change:trim', this.seek, this);
 
             _.bindAll(this, 'addEventListeners', 'changeFilter', 'play', 'stop', 'frame');
 
@@ -50,7 +51,7 @@ define(['backbone', 'underscore', 'app/collections/timeline'], function (Backbon
         },
 
         changeFilter: function (filter) {
-
+            
             switch (filter) {
             case 'gray':
                 this.filter = Filters.grayscale;
@@ -70,6 +71,7 @@ define(['backbone', 'underscore', 'app/collections/timeline'], function (Backbon
         play: function () {
 
             if (this.playing) {
+                this.stop();
                 return;
             }
 
@@ -78,8 +80,10 @@ define(['backbone', 'underscore', 'app/collections/timeline'], function (Backbon
 
         },
         
-        seek: function (model) {
-            window.App.player.setSource(model);
+        seek: function (frame) {
+            this._frame = !isNaN(frame) ? frame : this._frame;
+            this.collection.trigger('seek', this._frame, this.collection.totalFrames);
+            window.App.player.setSource(this.collection.getActive());
         },
 
         /*
@@ -87,8 +91,10 @@ define(['backbone', 'underscore', 'app/collections/timeline'], function (Backbon
          */
 
         frame: function () {
+            
+            log(this._frame)
 
-            this.collection.trigger('frame-sync', this._frame);
+            this.collection.trigger('frame-sync', this._frame, this.collection.totalFrames);
             window.App.player.setSource(this.collection.getActive());
 
             if (this._frame === this.collection.totalFrames) {
@@ -106,7 +112,7 @@ define(['backbone', 'underscore', 'app/collections/timeline'], function (Backbon
             window.clearInterval(this.timer);
             window.App.player.setSource();
 
-            this.seek = 0;
+            this._frame = 0;
             this.collection.trigger('kill');
 
         }

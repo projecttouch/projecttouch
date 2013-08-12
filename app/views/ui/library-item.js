@@ -13,7 +13,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
     return Backbone.View.extend({
 
 	    tagName: 'li',
-	    className: 'mediaLibraryItem',
+	    className: 'library-item',
 	    template: _.template('\
 	            <h3><%= filename %></h3>\
 	            <button class="play">Play</button>\
@@ -48,7 +48,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         },
 
         play: function () {
-            console.log('play');
+            log('play');
 	        var video = document.createElement('video');
 	        video.src = this.options.model.get('blob');
 

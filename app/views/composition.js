@@ -28,11 +28,11 @@ define(['backbone', 'underscore'], function(Backbone, _) {
 		},
 
 		onPlayClick: function(e) {
-			console.log('play');
+			log('play');
 		},
 
 		onStopClick: function(e) {
-			console.log('stop');
+			log('stop');
 		}
 	});
 });

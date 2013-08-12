@@ -1,0 +1,49 @@
+#library
+
+  .file-selector
+    background: #333 url('../../images/whitecross.png') no-repeat center center
+    width: $panelWidth
+
+    form, input
+      cursor: pointer
+      opacity: 0
+      width: $panelWidth
+      height: 100%
+
+    &:hover
+      background-color: $titleBlue
+
+  .library-item
+    width: $panelWidth
+    height: $libraryItemHeight
+
+    > *
+      position: absolute
+
+    h3
+      opacity: 0
+      background: rgba( 0, 0, 0, 0.5 )
+      width: 100%
+      line-height: 1.5em
+      text-indent: 5px
+
+    button
+      background: $titleBlue
+      color: black
+      border-radius: 3px
+      height: auto
+      width: auto
+      float: right
+      margin: $libraryItemHeight - 30 5px 0 -2px
+      position: relative
+
+    img, video
+      width: 100%
+      height: auto
+
+
+
+    &:hover
+      h3
+        opacity: 1
+

@@ -6,7 +6,7 @@
 
 /*global define, window, document, $, requirejs, require  */
 
-define(['backbone', 'underscore', 'app/views/ui/layer-thumb'], function (Backbone, _, Thumb) {
+define(['backbone', 'underscore', 'app/views/ui/timeline-layer-slide'], function (Backbone, _, Slide) {
 
     'use strict';
 
@@ -37,7 +37,7 @@ define(['backbone', 'underscore', 'app/views/ui/layer-thumb'], function (Backbon
                 .name;
             this.el.appendChild(this.layer);
 
-            this.media = new Thumb({
+            this.media = new Slide({
                 color: "#00ffff",
                 model: this.options.model
             });
@@ -82,6 +82,8 @@ define(['backbone', 'underscore', 'app/views/ui/layer-thumb'], function (Backbon
                 var frame = (parseInt(this.media.el.style.left) / this.$('.layer').width()) * this.options.model.collection.totalFrames;
                 this.options.model.set('offset', Math.round(frame));
                 this.options.model.syncFrame();
+                
+                log(this.options.model);
                 
                 window.removeEventListener('mousemove', this.moveMedia, true);
                 this.moving = false;

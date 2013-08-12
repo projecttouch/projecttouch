@@ -6,14 +6,14 @@
 
 /*global define, window, document, $, requirejs, require  */
 
-define(['app/views/panels/panel',
-        'app/views/panels/mediaLibraryItem',
+define(['app/views/panel',
+        'app/views/ui/library-item',
         'app/collections/library', 
-        'app/models/media'], function (Panel) {
+        'app/models/library'], function (Panel) {
 
     return Panel.extend({
 
-        id: 'mediaLibraryPanel',
+        id: 'library',
 
         events: {
             'change input': 'handleFileSelect',
@@ -52,7 +52,7 @@ define(['app/views/panels/panel',
         handleFileSelect: function (evt) {
 
             var files, 
-                Media = require('app/models/media');
+                Model = require('app/models/library');
 
             if (evt.type === 'change') {
                 files = evt.target.files;
@@ -69,7 +69,7 @@ define(['app/views/panels/panel',
                 if (file.type !== "video/mp4") {
                     console.warn('file must be mp4');
                 } else {
-                    this.collection.add(new Media({
+                    this.collection.add(new Model({
                         file: file
                     }));
                 }
@@ -78,8 +78,8 @@ define(['app/views/panels/panel',
         },
 
         add: function (model) {
-            var Media = require('app/views/panels/mediaLibraryItem'),
-                item = new Media({
+            var LibraryItem = require('app/views/ui/library-item'),
+                item = new LibraryItem({
                     model: model
                 });
                 

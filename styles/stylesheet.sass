@@ -1,10 +1,9 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300)
-
 @import compass/reset
+@import compass/css3/images
 
 $headerHeight: 50px
 $footerHeight: 125px
-
 
 $sideMargin: 20px
 $panelMargin: 10px
@@ -12,6 +11,10 @@ $panelHeightPct: 80%
 $panelWidth: 280px
 
 $titleBlue: #0CF
+
+/* ==============================
+ * ===- BASE
+ * ==============================
 
 *
   -webkit-box-sizing: border-box
@@ -22,20 +25,20 @@ $titleBlue: #0CF
   -webkit-user-select: none
   -khtml-user-select: none
   -moz-user-select: moz-none
-  -ms-user-select: none
+  -ms-user-select: none 
   user-select: none
-
+ 
 html
   height: 100%
-
+ 
 body
   height: 100%
-  background: #1d1d1d
+  background: #1d1d1d 
   color: #fff
-  font-family: 'Open Sans'
+  font-family: 'Open Sans' 
   font-weight: 300
 
-header
+header 
   position: absolute 
   top: 0
   width: 100%
@@ -58,10 +61,14 @@ h2
   top: $headerHeight
   width: 100%
   height: $panelHeightPct
+  
+/* ==============================
+ * ===- IMPORT
+ * ==============================
 
 @import ui/footer
-@import "panels/panel"
-@import "panels/medialibrary"
+@import ui/panel
+@import ui/library
 
 #composition
   position: absolute
@@ -95,10 +102,3 @@ button
   position: absolute
   top: 10px
   right: 10px
-
-
-/* ==============================
- * ===- PANEL - LIBRARY
- * ==============================
-
-//#library.ui-panel li.file-selector input
