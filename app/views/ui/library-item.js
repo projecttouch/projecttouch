@@ -12,10 +12,17 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
     return Backbone.View.extend({
 
-        tagName: 'li',
+	    tagName: 'li',
+	    className: 'library-item',
+	    template: _.template('\
+	            <h3><%= filename %></h3>\
+	            <button class="play">Play</button>\
+	            <button class="add">Add</button>\
+	      '),
 
         events: {
-            "click button": "add"
+            'click .add': 'add',
+            'click .play': 'play'
         },
 
         initialize: function () {
@@ -25,29 +32,34 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         },
 
         render: function () {
+	        var cid = this.options.model.cid,
+		        filename = this.options.model.get('file').name,
+		        templateVars = { filename: filename },
+		        templateResult = this.template( templateVars );
 
-            var title = document.createElement('div'),
-                button = document.createElement('button');
-
-            this.el.setAttribute('data-id', this.options.model.cid);
-            title.innerHTML = this.options.model.get('file')
-                .name;
-            this.el.appendChild(title);
-
-            button.innerHTML = 'Add';
-            this.el.appendChild(button);
+	        this.$el.attr('data-id', cid);
+	        this.$el.html( templateResult );
 
             return this;
-
         },
 
         add: function () {
             this.options.model.collection.trigger('layer', this.options.model);
         },
 
+        play: function () {
+            log('play');
+	        var video = document.createElement('video');
+	        video.src = this.options.model.get('blob');
+
+	        this.$el.find('img').after( video );
+
+	        video.play();
+        },
+
         addThumb: function () {
             var img = new Image();
-            this.el.appendChild(img);
+            this.$el.prepend(img);
             img.src = this.options.model.get('thumb');
         }
 
