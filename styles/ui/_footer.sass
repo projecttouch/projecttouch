@@ -53,7 +53,7 @@ footer
         width: 26px
         cursor: e-resize
         z-index: 99
-        +imageBefore($interface-sprite, $interface-sprite2x, drag-right, 2, 2)
+        +imageBefore($interface-sprite, $interface-sprite2x, drag-left, 2, 2)
         
       .middle
         -ms-touch-action: none
@@ -62,6 +62,7 @@ footer
         height: 26px
         width: 100%
         z-index: 80
+        +background( linear-gradient(top, #199DCA, #127EA2) )
         
       .right
         -ms-touch-action: none
@@ -73,7 +74,7 @@ footer
         width: 26px 
         cursor: w-resize
         z-index: 99
-        +imageAfter($interface-sprite, $interface-sprite2x, drag-left, 2, 2)
+        +imageAfter($interface-sprite, $interface-sprite2x, drag-right, 2, 2)
         
   .bar .layer span
     float: right
@@ -82,14 +83,8 @@ footer
   .bar .layer .part
     position: absolute
     height: 100%
-    background: #24687d
-    background: -moz-layerar-gradient(top, #24687d 0%, #144454 100%)
-    background: -webkit-gradient(layerar, left top, left bottom, color-stop(0%, #24687d), color-stop(100%, #144454))
-    background: -webkit-layerar-gradient(top, #24687d 0%, #144454 100%)
-    background: -o-layerar-gradient(top, #24687d 0%, #144454 100%)
-    background: -ms-layerar-gradient(top, #24687d 0%, #144454 100%)
-    background: layerar-gradient(to bottom, #24687d 0%, #144454 100%)
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#24687d', endColorstr='#144454',GradientType=0 )
+    +background( linear-gradient(top, #199DCA, #127EA2) )
+
 
 footer .part .left, footer .part .right
   position: absolute
