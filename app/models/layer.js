@@ -128,11 +128,10 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 frames = this.get('frames'),
                 status = this.get('status');
 
-            if (frame >= (trim.start + offset) && frame < (trim.start + frames - trim.end) && status !== 'playing') {
+            if (frame >= (trim.start + offset) && frame < (offset + frames - trim.end) && status !== 'playing') {
                 this.play();
             } else if (frame === (offset + frames - trim.end)) {
                 this.stop();
-                log('sdfghjklsdfghjkldfghjkl')
             }
 
         },
