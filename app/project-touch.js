@@ -9,8 +9,8 @@
 define(['backbone', 
         'app/views/player', 
         'app/filters', 
-        'app/views/ui/library',
-        'app/views/ui/effects', 
+        'app/views/panels/mediaLibraryPanel',
+        'app/views/panels/effectsPanel',
         'app/controllers/timeline',
         'app/views/ui/timeline',
 		'app/views/composition'], function (Backbone) {
@@ -39,8 +39,8 @@ define(['backbone',
 
         render: function () {
 
-            var Library = require('app/views/ui/library'),
-                Effects = require('app/views/ui/effects'),
+            var Library = require('app/views/panels/mediaLibraryPanel'),
+                Effects = require('app/views/panels/effectsPanel'),
                 Timeline = require('app/views/ui/timeline');
 
             this.views.library = new Library({title:'My Content', position:'left'});
