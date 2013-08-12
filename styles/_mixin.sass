@@ -1,0 +1,97 @@
+@import compass/css3/background-size
+@import compass/utilities/sprites/base
+
+=getSprite($sprites, $sprites-retina, $name, $center: false)
+  @if $center == true
+    background: sprite-url($sprites) sprite-position($sprites, $name) repeat-x
+  @else
+    background: sprite-url($sprites) sprite-position($sprites, $name) no-repeat
+  @media (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3 / 2), (min-device-pixel-ratio: 1.5)
+    &
+      $xpos: round(nth(sprite-position($sprites-retina, $name), 1) / 2)
+      $ypos: round(nth(sprite-position($sprites-retina, $name), 2) / 2)
+      @if $center == true
+        background: sprite-url($sprites-retina) $xpos $ypos repeat-x
+        +background-size(ceil(image-width(sprite-path($sprites-retina)) / 2), ceil(image-height(sprite-path($sprites-retina)) / 2))
+      @else
+        background: sprite-url($sprites-retina) $xpos $ypos no-repeat
+        +background-size(ceil(image-width(sprite-path($sprites-retina)) / 2), auto)
+
+// Returns just the sprite positions
+
+=getSpritePositions($sprites, $sprites-retina, $name, $right: false)
+  @if $right == true
+    background-position: right nth(sprite-position($sprites, $name), 2)
+  @else
+    background-position: sprite-position($sprites, $name)
+  @media (-webkit-min-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 3 / 2), (min-device-pixel-ratio: 2)
+    $xpos: round(nth(sprite-position($sprites-retina, $name), 1) / 2)
+    $ypos: round(nth(sprite-position($sprites-retina, $name), 2) / 2)
+    @if $right == true
+      background-position: right $ypos
+    @else
+      background-position: $xpos $ypos
+
+// image mixin
+=imageBefore($sprites, $sprites-retina, $name, $top, $left)
+  &:before
+    content: " "
+    display: block
+    position: absolute
+    top: #{$top}px
+    left: #{$left}px
+    +getSprite($sprites, $sprites-retina, $name)
+    +sprite-dimensions($sprites, $name)
+    
+=imageAfter($sprites, $sprites-retina, $name, $top, $right)
+  &:after
+    content: " "
+    display: block
+    position: absolute
+    top: #{$top}px
+    right: #{$right}px
+    +getSprite($sprites, $sprites-retina, $name)
+    +sprite-dimensions($sprites, $name)
+
+// Button mixin
+
+@function -returnLeftSpriteName($name, $state: "Normal")
+  @return $name + "Left" + $state
+
+@function -returnCenterSpriteName($name, $state: "Normal")
+  @return $name + "Center" + $state
+
+@function -returnRightSpriteName($name, $state: "Normal")
+  @return $name + "Right" + $state
+
+=button($sprites-sides, $sprites-sides-retina, $sprites-center, $sprites-center-retina, $sprite-name)
+  display: inline-block
+  position: relative
+  height: image-height(sprite-file($sprites-center, -returnCenterSpriteName($sprite-name)))
+  margin: 0 image-width(sprite-file($sprites-sides, -returnRightSpriteName($sprite-name))) 0 image-width(sprite-file($sprites-sides, -returnLeftSpriteName($sprite-name)))
+  +getSprite($sprites-center, $sprites-center-retina, -returnCenterSpriteName($sprite-name), true)
+  &:before, &:after
+    content: " "
+    display: block
+    position: absolute
+    top: 0
+  &:before
+    left: -#{image-width(sprite-file($sprites-sides, -returnLeftSpriteName($sprite-name)))}
+    +getSprite($sprites-sides, $sprites-sides-retina, -returnLeftSpriteName($sprite-name))
+    +sprite-dimensions($sprites-sides, -returnLeftSpriteName($sprite-name))
+  &:after
+    right: -#{image-width(sprite-file($sprites-sides, -returnRightSpriteName($sprite-name)))}
+    +getSprite($sprites-sides, $sprites-sides-retina, -returnRightSpriteName($sprite-name))
+    +sprite-dimensions($sprites-sides, -returnRightSpriteName($sprite-name))
+  &:hover
+    +getSpritePositions($sprites-center, $sprites-center-retina, -returnCenterSpriteName($sprite-name, "Hover"))
+    &:before
+      +getSpritePositions($sprites-sides, $sprites-sides-retina, -returnLeftSpriteName($sprite-name, "Hover"))
+    &:after
+      +getSpritePositions($sprites-sides, $sprites-sides-retina, -returnRightSpriteName($sprite-name, "Hover"))
+  &:active
+    +getSpritePositions($sprites-center, $sprites-center-retina, -returnCenterSpriteName($sprite-name, "Down"))
+    &:before
+      +getSpritePositions($sprites-sides, $sprites-sides-retina, -returnLeftSpriteName($sprite-name, "Down"))
+    &:after
+      +getSpritePositions($sprites-sides, $sprites-sides-retina, -returnRightSpriteName($sprite-name, "Down"))

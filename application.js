@@ -25,7 +25,7 @@ requirejs.config({
             exports: "Backbone"
         },
         "stats": {
-          exports: "Stats"  
+            exports: "Stats"
         }
     }
 });
@@ -33,20 +33,30 @@ requirejs.config({
 require(['app/project-touch', 'hammer', 'stats'], function (PT) {
 
     'use strict';
-    
-    var stats = new Stats();
 
-    stats.domElement.style.position = 'absolute';
-    stats.domElement.style.left = '0px';
-    stats.domElement.style.bottom = '0px';
+    var console = window.console
+    if (!console) return
 
-    document.body.appendChild( stats.domElement );
-
-    window.log = function () {
-        console.log.apply(console, arguments);
+    function intercept(method) {
+        var original = console[method]
+        window[method] = function () {
+            if (original.apply) {
+                original.apply(console, arguments)
+            } else {
+                var message = Array.prototype.slice.apply(arguments)
+                    .join(' ')
+                original(message)
+            }
+        }
+    }
+    var methods = ['log', 'warn', 'error']
+    for (var i = 0; i < methods.length; i++) {
+       intercept(methods[i]); 
     }
 
-    window.App = new PT({el: document.querySelector('.video')});
+    window.App = new PT({
+        el: document.querySelector('.video')
+    });
     window.App.render();
 
 });

@@ -91,8 +91,6 @@ define(['backbone', 'underscore', 'app/collections/timeline'], function (Backbon
          */
 
         frame: function () {
-            
-            log(this._frame)
 
             this.collection.trigger('frame-sync', this._frame, this.collection.totalFrames);
             window.App.player.setSource(this.collection.getActive());
