@@ -3,3 +3,4 @@
 .DS_Store
 .idea
 config.rb
+styles/**.css
