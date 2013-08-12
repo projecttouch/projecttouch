@@ -1,19 +1,19 @@
-/* line 8, panel.sass */
+/* line 10, panel.sass */
 .ui-panel {
   width: 280px;
   position: absolute;
   top: 0;
   bottom: 50px;
 }
-/* line 14, panel.sass */
+/* line 16, panel.sass */
 .ui-panel.left {
   left: 20px;
 }
-/* line 17, panel.sass */
+/* line 19, panel.sass */
 .ui-panel.right {
   right: 20px;
 }
-/* line 20, panel.sass */
+/* line 22, panel.sass */
 .ui-panel ul {
   width: 100%;
   position: absolute;
@@ -22,13 +22,14 @@
   overflow: hidden;
   overflow-y: auto;
 }
-/* line 29, panel.sass */
+/* line 31, panel.sass */
 .ui-panel ul li {
+  position: relative;
   width: 100%;
   height: 155px;
   margin: 10px 0 0;
 }
-/* line 34, panel.sass */
+/* line 37, panel.sass */
 .ui-panel ul li:first-child {
   margin: 0;
 }

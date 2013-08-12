@@ -6,14 +6,14 @@
 
 /*global define, window, document, $, requirejs, require  */
 
-define(['app/views/ui/panel', 
-        'app/views/ui/media', 
+define(['app/views/panels/panel',
+        'app/views/panels/mediaLibraryItem',
         'app/collections/library', 
         'app/models/media'], function (Panel) {
 
     return Panel.extend({
 
-        id: 'library',
+        id: 'mediaLibraryPanel',
 
         events: {
             'change input': 'handleFileSelect',
@@ -56,10 +56,12 @@ define(['app/views/ui/panel',
 
             if (evt.type === 'change') {
                 files = evt.target.files;
-            } else {
+            } else if( evt.dataTransfer ) {
                 files = evt.dataTransfer.files;
                 evt.preventDefault();
                 evt.stopPropagation();
+            } else {
+	            console.warn('no files found in the event', evt);
             }
 
             _.each(files, function (file) {
@@ -76,7 +78,7 @@ define(['app/views/ui/panel',
         },
 
         add: function (model) {
-            var Media = require('app/views/ui/media'),
+            var Media = require('app/views/panels/mediaLibraryItem'),
                 item = new Media({
                     model: model
                 });
