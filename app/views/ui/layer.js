@@ -83,6 +83,8 @@ define(['backbone', 'underscore', 'app/views/ui/layer-thumb'], function (Backbon
                 this.options.model.set('offset', Math.round(frame));
                 this.options.model.syncFrame();
                 
+                log(this.options.model);
+                
                 window.removeEventListener('mousemove', this.moveMedia, true);
                 this.moving = false;
             }

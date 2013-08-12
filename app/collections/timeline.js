@@ -19,11 +19,20 @@ define(['backbone', 'underscore', 'app/models/layer'], function (Backbone, _, Mo
         
         getActive: function () {
 
-            var targetModel;
+            var targetModel,
+                position = 99999;
 
             _.each(this.models, function (model) {
-                if (model.get('status') === 'playing') {
-                    targetModel = model;
+                
+                log(model.getStart());
+                
+                if (model.get('status') === 'playing' || model.get('status') === 'seeking') {
+                    
+                    if (model.get('position') < position) {
+                        targetModel = model;
+                        position = model.get('position');
+                    }
+                    
                 }
             }, this);
 

@@ -35,22 +35,9 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
         },
 
-        hexToRgb: function (hex) {
-            var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-            return {
-                r: parseInt(result[1], 16),
-                g: parseInt(result[2], 16),
-                b: parseInt(result[3], 16)
-            }
-        },
-
         render: function () {
 
-            var rgb = this.hexToRgb(this.options.color);
-
             this.el.style.left = '0px';
-
-            this.el.style.backgroundColor = 'rgba(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ',0.4)';
 
             this.left = document.createElement('div');
             this.left.setAttribute('class', 'left');

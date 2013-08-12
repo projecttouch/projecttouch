@@ -64,7 +64,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-/* line 14, stylesheet.sass */
+/* line 12, stylesheet.sass */
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -78,12 +78,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   user-select: none;
 }
 
-/* line 26, stylesheet.sass */
+/* line 24, stylesheet.sass */
 html {
   height: 100%;
 }
 
-/* line 29, stylesheet.sass */
+/* line 27, stylesheet.sass */
 body {
   height: 100%;
   background: #1d1d1d;
@@ -92,7 +92,7 @@ body {
   font-weight: 300;
 }
 
-/* line 36, stylesheet.sass */
+/* line 34, stylesheet.sass */
 header {
   position: absolute;
   top: 0;
@@ -101,7 +101,7 @@ header {
   min-height: 50px;
 }
 
-/* line 43, stylesheet.sass */
+/* line 41, stylesheet.sass */
 h1 {
   color: #00ccff;
   font-size: 30px;
@@ -110,13 +110,13 @@ h1 {
   text-indent: 40px;
 }
 
-/* line 50, stylesheet.sass */
+/* line 48, stylesheet.sass */
 h2 {
   font-size: 30px;
   margin: 10px 0 10px 20px;
 }
 
-/* line 54, stylesheet.sass */
+/* line 52, stylesheet.sass */
 .video {
   position: absolute;
   top: 50px;
@@ -255,22 +255,22 @@ footer .bar.effects .layer .part {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4cffa7', endColorstr='#36d486',GradientType=0 );
 }
 
-/* line 11, ui/panel.sass */
+/* line 8, ui/panel.sass */
 .ui-panel {
   width: 280px;
   position: absolute;
   top: 0;
   bottom: 50px;
 }
-/* line 17, ui/panel.sass */
+/* line 14, ui/panel.sass */
 .ui-panel.left {
   left: 20px;
 }
-/* line 20, ui/panel.sass */
+/* line 17, ui/panel.sass */
 .ui-panel.right {
   right: 20px;
 }
-/* line 23, ui/panel.sass */
+/* line 20, ui/panel.sass */
 .ui-panel ul {
   width: 100%;
   position: absolute;
@@ -279,25 +279,25 @@ footer .bar.effects .layer .part {
   overflow: hidden;
   overflow-y: auto;
 }
-/* line 33, ui/panel.sass */
+/* line 29, ui/panel.sass */
 .ui-panel ul li {
   width: 100%;
   height: 155px;
   margin: 10px 0 0;
 }
-/* line 38, ui/panel.sass */
+/* line 34, ui/panel.sass */
 .ui-panel ul li:first-child {
   margin: 0;
 }
 
-/* line 63, stylesheet.sass */
+/* line 61, stylesheet.sass */
 #composition {
   position: absolute;
   left: 310px;
   right: 310px;
   height: 80%;
 }
-/* line 70, stylesheet.sass */
+/* line 68, stylesheet.sass */
 #composition .controls {
   z-index: 1;
   position: absolute;
@@ -306,13 +306,13 @@ footer .bar.effects .layer .part {
   left: 20px;
 }
 
-/* line 77, stylesheet.sass */
+/* line 75, stylesheet.sass */
 #player {
   width: 100%;
   pointer-events: none;
 }
 
-/* line 82, stylesheet.sass */
+/* line 80, stylesheet.sass */
 button {
   width: 40px;
   height: 40px;
@@ -320,12 +320,12 @@ button {
   background: center center no-repeat;
   cursor: pointer;
 }
-/* line 88, stylesheet.sass */
+/* line 86, stylesheet.sass */
 button:hover {
   opacity: 0.8;
 }
 
-/* line 91, stylesheet.sass */
+/* line 89, stylesheet.sass */
 #fps {
   position: absolute;
   top: 10px;
