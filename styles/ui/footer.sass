@@ -1,3 +1,5 @@
+@import compass/css3/images
+
 footer
   background: #333333
   min-height: 50px
@@ -35,11 +37,13 @@ footer
     background: #282628
     overflow: hidden
     
+    
     .media
       position: absolute
       height: 100%
       cursor: move
       overflow: hidden
+      +background( linear-gradient(top, #1F1F1F, #191919) )
       
       .left
         -ms-touch-action: none

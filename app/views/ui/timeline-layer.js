@@ -6,7 +6,7 @@
 
 /*global define, window, document, $, requirejs, require  */
 
-define(['backbone', 'underscore', 'app/views/ui/layer-thumb'], function (Backbone, _, Thumb) {
+define(['backbone', 'underscore', 'app/views/ui/timeline-layer-slide'], function (Backbone, _, Slide) {
 
     'use strict';
 
@@ -37,7 +37,7 @@ define(['backbone', 'underscore', 'app/views/ui/layer-thumb'], function (Backbon
                 .name;
             this.el.appendChild(this.layer);
 
-            this.media = new Thumb({
+            this.media = new Slide({
                 color: "#00ffff",
                 model: this.options.model
             });

@@ -1,4 +1,4 @@
-/* line 1, footer.sass */
+/* line 3, footer.sass */
 footer {
   background: #333333;
   min-height: 50px;
@@ -11,24 +11,24 @@ footer {
   color: #999999;
   font-size: 14px;
 }
-/* line 13, footer.sass */
+/* line 15, footer.sass */
 footer div:first-child {
   background: none;
 }
-/* line 16, footer.sass */
+/* line 18, footer.sass */
 footer div:first-child .layer {
   background: none;
   background-color: #2d2c2d;
   padding-left: 6px;
 }
-/* line 21, footer.sass */
+/* line 23, footer.sass */
 footer .bar {
   background-color: #2d2c2d;
   padding: 3px 30px;
   position: relative;
   margin-bottom: 10px;
 }
-/* line 27, footer.sass */
+/* line 29, footer.sass */
 footer .bar .layer {
   position: absolute;
   right: 0;
@@ -40,14 +40,19 @@ footer .bar .layer {
   background: #282628;
   overflow: hidden;
 }
-/* line 38, footer.sass */
+/* line 41, footer.sass */
 footer .bar .layer .media {
   position: absolute;
   height: 100%;
   cursor: move;
   overflow: hidden;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #1f1f1f), color-stop(100%, #191919));
+  background: -webkit-linear-gradient(top, #1f1f1f, #191919);
+  background: -moz-linear-gradient(top, #1f1f1f, #191919);
+  background: -o-linear-gradient(top, #1f1f1f, #191919);
+  background: linear-gradient(top, #1f1f1f, #191919);
 }
-/* line 44, footer.sass */
+/* line 48, footer.sass */
 footer .bar .layer .media .left {
   -ms-touch-action: none;
   display: block;
@@ -59,7 +64,7 @@ footer .bar .layer .media .left {
   cursor: e-resize;
   z-index: 99;
 }
-/* line 55, footer.sass */
+/* line 59, footer.sass */
 footer .bar .layer .media .middle {
   -ms-touch-action: none;
   display: block;
@@ -68,7 +73,7 @@ footer .bar .layer .media .middle {
   width: 100%;
   z-index: 80;
 }
-/* line 63, footer.sass */
+/* line 67, footer.sass */
 footer .bar .layer .media .right {
   -ms-touch-action: none;
   display: block;
@@ -80,12 +85,12 @@ footer .bar .layer .media .right {
   cursor: w-resize;
   z-index: 99;
 }
-/* line 74, footer.sass */
+/* line 78, footer.sass */
 footer .bar .layer span {
   float: right;
   margin-right: 6px;
 }
-/* line 78, footer.sass */
+/* line 82, footer.sass */
 footer .bar .layer .part {
   position: absolute;
   height: 100%;
@@ -99,7 +104,7 @@ footer .bar .layer .part {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#24687d', endColorstr='#144454',GradientType=0 );
 }
 
-/* line 90, footer.sass */
+/* line 94, footer.sass */
 footer .part .left, footer .part .right {
   position: absolute;
   width: 40px;
@@ -108,17 +113,17 @@ footer .part .left, footer .part .right {
   top: -10px;
 }
 
-/* line 97, footer.sass */
+/* line 101, footer.sass */
 footer .part .left {
   left: -10px;
 }
 
-/* line 100, footer.sass */
+/* line 104, footer.sass */
 footer .part .right {
   right: -10px;
 }
 
-/* line 103, footer.sass */
+/* line 107, footer.sass */
 footer .bar.effects .layer .part {
   background: -moz-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
   background: -webkit-gradient(layerar, left top, left bottom, color-stop(0%, #4cffa7), color-stop(100%, #36d486));
