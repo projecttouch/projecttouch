@@ -12,9 +12,9 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
     return Backbone.View.extend({
 
-	    tagName: 'li',
-	    className: 'library-item',
-	    template: _.template('\
+        tagName: 'li',
+        className: 'library-item',
+        template: _.template('\
 	            <h3><%= filename %></h3>\
 	            <button class="play">Play</button>\
 	            <button class="add">Add</button>\
@@ -32,13 +32,16 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         },
 
         render: function () {
-	        var cid = this.options.model.cid,
-		        filename = this.options.model.get('file').name,
-		        templateVars = { filename: filename },
-		        templateResult = this.template( templateVars );
+            var cid = this.options.model.cid,
+                filename = this.options.model.get('file')
+                    .name,
+                templateVars = {
+                    filename: filename
+                },
+                templateResult = this.template(templateVars);
 
-	        this.$el.attr('data-id', cid);
-	        this.$el.html( templateResult );
+            this.$el.attr('data-id', cid);
+            this.$el.html(templateResult);
 
             return this;
         },
@@ -49,12 +52,13 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
         play: function () {
             log('play');
-	        var video = document.createElement('video');
-	        video.src = this.options.model.get('blob');
+            var video = document.createElement('video');
+            video.src = this.options.model.get('blob');
 
-	        this.$el.find('img').after( video );
+            this.$el.find('img')
+                .after(video);
 
-	        video.play();
+            video.play();
         },
 
         addThumb: function () {

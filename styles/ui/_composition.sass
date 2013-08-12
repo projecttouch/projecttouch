@@ -1,0 +1,22 @@
+#composition
+  button
+    border: 0
+    padding: 0
+    margin: 0
+    width: 30px
+    height: 30px
+    cursor: pointer
+    background: 0
+    position: relative
+    &:hover
+      opacity: 0.8
+    
+    &.play
+      +imageAfter($interface-sprite, $interface-sprite2x, button-play, 0,0)
+      
+    &.stop
+      +imageAfter($interface-sprite, $interface-sprite2x, button-stop, 0,0)
+      
+    &.pause
+      +imageAfter($interface-sprite, $interface-sprite2x, button-pause, 0,0)
+      

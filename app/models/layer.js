@@ -37,7 +37,10 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 this.collection.on('seek', this.seek, this);
                 this.collection.on('frame-sync', this.sync, this);
                 this.collection.on('kill', this.kill, this);
-                this.on('change:trim', this.syncFrame, this);
+                this.on('change:trim', function () {
+                    this.set('status', 'idle');
+                    this.syncFrame();
+                }, this);
                 this.initializeVideo();
             }
 
@@ -125,13 +128,11 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 frames = this.get('frames'),
                 status = this.get('status');
 
-                log(trim.start + frames - trim.end)
-                log('aa',trim.start,offset)
-
             if (frame >= (trim.start + offset) && frame < (trim.start + frames - trim.end) && status !== 'playing') {
                 this.play();
             } else if (frame === (offset + frames - trim.end)) {
                 this.stop();
+                log('sdfghjklsdfghjkldfghjkl')
             }
 
         },
