@@ -6,7 +6,7 @@
 
 /*global define, window, document, $, requirejs, require  */
 
-define(['app/views/panels/panel'], function (Panel) {
+define(['app/views/panel'], function (Panel) {
 
     return Panel.extend({
 

@@ -6,7 +6,7 @@
 
 /*global define, window, document, $, requirejs, require  */
 
-define(['app/views/ui/panel',
+define(['app/views/panel',
         'app/views/ui/library-item',
         'app/collections/library', 
         'app/models/library'], function (Panel) {
@@ -78,8 +78,8 @@ define(['app/views/ui/panel',
         },
 
         add: function (model) {
-            var Media = require('app/views/ui/library-item'),
-                item = new Media({
+            var LibraryItem = require('app/views/ui/library-item'),
+                item = new LibraryItem({
                     model: model
                 });
                 

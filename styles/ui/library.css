@@ -1,14 +1,24 @@
 /*
 Syntax error: Undefined variable: "$panelWidth".
-        on line 3 of /Users/kleist/Dropbox/Sites/projecttouch/styles/panels/medialibrary.sass
+        on line 5 of /Users/kleist/Dropbox/Sites/projecttouch/styles/ui/library.sass
 
-1: /Users/kleist/Dropbox/Sites/projecttouch/styles/panels/medialibrary.sass
+1: /Users/kleist/Dropbox/Sites/projecttouch/styles/ui/library.sass
 
 Backtrace:
-/Users/kleist/Dropbox/Sites/projecttouch/styles/panels/medialibrary.sass:3
+/Users/kleist/Dropbox/Sites/projecttouch/styles/ui/library.sass:5
 /Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/sass/lib/sass/script/variable.rb:49:in `_perform'
 /Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/sass/lib/sass/script/node.rb:40:in `perform'
 /Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/sass/lib/sass/tree/visitors/perform.rb:298:in `visit_prop'
+/Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/sass/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/sass/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/sass/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/sass/lib/sass/tree/visitors/base.rb:53:in `map'
+/Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/sass/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/sass/lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
+/Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/sass/lib/sass/tree/visitors/perform.rb:121:in `with_environment'
+/Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/sass/lib/sass/tree/visitors/perform.rb:108:in `visit_children'
+/Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/sass/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/sass/lib/sass/tree/visitors/perform.rb:320:in `visit_rule'
 /Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/sass/lib/sass/tree/visitors/base.rb:37:in `visit'
 /Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/sass/lib/sass/tree/visitors/perform.rb:100:in `visit'
 /Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/sass/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
@@ -58,4 +68,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$panelWidth\".\A         on line 3 of /Users/kleist/Dropbox/Sites/projecttouch/styles/panels/medialibrary.sass\A \A 1: /Users/kleist/Dropbox/Sites/projecttouch/styles/panels/medialibrary.sass"; }
+  content: "Syntax error: Undefined variable: \"$panelWidth\".\A         on line 5 of /Users/kleist/Dropbox/Sites/projecttouch/styles/ui/library.sass\A \A 1: /Users/kleist/Dropbox/Sites/projecttouch/styles/ui/library.sass"; }
