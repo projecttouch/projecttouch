@@ -10,13 +10,13 @@
 
 define(['backbone',
         'underscore',
-        'app/models/media'], function (Backbone, _, Media) {
+        'app/models/library'], function (Backbone, _, Model) {
 
     'use strict';
 
     return Backbone.Collection.extend({
 
-        model: Media,
+        model: Model,
         
         initialize: function () {
           this.on('layer', function (model) {

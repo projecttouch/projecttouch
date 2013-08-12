@@ -1,0 +1,335 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
+/* line 17, ../../../../../../Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline; }
+
+/* line 22, ../../../../../../Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1; }
+
+/* line 24, ../../../../../../Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none; }
+
+/* line 26, ../../../../../../Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/* line 28, ../../../../../../Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle; }
+
+/* line 30, ../../../../../../Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none; }
+/* line 103, ../../../../../../Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none; }
+
+/* line 32, ../../../../../../Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none; }
+
+/* line 116, ../../../../../../Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block; }
+
+/* ==============================
+ * ===- BASE
+ * ============================== */
+/* line 19, ../styles/stylesheet.sass */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: moz-none;
+  -ms-user-select: none;
+  user-select: none; }
+
+/* line 31, ../styles/stylesheet.sass */
+html {
+  height: 100%; }
+
+/* line 34, ../styles/stylesheet.sass */
+body {
+  height: 100%;
+  background: #1d1d1d;
+  color: white;
+  font-family: "Open Sans";
+  font-weight: 300; }
+
+/* line 41, ../styles/stylesheet.sass */
+header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background: #333333;
+  min-height: 50px; }
+
+/* line 48, ../styles/stylesheet.sass */
+h1 {
+  color: #00ccff;
+  font-size: 30px;
+  line-height: 50px;
+  vertical-align: middle;
+  text-indent: 40px; }
+
+/* line 55, ../styles/stylesheet.sass */
+h2 {
+  font-size: 30px;
+  margin: 10px 0 10px 20px; }
+
+/* line 59, ../styles/stylesheet.sass */
+.video {
+  position: absolute;
+  top: 50px;
+  width: 100%;
+  height: 80%; }
+
+/* ==============================
+ * ===- IMPORT
+ * ============================== */
+/* line 3, ../styles/ui/footer.sass */
+footer {
+  background: #333333;
+  min-height: 50px;
+  height: 20%;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 30px;
+  padding-bottom: 20px;
+  color: #999999;
+  font-size: 14px; }
+/* line 15, ../styles/ui/footer.sass */
+footer div:first-child {
+  background: none; }
+/* line 18, ../styles/ui/footer.sass */
+footer div:first-child .layer {
+  background: none;
+  background-color: #2d2c2d;
+  padding-left: 6px; }
+/* line 23, ../styles/ui/footer.sass */
+footer .bar {
+  background-color: #2d2c2d;
+  padding: 3px 30px;
+  position: relative;
+  margin-bottom: 10px; }
+/* line 29, ../styles/ui/footer.sass */
+footer .bar .layer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 170px;
+  height: 100%;
+  font-size: 11px;
+  layer-height: 20px;
+  background: #282628;
+  overflow: hidden; }
+/* line 41, ../styles/ui/footer.sass */
+footer .bar .layer .media {
+  position: absolute;
+  height: 100%;
+  cursor: move;
+  overflow: hidden;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #1f1f1f), color-stop(100%, #191919));
+  background: -webkit-linear-gradient(top, #1f1f1f, #191919);
+  background: -moz-linear-gradient(top, #1f1f1f, #191919);
+  background: -o-linear-gradient(top, #1f1f1f, #191919);
+  background: linear-gradient(top, #1f1f1f, #191919); }
+/* line 48, ../styles/ui/footer.sass */
+footer .bar .layer .media .left {
+  -ms-touch-action: none;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 26px;
+  width: 26px;
+  cursor: e-resize;
+  z-index: 99; }
+/* line 59, ../styles/ui/footer.sass */
+footer .bar .layer .media .middle {
+  -ms-touch-action: none;
+  display: block;
+  position: relative;
+  height: 26px;
+  width: 100%;
+  z-index: 80; }
+/* line 67, ../styles/ui/footer.sass */
+footer .bar .layer .media .right {
+  -ms-touch-action: none;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 26px;
+  width: 26px;
+  cursor: w-resize;
+  z-index: 99; }
+/* line 78, ../styles/ui/footer.sass */
+footer .bar .layer span {
+  float: right;
+  margin-right: 6px; }
+/* line 82, ../styles/ui/footer.sass */
+footer .bar .layer .part {
+  position: absolute;
+  height: 100%;
+  background: #24687d;
+  background: -moz-layerar-gradient(top, #24687d 0%, #144454 100%);
+  background: -webkit-gradient(layerar, left top, left bottom, color-stop(0%, #24687d), color-stop(100%, #144454));
+  background: -webkit-layerar-gradient(top, #24687d 0%, #144454 100%);
+  background: -o-layerar-gradient(top, #24687d 0%, #144454 100%);
+  background: -ms-layerar-gradient(top, #24687d 0%, #144454 100%);
+  background: layerar-gradient(to bottom, #24687d 0%, #144454 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#24687d', endColorstr='#144454',GradientType=0 ); }
+
+/* line 94, ../styles/ui/footer.sass */
+footer .part .left, footer .part .right {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.3);
+  top: -10px; }
+
+/* line 101, ../styles/ui/footer.sass */
+footer .part .left {
+  left: -10px; }
+
+/* line 104, ../styles/ui/footer.sass */
+footer .part .right {
+  right: -10px; }
+
+/* line 107, ../styles/ui/footer.sass */
+footer .bar.effects .layer .part {
+  background: -moz-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
+  background: -webkit-gradient(layerar, left top, left bottom, color-stop(0%, #4cffa7), color-stop(100%, #36d486));
+  background: -webkit-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
+  background: -o-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
+  background: -ms-layerar-gradient(top, #4cffa7 0%, #36d486 100%);
+  background: layerar-gradient(to bottom, #4cffa7 0%, #36d486 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4cffa7', endColorstr='#36d486',GradientType=0 ); }
+
+/* line 10, ../styles/ui/panel.sass */
+.ui-panel {
+  width: 280px;
+  position: absolute;
+  top: 0;
+  bottom: 50px; }
+/* line 16, ../styles/ui/panel.sass */
+.ui-panel.left {
+  left: 20px; }
+/* line 19, ../styles/ui/panel.sass */
+.ui-panel.right {
+  right: 20px; }
+/* line 22, ../styles/ui/panel.sass */
+.ui-panel ul {
+  width: 100%;
+  position: absolute;
+  top: 50px;
+  bottom: 0;
+  overflow: hidden;
+  overflow-y: auto; }
+/* line 31, ../styles/ui/panel.sass */
+.ui-panel ul li {
+  position: relative;
+  width: 100%;
+  height: 155px;
+  margin: 10px 0 0; }
+/* line 37, ../styles/ui/panel.sass */
+.ui-panel ul li:first-child {
+  margin: 0; }
+
+/* line 3, ../styles/ui/library.sass */
+#library .file-selector {
+  background: #333333 url("../../images/whitecross.png") no-repeat center center;
+  width: 280px; }
+/* line 7, ../styles/ui/library.sass */
+#library .file-selector form, #library .file-selector input {
+  cursor: pointer;
+  opacity: 0;
+  width: 280px;
+  height: 100%; }
+/* line 13, ../styles/ui/library.sass */
+#library .file-selector:hover {
+  background-color: #00ccff; }
+/* line 16, ../styles/ui/library.sass */
+#library .library-item {
+  width: 280px;
+  height: 155px; }
+/* line 20, ../styles/ui/library.sass */
+#library .library-item > * {
+  position: absolute; }
+/* line 23, ../styles/ui/library.sass */
+#library .library-item h3 {
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  line-height: 1.5em;
+  text-indent: 5px; }
+/* line 30, ../styles/ui/library.sass */
+#library .library-item button {
+  background: #00ccff;
+  color: black;
+  border-radius: 3px;
+  height: auto;
+  width: auto;
+  float: right;
+  margin: 125px 5px 0 -2px;
+  position: relative; }
+/* line 40, ../styles/ui/library.sass */
+#library .library-item img, #library .library-item video {
+  width: 100%;
+  height: auto; }
+/* line 47, ../styles/ui/library.sass */
+#library .library-item:hover h3 {
+  opacity: 1; }
+
+/* line 73, ../styles/stylesheet.sass */
+#composition {
+  position: absolute;
+  left: 310px;
+  right: 310px;
+  height: 80%; }
+/* line 80, ../styles/stylesheet.sass */
+#composition .controls {
+  z-index: 1;
+  position: absolute;
+  vertical-position: bottom;
+  top: 500px;
+  left: 20px; }
+
+/* line 87, ../styles/stylesheet.sass */
+#player {
+  width: 100%;
+  pointer-events: none; }
+
+/* line 92, ../styles/stylesheet.sass */
+button {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: center center no-repeat;
+  cursor: pointer; }
+/* line 98, ../styles/stylesheet.sass */
+button:hover {
+  opacity: 0.8; }
+
+/* line 101, ../styles/stylesheet.sass */
+#fps {
+  position: absolute;
+  top: 10px;
+  right: 10px; }
