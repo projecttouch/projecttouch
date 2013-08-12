@@ -1,5 +1,3 @@
-@import compass/css3/images
-
 footer
   background: #333333
   min-height: 50px
@@ -55,6 +53,7 @@ footer
         width: 26px
         cursor: e-resize
         z-index: 99
+        +imageBefore($interface-sprite, $interface-sprite2x, drag-right, 2, 2)
         
       .middle
         -ms-touch-action: none
@@ -74,6 +73,7 @@ footer
         width: 26px 
         cursor: w-resize
         z-index: 99
+        +imageAfter($interface-sprite, $interface-sprite2x, drag-left, 2, 2)
         
   .bar .layer span
     float: right

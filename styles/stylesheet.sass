@@ -1,6 +1,10 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300)
 @import compass/reset
 @import compass/css3/images
+@import mixin
+
+$interface-sprite: sprite-map("interface/*.png", $layout: smart)
+$interface-sprite2x: sprite-map("interface2x/*.png", $layout: smart)
 
 $headerHeight: 50px
 $footerHeight: 125px
@@ -11,6 +15,12 @@ $panelHeightPct: 80%
 $panelWidth: 280px
 
 $titleBlue: #0CF
+
+$sideMargin: 20px
+$panelMargin: 10px
+
+$libraryItemHeight: 155px
+
 
 /* ==============================
  * ===- BASE
