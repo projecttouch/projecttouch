@@ -12,6 +12,7 @@ define(['backbone', 'underscore'], function(Backbone, _) {
 
 	return Backbone.View.extend({
 
+        id: 'composition',
 		el: '#composition',
 
 		events: {
@@ -20,7 +21,7 @@ define(['backbone', 'underscore'], function(Backbone, _) {
 		},
 
 		initialize: function() {
-			_.bindAll(this, 'render', 'onPlayClick', 'onStopClick');
+			_.bindAll(this, 'onPlayClick', 'onStopClick');
 		},
 
 		render: function() {
@@ -28,11 +29,11 @@ define(['backbone', 'underscore'], function(Backbone, _) {
 		},
 
 		onPlayClick: function(e) {
-			log('play');
+			window.App.timeline.play();
 		},
 
 		onStopClick: function(e) {
-			log('stop');
+			window.App.timeline.stop();
 		}
 	});
 });

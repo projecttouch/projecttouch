@@ -43,10 +43,10 @@ define(['backbone', 'underscore', 'app/collections/timeline'], function (Backbon
 
         addEventListeners: function () {
             document.querySelector('header').addEventListener('click', this.play);
-            //   this.collection.initTime();
+//            this.collection.initTime();
 //            this.collection.on('play', this.play);
 //            this.collection.on('stop', this.stop);
-            //  App.Views.interface.effects.on('change', this.changeFilter);
+//            App.Views.interface.effects.on('change', this.changeFilter);
 
         },
 
@@ -81,6 +81,7 @@ define(['backbone', 'underscore', 'app/collections/timeline'], function (Backbon
         },
         
         seek: function (frame) {
+            this.stop();
             this._frame = !isNaN(frame) ? frame : this._frame;
             this.collection.trigger('seek', this._frame, this.collection.totalFrames);
             window.App.player.setSource(this.collection.getActive());

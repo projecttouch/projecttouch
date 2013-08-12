@@ -24,8 +24,6 @@ define(['backbone', 'underscore', 'app/models/layer'], function (Backbone, _, Mo
 
             _.each(this.models, function (model) {
                 
-                log(model.getStart());
-                
                 if (model.get('status') === 'playing' || model.get('status') === 'seeking') {
                     
                     if (model.get('position') < position) {
