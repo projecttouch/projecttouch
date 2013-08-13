@@ -35,6 +35,10 @@ define(['backbone', 'underscore', 'app/views/ui/timeline-layer'], function (Back
         add: function (model) {
             var layer = new Layer({model:model});
             this.el.appendChild(layer.render().el);
+
+            if (model.get('frames') !== 0) {
+                layer.resize();
+            }
         },
         
         progress: function (frame) {

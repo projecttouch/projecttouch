@@ -14,16 +14,27 @@ define(['backbone', 'underscore', 'app/views/ui/timeline-layer-slide'], function
 
         tageName: 'div',
         className: 'bar',
+        
+        events: {
+            "click button":"clone"
+        },
 
         initialize: function () {
 
-            _.bindAll(this, 'resize', 'endTrim', 'mouseDown', 'moveMedia', 'resize');
+            _.bindAll(this, 'resize', 'endTrim', 'mouseDown', 'moveMedia', 'resize', 'clone');
 
             this.moving = false;
             this.startMove = 0;
+            
+            log('new layer:', this.options.model.get('media').get('file').name);
 
-            this.options.model.on("change:frames", this.resize, this);
-
+            if (this.options.model.get('frames') === 0) {
+                this.options.model.on("change:frames", this.resize, this); 
+            }
+        },
+        
+        clone: function () {
+          log(this.options.model.collection.add(this.options.model.toJSON()))  
         },
 
         render: function () {
@@ -43,11 +54,14 @@ define(['backbone', 'underscore', 'app/views/ui/timeline-layer-slide'], function
             });
             this.layer.appendChild(this.media.render()
                 .el);
+                
+            this.layer.appendChild(document.createElement('button'));
+                
 
             this.media.el.addEventListener('mousedown', this.mouseDown, false);
             window.addEventListener('mouseup', this.endTrim, false);
             window.addEventListener('resize', this.resize, false);
-
+            
             return this;
 
         },
@@ -95,8 +109,7 @@ define(['backbone', 'underscore', 'app/views/ui/timeline-layer-slide'], function
 
             var percentage = this.options.model.get('frames') / this.options.model.collection.totalFrames;
 
-            this.media.el.style.width = percentage * this.$('.layer')
-                .width() + 'px';
+            this.media.el.style.width = percentage * this.$('.layer').width() + 'px';
             this.media.resize();
 
             if (this.options.model.get('offset') < 0) {
