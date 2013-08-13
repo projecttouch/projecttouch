@@ -12,6 +12,12 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
         tagName: 'section',
         className: 'ui-panel',
+        
+        initialize: function () {
+          if (this.el) {
+              this.ul = this.el.querySelector('ul');
+          }  
+        },
 
         render: function () {
             

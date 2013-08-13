@@ -6,34 +6,32 @@
 
 /*global define, window, document, $, requirejs, require  */
 
-define(['backbone', 'underscore'], function(Backbone, _) {
+define(['backbone', 'underscore'], function (Backbone, _) {
 
-	'use strict';
+    'use strict';
 
-	return Backbone.View.extend({
+    return Backbone.View.extend({
 
         id: 'composition',
-		el: '#composition',
+        el: '#composition',
 
-		events: {
-			'click .play': 'onPlayClick',
-			'click .stop': 'onStopClick'
-		},
+        events: {
+            'click button': 'clickHandler'
+        },
 
-		initialize: function() {
-			_.bindAll(this, 'onPlayClick', 'onStopClick');
-		},
+        clickHandler: function (e) {
 
-		render: function() {
-			return this;
-		},
+            switch (e.currentTarget.getAttribute('class')) {
+            case 'play':
+                window.App.timeline.play();
+                break;
+            case 'pause':
+            case 'stop':
+                window.App.timeline.stop();
+                break;
 
-		onPlayClick: function(e) {
-			window.App.timeline.play();
-		},
+            }
 
-		onStopClick: function(e) {
-			window.App.timeline.stop();
-		}
-	});
+        }
+    });
 });
