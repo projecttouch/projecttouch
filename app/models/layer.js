@@ -40,6 +40,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 this.on('change:trim', function () {
                     this.set('status', 'idle');
                     this.syncFrame();
+                    window.App.timeline.stop();
                 }, this);
                 this.initializeVideo();
             }
@@ -74,7 +75,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
         play: function () {
 
-            if (this.get('status') === 'idle') {
+            if (this.get('status') === 'idle' || this.get('status') === 'seeking') {
                 this.video.play();
                 this.set('status', 'playing');
             } else if (this.get('status') === 'playing') {

@@ -14,6 +14,7 @@ define(['app/views/panel',
     return Panel.extend({
 
         id: 'library',
+        el: '#library',
 
         events: {
             'change input': 'handleFileSelect',
