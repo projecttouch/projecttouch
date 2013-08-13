@@ -13,6 +13,7 @@ define(['backbone', 'underscore', 'app/views/ui/timeline-layer'], function (Back
     return Backbone.View.extend({
 
         tagName: 'footer',
+        el: 'body > footer',
 
         initialize: function () {
             
