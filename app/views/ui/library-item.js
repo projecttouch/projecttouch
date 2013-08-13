@@ -26,8 +26,9 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         },
 
         initialize: function () {
-            log('new lib item');
             _.bindAll(this, 'addThumb');
+            
+            log('new library item:',this.options.model.get('file').name);
             this.options.model.on('change:thumb', this.addThumb, this);
         },
 
