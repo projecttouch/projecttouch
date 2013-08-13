@@ -29,8 +29,12 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         },
 
         initialize: function () {
-            
-            this.set('position', this.collection.length)
+
+            if (this.collection) {
+                this.set('position', this.collection.length)
+            } else {
+                this.set('position', window.App.timeline.collection.length)
+            }
 
             if (this.get("type") === "video") {
                 this.on('trim:preview', this.trim, this);
@@ -104,7 +108,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         syncFrame: function () {
 
             var frame,
-                offset = this.get('offset'),
+            offset = this.get('offset'),
                 trim = this.get('trim');
 
             if (offset < 0) {
