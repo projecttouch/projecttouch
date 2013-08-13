@@ -80,6 +80,10 @@ define(['backbone', 'underscore', 'app/collections/timeline'], function (Backbon
 
         },
         
+        /*
+         * Seeks to a frame
+         */
+        
         seek: function (frame) {
             this.stop();
             this._frame = !isNaN(frame) ? frame : this._frame;

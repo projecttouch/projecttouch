@@ -36,7 +36,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         setSource: function (model) {
 
             if (model !== undefined && model !== null) {
-                this.source = model.video;
+                this.source = model;
             } else {
                 this.source = null;
                 this.context.clearRect(0, 0, this.width, this.height);
@@ -98,21 +98,29 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 posX,
                 posY;
 
-                width = this.width;
-                height = this.height;
-                posX = 0;
-                posY = 0;
+                width = this.source.video.videoWidth * this.source.get('scaleX');
+                height = this.source.video.videoHeight * this.source.get('scaleY');
+              
+                posX = -(width /2);
+                posY = -(height /2);
 
                 if (window.App.filter !== null) {
 
                     var pixelData;
 
-                    this.effectContext.drawImage(this.source, 0, 0, this.source.videoWidth, this.source.videoHeight, posX, posY, width, height);
+                    this.effectContext.drawImage(this.source.video, 0, 0, this.source.video.videoWidth, this.source.video.videoHeight, posX, posY, width, height);
                     pixelData = this.filterImage(App.filter, this.effectContext.getImageData(0, 0, this.width, this.height));
                     this.context.putImageData(pixelData, 0, 0);
 
                 } else {
-                    this.context.drawImage(this.source, 0, 0, this.source.videoWidth, this.source.videoHeight, posX, posY, width, height);
+                    
+                    this.context.save();
+                    this.context.translate(this.width /2, this.height /2);
+                    this.context.rotate(this.source.get('rotate'));
+                    
+                    this.context.drawImage(this.source.video, 0,0, this.source.video.videoWidth, this.source.video.videoHeight, posX, posY, width, height);
+                    this.context.restore(); 
+                    
                 }
 
             }

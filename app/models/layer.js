@@ -17,6 +17,9 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         defaults: {
             "media": null,
             "type": "video",
+            "rotate": 0,
+            "scaleX": 1,
+            "scaleY": 1,
             "frames": 0,
             "status": "notready",
             "offset": 0,
@@ -69,6 +72,14 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 .get('blob');
             this.video.addEventListener('ended', this.ended, false);
             this.set('status', 'idle');
+            
+            this.vv = document.createElement('div');
+            this.vv.style.width = "600px";
+            this.vv.style.height = "300px";
+            this.vv.appendChild(this.video);
+            
+            
+            this.video.setAttribute('style', '-webkit-transform: rotate(20deg);');
             return true;
 
         },
