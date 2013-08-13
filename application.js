@@ -34,25 +34,7 @@ require(['app/project-touch', 'hammer', 'stats'], function (PT) {
 
     'use strict';
 
-    var console = window.console
-    if (!console) return
-
-    function intercept(method) {
-        var original = console[method]
-        window[method] = function () {
-            if (original.apply) {
-                original.apply(console, arguments)
-            } else {
-                var message = Array.prototype.slice.apply(arguments)
-                    .join(' ')
-                original(message)
-            }
-        }
-    }
-    var methods = ['log', 'warn', 'error']
-    for (var i = 0; i < methods.length; i++) {
-       intercept(methods[i]); 
-    }
+    window.log = Function.prototype.bind.call(console.log, console);
 
     window.App = new PT({
         el: document.querySelector('.video')
