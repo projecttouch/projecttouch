@@ -28,8 +28,8 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             this.source = null;
             this.effect = false;
 
-            this.width = 1280;
-            this.height = 720;
+            this.width = 640;
+            this.height = 360;
 
         },
 
@@ -103,25 +103,17 @@ define(['backbone', 'underscore'], function (Backbone, _) {
               
                 posX = -(width /2);
                 posY = -(height /2);
+                
+                this.context.save();
+                this.context.translate(this.width /2, this.height /2);
+                this.context.rotate(this.source.get('rotate'));
+                
+                this.context.drawImage(this.source.video, 0,0, this.source.video.videoWidth, this.source.video.videoHeight, posX, posY, width, height);
+                this.context.restore();
 
                 if (window.App.filter !== null) {
-
-                    var pixelData;
-
-                    this.effectContext.drawImage(this.source.video, 0, 0, this.source.video.videoWidth, this.source.video.videoHeight, posX, posY, width, height);
-                    pixelData = this.filterImage(App.filter, this.effectContext.getImageData(0, 0, this.width, this.height));
-                    this.context.putImageData(pixelData, 0, 0);
-
-                } else {
-                    
-                    this.context.save();
-                    this.context.translate(this.width /2, this.height /2);
-                    this.context.rotate(this.source.get('rotate'));
-                    
-                    this.context.drawImage(this.source.video, 0,0, this.source.video.videoWidth, this.source.video.videoHeight, posX, posY, width, height);
-                    this.context.restore(); 
-                    
-                }
+                    this.context.putImageData(this.filterImage(App.filter, this.context.getImageData(0, 0, this.width, this.height)), 0, 0);
+                } 
 
             }
 
