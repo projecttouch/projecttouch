@@ -26,6 +26,12 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/views/ui/library', '
             this.player = new Player();
             this.timeline = new Timeline();
             this.composition = new Composition();
+            
+            this.filter = Filter.hipster
+            
+            this.R = 1;
+            this.G = 1;
+            this.B = 1.5;
 
         },
 
