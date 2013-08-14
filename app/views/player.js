@@ -94,22 +94,27 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             if (this.source !== null && this.source !== undefined) {
 
                 var width,
-                height,
-                posX,
-                posY;
-
-                width = this.source.video.videoWidth * this.source.get('scaleX');
-                height = this.source.video.videoHeight * this.source.get('scaleY');
+                    height,
+                    posX,
+                    posY;
+                                
+                    log(this.source)
+                    _.each(this.source, function (source) {
+                        log(source)
+                        width = source.video.videoWidth * source.get('scaleX');
+                        height = source.video.videoHeight * source.get('scaleY');
               
-                posX = -(width /2);
-                posY = -(height /2);
+                        posX = -(width /2);
+                        posY = -(height /2);
+                                   
+                        this.context.save();
+                        this.context.globalAlpha = 0.5;
+                        this.context.translate(this.width /2, this.height /2);
+                        this.context.rotate(source.get('rotate'));
                 
-                this.context.save();
-                this.context.translate(this.width /2, this.height /2);
-                this.context.rotate(this.source.get('rotate'));
-                
-                this.context.drawImage(this.source.video, 0,0, this.source.video.videoWidth, this.source.video.videoHeight, posX, posY, width, height);
-                this.context.restore();
+                        this.context.drawImage(source.video, 0,0, source.video.videoWidth, source.video.videoHeight, posX, posY, width, height);
+                        this.context.restore();
+                    },this);
 
                 if (window.App.filter !== null) {
                     this.context.putImageData(this.filterImage(App.filter, this.context.getImageData(0, 0, this.width, this.height)), 0, 0);

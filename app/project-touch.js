@@ -31,7 +31,7 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/views/ui/library', '
             
             this.R = 1;
             this.G = 1;
-            this.B = 1.5;
+            this.B = 1.3;
 
         },
 

@@ -33,15 +33,11 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         },
 
         render: function () {
-            var cid = this.options.model.cid,
-                filename = this.options.model.get('file')
-                    .name,
-                templateVars = {
-                    filename: filename
-                },
-                templateResult = this.template(templateVars);
+            var templateResult = this.template({
+                    filename: this.options.model.get('file')
+                });
 
-            this.$el.attr('data-id', cid);
+            this.$el.attr('data-id', this.options.model.cid);
             this.$el.html(templateResult);
 
             return this;
