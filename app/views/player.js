@@ -43,13 +43,13 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             }
 
         },
-        
+
         setEffect: function (effect) {
-            
+
         },
-        
+
         setOverLay: function (overlay) {
-            
+
         },
 
         filterImage: function (filter, data, var_args) {
@@ -89,36 +89,47 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             this.effect = this.effect === false;
         },
 
+        rendering: function (source, opacity) {
+            var width,
+            height,
+            posX,
+            posY;
+            
+            if(source !== undefined) {
+
+                width = source.video.videoWidth * source.get('scaleX');
+                height = source.video.videoHeight * source.get('scaleY');
+
+                posX = -(width / 2);
+                posY = -(height / 2);
+
+                this.context.save();
+                this.context.globalAlpha = 0.5;
+                this.context.translate(this.width / 2, this.height / 2);
+                this.context.rotate(source.get('rotate'));
+
+                this.context.drawImage(source.video, 0, 0, source.video.videoWidth, source.video.videoHeight, posX, posY, width, height);
+                this.context.restore();
+            }
+        },
+
         renderLoop: function () {
 
             if (this.source !== null && this.source !== undefined) {
 
                 var width,
-                    height,
-                    posX,
-                    posY;
-                                
-                    log(this.source)
-                    _.each(this.source, function (source) {
-                        log(source)
-                        width = source.video.videoWidth * source.get('scaleX');
-                        height = source.video.videoHeight * source.get('scaleY');
-              
-                        posX = -(width /2);
-                        posY = -(height /2);
-                                   
-                        this.context.save();
-                        this.context.globalAlpha = 0.5;
-                        this.context.translate(this.width /2, this.height /2);
-                        this.context.rotate(source.get('rotate'));
-                
-                        this.context.drawImage(source.video, 0,0, source.video.videoWidth, source.video.videoHeight, posX, posY, width, height);
-                        this.context.restore();
-                    },this);
+                height,
+                posX,
+                posY;
 
+                if (this.source.length) {
+                    _.each(this.source, this.rendering, this);
+                } else {
+                    this.rendering(this.source);
+                }
                 if (window.App.filter !== null) {
                     this.context.putImageData(this.filterImage(App.filter, this.context.getImageData(0, 0, this.width, this.height)), 0, 0);
-                } 
+                }
 
             }
 
