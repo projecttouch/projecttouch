@@ -1,3 +1,4 @@
+$experimental-support-for-svg: true
 footer
   background: #333333
   min-height: 50px
@@ -10,28 +11,94 @@ footer
   color: #999999
   font-size: 14px
   
-  div:first-child
-    background: none
-    
-    .layer
-      background: none
-      background-color: #2d2c2d
-      padding-left: 6px
+  .zoom
+    position: absolute
+    top: 30px
+    width: 40px
+    height: 40px
+   
+    &.in
+      left: 100px
+      +imageAfter($interface-sprite, $interface-sprite2x, button-zoom-in, 11,11)
+    &.out
+      left: 140px
+      +imageAfter($interface-sprite, $interface-sprite2x, button-zoom-out, 11,11)
+  
+  
+  #scrubber
+    pointer-events: none
+    position: absolute
+    height: 100%
+    z-index: 999
+    margin: 0 0 0 -25px
+    width: 50px
+    text-align: center
+    padding: 3px
+    color: white
+    top: 0
+    &:after
+      content: ''
+      position: absolute
+      height: 100%
+      border: 1px solid #FFFFFF
+      top: 20px
+      left: 50%
       
-  .bar
-    background-color: #2d2c2d
-    padding: 3px 30px
-    position: relative
-    margin-bottom: 10px
+  .labels
+    width: 170px
+    height: 50px
+    position: absolute
+    top: 80px
     
-  .bar .layer
+  .layers
+    position: relative
+    width: 100%
+  
+  .layer-holder
+    position: relative
+    margin: 0 0 0 170px
+    padding: 20px 0 0
+    overflow: hidden
+
+    
+    ol
+      li
+        background-color: #2d2c2d
+        height: 20px
+        position: relative
+        margin-top: 10px
+      
+        &:first-child
+          font-size: 0
+          margin-top: 0px
+        
+          span
+            width: 10%
+            display: inline-block
+            height: 100%
+            border-left: 1px solid #424142
+            position: relative
+            color: #858585
+            +background( linear-gradient(left, #2C2B2D, #2A282A) )
+          
+            &:first-child
+              border: 0
+            
+            div
+              position: absolute
+              font-size: 12px
+              top: -15px
+              left: -16px
+          
+    
+  .layer
     position: absolute
     right: 0
     top: 0
-    left: 170px
+    left: 0
     height: 100%
     font-size: 11px
-    layer-height: 20px
+    height: 20px
     background: #282628
     overflow: hidden
     
@@ -48,6 +115,7 @@ footer
       height: 100%
       cursor: move
       overflow: hidden
+            
       +background( linear-gradient(top, #1F1F1F, #191919) )
       
       .left
@@ -83,11 +151,11 @@ footer
         z-index: 99
         +imageAfter($interface-sprite, $interface-sprite2x, drag-right, 2, 2)
         
-  .bar .layer span
+  .layer span
     float: right
     margin-right: 6px
     
-  .bar .layer .part
+  .layer .part
     position: absolute
     height: 100%
     +background( linear-gradient(top, #199DCA, #127EA2) )
@@ -106,7 +174,7 @@ footer .part .left
 footer .part .right
   right: -10px
 
-footer .bar.effects .layer .part
+footer .layer .part
   background: -moz-layerar-gradient(top, #4cffa7 0%, #36d486 100%)
   background: -webkit-gradient(layerar, left top, left bottom, color-stop(0%, #4cffa7), color-stop(100%, #36d486))
   background: -webkit-layerar-gradient(top, #4cffa7 0%, #36d486 100%)
