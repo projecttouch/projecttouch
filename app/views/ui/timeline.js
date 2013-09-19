@@ -61,7 +61,7 @@ define(['backbone', 'underscore', 'app/views/ui/timeline-layer'], function (Back
                             
             switch (event.currentTarget.getAttribute('class').replace('zoom ', '')) {
             case "in":
-                this.currentZoom += 10;
+                this.currentZoom += 25;
                 break;
             case "out":
                 this.currentZoom = this.currentZoom === 100 ? 100 : this.currentZoom - 10;
