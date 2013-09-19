@@ -14,6 +14,11 @@ define(['backbone', 'underscore', 'app/views/ui/timeline-layer'], function (Back
 
         tagName: 'footer',
         el: 'body > footer',
+        currentZoom: 100,
+        layers: [],
+        events: {
+            "click .zoom":"zoom"
+        },
 
         initialize: function () {
             
@@ -38,10 +43,37 @@ define(['backbone', 'underscore', 'app/views/ui/timeline-layer'], function (Back
         add: function (model) {
             var layer = new Layer({model:model});
             this.el.querySelector('.layers').appendChild(layer.render().el);
+            this.layers.push(layer);
 
             if (model.get('frames') !== 0) {
                 layer.resize();
             }
+        },
+        
+        
+        /* The zoom function of the timeline
+         * ---------------------------------------------------------------------- */
+        
+        zoom: function (event) {
+            
+            var layers = this.el.querySelector('.layers'),
+                current = layers.style.width;
+                            
+            switch (event.currentTarget.getAttribute('class').replace('zoom ', '')) {
+            case "in":
+                this.currentZoom += 10;
+                break;
+            case "out":
+                this.currentZoom = this.currentZoom === 100 ? 100 : this.currentZoom - 10;
+                break;
+            }
+            
+            layers.style.width = this.currentZoom + "%";
+            
+            _.each(this.layers, function (layer) {
+                layer.resize();
+            });
+
         },
         
         progress: function (frame) {
