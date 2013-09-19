@@ -12,12 +12,16 @@ define(['backbone', 'underscore', 'app/views/ui/timeline-layer-slide'], function
 
     return Backbone.View.extend({
 
-        tageName: 'div',
-        className: 'bar',
+        tagName: 'li',
         
         events: {
             "click button":"clone"
         },
+        
+        template: _.template("\
+            <div class='layer'>\
+            </div>\
+        "),
 
         initialize: function () {
 
@@ -29,35 +33,27 @@ define(['backbone', 'underscore', 'app/views/ui/timeline-layer-slide'], function
             log('new layer:', this.options.model.get('media').get('file').name);
 
             if (this.options.model.get('frames') === 0) {
+                log('check frames later')
                 this.options.model.on("change:frames", this.resize, this); 
             }
         },
         
         clone: function () {
-          log(this.options.model.collection.add(this.options.model.toJSON()))  
+            
+            log(this.options.model.collection.add(this.options.model.toJSON()))  
+        
         },
-
+        
         render: function () {
-
-            var self = this;
-
-            this.layer = document.createElement('div');
-            this.layer.classList.add('layer');
-            this.el.innerHTML = this.options.model.get('media')
-                .get('file')
-                .name;
-            this.el.appendChild(this.layer);
-
+            
             this.media = new Slide({
                 color: "#00ffff",
                 model: this.options.model
             });
-            this.layer.appendChild(this.media.render()
-                .el);
-                
-            this.layer.appendChild(document.createElement('button'));
-                
-
+            
+            this.$el.html(this.template());
+            this.el.querySelector('.layer').appendChild(this.media.render().el)
+            
             this.media.el.addEventListener('mousedown', this.mouseDown, false);
             window.addEventListener('mouseup', this.endTrim, false);
             window.addEventListener('resize', this.resize, false);
@@ -109,8 +105,10 @@ define(['backbone', 'underscore', 'app/views/ui/timeline-layer-slide'], function
 
             var percentage = this.options.model.get('frames') / this.options.model.collection.totalFrames;
 
-            this.media.el.style.width = percentage * this.$('.layer').width() + 'px';
+            this.media.el.style.width = parseInt(percentage * this.$('.layer').width()) + 'px';
             this.media.resize();
+
+            log(this.media.el.style.width)
 
             if (this.options.model.get('offset') < 0) {
                 this.media.el.style.left = '-' + ((Math.abs(this.options.model.get('offset')) / this.options.model.collection.totalFrames) * this.$('.layer').width()) + 'px';

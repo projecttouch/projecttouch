@@ -25,16 +25,19 @@ define(['backbone', 'underscore', 'app/views/ui/timeline-layer'], function (Back
             
 //            _.bindAll(this, 'addThumb');
 //            this.options.model.on('change:thumb', this.addThumb, this);
+
+            var spans = this.el.querySelectorAll('.time span'),
+                devidedFrames = this.collection.totalFrames / 10;
             
-        },
+            _.each(spans, function (span, id) {
+                if (id !== 0) span.innerHTML = '<div>' + (devidedFrames * id / 25).toMMSS() + '</div>';
+            });
         
-        render: function () {
-            return this;
         },
         
         add: function (model) {
             var layer = new Layer({model:model});
-            this.el.appendChild(layer.render().el);
+            this.el.querySelector('.layers').appendChild(layer.render().el);
 
             if (model.get('frames') !== 0) {
                 layer.resize();
@@ -43,11 +46,11 @@ define(['backbone', 'underscore', 'app/views/ui/timeline-layer'], function (Back
         
         progress: function (frame) {
             var current = frame / 25,
-                currentMinutes = Math.floor(current / 60),
                 total = this.collection.totalFrames / 25;
                 
+            this.el.querySelector('#scrubber').innerHTML = current.toMMSS();
+            this.el.querySelector('#scrubber').style.left = ((current / total) * 100) + "%";
             
-            this.time.innerHTML = currentMinutes + ":" + (current - currentMinutes * 60) + " - " + total;
         }   
 
     });

@@ -6,6 +6,19 @@
 
 /*global define, window, document, $, requirejs, require, console  */
 
+Number.prototype.toMMSS = function () {
+    var sec_num = parseInt(this, 10); // don't forget the second parm
+    var hours   = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+    if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    var time    = minutes+':'+seconds;
+    return time;
+}
+
 define(['backbone', 'app/views/player', 'app/filters', 'app/views/ui/library', 'app/views/ui/effects', 'app/controllers/timeline', 'app/views/ui/timeline', 'app/views/composition'], function (Backbone) {
 
     'use strict';
@@ -27,7 +40,7 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/views/ui/library', '
             this.timeline = new Timeline();
             this.composition = new Composition();
             
-            this.filter = Filter.hipster
+            //this.filter = Filter.hipster
             
             this.R = 1;
             this.G = 1;

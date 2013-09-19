@@ -96,7 +96,6 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             posY;
             
             if(source !== undefined) {
-
                 width = source.video.videoWidth * source.get('scaleX');
                 height = source.video.videoHeight * source.get('scaleY');
 
@@ -104,7 +103,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 posY = -(height / 2);
 
                 this.context.save();
-                this.context.globalAlpha = 0.5;
+                this.context.globalAlpha = this.source.length > 1 ? 0.5 : 1;
                 this.context.translate(this.width / 2, this.height / 2);
                 this.context.rotate(source.get('rotate'));
 
@@ -122,10 +121,10 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 posX,
                 posY;
 
-                if (this.source.length) {
+                if (this.source.length > 1) {
                     _.each(this.source, this.rendering, this);
                 } else {
-                    this.rendering(this.source);
+                    this.rendering(this.source[0]);
                 }
                 if (window.App.filter !== null) {
                     this.context.putImageData(this.filterImage(App.filter, this.context.getImageData(0, 0, this.width, this.height)), 0, 0);
