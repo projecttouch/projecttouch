@@ -1,5 +1,26 @@
-.gitignore
 .sass-cache
+styles/*.css
+
+# OS generated files #
+######################
 .DS_Store
-.idea
-styles/**.css
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# FRAMEWORKS #
+.zfproject.xml
+
+# IDE #
+######################
+.idea/
+netbeans/
+nbproject/
+.komodoproject/
+
+#Node JS#
+node_modules/
