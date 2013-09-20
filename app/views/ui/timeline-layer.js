@@ -54,8 +54,11 @@ define(['backbone', 'underscore', 'app/views/ui/timeline-layer-slide'], function
             this.$el.html(this.template());
             this.el.querySelector('.layer').appendChild(this.media.render().el)
             
-            this.media.el.addEventListener('mousedown', this.mouseDown, false);
-            window.addEventListener('mouseup', this.endTrim, false);
+            this.hammertime = Hammer(this.media.el); 
+            this.hammertime.on("dragstart", this.mouseDown);
+            this.hammertime.on("drag", this.moveMedia);
+            this.hammertime.on("dragend", this.endTrim);
+            
             window.addEventListener('resize', this.resize, false);
             
             return this;
@@ -67,18 +70,18 @@ define(['backbone', 'underscore', 'app/views/ui/timeline-layer-slide'], function
             if (e.target.getAttribute('class') === 'left' || e.target.getAttribute('class') === 'right') {
                 return;
             }
+            
+            window.App.dragging = true;
 
-            this.startMove = e.clientX - parseInt(this.media.el.style.left);
+            this.startMove = e.gesture.deltaX - parseInt(this.media.el.style.left);
             this.moving = true;
-
-            window.addEventListener('mousemove', this.moveMedia, true);
 
         },
 
         moveMedia: function (e) {
-
+            
             if (this.moving) {
-                this.media.el.style.left = (e.clientX - this.startMove) + 'px';
+                this.media.el.style.left = (e.gesture.deltaX - this.startMove) + 'px';
             }
 
         },
@@ -88,6 +91,8 @@ define(['backbone', 'underscore', 'app/views/ui/timeline-layer-slide'], function
             this.media.endTrim();
 
             if (this.moving) {
+                
+                window.App.dragging = false;
                 
                 var frame = (parseInt(this.media.el.style.left) / this.$('.layer').width()) * this.options.model.collection.totalFrames;
                 this.options.model.set('offset', Math.round(frame));

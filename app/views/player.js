@@ -103,7 +103,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 posY = -(height / 2);
 
                 this.context.save();
-                this.context.globalAlpha = this.source.length > 1 ? 0.5 : 1;
+                this.context.globalAlpha = this.source.length > 1 ? 1 / this.source.length : 1;
                 this.context.translate(this.width / 2, this.height / 2);
                 this.context.rotate(source.get('rotate'));
 
