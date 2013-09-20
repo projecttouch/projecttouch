@@ -122,21 +122,29 @@ define([], function () {
             return changeColours(pixels, 1.5, 0.8, 1.2);
         },
         yellow: function (pixels) {
-            return changeColours(pixels, 0.8, 1.5, 0.5);
+            return changeColours(pixels, 0.1, 2, 1.6);
         },
         green: function (pixels) {
-            return changeColours(pixels, 0.6, 1.5, 1.2);
+            return changeColours(pixels, 0.1, 2, 0.1);
+        },
+        red: function (pixels) {
+            return changeColours(pixels, 2, 0.1, 0.1);
+        },
+        blue: function (pixels) {
+            return changeColours(pixels, 0.1, 0.1, 2);
         }
-
     };
-
 });
 
+/**
+ * @author: Rupert Rutland / Code d'Azur
+ * @desc: Changes the colour based on a percentage increase or decrease
+ * If you want to reduce red by 20% you would pass in 0.8, if you want to increase it by 20% you would pass in 1.2
+ */
 function changeColours(pixels, red, green, blue){
-    //convert numbers
     var source = pixels.data;
     var count = 0;
-    var newValue;
+    var newValue = null;
     for (var x = 0, _len = source.length; x < _len; x++) {
         if (count > 3) {
             count = 0;

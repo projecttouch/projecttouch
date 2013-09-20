@@ -20,10 +20,17 @@ define(['app/views/panel', 'app/filters'], function (Panel, Filter) {
         },
         toggleEffect: function(e){
             e.preventDefault();
-            var filterName = e.currentTarget.getAttribute('href');
+            var currentLiClassname = e.currentTarget.offsetParent.className;
             this.$el.find('ul li').removeClass('on').addClass('off');
-            e.currentTarget.offsetParent.className = 'on';
-            window.App.filter = Filter[filterName];
+            if(currentLiClassname.indexOf('on') !== -1){
+                //turn it off
+                window.App.filter = null;
+            }else{
+                //add new filter
+                var filterName = e.currentTarget.getAttribute('href');
+                e.currentTarget.offsetParent.className = 'on';
+                window.App.filter = Filter[filterName];
+            }
         },
         initialize: function () {
             Panel.prototype.initialize.call(this);
@@ -37,6 +44,15 @@ define(['app/views/panel', 'app/filters'], function (Panel, Filter) {
         render: function () {
             Panel.prototype.render.call(this);
             return this;
+        },
+
+        updateThumbs: function(thumb){
+            var lis = this.$el.find('ul li');
+            var img;
+            for(var x = 0, _len = lis.length; x < _len; x++){
+                img = '<img src="' + thumb + '"/>';
+                lis[x].append(img);
+            }
         }
 
     });
