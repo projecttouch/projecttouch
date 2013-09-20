@@ -116,8 +116,50 @@ define([], function () {
                 }
             }
             return pixels;
+        },
+
+        pink: function(pixels){
+            return changeColours(pixels, 1.5, 0.8, 1.2);
+        },
+        yellow: function (pixels) {
+            return changeColours(pixels, 0.8, 1.5, 0.5);
+        },
+        green: function (pixels) {
+            return changeColours(pixels, 0.6, 1.5, 1.2);
         }
 
     };
 
 });
+
+function changeColours(pixels, red, green, blue){
+    //convert numbers
+    var source = pixels.data;
+    var count = 0;
+    var newValue;
+    for (var x = 0, _len = source.length; x < _len; x++) {
+        if (count > 3) {
+            count = 0;
+        }
+        newValue = null;
+        if (0 === count && red) {
+            newValue = parseInt(source[x] * red);
+        }
+        if (1 === count && green) {
+            newValue = parseInt(source[x] * green);
+        }
+        if (2 === count && blue) {
+            newValue = parseInt(source[x] * blue);
+        }
+        if (newValue < 0) {
+            newValue = 0;
+        } else if (newValue > 255) {
+            newValue = 255;
+        }
+        if(newValue){
+            source[x] = newValue;
+        }
+        count++;
+    }
+    return pixels;
+}

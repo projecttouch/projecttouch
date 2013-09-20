@@ -40,8 +40,9 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/views/ui/library', '
             this.timeline = new Timeline();
             this.composition = new Composition();
             
-            //this.filter = Filter.hipster
-            
+//            this.filter = Filter.hipster;
+//            this.filter = Filter.grayscale;
+
             this.R = 1;
             this.G = 1;
             this.B = 1.3;
