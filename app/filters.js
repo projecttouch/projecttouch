@@ -160,7 +160,8 @@ function changeColours(pixels, red, green, blue){
         }
         if (newValue < 0) {
             newValue = 0;
-        } else if (newValue > 255) {
+        }
+        if (newValue > 255) {
             newValue = 255;
         }
         if(newValue){
