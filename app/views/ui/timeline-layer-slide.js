@@ -52,28 +52,33 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             this.el.appendChild(this.left);
             this.el.appendChild(this.middle);
             this.el.appendChild(this.right);
-
-            this.left.addEventListener('mousedown', this.mouseDownLeft, false);
-            this.right.addEventListener('mousedown', this.mouseDownRight, false);
+            
+            this.hammertimeL = Hammer(this.left); 
+            this.hammertimeL.on("dragstart", this.mouseDownLeft);
+            this.hammertimeL.on("drag", this.trim);
+            
+            this.hammertimeR = Hammer(this.right); 
+            this.hammertimeR.on("dragstart", this.mouseDownRight);
+            this.hammertimeR.on("drag", this.trim);
         
             return this;
 
         },
 
         mouseDownLeft: function () {
-
+            
+            window.App.dragging = true;
+            this.dragStartPos = parseInt(this.el.style.paddingLeft);
             this.moving = 'left';
-            window.addEventListener('mousemove', this.trim, true);
             this.options.model.trigger('trim:start', this.options.model);
-
         },
 
         mouseDownRight: function () {
-
+            
+            window.App.dragging = true;
+            this.dragStartPos = parseInt(this.el.style.paddingRight);
             this.moving = 'right';
-            window.addEventListener('mousemove', this.trim, true);
             this.options.model.trigger('trim:start', this.options.model);
-
         },
 
         trim: function (e) {
@@ -84,9 +89,10 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
             if (this.moving === 'left') {
 
-                left = e.clientX + this.el.parentNode.parentNode.parentNode.scrollLeft;
-                offset = parseInt(this.el.style.left) + 200;
-                margin = left - offset;
+                left = e.gesture.deltaX + this.el.parentNode.parentNode.parentNode.scrollLeft;
+
+                offset = parseInt(this.el.style.left) + 0;
+                margin = this.dragStartPos + left;
 
                 if (margin < 0) {
                     margin = 0;
@@ -101,9 +107,9 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
             if (this.moving === 'right') {
 
-                left = e.clientX + this.el.parentNode.parentNode.parentNode.scrollLeft;
-                offset = parseInt(this.el.style.left) + 200;
-                margin = left - (offset + parseInt(this.el.style.width));
+                left = e.gesture.deltaX + this.el.parentNode.parentNode.parentNode.scrollLeft;
+                offset = parseInt(this.el.style.left) + 0;
+                margin = -this.dragStartPos + left;
 
                 if (margin > 0) {
                     margin = 0;
@@ -116,7 +122,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
                 this._trim.end = parseInt((margin / parseInt(this.el.style.width)) * this.options.model.get('frames'));
                 
-                margin = left - offset;
+                margin = parseInt(this.el.style.width) - margin;
             }
 
             this.options.model.trigger('trim:preview', parseInt((margin / parseInt(this.el.style.width)) * this.options.model.get('frames')));
@@ -125,6 +131,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         endTrim: function () {
 
             if (this.moving) {
+                window.App.dragging = false;
                 window.removeEventListener('mousemove', this.trim, true);
                 
                 this.moving = false;

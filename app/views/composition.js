@@ -15,23 +15,5 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         id: 'composition',
         el: '#composition',
 
-        events: {
-            'click button': 'clickHandler'
-        },
-
-        clickHandler: function (e) {
-
-            switch (e.currentTarget.getAttribute('class')) {
-            case 'play':
-                window.App.timeline.play();
-                break;
-            case 'pause':
-            case 'stop':
-                window.App.timeline.stop();
-                break;
-
-            }
-
-        }
     });
 });

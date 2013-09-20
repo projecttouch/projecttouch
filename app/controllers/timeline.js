@@ -103,7 +103,7 @@ define(['backbone', 'underscore', 'app/collections/timeline'], function (Backbon
             //window.App.player.setSource([this.collection.models[0], this.collection.models[1]]);
 
             if (this._frame === this.collection.totalFrames) {
-                this.stopTimeline();
+                this.stop();
             } else {
                 this._frame += 1;
             }

@@ -1,28 +1,51 @@
 $experimental-support-for-svg: true
 footer
   background: #333333
-  min-height: 50px
-  height: 20%
+  min-height: 20%
   position: absolute
   bottom: 0
   width: 100%
-  padding: 30px
+  padding: 0 30px 30px
   padding-bottom: 20px
   color: #999999
   font-size: 14px
   
+  h2
+    position: absolute
+    font-size: 20px
+    top: 9px
+  
   .zoom
     position: absolute
-    top: 30px
-    width: 40px
-    height: 40px
+    top: 13px
+    width: 34px
+    height: 34px
    
     &.in
-      left: 100px
-      +imageAfter($interface-sprite, $interface-sprite2x, button-zoom-in, 11,11)
+      left: 136px
+      +imageAfter($interface-sprite, $interface-sprite2x, button-zoom-in,8,8)
     &.out
-      left: 140px
-      +imageAfter($interface-sprite, $interface-sprite2x, button-zoom-out, 11,11)
+      left: 160px
+      +imageAfter($interface-sprite, $interface-sprite2x, button-zoom-out,8,8)
+  
+  .controls
+    position: absolute
+    top: -50px
+    left: 88px
+  
+  button
+    width: 30px
+    height: 30px
+    position: relative
+
+    &.play
+      +imageAfter($interface-sprite, $interface-sprite2x, button-play, 0,0)
+  
+    &.stop
+      +imageAfter($interface-sprite, $interface-sprite2x, button-stop, 0,0)
+  
+    &.pause
+      +imageAfter($interface-sprite, $interface-sprite2x, button-pause, 0,0)
   
   
   #scrubber
@@ -48,7 +71,17 @@ footer
     width: 170px
     height: 50px
     position: absolute
-    top: 80px
+    top: 50px
+    li
+      height: 20px
+      position: relative
+      margin-top: 10px
+      background: #2C2B2C
+      color: white
+      line-height: 20px
+      padding: 0 0 0 20px
+      &:first-child
+        margin: 0
     
   .layers
     position: relative
@@ -71,6 +104,7 @@ footer
         &:first-child
           font-size: 0
           margin-top: 0px
+          cursor: move
         
           span
             width: 10%

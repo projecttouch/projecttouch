@@ -17,10 +17,27 @@ define(['backbone', 'underscore', 'app/views/ui/timeline-layer', 'app/views/ui/e
         currentZoom: 100,
         layers: [],
         events: {
-            "click .zoom":"zoom"
+            "click .zoom":"zoom",
+            'click button': 'clickHandler'
+        },
+
+        clickHandler: function (e) {
+
+            switch (e.currentTarget.getAttribute('class')) {
+            case 'play':
+                window.App.timeline.play();
+                break;
+            case 'pause':
+            case 'stop':
+                window.App.timeline.stop();
+                break;
+
+            }
+
         },
 
         initialize: function () {
+            
             
             this.time = this.el.querySelector('#time .line');
             
@@ -28,7 +45,7 @@ define(['backbone', 'underscore', 'app/views/ui/timeline-layer', 'app/views/ui/e
             this.collection.on('add', this.add, this);
             this.collection.on('frame-sync', this.progress, this);
             
-//            _.bindAll(this, 'addThumb');
+            _.bindAll(this, 'pinch', 'dragstart', 'drag');
 //            this.options.model.on('change:thumb', this.addThumb, this);
 
             var spans = this.el.querySelectorAll('.time span'),
@@ -37,17 +54,52 @@ define(['backbone', 'underscore', 'app/views/ui/timeline-layer', 'app/views/ui/e
             _.each(spans, function (span, id) {
                 if (id !== 0) span.innerHTML = '<div>' + (devidedFrames * id / 25).toMMSS() + '</div>';
             });
+            
+            this.hammertime = Hammer(this.el); 
+            this.hammertime.on('pinchin', this.pinch);
+            this.hammertime.on('pinchout', this.pinch);
+            this.hammertime.on('dragstart', this.dragstart);
+            this.hammertime.on('drag', this.drag);
         
         },
         
         add: function (model) {
-            var layer = new Layer({model:model});
+            var layer = new Layer({model:model}),
+                title = model.get('media').get('file').name; 
+                
             this.el.querySelector('.layers').appendChild(layer.render().el);
+            
+            var bb = document.createElement('li');
+            bb.setAttribute('data-cid', model.cid)
+            bb.innerHTML = title.substring(0,title.length - 4);
+            
+            this.el.querySelector('.labels').appendChild(bb);
             this.layers.push(layer);
 
             if (model.get('frames') !== 0) {
                 layer.resize();
             }
+        },
+        
+        
+        pinch: function (event) {
+            var layers = this.el.querySelector('.layers'),
+                scale = event.gesture.scale;
+            
+            this.currentZoom = (scale < 1 ? 1 : scale) * 100;
+            layers.style.width = this.currentZoom + "%";
+            
+            _.each(this.layers, function (layer) {
+                layer.resize();
+            });
+        },
+        
+        dragstart: function (event) {
+            this.scrollstart = this.el.querySelector('.layer-holder').scrollLeft;
+        },
+        
+        drag: function (event) {
+            if (!window.App.dragging) this.el.querySelector('.layer-holder').scrollLeft = this.scrollstart + -(event.gesture.deltaX);
         },
         
         
@@ -64,7 +116,7 @@ define(['backbone', 'underscore', 'app/views/ui/timeline-layer', 'app/views/ui/e
                 this.currentZoom += 25;
                 break;
             case "out":
-                this.currentZoom = this.currentZoom === 100 ? 100 : this.currentZoom - 10;
+                this.currentZoom = this.currentZoom <= 100 ? 100 : this.currentZoom - 10;
                 break;
             }
             

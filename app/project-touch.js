@@ -58,13 +58,13 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/views/ui/library', '
             this.views.library = new Library({
                 position: 'left'
             });
+            
             this.views.effects = new Effects({
                 position: 'right'
             });
+            
             this.views.timeline = new Timeline();
-
-            this.composition.el.appendChild(this.player.render()
-                .el);
+            this.composition.el.appendChild(this.player.render().el);
         }
 
     });

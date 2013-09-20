@@ -67,13 +67,11 @@ define(['app/views/panel',
 
             _.each(files, function (file) {
 
-                if (file.type !== "video/mp4") {
-                    console.warn('file must be mp4');
-                } else {
+     
                     this.collection.add(new Model({
                         file: file
                     }));
-                }
+                
             }, this);
 
         },
