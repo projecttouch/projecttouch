@@ -6,7 +6,7 @@
 
 /*global define, window, document, $, requirejs, require  */
 
-define(['app/views/panel', 'app/filters', 'jquery-ui'], function (Panel, Filter) {
+define(['app/views/panel', 'app/views/ui/edit-level', 'app/models/level'], function (Panel, LevelView, Level) {
 
     return Panel.extend({
 
@@ -14,18 +14,14 @@ define(['app/views/panel', 'app/filters', 'jquery-ui'], function (Panel, Filter)
         el: '#edit',
         initialize: function () {
             Panel.prototype.initialize.call(this);
-            this.$(".slider").slider({
-                range: "min"
-            });
-            this.$(".slider-range").slider({
-                range: true,
-                min: 0,
-                max: 500,
-                values: [ 75, 300 ],
-                slide: function (event, ui) {
-                    console.log(ui.values[ 0 ] + " - " + ui.values[ 1 ]);
-                }
-            });
+            _.bindAll(this, 'addLevel');
+            var levels = [new Level({title:'Scale'}), new Level({title: 'Rotation'}), new Level({title: 'Vignette'}), new Level({title: 'Audio level'})];
+            _.each(levels, this.addLevel);
+        },
+
+        addLevel: function(model){
+            var levelView = new LevelView({model: model});
+            this.$el.append(levelView.render().el);
         },
 
         render: function () {

@@ -1,52 +1,31 @@
 #edit
-  display: none
-  $sliderOuterWidth: 85%
-  $sliderInnerWidth: 90%
-  $sliderHandleWidth: 11%
-  $sliderBackgroundColour: #ccc
-  //252525 => 323031
-  ul
-    background: #000
+  //display: none
+  .media
+    position: relative
+    height: 26px
+    overflow: hidden
+    width: 100%
+    padding-right: 0px
 
-    li
-      height: 70px
+    +background(linear-gradient(top, #1F1F1F, #191919))
 
-    .slider-wrapper
-      width: $sliderOuterWidth
-      background: $sliderBackgroundColour
-      margin-left: (100% - $sliderOuterWidth)/2
-    .ui-slider
+    .middle
+      -ms-touch-action: none
+      display: block
       position: relative
-      text-align: left
-      background: $sliderBackgroundColour
-      width: $sliderInnerWidth
-      .ui-slider-handle
-        position: absolute
-        z-index: 2
-        width: $sliderHandleWidth
-        height: 1.2em
-        cursor: pointer
-      .ui-slider-range
-        position: absolute
-        z-index: 1
-        font-size: .7em
-        display: block
-        border: 0
-        background-position: 0 0
-      &.ui-state-disabled
-        .ui-slider-handle, .ui-slider-range
-          filter: inherit
+      height: 26px
+      width: 100%
+      z-index: 80
+      +background(linear-gradient(top, #199DCA, #127EA2))
 
-    /* For IE8 - See #6727
-    .ui-slider-horizontal
-      height: 1.2em
-      .ui-slider-handle
-        background: #00ccff
-      .ui-slider-range
-        top: 0
-        height: 100%
-        background: #00ccff
-      .ui-slider-range-min
-        left: 0
-      .ui-slider-range-max
-        right: 0
+    .right
+      -ms-touch-action: none
+      display: block
+      position: absolute
+      right: 0
+      top: 0
+      height: 26px
+      width: 26px
+      cursor: w-resize
+      z-index: 99
+      +imageAfter($interface-sprite, $interface-sprite2x, drag-right, 2, 2)
