@@ -64,9 +64,9 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             //How far been dragged
             deltaX = e.gesture.deltaX;
             paddingRight = -deltaX + this.paddingRightStart;
-            paddingRight = paddingRight < 0 ? 0 : paddingRight + 'px';
-            this.el.style.paddingRight = paddingRight;
-            this.$('.right').css('right', paddingRight);
+            paddingRight = paddingRight < 0 ? 0 : paddingRight;
+            this.el.style.paddingRight = paddingRight + 'px';
+            this.$('.right').css('right', paddingRight - 2);
         }
 
 
