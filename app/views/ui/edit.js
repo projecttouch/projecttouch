@@ -15,7 +15,7 @@ define(['app/views/panel', 'app/views/ui/edit-level', 'app/models/level'], funct
         initialize: function () {
             Panel.prototype.initialize.call(this);
             _.bindAll(this, 'addLevel');
-            var levels = [new Level({title:'Scale'}), new Level({title: 'Rotation'}), new Level({title: 'Vignette'}), new Level({title: 'Audio level'})];
+            var levels = [new Level({id: 'scale', title:'Scale'}), new Level({id: 'rotation', title: 'Rotation'}), new Level({id: 'vignette', title: 'Vignette'}), new Level({id: 'audioLevel', title: 'Audio level'})];
             _.each(levels, this.addLevel);
         },
 
@@ -25,6 +25,9 @@ define(['app/views/panel', 'app/views/ui/edit-level', 'app/models/level'], funct
             var levelView = new LevelView({model: model});
             this.$el.append(title);
             this.$el.append(levelView.render().el);
+            model.on('change', function(){
+                console.log(this.get('id'), this.get('level'));
+            });
         },
 
         render: function () {

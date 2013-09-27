@@ -15,7 +15,8 @@ define(['backbone', 'underscore'], function (Backbone, _) {
     return Backbone.Model.extend({
 
         defaults: {
-            "title": ''
+            title: '',
+            level: 60
         }
 
     });

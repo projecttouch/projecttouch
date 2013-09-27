@@ -30,6 +30,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
             this.width = 640;
             this.height = 360;
+            this.volume = 70;
 
         },
 
@@ -134,6 +135,11 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
             window.requestAnimationFrame(this.renderLoop);
 
+        },
+
+        setVolume: function (volume) {
+            this.volume = volume;
+            console.log(this.volume);
         }
 
     });

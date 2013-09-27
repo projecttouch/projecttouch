@@ -14,7 +14,6 @@ define(['backbone', 'underscore'], function (Backbone, _) {
     'use strict';
 
     return Backbone.View.extend({
-
         tagName: 'div',
         className: 'media',
 
@@ -24,10 +23,11 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 start: 0,
                 end: 0
             };
-
+            this.el.id = 'level-' + this.model.id;
         },
 
         render: function () {
+
 
             this.el.style.left = '0px';
             var randomStartPoint = Math.floor(Math.random() * 101);
@@ -76,8 +76,10 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             this.$('.right').css('right', paddingRight - 2);
             percentage = parseInt(((260 - paddingRight)/ 260) * 100);
 
-            console.log(paddingRight + 'px');
-            console.log(percentage + '%');
+//            console.log(paddingRight + 'px');
+//            console.log(percentage + '%');
+            this.model.set('level', percentage);
+//            App.player.setVolume(percentage);
         }
 
 
