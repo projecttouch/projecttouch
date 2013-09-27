@@ -13,7 +13,6 @@ requirejs.config({
         "underscore": ["//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min", "libs/underscore-1.4.4.min"],
         "jquery": ["//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min", "libs/jquery-2.0.2.min"],
         "hammer": ["//cdnjs.cloudflare.com/ajax/libs/hammer.js/1.0.5/hammer.min", "libs/hammer-1.0.5.min"],
-        "jquery-ui": ["libs/jquery-ui-1.10.3.custom"],
         "stats": ["libs/stats.min"]
     },
     shim: {

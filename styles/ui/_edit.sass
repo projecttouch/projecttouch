@@ -1,19 +1,26 @@
 #edit
   display: none
-  .media
+  h2
+    margin-bottom: 20px
+  h3
+    font-size: 20px
+    margin: 10px 0 10px 20px
+  div.media
     position: relative
-    height: 26px
+    height: 20px
     overflow: hidden
-    width: 100%
+    width: 260px
     padding-right: 0px
+    margin-bottom: 34px
+    margin-left: 20px
 
-    +background(linear-gradient(top, #1F1F1F, #191919))
+    +background(linear-gradient(top, #262526, #323132))
 
     .middle
       -ms-touch-action: none
       display: block
       position: relative
-      height: 26px
+      height: 20px
       width: 100%
       z-index: 80
       +background(linear-gradient(top, #199DCA, #127EA2))
@@ -24,8 +31,7 @@
       position: absolute
       right: -2px
       top: 0
-      height: 26px
+      height: 20px
       width: 26px
       cursor: w-resize
       z-index: 99
-      +imageAfter($interface-sprite, $interface-sprite2x, drag-right, 2, 2)

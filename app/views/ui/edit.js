@@ -20,7 +20,10 @@ define(['app/views/panel', 'app/views/ui/edit-level', 'app/models/level'], funct
         },
 
         addLevel: function(model){
+            var title = document.createElement('h3');
+            title.appendChild(document.createTextNode(model.get('title')));
             var levelView = new LevelView({model: model});
+            this.$el.append(title);
             this.$el.append(levelView.render().el);
         },
 
