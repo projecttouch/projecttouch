@@ -17,11 +17,13 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         template: _.template('\
 	            <h3><%= filename %></h3>\
 	            <button class="add">Add</button>\
+	            <button class="edit">Edit</button>\
 	      '),
 
         events: {
             'click .add': 'add',
-            'click .play': 'play'
+            'click .play': 'play',
+            'click .edit': 'edit'
         },
 
         initialize: function () {
@@ -56,6 +58,12 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 .after(video);
 
             video.play();
+        },
+        edit: function () {
+            log('edit');
+            $('#library').slideUp(500, function(){
+                $('#edit').slideDown(500);
+            });
         },
 
         addThumb: function () {

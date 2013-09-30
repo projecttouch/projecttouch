@@ -19,7 +19,7 @@ Number.prototype.toMMSS = function () {
     return time;
 }
 
-define(['backbone', 'app/views/player', 'app/filters', 'app/views/ui/library', 'app/views/ui/effects', 'app/controllers/timeline', 'app/views/ui/timeline', 'app/views/composition'], function (Backbone) {
+define(['backbone', 'app/views/player', 'app/filters', 'app/views/ui/library', 'app/views/ui/effects', 'app/views/ui/edit', 'app/controllers/timeline', 'app/views/ui/timeline', 'app/views/composition'], function (Backbone) {
 
     'use strict';
 
@@ -53,12 +53,16 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/views/ui/library', '
 
             var Library = require('app/views/ui/library'),
                 Effects = require('app/views/ui/effects'),
+                Edit = require('app/views/ui/edit'),
                 Timeline = require('app/views/ui/timeline');
 
             this.views.library = new Library({
                 position: 'left'
             });
-            
+            this.views.edit = new Edit({
+                position: 'left'
+            });
+
             this.views.effects = new Effects({
                 position: 'right'
             });

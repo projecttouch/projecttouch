@@ -26,6 +26,10 @@ requirejs.config({
         },
         "stats": {
             exports: "Stats"
+        },
+        "jquery-ui": {
+            exports: "$",
+            deps: ['jquery']
         }
     }
 });
