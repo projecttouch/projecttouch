@@ -17,7 +17,6 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         template: _.template('\
 	            <h3><%= filename %></h3>\
 	            <button class="add">Add</button>\
-	            <button class="edit">Edit</button>\
 	      '),
 
         events: {

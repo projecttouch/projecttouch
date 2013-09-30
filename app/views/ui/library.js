@@ -66,11 +66,10 @@ define(['app/views/panel',
             }
 
             _.each(files, function (file) {
-
-     
-                    this.collection.add(new Model({
-                        file: file
-                    }));
+                
+                this.collection.add(new Model({
+                    file: file
+                }));
                 
             }, this);
 

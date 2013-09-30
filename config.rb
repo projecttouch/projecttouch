@@ -1,3 +1,5 @@
+require 'compass-colors'
+
 project_type = "stand_alone"
 http_path = "/projecttouch/"
 css_dir = "styles"
