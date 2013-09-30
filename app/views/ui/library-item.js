@@ -6,7 +6,7 @@
 
 /*global define, window, document, $, requirejs, require  */
 
-define(['backbone', 'underscore'], function (Backbone, _) {
+define(['backbone', 'underscore', "app/filters"], function (Backbone, _, Filter) {
 
     'use strict';
 
@@ -48,6 +48,61 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
         add: function () {
             this.options.model.collection.trigger('layer', this.options.model);
+            var video = document.createElement('video');
+            video.src = this.options.model.get('blob');
+
+            var klass = this;
+            $('#hiddenVideo').append(video);
+            video.addEventListener('loadedmetadata', function(){
+                klass.captureAsCanvas(video, { width: 280, height: 155, time: parseInt(video.duration/2) }, function (canvas) {
+                    var src;
+                    var ctx = canvas.getContext('2d');
+                    var pixels = ctx.getImageData(0, 0, 280, 155);
+                    $('#effects img').each(function(index, img){
+                        var newPixels = Filter[img.getAttribute('data-effect')](pixels);
+                        ctx.putImageData(newPixels, 0, 0);
+                        src = canvas.toDataURL();
+                        img.src = src;
+                    });
+                })
+            }, false);
+
+        },
+
+        captureAsCanvas: function (video, options, handle) {
+
+            // Create canvas and call handle function
+            var callback = function () {
+                // Create canvas
+                var canvas = document.createElement('canvas');
+                canvas.width = options.width;
+                canvas.height = options.height;
+                // Get context and draw screen on it
+                canvas.getContext('2d').drawImage(video, 0, 0, options.width, options.height);
+                // Seek video back if we have previous position
+                if (prevPos) {
+                    // Unbind seeked event - against loop
+                    $(video).unbind('seeked');
+                    // Seek video to previous position
+                    video.currentTime = prevPos;
+                }
+                // Call handle function (because of event)
+                handle.call(this, canvas);
+            }
+
+            // If we have time in options
+            if (options.time && !isNaN(parseInt(options.time))) {
+                // Save previous (current) video position
+                var prevPos = video.currentTime;
+                // Seek to any other time
+                video.currentTime = options.time;
+                // Wait for seeked event
+                $(video).bind('seeked', callback);
+                return;
+            }
+
+            // Otherwise callback with video context - just for compatibility with calling in the seeked event
+            return callback.apply(video);
         },
 
         play: function () {
