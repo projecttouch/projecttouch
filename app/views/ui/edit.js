@@ -18,6 +18,15 @@ define(['app/views/panel', 'app/views/ui/edit-level', 'app/models/level'], funct
             var levels = [new Level({id: 'scale', title:'Scale'}), new Level({id: 'rotation', title: 'Rotation'}), new Level({id: 'vignette', title: 'Vignette'}), new Level({id: 'audioLevel', title: 'Audio level'})];
             _.each(levels, this.addLevel);
         },
+        events: {
+          "click #btnCloseEdit": "closeEdit"
+        },
+
+        closeEdit: function(){
+            $('#edit').slideUp(500, function () {
+                $('#library').slideDown(500);
+            });
+        },
 
         addLevel: function(model){
             var title = document.createElement('h3');
