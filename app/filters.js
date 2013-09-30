@@ -50,28 +50,28 @@ define([], function () {
             return pixels;
         },
 
-        hipster: function (pixels) {
-            
-            var ar = App.R,
-                ag = App.G,
-                ab = App.B,
-                data32 = new Uint32Array(pixels.data.buffer), // use Uint32Array directly for faster manipulation
-                ii,
-                tt = data32.length,
-                b,
-                g,
-                r;
-
-            for (ii = 0; ii < tt; ii+=1) {
-                b = ((data32[ii] >> 16) & 0xff) * App.B;
-                g = ((data32[ii] >> 8) & 0xff) * App.G;
-                r = ((data32[ii] >> 0) & 0xff) * App.R;
-
-                data32[ii] = (255 << 24) | ((b > 255 ? 255 : b) << 16) | ((g > 255 ? 255 : g) << 8) | (r > 255 ? 255 : r);
-            }
-
-            return pixels;
-        },
+        // hipster: function (pixels) {
+        //     
+        //     var ar = App.R,
+        //         ag = App.G,
+        //         ab = App.B,
+        //         data32 = new Uint32Array(pixels.data.buffer), // use Uint32Array directly for faster manipulation
+        //         ii,
+        //         tt = data32.length,
+        //         b,
+        //         g,
+        //         r;
+        // 
+        //     for (ii = 0; ii < tt; ii+=1) {
+        //         b = ((data32[ii] >> 16) & 0xff) * App.B;
+        //         g = ((data32[ii] >> 8) & 0xff) * App.G;
+        //         r = ((data32[ii] >> 0) & 0xff) * App.R;
+        // 
+        //         data32[ii] = (255 << 24) | ((b > 255 ? 255 : b) << 16) | ((g > 255 ? 255 : g) << 8) | (r > 255 ? 255 : r);
+        //     }
+        // 
+        //     return pixels;
+        // },
 
         pixelize: function (pixels) {
 

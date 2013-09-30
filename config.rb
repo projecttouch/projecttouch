@@ -1,5 +1,5 @@
 project_type = "stand_alone"
-http_path = "/"
+http_path = "/projecttouch/"
 css_dir = "styles"
 sass_dir = "styles"
 images_path = "images"

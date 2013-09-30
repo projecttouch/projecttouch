@@ -16,7 +16,6 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         className: 'library-item',
         template: _.template('\
 	            <h3><%= filename %></h3>\
-	            <button class="play">Play</button>\
 	            <button class="add">Add</button>\
 	      '),
 
