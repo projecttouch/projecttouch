@@ -35,7 +35,7 @@ footer
   
   button
     width: 30px
-    height: 30px
+    height: 30px  
     position: relative
 
     &.play
@@ -98,7 +98,7 @@ footer
       li
         background-color: #2d2c2d
         height: 20px
-        position: relative
+        position: relative 
         margin-top: 10px
       
         &:first-child
@@ -149,9 +149,9 @@ footer
       height: 100%
       cursor: move
       overflow: hidden
-            
-      +background( linear-gradient(top, #1F1F1F, #191919) )
       
+      +background( linear-gradient(top, #1F1F1F, #191919) )
+ 
       .left
         -ms-touch-action: none
         display: block
@@ -184,6 +184,13 @@ footer
         cursor: w-resize
         z-index: 99
         +imageAfter($interface-sprite, $interface-sprite2x, drag-right, 2, 2)
+        
+        
+      &.selected
+        // +background( linear-gradient(top, darken(#191919, 15), darken(#1F1F1F, 15)) )
+        
+        .middle
+          +background( linear-gradient(top, darken(#127EA2, 15), darken(#199DCA, 15)) )
         
   .layer span
     float: right

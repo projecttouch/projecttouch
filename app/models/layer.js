@@ -23,6 +23,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             "frames": 0,
             "status": "notready",
             "offset": 0,
+            "volume": 0,
             "trim": {
                 start: 0,
                 end: 0

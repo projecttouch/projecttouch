@@ -36,6 +36,8 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         },
 
         render: function () {
+            
+            _.bindAll(this, 'select')
 
             this.el.style.left = '0px';
 
@@ -53,6 +55,9 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             this.el.appendChild(this.middle);
             this.el.appendChild(this.right);
             
+            this.hammertime = Hammer(this.el);
+            this.hammertime.on("doubletap", this.select);
+            
             this.hammertimeL = Hammer(this.left); 
             this.hammertimeL.on("dragstart", this.mouseDownLeft);
             this.hammertimeL.on("drag", this.trim);
@@ -60,9 +65,23 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             this.hammertimeR = Hammer(this.right); 
             this.hammertimeR.on("dragstart", this.mouseDownRight);
             this.hammertimeR.on("drag", this.trim);
+
+            this.options.model.collection.on('open', this.changeState, this);
         
             return this;
 
+        },
+        
+        select: function (e) {
+           this.options.model.trigger('open', this.options.model);            
+        },
+        
+        changeState: function (model) {
+            if (this.options.model === model) {
+                this.$el.addClass('selected');
+            } else {
+                this.$el.removeClass('selected');
+            }
         },
 
         mouseDownLeft: function () {

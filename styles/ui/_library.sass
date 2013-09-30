@@ -28,13 +28,15 @@
       text-indent: 5px
 
     button
-      background: $titleBlue
       color: black
-      height: auto
-      width: auto
+      height: 34px
+      width: 34px
       float: right
+      bottom: 15px
       margin: $libraryItemHeight - 30 5px 0 -2px
       position: relative
+      +imageAfter($interface-sprite, $interface-sprite2x, button-zoom-in,8,8)
+      +hide-text()
 
     img, video
       width: 100%

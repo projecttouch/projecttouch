@@ -16,9 +16,7 @@ define(['backbone', 'underscore', "app/filters"], function (Backbone, _, Filter)
         className: 'library-item',
         template: _.template('\
 	            <h3><%= filename %></h3>\
-	            <button class="play">Play</button>\
 	            <button class="add">Add</button>\
-	            <button class="edit">Edit</button>\
 	      '),
 
         events: {

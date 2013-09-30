@@ -40,9 +40,6 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/views/ui/library', '
             this.timeline = new Timeline();
             this.composition = new Composition();
             
-//            this.filter = Filter.hipster;
-//            this.filter = Filter.grayscale;
-
             this.R = 1;
             this.G = 1;
             this.B = 1.3;
@@ -59,15 +56,19 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/views/ui/library', '
             this.views.library = new Library({
                 position: 'left'
             });
+            
+            this.views.timeline = new Timeline();
+            
             this.views.edit = new Edit({
-                position: 'left'
+                position: 'left',
+                collection: this.views.timeline.collection
             });
 
             this.views.effects = new Effects({
                 position: 'right'
             });
             
-            this.views.timeline = new Timeline();
+            
             this.composition.el.appendChild(this.player.render().el);
         }
 

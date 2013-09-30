@@ -35,8 +35,10 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             canvas.height = 140;
 
             video.addEventListener('canplaythrough', function () {
-                ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight, 0, 0, 263, 140);
-                self.set('thumb', canvas.toDataURL('image/jpeg'));
+                _.delay(function () {
+                    ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight, 0, 0, 263, 140);
+                    self.set('thumb', canvas.toDataURL('image/jpeg'));    
+                }, 1000);
             });
 
             video.src = this.get('blob');
