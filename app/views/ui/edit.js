@@ -51,6 +51,7 @@ define(['app/views/panel',
         
         open: function (model) {
             log(model);
+            log(this.options.collection);
             this.layer = model;
             $('#library').slideUp(500, function () {
                 $('#edit').slideDown(500);
