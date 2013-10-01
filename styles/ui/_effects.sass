@@ -1,36 +1,34 @@
 #effects.ui-panel
   ul
-    li a
-      display: block
-      padding-top: 68px
-      height: 155px
-      text-align: center
-      color: #000
-      text-decoration: none
-      text-transform: capitalize
-      font-size: 27px
-      width: 100%
-      position: absolute
-      z-index: 10
-    li img
-      position: absolute
-      width: 100%
-      height: 100%
-      border: none
-      z-index: 8
-    li span
-      position: absolute
-      display: block
-      right: 10px
-      top: 10px
-      width: 20px
-      height: 20px
-      z-index: 9
-    & li.off span
-      +getSprite($interface-sprite, $interface-sprite2x, icon-effect-off)
-    & li.on span
-      +getSprite($interface-sprite, $interface-sprite2x, icon-effect-on)
-    li:nth-child(even)
-      background-color: #ccc
-    li:nth-child(odd)
-      background-color: #333
+    li
+      background-color: #000
+      a
+        display: block
+        padding-top: 68px
+        height: 155px
+        text-align: center
+        color: #000
+        text-decoration: none
+        text-transform: capitalize
+        font-size: 27px
+        width: 100%
+        position: absolute
+        z-index: 10
+      img
+        position: absolute
+        width: 100%
+        height: 100%
+        border: none
+        z-index: 8
+      span
+        position: absolute
+        display: block
+        right: 10px
+        top: 10px
+        width: 20px
+        height: 20px
+        z-index: 9
+      &.off span
+        +getSprite($interface-sprite, $interface-sprite2x, icon-effect-off)
+      &.on span
+        +getSprite($interface-sprite, $interface-sprite2x, icon-effect-on)

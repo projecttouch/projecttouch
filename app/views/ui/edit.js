@@ -30,7 +30,7 @@ define(['app/views/panel',
                 id: 'vignette',
                 title: 'Vignette'
             }), new Level({
-                id: 'audioLevel',
+                id: 'volume',
                 title: 'Audio level'
             })];
             
@@ -50,7 +50,11 @@ define(['app/views/panel',
          * ---------------------------------------------------------------------- */
         
         open: function (model) {
-            log(model);  
+            log(model);
+            this.layer = model;
+            $('#library').slideUp(500, function () {
+                $('#edit').slideDown(500);
+            });
         },
 
         closeEdit: function () {
@@ -60,6 +64,7 @@ define(['app/views/panel',
         },
 
         addLevel: function (model) {
+            var klass = this;
             var title = document.createElement('h3');
             title.appendChild(document.createTextNode(model.get('title')));
             var levelView = new LevelView({
@@ -68,7 +73,9 @@ define(['app/views/panel',
             this.$el.append(title);
             this.$el.append(levelView.render().el);
             model.on('change', function () {
-                log(this.get('id'), this.get('level'));
+//                log(this.get('id'), this.get('level'));
+                klass.layer.set(this.get('id'), this.get('level'));
+//                log(klass.layer);
             });
         },
 
