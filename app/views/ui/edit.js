@@ -44,14 +44,13 @@ define(['app/views/panel',
         events: {
             "click #btnCloseEdit": "closeEdit"
         },
-        
+                
         
         /* this will be triggered when a layer is selected
          * ---------------------------------------------------------------------- */
         
         open: function (model) {
             log(model);
-            log(this.options.collection);
             this.layer = model;
             $('#library').slideUp(500, function () {
                 $('#edit').slideDown(500);
@@ -74,8 +73,8 @@ define(['app/views/panel',
             this.$el.append(title);
             this.$el.append(levelView.render().el);
             model.on('change', function () {
-//                log(this.get('id'), this.get('level'));
                 klass.layer.set(this.get('id'), this.get('level'));
+                klass.options.collection.get(klass.layer.cid).set(this.get('id'), this.get('level'));
 //                log(klass.layer);
             });
         },
