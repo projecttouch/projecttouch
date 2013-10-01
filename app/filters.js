@@ -50,9 +50,28 @@ define([], function () {
                 v;
                 
             for (var i = 0; i < d.length; i += 4) {
+
+                r = d[i] + (d[i] > 1 ? 50 : 0);
+                g = d[i + 1] + (d[i + 1] > 1 ? 50 : 0);
+                b = d[i + 2];
+                v = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+                d[i] = d[i + 1] = d[i + 2] = v > 255 ? 255 : v
+            }
+            return pixels;
+        },
+        
+        underlight: function (pixels) {
+            
+            var d = pixels.data,
+                r,
+                g,
+                b,
+                v;
+                
+            for (var i = 0; i < d.length; i += 4) {
   
-                r = d[i] + 100;
-                g = d[i + 1] + 50;
+                r = d[i] - 10;
+                g = d[i + 1] - 40;
                 b = d[i + 2];
                 v = 0.2126 * r + 0.7152 * g + 0.0722 * b;
                 d[i] = d[i + 1] = d[i + 2] = v
@@ -70,12 +89,12 @@ define([], function () {
                 
             for (var i = 0; i < d.length; i += 4) {
   
-                r = d[i];
-                g = d[i + 1];
-                b = d[i + 2];
+                r = d[i] - 20;
+                g = d[i + 1] - 20;
+                b = d[i + 2] - 20;
                 v = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-                d[i] = v + 90
-                d[i + 1] = v + 50
+                d[i] = v + 40
+                d[i + 1] = v + 25
                 d[i + 2] = v
             }
             return pixels;
@@ -183,56 +202,6 @@ define([], function () {
                 }
             }
             return pixels;
-        },
-
-        yellow: function (pixels) {
-            return changeColours(pixels, 0.1, 2, 1.6);
-        },
-        green: function (pixels) {
-            return changeColours(pixels, 0.1, 2, 0.1);
-        },
-        red: function (pixels) {
-            return changeColours(pixels, 2, 0.1, 0.1);
-        },
-        blue: function (pixels) {
-            return changeColours(pixels, 0.1, 0.1, 2);
         }
     };
 });
-
-/**
- * @author: Rupert Rutland / Code d'Azur
- * @desc: Changes the colour based on a percentage increase or decrease
- * If you want to reduce red by 20% you would pass in 0.8, if you want to increase it by 20% you would pass in 1.2
- */
-function changeColours(pixels, red, green, blue){
-    var source = pixels.data;
-    var count = 0;
-    var newValue = null;
-    for (var x = 0, _len = source.length; x < _len; x++) {
-        if (count > 3) {
-            count = 0;
-        }
-        newValue = null;
-        if (0 === count && red) {
-            newValue = parseInt(source[x] * red);
-        }
-        if (1 === count && green) {
-            newValue = parseInt(source[x] * green);
-        }
-        if (2 === count && blue) {
-            newValue = parseInt(source[x] * blue);
-        }
-        if (newValue < 0) {
-            newValue = 0;
-        }
-        if (newValue > 255) {
-            newValue = 255;
-        }
-        if(newValue){
-            source[x] = newValue;
-        }
-        count++;
-    }
-    return pixels;
-}
