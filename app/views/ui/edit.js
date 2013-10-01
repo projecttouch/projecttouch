@@ -44,7 +44,7 @@ define(['app/views/panel',
         events: {
             "click #btnCloseEdit": "closeEdit"
         },
-        
+                
         
         /* this will be triggered when a layer is selected
          * ---------------------------------------------------------------------- */
