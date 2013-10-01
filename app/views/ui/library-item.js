@@ -6,7 +6,7 @@
 
 /*global define, window, document, $, requirejs, require  */
 
-define(['backbone', 'underscore', "app/filters"], function (Backbone, _, Filter) {
+define(['backbone', 'underscore', "app/views/player", "app/filters"], function (Backbone, _, Player, Filter) {
 
     'use strict';
 
@@ -56,8 +56,10 @@ define(['backbone', 'underscore', "app/filters"], function (Backbone, _, Filter)
                     var src;
                     var ctx = canvas.getContext('2d');
                     var pixels = ctx.getImageData(0, 0, 280, 155);
+                    var newPixels;
                     $('#effects img').each(function(index, img){
-                        var newPixels = Filter[img.getAttribute('data-effect')](pixels);
+                        newPixels = App.player.filterImage(Filter[img.getAttribute('data-effect')], pixels);
+                        ctx.clearRect(0, 0, 280, 155);
                         ctx.putImageData(newPixels, 0, 0);
                         src = canvas.toDataURL();
                         img.src = src;
