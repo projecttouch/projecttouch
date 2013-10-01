@@ -35,7 +35,7 @@ define(['app/views/panel', 'app/filters'], function (Panel, Filter) {
         initialize: function () {
             Panel.prototype.initialize.call(this);
             for (var f in Filter) {
-                this.$el.find('ul').append('<li class="off"><span></span><a href="' + f + '">' + f + '</a></li>');
+                this.$el.find('ul').append('<li class="off"><span></span><img data-effect="' + f + '" ><a href="' + f + '">' + f + '</a></li>');
             }
 //            var Collection = require('app/collections/library')
 //            this.collection = new Collection();
