@@ -15,28 +15,31 @@ $levelWidth: 235px
   div.level
     position: relative
     display: block
-    width: 235px
+    width: $levelWidth
     height: 30px
     padding-top: 5px
+    margin-left: 20px
     .right
       -ms-touch-action: none
       display: block
       position: absolute
-      right: -26px
+      right: $levelWidth -22px
       top: 0
       height: 30px
       width: 2px
       cursor: w-resize
       z-index: 99
       padding-left: 20px
+      background: url(/images/2x1-white.png) repeat-y 100% 100%
+
       &:hover, &:active
         background: url(/images/2x1-white.png) repeat-y 100% 100%
     .holder
       position: relative
       height: 20px
       overflow: hidden
-      width: 235px
-      padding-right: 0px
+      width: $levelWidth
+      padding-right: $levelWidth
       margin-bottom: 34px
       margin-left: 20px
 

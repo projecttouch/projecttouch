@@ -17,18 +17,19 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         defaults: {
             "media": null,
             "type": "video",
-            "rotate": 0,
+            "rotation": 100,
             "scaleX": 0.5,
             "scaleY": 0.5,
             "frames": 0,
             "status": "notready",
             "offset": 0,
-            "volume": 0,
+            "volume": 0.7,
             "trim": {
                 start: 0,
                 end: 0
             },
-            "scale": "stretch-to-fit",
+//            "scale": "stretch-to-fit",
+            "scale": 0.5,
             "position": 0
         },
 
