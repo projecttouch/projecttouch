@@ -9,7 +9,7 @@
 
 /*global define, window, document, $, requirejs, require  */
 
-define(['backbone', 'underscore'], function (Backbone, _) {
+define([], function () {
 
     'use strict';
 

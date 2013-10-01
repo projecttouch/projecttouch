@@ -19,7 +19,7 @@ Number.prototype.toMMSS = function () {
     return time;
 }
 
-define(['backbone', 'app/views/player', 'app/filters', 'app/views/ui/library', 'app/views/ui/effects', 'app/views/ui/edit', 'app/controllers/timeline', 'app/views/ui/timeline', 'app/views/composition'], function (Backbone) {
+define(['app/views/player', 'app/filters', 'app/views/ui/library', 'app/views/ui/effects', 'app/views/ui/edit', 'app/controllers/timeline', 'app/views/ui/timeline', 'app/views/composition'], function () {
 
     'use strict';
 
