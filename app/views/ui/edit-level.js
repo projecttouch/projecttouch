@@ -16,6 +16,9 @@ define(['backbone', 'underscore'], function (Backbone, _) {
     return Backbone.View.extend({
         tagName: 'div',
         className: 'level',
+        defaults: {
+            type: ''
+        },
 
         initialize: function () {
             _.bindAll(this, 'mouseDownRight', 'trim');
@@ -51,32 +54,32 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             paddingRight = -deltaX + this.paddingRightStart;
             paddingRight = paddingRight < 0 ? 0 : paddingRight;
             paddingRight = paddingRight > this.levelWidth ? this.levelWidth : paddingRight;
-            this.holder.style.paddingRight = paddingRight + 'px';
-            this.$('.right').css('right', paddingRight - this.scrubberOffset);
-            var levelId = this.el.id.replace('level-', '');
+            this.setPositions(paddingRight);
             var difference = this.levelWidth - paddingRight;
-            if(levelId === 'rotation'){
+            if(this.type === 'rotation'){
                 level = difference / (this.levelWidth/360);
                 level = level - 180;
             }else{
                 level = difference / this.levelWidth;
             }
-            log(levelId, level);
-            this.model.set(levelId, level);
+            this.model.set(this.type, level);
         },
 
         setLevel: function(level){
             var paddingRight;
-            if (this.el.id.replace('level-', '') === 'rotation') {
-                paddingRight = ((360 - (level + 180))/360) * 235;
-
-//                paddingRight = ((540 - level)/360) * 235;
+            if (this.type === 'rotation') {
+                paddingRight = ((360 - (level + 180))/360) * this.levelWidth;
             } else {
-                paddingRight = (1 - level) * 235;
+                paddingRight = (1 - level) * this.levelWidth;
             }
+            this.setPositions(paddingRight);
+        },
+
+        setPositions: function(paddingRight){
             this.$('.right').css('right', paddingRight - this.scrubberOffset);
             this.holder.style.paddingRight = paddingRight + 'px';
         }
+
 
 
     });
