@@ -2,20 +2,24 @@
 @import compass/utilities/sprites/base
 
 =getSprite($sprites, $sprites-retina, $name, $center: false)
+  $spritePath: "generated/" + sprite-path($sprites)
+  $spriteUrl:  sprite-url($sprites) //This enforces the sprite to actually be generated... yaiks!
   @if $center == true
-    background: sprite-url($sprites) sprite-position($sprites, $name) repeat-x
+    background: image-url($spritePath,false,false) sprite-position($sprites, $name) repeat-x
   @else
-    background: sprite-url($sprites) sprite-position($sprites, $name) no-repeat
+    background: image-url($spritePath,false,false) sprite-position($sprites, $name) no-repeat
   @media (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3 / 2), (min-device-pixel-ratio: 1.5)
     &
       $xpos: round(nth(sprite-position($sprites-retina, $name), 1) / 2)
       $ypos: round(nth(sprite-position($sprites-retina, $name), 2) / 2)
+      $retinaSpritePath: "generated/" + sprite-path($sprites-retina)
+      $retinaSpriteUrl:  sprite-url($sprites-retina) //This enforces the sprite to actually be generated... yaiks!
       @if $center == true
-        background: sprite-url($sprites-retina) $xpos $ypos repeat-x
-        +background-size(ceil(image-width(sprite-path($sprites-retina)) / 2), ceil(image-height(sprite-path($sprites-retina)) / 2))
+        background: image-url($retinaSpritePath,false,false) $xpos $ypos repeat-x
+        +background-size(ceil(image-width($retinaSpritePath) / 2), ceil(image-height($retinaSpritePath) / 2))
       @else
-        background: sprite-url($sprites-retina) $xpos $ypos no-repeat
-        +background-size(ceil(image-width(sprite-path($sprites-retina)) / 2), auto)
+        background: image-url($retinaSpritePath,false,false) $xpos $ypos no-repeat
+        +background-size(ceil(image-width($retinaSpritePath) / 2), auto)
 
 // Returns just the sprite positions
 

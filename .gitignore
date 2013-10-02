@@ -1,5 +1,6 @@
 .sass-cache
 styles/*.css
+images/generated
 
 # OS generated files #
 ######################
@@ -25,3 +26,7 @@ nbproject/
 
 #Node JS#
 node_modules/
+
+# BOWER AND GRUNT #
+libs/**
+tmp
