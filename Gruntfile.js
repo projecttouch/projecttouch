@@ -98,6 +98,18 @@ module.exports = function (grunt) {
                     livereload:true
                 }
             }
+        },
+
+        htmlmin: {
+            deploy: {
+                options: {
+                    removeComments: true,
+                    collapseWhitespace: true
+                },
+                files: {
+                    'tmp/deploy/index.html': 'tmp/deploy/index.html'
+                }
+            }
         }
 
     });
@@ -109,12 +121,14 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-htmlmin');
 
     grunt.registerTask('default', ['deploy']);
 
     grunt.registerTask('serve', ['concurrent:dev']);
 
-    grunt.registerTask('deploy', ['clean:tmp', 'copy:tmp', 'clean:tmp-js', 'clean:tmp-files-in-root', 'copy:persistent-files', 'requirejs', 'replace:min']);
+    grunt.registerTask('deploy', ['clean:tmp', 'copy:tmp', 'clean:tmp-js', 'clean:tmp-files-in-root',
+                                  'copy:persistent-files', 'requirejs', 'replace:min', 'htmlmin:deploy']);
 
     grunt.registerTask('deploy:local', ['deploy', 'connect:deploy']);
 };
