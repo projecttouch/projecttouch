@@ -16,9 +16,6 @@ define(['backbone', 'underscore'], function (Backbone, _) {
     return Backbone.View.extend({
         tagName: 'div',
         className: 'level',
-        defaults: {
-            type: ''
-        },
 
         initialize: function () {
             _.bindAll(this, 'mouseDownRight', 'trim');
@@ -56,18 +53,21 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             paddingRight = paddingRight > this.levelWidth ? this.levelWidth : paddingRight;
             this.setPositions(paddingRight);
             var difference = this.levelWidth - paddingRight;
-            if(this.type === 'rotation'){
+            if(this.options.type === 'rotation'){
                 level = difference / (this.levelWidth/360);
                 level = level - 180;
             }else{
                 level = difference / this.levelWidth;
             }
-            this.model.set(this.type, level);
+
+            this.model.set(this.options.type, level);
+            log(this.options.type, level);
+            log('this',this);
         },
 
         setLevel: function(level){
             var paddingRight;
-            if (this.type === 'rotation') {
+            if (this.options.type === 'rotation') {
                 paddingRight = ((360 - (level + 180))/360) * this.levelWidth;
             } else {
                 paddingRight = (1 - level) * this.levelWidth;
