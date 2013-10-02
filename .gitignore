@@ -1,5 +1,6 @@
 .sass-cache
 styles/*.css
+images/generated
 
 # OS generated files #
 ######################

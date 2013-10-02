@@ -15,7 +15,7 @@ module.exports = function (grunt) {
                 "tmp/deploy/*.iml",
                 "tmp/deploy/readme.md"
             ],
-            sass: ["styles/**/*.sass"]
+            sass: ["tmp/deploy/styles/**/*.sass"]
         },
 
         copy:{
@@ -26,11 +26,11 @@ module.exports = function (grunt) {
             'persistent-files': {
                 files: [
                     { src: 'libs/backbone/backbone-min.js', dest: 'tmp/deploy/libs/backbone/backbone-min.js' },
-                    { src: 'libs/hammerjs/dist/hammer-min.js', dest: 'tmp/deploy/libs/hammerjs/dist/hammer-min.js' },
+                    { src: 'libs/hammerjs/dist/hammer.min.js', dest: 'tmp/deploy/libs/hammerjs/dist/hammer.min.js' },
                     { src: 'libs/jquery/jquery.min.js', dest: 'tmp/deploy/libs/jquery/jquery.min.js' },
                     { src: 'libs/requirejs/require.js', dest: 'tmp/deploy/libs/requirejs/require.js' },
-                    { src: 'libs/stats/build/stats.min.js', dest: 'tmp/deploy/libs/stats/build/stats.min.js' },
-                    { src: 'libs/underscore/underscore-min.js', dest: 'tmp/deploy/libs/backbone/underscore-min.js' }
+                    { src: 'libs/stats.js/build/stats.min.js', dest: 'tmp/deploy/libs/stats.js/build/stats.min.js' },
+                    { src: 'libs/underscore/underscore-min.js', dest: 'tmp/deploy/libs/underscore/underscore-min.js' }
                 ]
             }
         },
@@ -69,7 +69,7 @@ module.exports = function (grunt) {
         },
 
         concurrent:{
-            dev:['connect:dev', 'watch:dev']
+            dev:['connect:dev', 'watch']
         },
 
         connect:{
@@ -92,11 +92,17 @@ module.exports = function (grunt) {
         },
 
         watch:{
-            dev:{
-                files:'**/*',
-                options:{
-                    livereload:true
-                }
+            options: {
+                livereload: true
+            },
+
+            main:{
+                files:['index.html','styles/stylesheet.css','app/**/*','images/**/*','libs/**/*.js']
+            },
+
+            sass: {
+                files:['styles/**/*.sass'],
+                tasks:["compass:dev"]
             }
         },
 
@@ -108,6 +114,33 @@ module.exports = function (grunt) {
                 },
                 files: {
                     'tmp/deploy/index.html': 'tmp/deploy/index.html'
+                }
+            }
+        },
+
+        compass: {
+            clean: {
+                options: {
+                    clean: true
+                }
+            },
+
+            dev: {
+                options: {
+                    sassDir: 'styles',
+                    cssDir: 'styles',
+                    imagesDir: 'images',
+                    config: 'config.rb'
+                }
+            },
+
+            deploy: {
+                options: {
+                    sassDir: 'styles',
+                    cssDir: 'styles',
+                    imagesDir: 'images',
+                    outputStyle: 'compressed',
+                    config: 'config.rb'
                 }
             }
         }
@@ -122,13 +155,15 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
+    grunt.loadNpmTasks('grunt-contrib-compass');
 
     grunt.registerTask('default', ['deploy']);
 
     grunt.registerTask('serve', ['concurrent:dev']);
 
-    grunt.registerTask('deploy', ['clean:tmp', 'copy:tmp', 'clean:tmp-js', 'clean:tmp-files-in-root',
-                                  'copy:persistent-files', 'requirejs', 'replace:min', 'htmlmin:deploy']);
+    grunt.registerTask('deploy', ['compass:clean', 'compass:deploy', 'clean:tmp', 'copy:tmp', 'clean:tmp-js', 'clean:sass',
+                                  'clean:tmp-files-in-root', 'copy:persistent-files', 'requirejs',
+                                  'replace:min', 'htmlmin:deploy', 'compass:clean', 'compass:dev']);
 
     grunt.registerTask('deploy:local', ['deploy', 'connect:deploy']);
 };
