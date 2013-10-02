@@ -17,3 +17,11 @@ Videos you can use for testing:
 - [Trailer](https://www.theinternetoftouch.com/videos/trailer.zip) 
 
 Check out the [ProjectTouch microsite](http://www.theinternetoftouch.com) for updates.
+
+## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request from Github
