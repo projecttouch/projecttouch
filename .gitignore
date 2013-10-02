@@ -28,3 +28,4 @@ node_modules/
 
 # BOWER AND GRUNT #
 libs/**
+tmp

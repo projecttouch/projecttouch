@@ -1,0 +1,30 @@
+{
+    "name":"projecttouch",
+    "version":"0.1.0",
+    "author":{
+        "name":"",
+        "email":"",
+        "url":""
+    },
+    "description":"Community built HTML 5 video editor.",
+    "repository":{
+        "type":"git",
+        "url":"https://github.com/projecttouch/projecttouch"
+    },
+    "dependencies":{
+        "grunt":"~0.4.0",
+        "grunt-contrib-requirejs":"~0.4.0",
+        "grunt-contrib-clean":"~0.4.0",
+        "grunt-contrib-copy":"~0.4.0",
+        "grunt-text-replace":"~0.3.8",
+        "grunt-concurrent":"~0.3.1",
+        "grunt-contrib-watch":"~0.5.3",
+        "grunt-contrib-connect":"~0.5.0"
+    },
+    "engines":{
+        "node":"0.8.x"
+    },
+    "devDependencies":{
+        "grunt":"~0.4.0"
+    }
+}
