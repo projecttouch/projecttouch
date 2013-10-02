@@ -6,7 +6,7 @@
 
 /*global define, window, document, $, requirejs, require  */
 
-define(['backbone', 'underscore'], function (Backbone, _) {
+define([], function () {
 
     return Backbone.View.extend({
 

@@ -6,7 +6,7 @@
 
 /*global define, window, document, $, requirejs, require  */
 
-define(['backbone', 'underscore', 'app/views/ui/timeline-layer-slide'], function (Backbone, _, Slide) {
+define(['app/views/ui/timeline-layer-slide'], function (Slide) {
 
     'use strict';
 

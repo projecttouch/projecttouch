@@ -21,6 +21,7 @@ Thumbs.db
 netbeans/
 nbproject/
 .komodoproject/
+*.iml
 
 #Node JS#
 node_modules/
