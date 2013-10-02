@@ -18,8 +18,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             "media": null,
             "type": "video",
             "rotate": 0,
-            "scaleX": 0.5,
-            "scaleY": 0.5,
+            "scale": 0.5,
             "frames": 0,
             "status": "notready",
             "offset": 0,
@@ -28,7 +27,6 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 start: 0,
                 end: 0
             },
-            "scale": "stretch-to-fit",
             "position": 0
         },
 
@@ -45,6 +43,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 this.collection.on('seek', this.seek, this);
                 this.collection.on('frame-sync', this.sync, this);
                 this.collection.on('kill', this.kill, this);
+                this.on('change:volume', this.setVolume, this);
                 this.on('change:trim', function () {
                     this.set('status', 'idle');
                     this.syncFrame();
@@ -68,7 +67,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 self.set('frames', parseInt(self.video.duration * 1000 / 40));
                 self.set('status', 'idle');
             });
-            this.video.muted = true;
+            this.video.volume = 0;
             this.video.src = this.get('media')
                 .get('blob');
             this.video.addEventListener('ended', this.ended, false);
@@ -83,6 +82,12 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             this.video.setAttribute('style', '-webkit-transform: rotate(20deg);');
             return true;
 
+        },
+        
+        setVolume: function () {
+            if(this.video) {
+                this.video.volume = this.get('volume') * 100;
+            }
         },
 
         /**

@@ -28,7 +28,7 @@ define(['backbone', 'app/views/player', 'app/filters', 'app/views/ui/library', '
         filter: null,
 
         initialize: function () {
-
+            
             var self = this,
                 Timeline = require('app/controllers/timeline'),
                 Player = require('app/views/player'),

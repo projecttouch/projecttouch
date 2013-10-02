@@ -4,11 +4,30 @@
     width: $panelWidth
     +imageBefore($interface-sprite, $interface-sprite2x, button-add, 47,110)
 
-    form, input
+    form
       cursor: pointer
-      opacity: 0
+      +opacity(0)
       width: $panelWidth
       height: 100%
+      overflow: hidden
+      
+    input
+      +opacity(0)
+      width: $panelWidth * 2
+      height: 100%
+      position: absolute
+      right: 0
+      &::-ms-browse
+        width: 300px
+      
+    label
+      cursor: pointer
+      opacity: 0
+      width: 280px
+      height: 100%
+      position: absolute
+      display: block
+      top: 0
 
     &:hover
       background-color: $titleBlue

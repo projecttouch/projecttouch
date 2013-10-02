@@ -10,15 +10,19 @@ define([], function () {
 
 
     return {
-        threshold: function (pixels) {
-            var threshold = 80,
-                d = pixels.data;
+        
+        darken: function (pixels) {
+            
+            var d = pixels.data,
+                r,
+                g,
+                b,
+                v;
+                
             for (var i = 0; i < d.length; i += 4) {
-                var r = d[i];
-                var g = d[i + 1];
-                var b = d[i + 2];
-                var v = (0.2126 * r + 0.7152 * g + 0.0722 * b >= threshold) ? 255 : 0;
-                d[i] = d[i + 1] = d[i + 2] = v
+                d[i] -= 30
+                d[i + 1] -= 30
+                d[i + 2] -= 30
             }
             return pixels;
         },
@@ -100,6 +104,36 @@ define([], function () {
             return pixels;
         },
         
+        hippie: function (pixels) {
+            
+            var d = pixels.data,
+                r,
+                g,
+                b,
+                v;
+                
+            for (var i = 0; i < d.length; i += 4) {
+                d[i] -= 10;
+                d[i + 1] -= 35;
+            }
+            return pixels;
+        },
+        
+        icequeen: function (pixels) {
+            
+            var d = pixels.data,
+                r,
+                g,
+                b,
+                v;
+                
+            for (var i = 0; i < d.length; i += 4) {
+                d[i] -= 5;
+                d[i + 1] -= 5;
+                d[i + 2] += 30;
+            }
+            return pixels;
+        },
 
         // grayscale: function (pixels) {
 //             var source = pixels.data;
@@ -159,6 +193,26 @@ define([], function () {
 //         
 //             return pixels;
 //         },
+
+        threshold: function (pixels) {
+            var threshold = 80,
+                d = pixels.data,
+                r,
+                g,
+                b,
+                v;
+                
+            for (var i = 0; i < d.length; i += 4) {
+                
+                r = d[i];
+                g = d[i + 1];
+                b = d[i + 2];
+                v = (0.2126 * r + 0.7152 * g + 0.0722 * b >= threshold) ? 255 : 0;
+                d[i] = d[i + 1] = d[i + 2] = v;
+                
+            }
+            return pixels;
+        },
 
         pixelize: function (pixels) {
 
