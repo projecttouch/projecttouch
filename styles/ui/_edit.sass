@@ -1,3 +1,4 @@
+$levelWidth: 235px
 #edit
   display: none
   h2
@@ -11,33 +12,45 @@
     font-size: 20px
     margin: 10px 0 10px 20px
     clear: both
-  div.media
+  div.level
     position: relative
-    height: 20px
-    overflow: hidden
-    width: 260px
-    padding-right: 0px
-    margin-bottom: 34px
+    display: block
+    width: $levelWidth
+    height: 30px
+    padding-top: 5px
     margin-left: 20px
-
-    +background(linear-gradient(top, #262526, #323132))
-
-    .middle
-      -ms-touch-action: none
-      display: block
-      position: relative
-      height: 20px
-      width: 100%
-      z-index: 80
-      +background(linear-gradient(top, #199DCA, #127EA2))
-
     .right
       -ms-touch-action: none
       display: block
       position: absolute
-      right: -2px
+      right: $levelWidth -22px
       top: 0
-      height: 20px
-      width: 26px
+      height: 30px
+      width: 2px
       cursor: w-resize
       z-index: 99
+      padding-left: 20px
+      background: url(/images/2x1-white.png) repeat-y 100% 100%
+
+      &:hover, &:active
+        background: url(/images/2x1-white.png) repeat-y 100% 100%
+    .holder
+      position: relative
+      height: 20px
+      overflow: hidden
+      width: $levelWidth
+      padding-right: $levelWidth
+      margin-bottom: 34px
+      margin-left: 20px
+
+      +background(linear-gradient(top, #262526, #323132))
+
+      .middle
+        -ms-touch-action: none
+        display: block
+        position: relative
+        height: 20px
+        width: 100%
+        z-index: 80
+        +background(linear-gradient(top, #199DCA, #127EA2))
+

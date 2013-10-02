@@ -15,7 +15,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
 
     return Backbone.View.extend({
         tagName: 'div',
-        className: 'media',
+        className: 'level',
 
         initialize: function () {
             _.bindAll(this, 'mouseDownRight', 'trim');
@@ -23,63 +23,59 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 start: 0,
                 end: 0
             };
-            this.el.id = 'level-' + this.model.id;
+            this.levelWidth = 235;
+            this.scrubberOffset = 22;
+            this.level = 0;
+            this.holder = this.$('.holder')[0];
+            this.render();
         },
 
         render: function () {
-
-
-            this.el.style.left = '0px';
-            var randomStartPoint = Math.floor(Math.random() * 101);
-            this.el.style.paddingRight = randomStartPoint + 'px';
-
-
-            var title = document.createElement('h1');
-            title.appendChild(document.createTextNode(this.model.get('title')));
-
-
-            this.middle = document.createElement('div');
-            this.middle.setAttribute('class', 'middle');
-            this.middle.style.backgroundColor = 'rgb(0, 255, 255)';
-
-            this.right = document.createElement('div');
-            this.right.setAttribute('class', 'right');
-            this.right.style.right = (randomStartPoint - 5) + 'px';
-
-//            this.el.appendChild(title);
-            this.el.appendChild(this.middle);
-            this.el.appendChild(this.right);
-
+            this.right = this.$('.right')[0];
             this.hammertimeR = Hammer(this.right);
             this.hammertimeR.on("dragstart", this.mouseDownRight);
             this.hammertimeR.on("drag", this.trim);
-
             return this;
 
         },
 
         mouseDownRight: function () {
             window.App.dragging = true;
-            this.paddingRightStart = parseInt(this.el.style.paddingRight) || 0;
+            this.paddingRightStart = parseInt(this.holder.style.paddingRight);
         },
 
         trim: function (e) {
-            var paddingRight,
-                deltaX,
-                percentage;
+            var paddingRight, deltaX, level;
             //How far been dragged
             deltaX = e.gesture.deltaX;
             paddingRight = -deltaX + this.paddingRightStart;
             paddingRight = paddingRight < 0 ? 0 : paddingRight;
-            paddingRight = paddingRight > 260 ? 260 : paddingRight;
-            this.el.style.paddingRight = paddingRight + 'px';
-            this.$('.right').css('right', paddingRight - 2);
-            percentage = parseInt(((260 - paddingRight)/ 260) * 100);
+            paddingRight = paddingRight > this.levelWidth ? this.levelWidth : paddingRight;
+            this.holder.style.paddingRight = paddingRight + 'px';
+            this.$('.right').css('right', paddingRight - this.scrubberOffset);
+            var levelId = this.el.id.replace('level-', '');
+            var difference = this.levelWidth - paddingRight;
+            if(levelId === 'rotation'){
+                level = difference / (this.levelWidth/360);
+                level = level - 180;
+            }else{
+                level = difference / this.levelWidth;
+            }
+            log(levelId, level);
+            this.model.set(levelId, level);
+        },
 
-//            console.log(paddingRight + 'px');
-//            console.log(percentage + '%');
-            this.model.set('level', percentage);
-//            App.player.setVolume(percentage);
+        setLevel: function(level){
+            var paddingRight;
+            if (this.el.id.replace('level-', '') === 'rotation') {
+                paddingRight = ((360 - (level + 180))/360) * 235;
+
+//                paddingRight = ((540 - level)/360) * 235;
+            } else {
+                paddingRight = (1 - level) * 235;
+            }
+            this.$('.right').css('right', paddingRight - this.scrubberOffset);
+            this.holder.style.paddingRight = paddingRight + 'px';
         }
 
 
