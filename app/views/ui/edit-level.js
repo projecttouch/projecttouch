@@ -61,7 +61,6 @@ define(['backbone', 'underscore'], function (Backbone, _) {
             }else{
                 level = difference / this.levelWidth;
             }
-            log(levelId, level);
             this.model.set(levelId, level);
         },
 

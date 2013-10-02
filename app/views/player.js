@@ -106,7 +106,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 this.context.save();
                 this.context.globalAlpha = this.source.length > 1 ? 1 / this.source.length : 1;
                 this.context.translate(this.width / 2, this.height / 2);
-                this.context.rotate(source.get('rotate') * Math.PI / 180);
+                this.context.rotate(source.get('rotation') * Math.PI / 180);
                 this.context.drawImage(source.video, 0, 0, source.video.videoWidth, source.video.videoHeight, posX, posY, width, height);
                 this.context.restore();
             }

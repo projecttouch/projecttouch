@@ -17,11 +17,11 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         defaults: {
             "media": null,
             "type": "video",
-            "rotation": 100,
+            "rotation": 0,
             "frames": 0,
             "status": "notready",
             "offset": 0,
-            "volume": 0.7,
+            "volume": 0,
             "trim": {
                 start: 0,
                 end: 0
@@ -86,7 +86,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         
         setVolume: function () {
             if(this.video) {
-                this.video.volume = this.get('volume') * 100;
+                this.video.volume = this.get('volume');
             }
         },
 
