@@ -25,3 +25,6 @@ nbproject/
 
 #Node JS#
 node_modules/
+
+# BOWER AND GRUNT #
+libs/**
