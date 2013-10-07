@@ -8,7 +8,7 @@
  */
 /*global views, console, $, define  */
 
-define(['backbone', 'underscore', 'app/models/layer'], function (Backbone, _, Model) {
+define(['app/models/layer'], function (Model) {
 
     'use strict';
 

@@ -34,15 +34,20 @@ requirejs.config({
     }
 });
 
-require(['app/project-touch', 'hammer', 'stats'], function (PT) {
+//Enforce loading global libraries first
+require(['backbone', 'underscore', 'hammer', 'stats'], function (PT) {
 
-    'use strict';
+    require(['app/project-touch'], function (PT) {
 
-    window.log = Function.prototype.bind.call(console.log, console);
+        'use strict';
 
-    window.App = new PT({
-        el: document.querySelector('.video')
+        window.log = Function.prototype.bind.call(console.log, console);
+
+        window.App = new PT({
+            el: document.querySelector('.video')
+        });
+        window.App.render();
+
     });
-    window.App.render();
 
 });

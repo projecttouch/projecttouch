@@ -6,7 +6,7 @@
 
 /*global define, window, document, $, requirejs, require  */
 
-define(['backbone', 'underscore', "app/views/player", "app/filters"], function (Backbone, _, Player, Filter) {
+define(["app/views/player", "app/filters"], function (Player, Filter) {
 
     'use strict';
 
