@@ -49,6 +49,10 @@ define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer)
 
         initialize: function () {
             
+            this.collection.on('all', function (e) {
+                log(e);
+            })
+            
             
             this.time = this.el.querySelector('#time .line');
             

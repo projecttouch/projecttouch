@@ -31,8 +31,6 @@ define(['app/views/panel',
 
         },
 
-        },
-
 
         /* this will be triggered when a layer is selected
          * ---------------------------------------------------------------------- */
