@@ -49,17 +49,15 @@ define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer)
 
         initialize: function () {
             
-            this.collection.on('all', function (e) {
-                log(e);
-            })
-            
-            
             this.time = this.el.querySelector('#time .line');
             
             this.collection = window.App.timeline.collection;
             this.collection.on('add', this.add, this);
             this.collection.on('frame-sync', this.progress, this);
             
+            this.collection.on('all', function (e) {
+                log(e);
+            })   
             _.bindAll(this, 'pinch', 'dragstart', 'drag');
 //            this.options.model.on('change:thumb', this.addThumb, this);
 
@@ -80,22 +78,21 @@ define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer)
         
         add: function (model) {
             var layer = new Layer({model:model}),
-                title = model.get('media').get('file').name; 
+                title = model.get('media').get('file').name,
+                labelLayout = _.template("\
+                    <%= title %>\
+                    <button class='options'></button>\
+                    <div>\
+                        <button class='duplicate'></button>\
+                        <button class='delete'></button>\
+                    </div>\
+                "); 
                 
             this.el.querySelector('.layers').appendChild(layer.render().el);
             
-            var left = _.template("\
-                <%= title %>\
-                <button class='options'></button>\
-                <div>\
-                    <button class='duplicate'></button>\
-                    <button class='delete'></button>\
-                </div>\
-            ");
-            
             var bb = document.createElement('li');
             bb.setAttribute('data-cid', model.cid)
-            bb.innerHTML = left({
+            bb.innerHTML = labelLayout({
                 title: title.substring(0,title.length - 4)
             });
             
@@ -121,7 +118,9 @@ define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer)
         },
         
         dragstart: function (event) {
+if (event.touches.length > 1) {
             this.scrollstart = this.el.querySelector('.layer-holder').scrollLeft;
+        }
         },
         
         drag: function (event) {
