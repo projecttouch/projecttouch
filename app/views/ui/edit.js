@@ -24,15 +24,12 @@ define(['app/views/panel',
             Panel.prototype.initialize.call(this);
 
             this.options.collection.on("open", this.open, this);
-            this.scaleView = new LevelView({
-                el: '#level-scale'
-            });
-            this.rotationView = new LevelView({
-                el: '#level-rotation'
-            });
-            this.volumeView = new LevelView({
-                el: '#level-volume'
-            });
+
+            this.scaleView = new LevelView({el:'#level-scale', type: 'scale'});
+            this.rotationView = new LevelView({el:'#level-rotation', type:'rotation'});
+            this.volumeView = new LevelView({el:'#level-volume', type: 'volume'});
+
+        },
 
         },
 

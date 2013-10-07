@@ -8,7 +8,7 @@
  */
 /*global views, console, $, $$, TweenLite, TweenMax, TimelineLite, TimelineMax, Ease, Linear, Power0, Power1, Power2, Power3, Power4, Quad, Cubic, Quart, Strong, Back, Bounce, Circ, Elastic, Expo, Sine, SlowMo  */
 
-define(['backbone', 'underscore', 'app/collections/timeline'], function (Backbone, _, Collection) {
+define(['app/collections/timeline'], function (Collection) {
 
     'use strict';
 
