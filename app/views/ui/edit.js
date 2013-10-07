@@ -7,8 +7,7 @@
 /*global define, window, document, $, requirejs, require  */
 
 define(['app/views/panel',
-    'app/views/ui/edit-level'
-], function (Panel, LevelView) {
+        'app/views/ui/edit-level'], function (Panel, LevelView) {
 
     'use strict';
 
@@ -17,18 +16,19 @@ define(['app/views/panel',
         id: 'edit',
         el: '#edit',
 
+        events: {
+            "click #btnCloseEdit": "closeEdit"
+        },
+
         initialize: function () {
             Panel.prototype.initialize.call(this);
 
             this.options.collection.on("open", this.open, this);
+
             this.scaleView = new LevelView({el:'#level-scale', type: 'scale'});
             this.rotationView = new LevelView({el:'#level-rotation', type:'rotation'});
             this.volumeView = new LevelView({el:'#level-volume', type: 'volume'});
 
-        },
-
-        events: {
-            "click #btnCloseEdit": "closeEdit"
         },
 
 

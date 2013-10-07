@@ -31,12 +31,27 @@ define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer)
             case 'stop':
                 window.App.timeline.stop();
                 break;
-
+            case 'options':
+                $(e.currentTarget.parentElement).toggleClass('active');
+                break;
+            case 'delete':
+                var parent = e.currentTarget.parentElement.parentElement;
+                this.collection.get(parent.getAttribute('data-cid')).destroy();
+                $(parent).remove();
+                break;
+            case 'duplicate':
+                var cid = e.currentTarget.parentElement.parentElement.getAttribute('data-cid');
+                this.collection.add(this.collection.get(cid).toJSON());
+                break;
             }
 
         },
 
         initialize: function () {
+            
+            this.collection.on('all', function (e) {
+                log(e);
+            })
             
             
             this.time = this.el.querySelector('#time .line');
@@ -69,9 +84,20 @@ define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer)
                 
             this.el.querySelector('.layers').appendChild(layer.render().el);
             
+            var left = _.template("\
+                <%= title %>\
+                <button class='options'></button>\
+                <div>\
+                    <button class='duplicate'></button>\
+                    <button class='delete'></button>\
+                </div>\
+            ");
+            
             var bb = document.createElement('li');
             bb.setAttribute('data-cid', model.cid)
-            bb.innerHTML = title.substring(0,title.length - 4);
+            bb.innerHTML = left({
+                title: title.substring(0,title.length - 4)
+            });
             
             this.el.querySelector('.labels').appendChild(bb);
             this.layers.push(layer);

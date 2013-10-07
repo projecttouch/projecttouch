@@ -32,6 +32,8 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
             
             log('new layer:', this.options.model.get('media').get('file').name);
 
+            this.options.model.on('destroy', this.remove, this);
+
             if (this.options.model.get('frames') === 0) {
                 log('check frames later')
                 this.options.model.on("change:frames", this.resize, this); 
@@ -113,14 +115,16 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
             this.media.el.style.width = parseInt(percentage * this.$('.layer').width()) + 'px';
             this.media.resize();
 
-            log(this.media.el.style.width)
-
             if (this.options.model.get('offset') < 0) {
                 this.media.el.style.left = '-' + ((Math.abs(this.options.model.get('offset')) / this.options.model.collection.totalFrames) * this.$('.layer').width()) + 'px';
             } else {
                 this.media.el.style.left = ((this.options.model.get('offset') / this.options.model.collection.totalFrames) * this.$('.layer').width()) + 'px';
             }
 
+        },
+        
+        remove: function () {
+            Backbone.View.prototype.remove.call(this);
         }
 
     });
