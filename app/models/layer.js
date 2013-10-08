@@ -39,7 +39,6 @@ define([], function () {
                 this.set('position', window.App.timeline.collection.length)
             }
 
-            log('Init Layer:');
             if (this.get("type") === "video") {
                 log('Type:', 'Video');
                 this.on('trim:preview', this.trim, this);

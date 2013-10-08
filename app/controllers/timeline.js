@@ -8,7 +8,7 @@
  */
 /*global views, console, $, $$, TweenLite, TweenMax, TimelineLite, TimelineMax, Ease, Linear, Power0, Power1, Power2, Power3, Power4, Quad, Cubic, Quart, Strong, Back, Bounce, Circ, Elastic, Expo, Sine, SlowMo  */
 
-define(['app/collections/timeline'], function (Collection) {
+define(['app/collections/timeline', 'app/filters'], function (Collection, Filter) {
 
     'use strict';
 
@@ -106,6 +106,35 @@ define(['app/collections/timeline'], function (Collection) {
                 this.stop();
             } else {
                 this._frame += 1;
+            }
+
+            var effects = this.collection.where({type:'effect'});
+            var _len = effects.length;
+            if(_len === 0){
+                window.App.filter = null;
+            }else{
+                for(var x = 0; x < _len; x++){
+                    if(effects[x].get('type') !== 'effect'){
+                        continue;
+                    }
+//                    log('Effects:', effects[x]);
+                    var trim = effects[x].get('trim');
+                    var offset = effects[x].get('offset');
+                    var effectFrames = effects[x].get('frames');
+                    var endEffect = effectFrames + offset - trim.end;
+                    var startEffect = trim.start + offset;
+//                    log('Start: ' + startEffect + '; End: ' + endEffect + '; Current Frame: ' + this._frame);
+                    if(this._frame >= startEffect && this._frame <= endEffect){
+//                        log('Set effect:', effects[x].get('name'));
+                        window.App.filter = Filter[effects[x].get('name')];
+                        break;
+                    }
+                    if(x === (_len - 1)){
+//                        log('Remove effect');
+                        window.App.filter = null;
+                        break;
+                    }
+                }
             }
 
         },

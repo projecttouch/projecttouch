@@ -31,10 +31,7 @@ define(['app/views/panel', 'app/filters', 'app/models/layer'], function (Panel, 
             } else {
                 window.App.filter = null;
                 var m = window.App.timeline.collection.findWhere({name: filterName});
-                log('Model found:', m);
                 m.destroy();
-//                window.App.timeline.collection.remove(m);
-
             }
         },
         initialize: function () {

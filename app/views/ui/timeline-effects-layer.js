@@ -87,8 +87,6 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
             this.media.endTrim();
             if (this.moving) {
                 window.App.dragging = false;
-//                var frame = (parseInt(this.media.el.style.left) / this.$('.layer').width()) * this.options.model.collection.totalFrames;
-//                this.options.model.set('offset', Math.round(frame));
                 window.removeEventListener('mousemove', this.moveMedia, true);
                 this.moving = false;
             }
