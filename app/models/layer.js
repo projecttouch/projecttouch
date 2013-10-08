@@ -53,20 +53,6 @@ define([], function() {
                 }, this);
                 this.initializeVideo();
             }
-
-            if (this.get("type") === "effect") {
-                log('Type:', 'Effect');
-                this.initializeEffect();
-            }
-
-        },
-        
-		
-		/* Initializes the effect
-		 * ---------------------------------------------------------------------- */
-		
-        initializeEffect: function() {
-            return true;
         },
 
         
