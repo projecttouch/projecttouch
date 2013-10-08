@@ -13,11 +13,11 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
     return Backbone.View.extend({
 
         tagName: 'li',
-        
+
         events: {
-            "click button":"clone"
+            "click button": "clone"
         },
-        
+
         template: _.template("\
             <div class='layer'>\
             </div>\
@@ -29,43 +29,43 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
 
             this.moving = false;
             this.startMove = 0;
-            
+
 //            log('new layer:', this.options.model.get('media').get('file').name);
 
             this.options.model.on('destroy', this.remove, this);
 
             if (this.options.model.get('frames') === 0) {
                 log('check frames later');
-                this.options.model.on("change:frames", this.resize, this); 
+                this.options.model.on("change:frames", this.resize, this);
             }
         },
-        
+
         clone: function () {
-            
-            log(this.options.model.collection.add(this.options.model.toJSON()))  
-        
+
+            log(this.options.model.collection.add(this.options.model.toJSON()))
+
         },
-        
+
         render: function () {
-            
+
             this.media = new Slide({
                 color: "#00ffff",
                 model: this.options.model
             });
-            
+
             this.$el.html(this.template());
             this.el.querySelector('.layer').appendChild(this.media.render().el);
-            if(this.model.get('type') === 'effect'){
+            if (this.model.get('type') === 'effect') {
                 this.$('.layer').addClass('effect');
             }
-            
-            this.hammertime = Hammer(this.media.el); 
+
+            this.hammertime = Hammer(this.media.el);
             this.hammertime.on("dragstart", this.mouseDown);
             this.hammertime.on("drag", this.moveMedia);
             this.hammertime.on("dragend", this.endTrim);
-            
+
             window.addEventListener('resize', this.resize, false);
-            
+
             return this;
 
         },
@@ -75,7 +75,7 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
             if (e.target.getAttribute('class') === 'left' || e.target.getAttribute('class') === 'right') {
                 return;
             }
-            
+
             window.App.dragging = true;
 
             this.startMove = e.gesture.deltaX - parseInt(this.media.el.style.left);
@@ -84,7 +84,7 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
         },
 
         moveMedia: function (e) {
-            
+
             if (this.moving) {
                 this.media.el.style.left = (e.gesture.deltaX - this.startMove) + 'px';
             }
@@ -96,17 +96,17 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
             this.media.endTrim();
 
             if (this.moving) {
-                
+
                 window.App.dragging = false;
-                
+
                 var frame = (parseInt(this.media.el.style.left) / this.$('.layer').width()) * this.options.model.collection.totalFrames;
                 this.options.model.set('offset', Math.round(frame));
-                if(this.model.get('type') === 'video'){
+                if (this.model.get('type') === 'video') {
                     this.options.model.syncFrame();
                 }
 
                 log(this.options.model);
-                
+
                 window.removeEventListener('mousemove', this.moveMedia, true);
                 this.moving = false;
             }
@@ -127,7 +127,7 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
             }
 
         },
-        
+
         remove: function () {
             Backbone.View.prototype.remove.call(this);
         }
