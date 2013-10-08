@@ -43,7 +43,7 @@ define(['app/models/layer', 'app/filters'], function (Model, Filter) {
         },
 
         getFilter: function (frame) {
-            var effects, len, x, trim, offset, effectFrames, endEffect, startEffect;
+            var effects, len, x, trim, offset, endEffect, startEffect;
             effects = this.where({type: 'effect'});
             len = effects.length;
             if (len === 0) {
@@ -53,8 +53,7 @@ define(['app/models/layer', 'app/filters'], function (Model, Filter) {
                 if (effects[x].get('type') === 'effect') {
                     trim = effects[x].get('trim');
                     offset = effects[x].get('offset');
-                    effectFrames = effects[x].get('frames');
-                    endEffect = effectFrames + offset - trim.end;
+                    endEffect = effects[x].get('frames') + offset - trim.end;
                     startEffect = trim.start + offset;
                     if (frame >= startEffect && frame <= endEffect) {
                         return Filter[effects[x].get('name')];
