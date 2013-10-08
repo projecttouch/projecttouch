@@ -29,11 +29,11 @@ define(['app/collections/timeline', 'app/filters'], function (Collection, Filter
             this.videos = [];
             this.filter = null;
             this.collection = new Collection();
-            
+
             this.collection.on('trim:start', function (model) {
                 window.App.player.setSource([model]);
             }, this);
-            
+
             this.collection.on('change:trim', this.seek, this);
 
             _.bindAll(this, 'addEventListeners', 'changeFilter', 'play', 'stop', 'frame');
@@ -51,19 +51,19 @@ define(['app/collections/timeline', 'app/filters'], function (Collection, Filter
         },
 
         changeFilter: function (filter) {
-            
+
             switch (filter) {
-            case 'gray':
-                this.filter = Filters.grayscale;
-                break;
-            case 'thres':
-                this.filter = Filters.threshold;
-                break;
-            case 'pixel':
-                this.filter = Filters.pixelize;
-                break;
-            default:
-                this.filter = null;
+                case 'gray':
+                    this.filter = Filters.grayscale;
+                    break;
+                case 'thres':
+                    this.filter = Filters.threshold;
+                    break;
+                case 'pixel':
+                    this.filter = Filters.pixelize;
+                    break;
+                default:
+                    this.filter = null;
             }
 
         },
@@ -79,16 +79,16 @@ define(['app/collections/timeline', 'app/filters'], function (Collection, Filter
             this.timer = window.setInterval(this.frame, 40);
 
         },
-        
+
         /*
          * Seeks to a frame
          */
-        
+
         seek: function (frame) {
             this.stop();
             this._frame = !isNaN(frame) ? frame : this._frame;
             this.collection.trigger('seek', this._frame, this.collection.totalFrames);
-            log('seek', this.collection.getActive())
+            log('seek', this.collection.getActive());
             window.App.player.setSource(this.collection.getActive());
         },
 
@@ -107,36 +107,7 @@ define(['app/collections/timeline', 'app/filters'], function (Collection, Filter
             } else {
                 this._frame += 1;
             }
-
-            var effects = this.collection.where({type:'effect'});
-            var _len = effects.length;
-            if(_len === 0){
-                window.App.filter = null;
-            }else{
-                for(var x = 0; x < _len; x++){
-                    if(effects[x].get('type') !== 'effect'){
-                        continue;
-                    }
-//                    log('Effects:', effects[x]);
-                    var trim = effects[x].get('trim');
-                    var offset = effects[x].get('offset');
-                    var effectFrames = effects[x].get('frames');
-                    var endEffect = effectFrames + offset - trim.end;
-                    var startEffect = trim.start + offset;
-//                    log('Start: ' + startEffect + '; End: ' + endEffect + '; Current Frame: ' + this._frame);
-                    if(this._frame >= startEffect && this._frame <= endEffect){
-//                        log('Set effect:', effects[x].get('name'));
-                        window.App.filter = Filter[effects[x].get('name')];
-                        break;
-                    }
-                    if(x === (_len - 1)){
-//                        log('Remove effect');
-                        window.App.filter = null;
-                        break;
-                    }
-                }
-            }
-
+            window.App.filter = window.App.timeline.collection.getFilter(this._frame);
         },
 
         stop: function () {

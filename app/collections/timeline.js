@@ -8,7 +8,7 @@
  */
 /*global views, console, $, define  */
 
-define(['app/models/layer'], function (Model) {
+define(['app/models/layer', 'app/filters'], function (Model, Filter) {
 
     'use strict';
 
@@ -32,7 +32,7 @@ define(['app/models/layer'], function (Model) {
 
                     if (model.get('position') < position) {
                         targetModel.push(model);
-                       position = model.get('position');
+                        position = model.get('position');
                     }
 
                 }
@@ -40,6 +40,31 @@ define(['app/models/layer'], function (Model) {
 
             return targetModel;
 
+        },
+
+        getFilter: function (frame) {
+            var effects, len, x, trim, offset, effectFrames, endEffect, startEffect;
+            effects = this.where({type: 'effect'});
+            len = effects.length;
+            if (len === 0) {
+                return null;
+            }
+            for (x = 0; x < len; x = x += 1) {
+                if (effects[x].get('type') === 'effect') {
+                    trim = effects[x].get('trim');
+                    offset = effects[x].get('offset');
+                    effectFrames = effects[x].get('frames');
+                    endEffect = effectFrames + offset - trim.end;
+                    startEffect = trim.start + offset;
+                    if (frame >= startEffect && frame <= endEffect) {
+                        return Filter[effects[x].get('name')];
+                    }
+                    if (x === (len - 1)) {
+                        return null;
+                    }
+                }
+            }
+            return null;
         }
 
     });
