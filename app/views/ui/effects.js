@@ -6,7 +6,7 @@
 
 /*global define, window, document, $, requirejs, require  */
 
-define(['app/views/panel', 'app/filters'], function (Panel, Filter) {
+define(['app/views/panel', 'app/filters', 'app/models/layer'], function (Panel, Filter, Layer) {
 
     return Panel.extend({
 
@@ -18,18 +18,23 @@ define(['app/views/panel', 'app/filters'], function (Panel, Filter) {
 //            'change input': 'handleFileSelect'
 
         },
-        toggleEffect: function(e){
+        toggleEffect: function (e) {
             e.preventDefault();
             var currentLiClassname = e.currentTarget.offsetParent.className;
             this.$el.find('ul li').removeClass('on').addClass('off');
-            if(currentLiClassname.indexOf('on') !== -1){
-                //turn it off
-                window.App.filter = null;
-            }else{
-                //add new filter
-                var filterName = e.currentTarget.getAttribute('href');
-                e.currentTarget.offsetParent.className = 'on';
+            var filterName = e.currentTarget.getAttribute('href');
+            if (window.App.filter !== Filter[filterName]) {
                 window.App.filter = Filter[filterName];
+                e.currentTarget.offsetParent.className = 'on';
+                var layer = new Layer({type: "effect", name: filterName, frames: 5000});
+                window.App.timeline.collection.add(layer);
+            } else {
+                window.App.filter = null;
+                var m = window.App.timeline.collection.findWhere({name: filterName});
+                log('Model found:', m);
+                m.destroy();
+//                window.App.timeline.collection.remove(m);
+
             }
         },
         initialize: function () {
@@ -46,10 +51,10 @@ define(['app/views/panel', 'app/filters'], function (Panel, Filter) {
             return this;
         },
 
-        updateThumbs: function(thumb){
+        updateThumbs: function (thumb) {
             var lis = this.$el.find('ul li');
             var img;
-            for(var x = 0, _len = lis.length; x < _len; x++){
+            for (var x = 0, _len = lis.length; x < _len; x++) {
                 img = '<img src="' + thumb + '"/>';
                 lis[x].append(img);
             }

@@ -177,7 +177,10 @@ footer
       width: 20px
       height: 20px
       background: white
-    
+    &.effect
+      .media
+        .middle
+          +background(linear-gradient(top, #4cffa7, #3dcd87))
     
     .media
       position: absolute
@@ -186,7 +189,8 @@ footer
       overflow: hidden
       
       +background( linear-gradient(top, #1F1F1F, #191919) )
- 
+
+
       .left
         -ms-touch-action: none
         display: block
@@ -207,6 +211,7 @@ footer
         width: 100%
         z-index: 80
         +background( linear-gradient(top, #199DCA, #127EA2) )
+
         
       .right
         -ms-touch-action: none

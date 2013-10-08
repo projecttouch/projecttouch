@@ -17,6 +17,7 @@ define([], function () {
         defaults: {
             "media": null,
             "type": "video",
+            "name": null,
             "rotation": 0,
             "frames": 0,
             "status": "notready",
@@ -38,7 +39,9 @@ define([], function () {
                 this.set('position', window.App.timeline.collection.length)
             }
 
+            log('Init Layer:');
             if (this.get("type") === "video") {
+                log('Type:', 'Video');
                 this.on('trim:preview', this.trim, this);
                 this.collection.on('seek', this.seek, this);
                 this.collection.on('frame-sync', this.sync, this);
@@ -52,6 +55,18 @@ define([], function () {
                 this.initializeVideo();
             }
 
+            if (this.get("type") === "effect") {
+                log('Type:', 'Effect');
+                this.initializeEffect();
+            }
+
+        },
+        /**
+         * INITIALIZES THE EFFECT
+         */
+
+        initializeEffect: function () {
+            return true;
         },
 
         /**
@@ -123,7 +138,7 @@ define([], function () {
          */
 
         syncFrame: function () {
-
+            log('Syncframe - type:',this.get("type"));
             var frame,
             offset = this.get('offset'),
                 trim = this.get('trim');
