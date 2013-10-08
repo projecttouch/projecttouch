@@ -80,79 +80,40 @@ define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer)
         },
 
         add: function (model) {
+            var layer = new Layer({model: model}),
+                title,
+                bb = document.createElement('li'),
+                left;
             if (model.get('type') === 'video') {
-                this.addVideoLayer(model);
+                title = model.get('media').get('file').name;
             } else {
-                this.addEffectsLayer(model);
+                title = model.get('name');
+            }
+            left = _.template("\
+                <%= title %>\
+                <button class='options'></button>\
+                <div>\
+                    <button class='duplicate'></button>\
+                    <button class='delete'></button>\
+                </div>\
+              ");
+
+            this.el.querySelector('.layers').appendChild(layer.render().el);
+            bb.setAttribute('data-cid', model.cid);
+            if (model.get('type') === 'video') {
+                title = title.substring(0, title.length - 4);
+            }
+            bb.innerHTML = left({ title: title });
+            this.el.querySelector('.labels').appendChild(bb);
+            this.layers.push(layer);
+            if (model.get('frames') !== 0) {
+                layer.resize();
             }
         },
 
         remove: function (model) {
             this.$('*[data-cid="' + model.cid + '"]').remove();
         },
-
-        addVideoLayer: function (model) {
-            var layer = new Layer({model: model});
-            var title;
-            console.log(model);
-            title = model.get('media').get('file').name;
-
-            this.el.querySelector('.layers').appendChild(layer.render().el);
-
-            var left = _.template("\
-                <%= title %>\
-                <button class='options'></button>\
-                <div>\
-                    <button class='duplicate'></button>\
-                    <button class='delete'></button>\
-                </div>\
-            ");
-
-            var bb = document.createElement('li');
-            bb.setAttribute('data-cid', model.cid);
-            bb.innerHTML = left({
-                title: title.substring(0, title.length - 4)
-            });
-
-            this.el.querySelector('.labels').appendChild(bb);
-            this.layers.push(layer);
-
-            if (model.get('frames') !== 0) {
-                layer.resize();
-            }
-        },
-
-        addEffectsLayer: function (model) {
-            var layer = new Layer({model: model});
-            var title;
-            console.log(model);
-            title = model.get('name');
-
-            this.el.querySelector('.layers').appendChild(layer.render().el);
-
-            var left = _.template("\
-                <%= title %>\
-                <button class='options'></button>\
-                <div>\
-                    <button class='duplicate'></button>\
-                    <button class='delete'></button>\
-                </div>\
-            ");
-
-            var bb = document.createElement('li');
-            bb.setAttribute('data-cid', model.cid);
-            bb.innerHTML = left({
-                title: title
-            });
-
-            this.el.querySelector('.labels').appendChild(bb);
-            this.layers.push(layer);
-
-            if (model.get('frames') !== 0) {
-                layer.resize();
-            }
-        },
-
 
         pinch: function (event) {
             var layers = this.el.querySelector('.layers'),

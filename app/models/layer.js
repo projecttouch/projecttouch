@@ -40,7 +40,6 @@ define([], function () {
             }
 
             if (this.get("type") === "video") {
-                log('Type:', 'Video');
                 this.on('trim:preview', this.trim, this);
                 this.collection.on('seek', this.seek, this);
                 this.collection.on('frame-sync', this.sync, this);
@@ -125,20 +124,16 @@ define([], function () {
          */
 
         syncFrame: function () {
-            log('Syncframe - type:',this.get("type"));
             var frame,
-            offset = this.get('offset'),
+                offset = this.get('offset'),
                 trim = this.get('trim');
-
             if (offset < 0) {
                 offset = Math.abs(offset);
                 frame = (offset > trim.start) ? offset : trim.start;
             } else {
                 frame = trim.start;
             }
-
             this.video.currentTime = frame / 25;
-
         },
 
         /**
