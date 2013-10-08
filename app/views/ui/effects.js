@@ -20,16 +20,16 @@ define(['app/views/panel', 'app/filters', 'app/models/layer'], function (Panel, 
         },
         toggleEffect: function (e) {
             e.preventDefault();
-            var currentLiClassname = e.currentTarget.offsetParent.className;
             var filterName = e.currentTarget.getAttribute('href');
-            if (window.App.filter !== Filter[filterName]) {
-                e.currentTarget.offsetParent.className = 'on';
-                var layer = new Layer({type: "effect", name: filterName, frames: 5000});
-                window.App.timeline.collection.add(layer);
-            } else {
+            var effect = window.App.timeline.collection.findWhere({name: filterName});
+            if (effect) {
                 e.currentTarget.offsetParent.className = 'off';
                 var m = window.App.timeline.collection.findWhere({name: filterName});
                 m.destroy();
+            } else {
+                e.currentTarget.offsetParent.className = 'on';
+                var layer = new Layer({type: "effect", name: filterName, frames: 5000});
+                window.App.timeline.collection.add(layer);
             }
         },
         initialize: function () {
