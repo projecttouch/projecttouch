@@ -21,15 +21,13 @@ define(['app/views/panel', 'app/filters', 'app/models/layer'], function (Panel, 
         toggleEffect: function (e) {
             e.preventDefault();
             var currentLiClassname = e.currentTarget.offsetParent.className;
-            this.$el.find('ul li').removeClass('on').addClass('off');
             var filterName = e.currentTarget.getAttribute('href');
             if (window.App.filter !== Filter[filterName]) {
-                window.App.filter = Filter[filterName];
                 e.currentTarget.offsetParent.className = 'on';
                 var layer = new Layer({type: "effect", name: filterName, frames: 5000});
                 window.App.timeline.collection.add(layer);
             } else {
-                window.App.filter = null;
+                e.currentTarget.offsetParent.className = 'off';
                 var m = window.App.timeline.collection.findWhere({name: filterName});
                 m.destroy();
             }
