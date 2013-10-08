@@ -11,7 +11,6 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
     'use strict';
 
     return Backbone.View.extend({
-
         tagName: 'li',
         
         events: {
@@ -19,12 +18,12 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
         },
         
         template: _.template("\
-            <div class='layer'>\
+            <div class='layer effect'>\
             </div>\
         "),
 
         initialize: function () {
-
+            log('Arguments:', arguments);
             _.bindAll(this, 'resize', 'endTrim', 'mouseDown', 'moveMedia', 'resize', 'clone');
 
             this.moving = false;
@@ -55,10 +54,6 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
             
             this.$el.html(this.template());
             this.el.querySelector('.layer').appendChild(this.media.render().el);
-            if(this.model.get('type') === 'effect'){
-                this.$('.layer').addClass('effect');
-            }
-            
             this.hammertime = Hammer(this.media.el); 
             this.hammertime.on("dragstart", this.mouseDown);
             this.hammertime.on("drag", this.moveMedia);
@@ -71,13 +66,10 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
         },
 
         mouseDown: function (e) {
-
             if (e.target.getAttribute('class') === 'left' || e.target.getAttribute('class') === 'right') {
                 return;
             }
-            
             window.App.dragging = true;
-
             this.startMove = e.gesture.deltaX - parseInt(this.media.el.style.left);
             this.moving = true;
 
@@ -92,21 +84,9 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
         },
 
         endTrim: function () {
-
             this.media.endTrim();
-
             if (this.moving) {
-                
                 window.App.dragging = false;
-                
-                var frame = (parseInt(this.media.el.style.left) / this.$('.layer').width()) * this.options.model.collection.totalFrames;
-                this.options.model.set('offset', Math.round(frame));
-                if(this.model.get('type') === 'video'){
-                    this.options.model.syncFrame();
-                }
-
-                log(this.options.model);
-                
                 window.removeEventListener('mousemove', this.moveMedia, true);
                 this.moving = false;
             }

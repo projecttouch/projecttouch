@@ -22,7 +22,7 @@ define(['app/models/layer'], function (Model) {
             var targetModel = [],
                 position = 99999;
 
-            _.each(this.models, function (model) {
+            _.each(this.where({type:'video'}), function (model) {
 
                 if (model.get('status') === 'playing') {
 

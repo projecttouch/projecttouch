@@ -8,7 +8,7 @@
  */
 /*global views, console, $, $$, TweenLite, TweenMax, TimelineLite, TimelineMax, Ease, Linear, Power0, Power1, Power2, Power3, Power4, Quad, Cubic, Quart, Strong, Back, Bounce, Circ, Elastic, Expo, Sine, SlowMo  */
 
-define([], function () {
+define([], function() {
 
     'use strict';
 
@@ -17,6 +17,7 @@ define([], function () {
         defaults: {
             "media": null,
             "type": "video",
+            "name": null,
             "rotation": 0,
             "frames": 0,
             "status": "notready",
@@ -30,7 +31,7 @@ define([], function () {
             "position": 0
         },
 
-        initialize: function () {
+        initialize: function() {
 
             if (this.collection) {
                 this.set('position', this.collection.length)
@@ -39,12 +40,13 @@ define([], function () {
             }
 
             if (this.get("type") === "video") {
+                log('Type:', 'Video');
                 this.on('trim:preview', this.trim, this);
                 this.collection.on('seek', this.seek, this);
                 this.collection.on('frame-sync', this.sync, this);
                 this.collection.on('kill', this.kill, this);
                 this.on('change:volume', this.setVolume, this);
-                this.on('change:trim', function () {
+                this.on('change:trim', function() {
                     this.set('status', 'idle');
                     this.syncFrame();
                     window.App.timeline.stop();
@@ -52,18 +54,31 @@ define([], function () {
                 this.initializeVideo();
             }
 
+            if (this.get("type") === "effect") {
+                log('Type:', 'Effect');
+                this.initializeEffect();
+            }
+
+        },
+        
+		
+		/* Initializes the effect
+		 * ---------------------------------------------------------------------- */
+		
+        initializeEffect: function() {
+            return true;
         },
 
-        /**
-         * INITIALIZES THE VIDEO ELEMENT
-         */
-
-        initializeVideo: function () {
+        
+		/* Initializes the video element
+		 * ---------------------------------------------------------------------- */
+		
+        initializeVideo: function() {
 
             var self = this;
 
             this.video = document.createElement('video');
-            this.video.addEventListener('loadedmetadata', function () {
+            this.video.addEventListener('loadedmetadata', function() {
                 self.set('frames', parseInt(self.video.duration * 1000 / 40));
                 self.set('status', 'idle');
             });
@@ -72,29 +87,29 @@ define([], function () {
                 .get('blob');
             this.video.addEventListener('ended', this.ended, false);
             this.set('status', 'idle');
-            
+
             this.vv = document.createElement('div');
             this.vv.style.width = "600px";
             this.vv.style.height = "300px";
             this.vv.appendChild(this.video);
-            
-            
+
+
             this.video.setAttribute('style', '-webkit-transform: rotate(20deg);');
             return true;
 
         },
-        
-        setVolume: function () {
-            if(this.video) {
+
+        setVolume: function() {
+            if (this.video) {
                 this.video.volume = this.get('volume');
             }
         },
 
-        /**
-         * THIS WILL PLAY THE VIDEO
-         */
 
-        play: function () {
+        /* Plays the video
+         * ---------------------------------------------------------------------- */
+
+        play: function() {
 
             if (this.get('status') === 'idle' || this.get('status') === 'seeking') {
                 this.video.play();
@@ -107,25 +122,25 @@ define([], function () {
 
         },
 
-        /**
-         * THIS WILL STOP THE VIDEO
-         */
 
-        stop: function () {
+        /* Stops the video
+         * ---------------------------------------------------------------------- */
+
+        stop: function() {
             this.video.pause();
             this.video.currentTime = parseInt(this.get('trim')
                 .start) / 25;
             this.set('status', 'idle');
         },
 
-        /**
-         * THIS SETS ALL THE POSITIONS OF THE TRIM TO THE VALUES
-         */
 
-        syncFrame: function () {
+		/* THIS SETS ALL THE POSITIONS OF THE TRIM TO THE VALUES
+		 * ---------------------------------------------------------------------- */
 
+        syncFrame: function() {
+            log('Syncframe - type:', this.get("type"));
             var frame,
-            offset = this.get('offset'),
+                offset = this.get('offset'),
                 trim = this.get('trim');
 
             if (offset < 0) {
@@ -139,11 +154,12 @@ define([], function () {
 
         },
 
-        /**
-         * THIS CHECKS IF THE CLIP NEEDS TO BE PLAYED ACORDING TO THE CURRENT FRAME OF THE TIMELINE
-         */
 
-        sync: function (frame) {
+		/* THIS CHECKS IF THE CLIP NEEDS TO BE PLAYED ACORDING TO THE CURRENT 
+		 * FRAME OF THE TIMELINE
+		 * ---------------------------------------------------------------------- */
+		
+        sync: function(frame) {
 
             var offset = this.get('offset'),
                 trim = this.get('trim'),
@@ -158,11 +174,11 @@ define([], function () {
 
         },
 
-        /**
-         * THIS SETS THE FRAME OF THE VIDEO IF IT NEEDS TO BE SET
-         */
-
-        seek: function (frame) {
+        
+		/* THIS SETS THE FRAME OF THE VIDEO IF IT NEEDS TO BE SET
+         * ---------------------------------------------------------------------- */
+        
+        seek: function(frame) {
             var offset = this.get('offset'),
                 trim = this.get('trim'),
                 frames = this.get('frames');
@@ -176,28 +192,28 @@ define([], function () {
             }
         },
 
-        /**
-         * THIS SETS THE CURRENTFRAME OF THE VIDEO TO PREVIEW THE SEEK POSITION
-         */
 
-        trim: function (frame) {
+		/* THIS SETS THE CURRENTFRAME OF THE VIDEO TO PREVIEW THE SEEK POSITION
+		 * ---------------------------------------------------------------------- */
+		
+        trim: function(frame) {
             this.video.currentTime = frame / 25;
         },
 
-        /**
-         * THIS WILL KILL THE VIDEO
-         */
 
-        kill: function () {
+        /* THIS WILL KILL THE VIDEO
+         * ---------------------------------------------------------------------- */
+
+        kill: function() {
             this.stop();
             this.syncFrame();
         },
 
-        /**
-         * THIS WILL RETURN THE STARTFRAME RELATIVE TO THE TIMELINE
-         */
 
-        getStart: function () {
+		/* THIS WILL RETURN THE STARTFRAME RELATIVE TO THE TIMELINE
+		 * ---------------------------------------------------------------------- */
+		
+        getStart: function() {
             return this.get('offset') + this.get('trim')
                 .start;
         }

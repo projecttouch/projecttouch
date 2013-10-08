@@ -95,8 +95,7 @@ define([], function () {
             height,
             posX,
             posY;
-            
-            if(source !== undefined) {
+            if(source!== undefined && source.video !== undefined) {
                 width = source.video.videoWidth * source.get('scale');
                 height = source.video.videoHeight * source.get('scale');
 

@@ -59,10 +59,8 @@ define([], function () {
             }else{
                 level = difference / this.levelWidth;
             }
-
             this.model.set(this.options.type, level);
             log(this.options.type, level);
-            log('this',this);
         },
 
         setLevel: function(level){
