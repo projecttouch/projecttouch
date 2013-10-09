@@ -84,7 +84,7 @@ define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer)
          * ---------------------------------------------------------------------- */
 
         add: function (model) {
-            
+        
             var title = "",
                 layer = new Layer({
                     model: model
@@ -115,7 +115,6 @@ define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer)
 
             this.el.querySelector('.labels').appendChild(bb);
             this.layers.push(layer);
-
             if (model.get('frames') !== 0) {
                 layer.resize();
             }
@@ -132,7 +131,7 @@ define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer)
         
         /* Pinch zoom effect on the timeline to zoom in and out
          * ---------------------------------------------------------------------- */
-        
+
         pinch: function (event) {
             var layers = this.el.querySelector('.layers'),
                 scale = event.gesture.scale;
