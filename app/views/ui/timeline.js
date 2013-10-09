@@ -55,7 +55,7 @@ define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer)
             this.collection = window.App.timeline.collection;
             this.collection.on('add', this.add, this);
             this.collection.on('remove', this.remove, this);
-            this.collection.on('frame-sync seek', this.progress, this);
+            this.collection.on('frame-sync seek kill', this.progress, this);
 
             _.bindAll(this, 'pinch', 'dragstart', 'drag', 'dragstartScrubber', 'dragScrubber');
             //            this.options.model.on('change:thumb', this.addThumb, this);
@@ -74,8 +74,8 @@ define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer)
             this.hammertime = Hammer(this.el);
             this.hammertime.on('pinchin', this.pinch);
             this.hammertime.on('pinchout', this.pinch);
-            // this.hammertime.on('dragstart', this.dragstart);
-//             this.hammertime.on('drag', this.drag);
+            this.hammertime.on('dragstart', this.dragstart);
+            this.hammertime.on('drag', this.drag);
 
         },
         
@@ -171,7 +171,9 @@ define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer)
 
         dragScrubber: function (event) {
 
-            var frameScrub = parseInt((event.gesture.distance / $('#layers').width()) * window.App.timeline.collection.totalFrames);
+            var frameScrub = parseInt((Math.abs(event.gesture.deltaX) / $('#layers').width()) * window.App.timeline.collection.totalFrames);
+            
+           
             
             switch (event.gesture.direction) {
             case "left":
@@ -180,6 +182,8 @@ define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer)
             case "right":
                 frameScrub = this.startFrameScrub + frameScrub;
                 break;
+            default:
+                return;
             }
             
             window.App.timeline.seek(frameScrub);

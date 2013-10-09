@@ -24,18 +24,12 @@ define(['app/models/layer', 'app/filters'], function (Model, Filter) {
 
             _.each(this.where({type:'video'}), function (model) {
 
-                if (model.get('status') === 'playing') {
+                if (model.get('status') === 'playing' || model.get('status') === 'seeking') {
 
                     targetModel.push(model);
 
-                } else if (model.get('status') === 'seeking') {
-
-                    if (model.get('position') < position) {
-                        targetModel.push(model);
-                        position = model.get('position');
-                    }
-
-                }
+                } 
+                
             }, this);
 
             return targetModel;

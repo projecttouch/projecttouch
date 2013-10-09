@@ -44,9 +44,9 @@ define([], function() {
                 this.collection.on('seek', this.seek, this);
                 this.collection.on('frame-sync', this.sync, this);
                 this.collection.on('kill', this.kill, this);
+                this.collection.on('pause', this.pause, this);
                 this.on('change:volume', this.setVolume, this);
                 this.on('change:trim', function() {
-                    log('trifm')
                     this.set('status', 'idle');
                     this.syncFrame();
                     window.App.timeline.stop();
@@ -106,6 +106,15 @@ define([], function() {
             }
 
         },
+        
+        
+        /* Pauses the video
+         * ---------------------------------------------------------------------- */
+        
+        pause: function () {
+            this.video.pause();  
+            this.set('status', 'idle');
+        },
 
 
         /* Stops the video
@@ -123,17 +132,33 @@ define([], function() {
 		 * ---------------------------------------------------------------------- */
 
         syncFrame: function() {
+            
+            log(App.timeline._frame)
 
             var frame,
                 offset = this.get('offset'),
+                frames = this.get('frames'),
                 trim = this.get('trim');
             if (offset < 0) {
                 offset = Math.abs(offset);
                 frame = (offset > trim.start) ? offset : trim.start;
+                
             } else {
                 frame = trim.start;
             }
+            
+            if (App.timeline._frame < (this.get('offset') + frames - trim.end) && App.timeline._frame >= (trim.start + this.get('offset'))) {
+                
+                log(this.get('offset'), App.timeline._frame - this.get('offset'))
+                
+                frame = App.timeline._frame - this.get('offset')
+                
+                
+                
+            }
+            
             this.video.currentTime = frame / 25;
+            
         },
 
 
@@ -176,6 +201,8 @@ define([], function() {
                 }
                 this.video.currentTime = frame / 25;
                 this.set('status', 'seeking');                
+            } else {
+                this.set('status', 'idle');
             }
         },
 
