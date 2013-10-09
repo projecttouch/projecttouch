@@ -92,10 +92,10 @@ define([], function () {
 
         rendering: function (source, opacity) {
             var width,
-            height,
-            posX,
-            posY;
-            if(source!== undefined && source.video !== undefined) {
+                height,
+                posX,
+                posY;
+            if (source !== undefined && source.video !== undefined) {
                 width = source.video.videoWidth * source.get('scale');
                 height = source.video.videoHeight * source.get('scale');
 
