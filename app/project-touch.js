@@ -70,6 +70,7 @@ define(['app/views/player', 'app/filters', 'app/views/ui/library', 'app/views/ui
             
             
             this.composition.el.appendChild(this.player.render().el);
+
         }
 
     });
