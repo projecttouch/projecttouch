@@ -77,9 +77,6 @@ define([], function () {
             this.$('.right').css('right', paddingRight - this.scrubberOffset);
             this.holder.style.paddingRight = paddingRight + 'px';
         }
-
-
-
     });
 
 });

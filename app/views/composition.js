@@ -19,16 +19,25 @@ define([], function () {
             this.title = this.$('h2');
             this.hammertime = Hammer(this.el);
             this.hammertime.on('doubletap', this.togglePanels);
-//            this.hammertime.on('pinchin', this.pinch);
-//            this.hammertime.on('pinchout', this.hidePanels);
+            this.hammertime.on('pinch', this.pinch);
             this.hammertime.on('tap', this.toggleVideo);
         },
+        startScale: null,
+        timer: null,
 
-        pinch: function(e){
+        pinch: function (e) {
+            this.timer = null;
+            window.clearTimeout(this.timer);
+            if (!this.startScale) {
+                log(App.views.edit.scaleView);
+                this.startScale = 1;
+            }
             log(e);
+//            log(e.gesture.scale);
         },
 
-        toggleVideo: function () {
+
+        toggleVideo: function (e) {
             if (window.App.timeline.playing) {
                 window.App.timeline.stop();
             } else {
