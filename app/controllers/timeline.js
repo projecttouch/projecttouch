@@ -71,7 +71,11 @@ define(['app/collections/timeline', 'app/filters'], function (Collection, Filter
         play: function () {
 
             if (this.playing) {
-                this.stop();
+                this.playing = false;
+
+                window.clearInterval(this.timer);
+                this.collection.trigger('pause');
+                
                 return;
             }
 
@@ -121,7 +125,7 @@ define(['app/collections/timeline', 'app/filters'], function (Collection, Filter
             window.App.player.setSource();
 
             this._frame = 0;
-            this.collection.trigger('kill');
+            this.collection.trigger('kill', 0);
 
         }
 

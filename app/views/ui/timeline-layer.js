@@ -102,6 +102,7 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
                 var frame = (parseInt(this.media.el.style.left) / this.$('.layer').width()) * this.options.model.collection.totalFrames;
                 this.options.model.set('offset', Math.round(frame));
                 if (this.model.get('type') === 'video') {
+                    log('fghjk')
                     this.options.model.syncFrame();
                 }
 
