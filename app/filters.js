@@ -7,8 +7,8 @@
 /*global define, window, document, $, requirejs, require  */
 
 define([], function () {
-
-
+	
+	
     return {
         
         darken: function (pixels) {
@@ -73,7 +73,6 @@ define([], function () {
                 v;
                 
             for (var i = 0; i < d.length; i += 4) {
-  
                 r = d[i] - 10;
                 g = d[i + 1] - 40;
                 b = d[i + 2];

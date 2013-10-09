@@ -22,7 +22,7 @@ define(['app/models/layer', 'app/filters'], function (Model, Filter) {
             var targetModel = [],
                 position = 99999;
 
-            _.each(this.models, function (model) {
+            _.each(this.where({type:'video'}), function (model) {
 
                 if (model.get('status') === 'playing') {
 
@@ -50,18 +50,18 @@ define(['app/models/layer', 'app/filters'], function (Model, Filter) {
                 return null;
             }
             for (x = 0; x < len; x = x += 1) {
-                if (effects[x].get('type') === 'effect') {
-                    trim = effects[x].get('trim');
-                    offset = effects[x].get('offset');
-                    endEffect = effects[x].get('frames') + offset - trim.end;
-                    startEffect = trim.start + offset;
-                    if (frame >= startEffect && frame <= endEffect) {
-                        return Filter[effects[x].get('name')];
-                    }
-                    if (x === (len - 1)) {
-                        return null;
-                    }
+                
+                trim = effects[x].get('trim');
+                offset = effects[x].get('offset');
+                endEffect = effects[x].get('frames') + offset - trim.end;
+                startEffect = trim.start + offset;
+                if (frame >= startEffect && frame <= endEffect) {
+                    return Filter[effects[x].get('name')];
                 }
+                if (x === (len - 1)) {
+                    return null;
+                }
+                
             }
             return null;
         }
