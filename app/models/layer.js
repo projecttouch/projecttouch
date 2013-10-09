@@ -47,6 +47,7 @@ define([], function() {
                 this.collection.on('kill', this.kill, this);
                 this.on('change:volume', this.setVolume, this);
                 this.on('change:trim', function() {
+                    log('trifm')
                     this.set('status', 'idle');
                     this.syncFrame();
                     window.App.timeline.stop();
@@ -78,7 +79,6 @@ define([], function() {
             this.vv.style.width = "600px";
             this.vv.style.height = "300px";
             this.vv.appendChild(this.video);
-
 
             this.video.setAttribute('style', '-webkit-transform: rotate(20deg);');
             return true;
@@ -146,6 +146,8 @@ define([], function() {
 		 * ---------------------------------------------------------------------- */
 		
         sync: function(frame) {
+            
+            log('sync')
 
             var offset = this.get('offset'),
                 trim = this.get('trim'),
@@ -165,6 +167,9 @@ define([], function() {
          * ---------------------------------------------------------------------- */
         
         seek: function(frame) {
+            
+            log('seek')
+            
             var offset = this.get('offset'),
                 trim = this.get('trim'),
                 frames = this.get('frames');
@@ -173,8 +178,8 @@ define([], function() {
                 if (this.get('status') === 'playing') {
                     this.video.pause();
                 }
-                this.set('status', 'seeking');
                 this.video.currentTime = frame / 25;
+                this.set('status', 'seeking');                
             }
         },
 
@@ -191,6 +196,7 @@ define([], function() {
          * ---------------------------------------------------------------------- */
 
         kill: function() {
+            log('kill')
             this.stop();
             this.syncFrame();
         },

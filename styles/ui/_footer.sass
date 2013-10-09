@@ -48,8 +48,8 @@ footer
       +imageAfter($interface-sprite, $interface-sprite2x, button-pause, 0,0)
   
   
-  #scrubber
-    pointer-events: none
+  #scrubber 
+    // pointer-events: none
     position: absolute
     height: 100%
     z-index: 999
@@ -59,6 +59,10 @@ footer
     padding: 3px
     color: white
     top: 0
+    
+    cursor: -webkit-grab
+    #cursor: -webkit-grabbing
+    
     &:after
       content: ''
       position: absolute
