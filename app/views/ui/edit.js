@@ -25,69 +25,105 @@ define(['app/views/panel',
             Panel.prototype.initialize.call(this);
             this.options.collection.on("open", this.open, this);
             _.bindAll(this, 'pinch');
-            this.right = $('#level-scale .right');
-            this.holder = $('#level-scale .holder');
+
+            this.scaleRight = $('#level-scale .right');
+            this.scaleHolder = $('#level-scale .holder');
+
+            this.rotationRight = $('#level-rotation .right');
+            this.rotationHolder = $('#level-rotation .holder');
+
             this.scaleView = new LevelView({el: '#level-scale', type: 'scale'});
             this.rotationView = new LevelView({el: '#level-rotation', type: 'rotation'});
             this.volumeView = new LevelView({el: '#level-volume', type: 'volume'});
             
             
             this.hammertime = Hammer(window.App.composition.el);
-            this.hammertime.on('transform', this.pinch);
 
+            this.hammertime.on('touch', function (e) {
+                e.preventDefault();
+            });
+            this.hammertime.on('transformstart', this.pinch);
+            this.hammertime.on('transform', this.pinch);
+            this.hammertime.on('transformend', this.pinch);
+            
         },
 
         levelWidth: null,
-        timer: null,
         usablePixels: null,
-        startPaddingRight: null,
-        pinchThrottle: 0,
-        pinching: false,
+        scaleStartPaddingRight: null,
+        rotationStartPaddingRight: null,
 
         pinch: function (e) {
             if (!this.active) {
                 return;
             }
-            this.pinchThrottle += 1;
-            if (this.pinchThrottle < 2) {
-                return;
-            }
-            this.levelWidth = parseInt(window.App.views.edit.scaleView.levelWidth);
-
             var klass = this,
-                newPaddingRight,
-                right;
-            if (!this.pinching) {
-                this.pinching = true;
-                this.startPaddingRight = parseInt(window.App.views.edit.scaleView.holder.style.paddingRight);
-                if (this.startPaddingRight === this.levelWidth) {
-                    this.usablePixels = this.levelWidth;
-                } else {
-                    this.usablePixels = this.levelWidth - this.startPaddingRight;
-                }
-                log('usablePixels', this.usablePixels);
-                log('this.startPaddingRight', this.startPaddingRight);
+                right,
+                scalePositions,
+                rotationPositions,
+                scale = e.gesture.scale,
+                rotation = e.gesture.rotation;
+            this.levelWidth = parseInt(window.App.views.edit.scaleView.levelWidth);
+            if (e.type === 'transformstart') {
+                this.scaleStartPaddingRight = parseInt(window.App.views.edit.scaleView.holder.style.paddingRight);
+                this.rotationStartPaddingRight = parseInt(window.App.views.edit.rotationView.holder.style.paddingRight);
+            }
+            scalePositions = this.calculateScalePositions(this.scaleStartPaddingRight, scale, this.levelWidth);
+            rotationPositions = this.calculateRotationPositions(this.rotationStartPaddingRight, rotation, this.levelWidth);
+            this.scaleHolder.css('padding-right', scalePositions.padding);
+            this.scaleRight.css('right', scalePositions.right);
+            this.rotationHolder.css('padding-right', rotationPositions.padding);
+            this.rotationRight.css('right', rotationPositions.right);
+            if (e.type === 'transformend') {
+                this.scaleStartPaddingRight = null;
+                this.rotationStartPaddingRight = null;
+            }
+        },
+
+        calculateScalePositions: function (startPadding, scale, levelWidth) {
+            var newValues = {};
+            if (startPadding === 0) {
+                newValues.padding = this.levelWidth - (levelWidth * scale);
+            } else {
+                newValues.padding = startPadding / scale;
             }
 
-            newPaddingRight = this.usablePixels / e.gesture.scale;
-
-            if (newPaddingRight > this.levelWidth) {
-                newPaddingRight = this.levelWidth;
+            if (newValues.padding > levelWidth) {
+                newValues.padding = levelWidth;
             }
-            if (newPaddingRight < 0) {
-                newPaddingRight = 0;
+            if (newValues.padding < 0) {
+                newValues.padding = 0;
             }
-            right = newPaddingRight - 22;
-            newPaddingRight += 'px';
-            log('newPaddingRight', newPaddingRight);
+            newValues.right = (newValues.padding - 22) + 'px';
+            newValues.padding += 'px';
+            return newValues;
+        },
 
+        calculateRotationPositions: function (startPadding, rotation, levelWidth) {
+            log('Rotation', rotation);
+//            return;
 
-            this.holder.css('padding-right', newPaddingRight);
-            this.right.css('right', right);
-            this.pinchThrottle = 0;
-            window.setTimeout(function () {
-                klass.pinching = false;
-            }, 2000);
+            var degree = levelWidth / 360,
+                startingPoint = startPadding * degree,
+                newDegreePoint = startingPoint - rotation,
+                newPadding = newDegreePoint / degree,
+                newRight,
+                newRotationPositions;
+            if (newPadding > levelWidth) {
+                newPadding = levelWidth;
+            }
+
+            if (newPadding < 0) {
+                newPadding = 0;
+            }
+            log('New padding', newPadding);
+            newRight = (newPadding - 22) + 'px';
+
+            newRotationPositions = {
+                padding: newPadding + 'px',
+                right: newRight
+            };
+            return newRotationPositions;
         },
 
 
