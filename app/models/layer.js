@@ -31,12 +31,12 @@ define([], function () {
             "position": 0
         },
 
-        initialize: function () {
+        initialize: function() {
 
             if (this.collection) {
-                this.set('position', this.collection.length);
+                this.set('position', this.collection.length)
             } else {
-                this.set('position', window.App.timeline.collection.length);
+                this.set('position', window.App.timeline.collection.length)
             }
 
             if (this.get("type") === "video") {
@@ -46,26 +46,25 @@ define([], function () {
                 this.collection.on('kill', this.kill, this);
                 this.collection.on('pause', this.pause, this);
                 this.on('change:volume', this.setVolume, this);
-                this.on('change:trim', function () {
+                this.on('change:trim', function() {
                     this.set('status', 'idle');
                     this.syncFrame();
                     window.App.timeline.stop();
                 }, this);
                 this.initializeVideo();
             }
-
         },
 
-
-        /* Initializes the video element
-         * ---------------------------------------------------------------------- */
-
-        initializeVideo: function () {
+        
+		/* Initializes the video element
+		 * ---------------------------------------------------------------------- */
+		
+        initializeVideo: function() {
 
             var self = this;
 
             this.video = document.createElement('video');
-            this.video.addEventListener('loadedmetadata', function () {
+            this.video.addEventListener('loadedmetadata', function() {
                 self.set('frames', parseInt(self.video.duration * 1000 / 40));
                 self.set('status', 'idle');
             });
@@ -85,7 +84,7 @@ define([], function () {
 
         },
 
-        setVolume: function () {
+        setVolume: function() {
             if (this.video) {
                 this.video.volume = this.get('volume');
             }
@@ -95,7 +94,7 @@ define([], function () {
         /* Plays the video
          * ---------------------------------------------------------------------- */
 
-        play: function () {
+        play: function() {
 
             if (this.get('status') === 'idle' || this.get('status') === 'seeking') {
                 this.video.play();
@@ -107,13 +106,13 @@ define([], function () {
             }
 
         },
-
-
+        
+        
         /* Pauses the video
          * ---------------------------------------------------------------------- */
-
+        
         pause: function () {
-            this.video.pause();
+            this.video.pause();  
             this.set('status', 'idle');
         },
 
@@ -121,7 +120,7 @@ define([], function () {
         /* Stops the video
          * ---------------------------------------------------------------------- */
 
-        stop: function () {
+        stop: function() {
             this.video.pause();
             this.video.currentTime = parseInt(this.get('trim')
                 .start) / 25;
@@ -129,13 +128,11 @@ define([], function () {
         },
 
 
-        /* THIS SETS ALL THE POSITIONS OF THE TRIM TO THE VALUES
-         * ---------------------------------------------------------------------- */
+		/* THIS SETS ALL THE POSITIONS OF THE TRIM TO THE VALUES
+		 * ---------------------------------------------------------------------- */
 
-        syncFrame: function () {
-
-            log(App.timeline._frame)
-
+        syncFrame: function() {
+            
             var frame,
                 offset = this.get('offset'),
                 frames = this.get('frames'),
@@ -143,33 +140,32 @@ define([], function () {
             if (offset < 0) {
                 offset = Math.abs(offset);
                 frame = (offset > trim.start) ? offset : trim.start;
-
+                
             } else {
                 frame = trim.start;
             }
-
+            
             if (App.timeline._frame < (this.get('offset') + frames - trim.end) && App.timeline._frame >= (trim.start + this.get('offset'))) {
-
+                
                 log(this.get('offset'), App.timeline._frame - this.get('offset'))
-
+                
                 frame = App.timeline._frame - this.get('offset')
-
-
+                
+                
+                
             }
-
+            
             this.video.currentTime = frame / 25;
-
+            
         },
 
 
-        /* THIS CHECKS IF THE CLIP NEEDS TO BE PLAYED ACORDING TO THE CURRENT
-         * FRAME OF THE TIMELINE
-         * ---------------------------------------------------------------------- */
-
-        sync: function (frame) {
-
-            log('sync')
-
+		/* THIS CHECKS IF THE CLIP NEEDS TO BE PLAYED ACORDING TO THE CURRENT 
+		 * FRAME OF THE TIMELINE
+		 * ---------------------------------------------------------------------- */
+		
+        sync: function(frame) {
+            
             var offset = this.get('offset'),
                 trim = this.get('trim'),
                 frames = this.get('frames'),
@@ -183,14 +179,12 @@ define([], function () {
 
         },
 
-
-        /* THIS SETS THE FRAME OF THE VIDEO IF IT NEEDS TO BE SET
+        
+		/* Check if the video is in frame and sets the time
          * ---------------------------------------------------------------------- */
-
-        seek: function (frame) {
-
-            log('seek')
-
+        
+        seek: function(frame) {
+            
             var offset = this.get('offset'),
                 trim = this.get('trim'),
                 frames = this.get('frames');
@@ -199,36 +193,38 @@ define([], function () {
                 if (this.get('status') === 'playing') {
                     this.video.pause();
                 }
-                this.video.currentTime = frame / 25;
+                
+                this.setFrame(frame);
                 this.set('status', 'seeking');
+                                
             } else {
                 this.set('status', 'idle');
             }
         },
 
 
-        /* THIS SETS THE CURRENTFRAME OF THE VIDEO TO PREVIEW THE SEEK POSITION
-         * ---------------------------------------------------------------------- */
-
-        trim: function (frame) {
+		/* Sets the current time to the correct frame
+		 * ---------------------------------------------------------------------- */
+		
+        setFrame: function(frame) {
             this.video.currentTime = frame / 25;
         },
 
 
-        /* THIS WILL KILL THE VIDEO
+        /* kills the video
          * ---------------------------------------------------------------------- */
 
-        kill: function () {
+        kill: function() {
             log('kill')
             this.stop();
             this.syncFrame();
         },
 
 
-        /* THIS WILL RETURN THE STARTFRAME RELATIVE TO THE TIMELINE
-         * ---------------------------------------------------------------------- */
-
-        getStart: function () {
+		/* Returns the start frame
+		 * ---------------------------------------------------------------------- */
+		
+        getStart: function() {
             return this.get('offset') + this.get('trim')
                 .start;
         }

@@ -14,45 +14,81 @@ define(['app/views/panel', 'app/filters', 'app/models/layer'], function (Panel, 
         el: '#effects',
 
         events: {
-            "click ul a": "toggleEffect"
-//            'change input': 'handleFileSelect'
-
+            "click ul a": "addEffect"
         },
-        toggleEffect: function (e) {
+        
+        initialize: function () {
+            Panel.prototype.initialize.call(this);
+            
+            _.each(Filter, function (f, id) {
+                this.$el.find('ul').append('<li class="off" data-effect="' + id + '"><span></span><a href="' + id+ '">' +id + '</a></li>');
+            }, this);
+            
+            this.options.collection.on('add open', this.reloadEffects, this);            
+        },
+        
+        
+        /* Reloads the effect preview for the current video model
+         * ---------------------------------------------------------------------- */
+        
+        reloadEffects: function (model) {
+            
+            if (model.get('type') === "video") {
+            
+                var video = document.createElement('video'),
+                    self = this;
+                
+                video.addEventListener('loadedmetadata', function(){
+                    window.App.utils.captureAsCanvas(video, { width: 280, height: 155, time: parseInt(video.duration/2) }, function (canvas) {
+                    
+                        var ctx = canvas.getContext('2d'),
+                            src,
+                            pixels,
+                            newPixels,
+                            newCanvas,
+                            ctx2;
+                        
+                        $('#effects li').each(function(index, li){
+                            newCanvas = document.createElement('canvas');
+                            ctx2 = newCanvas.getContext('2d');
+                            pixels = ctx.getImageData(0, 0, 280, 155);
+                            newPixels = App.player.filterImage(Filter[li.getAttribute('data-effect')], pixels);
+                            ctx2.putImageData(newPixels, 0, 0);
+                            src = newCanvas.toDataURL();
+                            li.style.backgroundImage = 'url(' + src + ')';
+                        });
+                    })
+                }, false);
+            
+                video.src = model.get('media').get('blob');
+            
+            }
+             
+        },
+        
+        
+        /* Adds the effect to the timeline
+         * ---------------------------------------------------------------------- */
+        
+        addEffect: function (e) {
             e.preventDefault();
             var filterName = e.currentTarget.getAttribute('href');
             var effect = window.App.timeline.collection.findWhere({name: filterName});
-            if (effect) {
-                e.currentTarget.offsetParent.className = 'off';
-                var m = window.App.timeline.collection.findWhere({name: filterName});
-                m.destroy();
-            } else {
+            // if (effect) {
+            //     e.currentTarget.offsetParent.className = 'off';
+            //     var m = window.App.timeline.collection.findWhere({name: filterName});
+            //     m.destroy();
+            // } else {
                 e.currentTarget.offsetParent.className = 'on';
                 var layer = new Layer({type: "effect", name: filterName, frames: 5000});
                 window.App.timeline.collection.add(layer);
-            }
+            // }
         },
-        initialize: function () {
-            Panel.prototype.initialize.call(this);
-            for (var f in Filter) {
-                this.$el.find('ul').append('<li class="off"><span></span><img data-effect="' + f + '" ><a href="' + f + '">' + f + '</a></li>');
-            }
-//            var Collection = require('app/collections/library')
-//            this.collection = new Collection();
-        },
-
+        
+        
         render: function () {
             Panel.prototype.render.call(this);
             return this;
-        },
-
-        updateThumbs: function (thumb) {
-            var lis = this.$el.find('ul li');
-            var img;
-            for (var x = 0, _len = lis.length; x < _len; x++) {
-                img = '<img src="' + thumb + '"/>';
-                lis[x].append(img);
-            }
         }
 
     });

@@ -60,7 +60,7 @@ define([], function () {
                 level = difference / this.levelWidth;
             }
             //DEVELOPMENT: Put this back in when finished.
-//            this.model.set(this.options.type, level);
+            this.model.set(this.options.type, level);
             log(this.options.type, level);
         },
 

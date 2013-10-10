@@ -30,8 +30,6 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
             this.moving = false;
             this.startMove = 0;
 
-//            log('new layer:', this.options.model.get('media').get('file').name);
-
             this.options.model.on('destroy', this.remove, this);
 
             if (this.options.model.get('frames') === 0) {
@@ -102,7 +100,6 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
                 var frame = (parseInt(this.media.el.style.left) / this.$('.layer').width()) * this.options.model.collection.totalFrames;
                 this.options.model.set('offset', Math.round(frame));
                 if (this.model.get('type') === 'video') {
-                    log('fghjk')
                     this.options.model.syncFrame();
                 }
 
