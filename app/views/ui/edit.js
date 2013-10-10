@@ -15,7 +15,7 @@ define(['app/views/panel',
 
         id: 'edit',
         el: '#edit',
-        active: true,
+        active: false,
 
         events: {
             "click #btnCloseEdit": "closeEdit"
