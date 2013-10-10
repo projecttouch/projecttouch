@@ -15,19 +15,50 @@ define(['app/views/panel', 'app/filters', 'app/models/layer'], function (Panel, 
 
         events: {
             "click ul a": "addEffect"
-//            'change input': 'handleFileSelect'
-
         },
         
         initialize: function () {
             Panel.prototype.initialize.call(this);
             
-            _.each(Filter, function (f) {
-                this.$el.find('ul').append('<li class="off" data-effect="' + f + '"><span></span><a href="' + f + '">' + f + '</a></li>');
+            _.each(Filter, function (f, id) {
+                this.$el.find('ul').append('<li class="off" data-effect="' + id + '"><span></span><a href="' + id+ '">' +id + '</a></li>');
             }, this);
             
+            this.options.collection.on('add', this.reloadEffects, this);            
         },
-
+        
+        
+        reloadEffects: function (model) {
+            
+            var video = document.createElement('video'),
+                self = this;
+                
+            video.addEventListener('loadedmetadata', function(){
+                window.App.utils.captureAsCanvas(video, { width: 280, height: 155, time: parseInt(video.duration/2) }, function (canvas) {
+                    
+                    var ctx = canvas.getContext('2d'),
+                        src,
+                        pixels,
+                        newPixels,
+                        newCanvas,
+                        ctx2;
+                        
+                    $('#effects li').each(function(index, li){
+                        newCanvas = document.createElement('canvas');
+                        ctx2 = newCanvas.getContext('2d');
+                        pixels = ctx.getImageData(0, 0, 280, 155);
+                        newPixels = App.player.filterImage(Filter[li.getAttribute('data-effect')], pixels);
+                        ctx2.putImageData(newPixels, 0, 0);
+                        src = newCanvas.toDataURL();
+                        li.style.backgroundImage = 'url(' + src + ')';
+                    });
+                })
+            }, false);
+            
+            video.src = model.get('media').get('blob');
+             
+        },
+        
         
         /* Adds the effect to the timeline
          * ---------------------------------------------------------------------- */
@@ -51,19 +82,6 @@ define(['app/views/panel', 'app/filters', 'app/models/layer'], function (Panel, 
         render: function () {
             Panel.prototype.render.call(this);
             return this;
-        },
-
-        updateThumbs: function (thumb) {
-            
-            var lis = this.$el.find('ul li');
-            var img;
-            
-            
-            
-            for (var x = 0, _len = lis.length; x < _len; x++) {
-                img = '<img src="' + thumb + '"/>';
-                lis[x].append(img);
-            }
         }
 
     });

@@ -18,18 +18,18 @@ define([], function () {
         video: null,
 
         initialize: function () {
-
-            this._trim = {
-                start: 0,
-                end: 0
-            };
-
+            
             _.bindAll(this,
                 'mouseDownLeft',
                 'mouseDownRight',
                 'trim',
                 'endTrim',
                 'resize');
+
+            this._trim = {
+                start: 0,
+                end: 0
+            };
 
             this.moving = false;
 
@@ -76,6 +76,10 @@ define([], function () {
            this.options.model.trigger('open', this.options.model);            
         },
         
+        
+        /* Changes the selected state of the layer
+         * ---------------------------------------------------------------------- */
+        
         changeState: function (model) {
             if (this.options.model === model) {
                 this.$el.addClass('selected');
@@ -83,7 +87,11 @@ define([], function () {
                 this.$el.removeClass('selected');
             }
         },
-
+        
+        
+        /* Trim left start
+         * ---------------------------------------------------------------------- */
+        
         mouseDownLeft: function () {
             
             window.App.dragging = true;
@@ -92,6 +100,10 @@ define([], function () {
             this.options.model.trigger('trim:start', this.options.model);
         },
 
+
+        /* Trim right start
+         * ---------------------------------------------------------------------- */
+        
         mouseDownRight: function () {
             
             window.App.dragging = true;
@@ -99,7 +111,11 @@ define([], function () {
             this.moving = 'right';
             this.options.model.trigger('trim:start', this.options.model);
         },
-
+        
+        
+        /* Trimming
+         * ---------------------------------------------------------------------- */
+        
         trim: function (e) {
 
             var left,
@@ -146,7 +162,11 @@ define([], function () {
 
             this.options.model.trigger('trim:preview', parseInt((margin / parseInt(this.el.style.width)) * this.options.model.get('frames')));
         },
-
+        
+        
+        /* End of trimming
+         * ---------------------------------------------------------------------- */
+        
         endTrim: function () {
 
             if (this.moving) {

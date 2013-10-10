@@ -19,7 +19,15 @@ Number.prototype.toMMSS = function () {
     return time;
 }
 
-define(['app/views/player', 'app/filters', 'app/views/ui/library', 'app/views/ui/effects', 'app/views/ui/edit', 'app/controllers/timeline', 'app/views/ui/timeline', 'app/views/composition'], function () {
+define(['app/views/player', 
+        'app/filters',
+        'app/utils', 
+        'app/views/ui/library', 
+        'app/views/ui/effects', 
+        'app/views/ui/edit', 
+        'app/controllers/timeline', 
+        'app/views/ui/timeline', 
+        'app/views/composition'], function () {
 
     'use strict';
 
@@ -33,12 +41,14 @@ define(['app/views/player', 'app/filters', 'app/views/ui/library', 'app/views/ui
                 Timeline = require('app/controllers/timeline'),
                 Player = require('app/views/player'),
                 Filter = require('app/filters'),
+                Utils = require('app/utils'),
                 Composition = require('app/views/composition');
 
             this.views = {};
             this.player = new Player();
             this.timeline = new Timeline();
             this.composition = new Composition();
+            this.utils = Utils;
             
             this.R = 1;
             this.G = 1;
@@ -65,7 +75,8 @@ define(['app/views/player', 'app/filters', 'app/views/ui/library', 'app/views/ui
             });
 
             this.views.effects = new Effects({
-                position: 'right'
+                position: 'right',
+                collection: this.views.timeline.collection
             });
             
             
