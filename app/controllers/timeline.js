@@ -68,7 +68,7 @@ define(['app/collections/timeline', 'app/filters'], function (Collection, Filter
 
                 window.clearInterval(this.timer);
                 this.collection.trigger('pause');
-                
+
                 return;
             }
 
@@ -79,25 +79,22 @@ define(['app/collections/timeline', 'app/filters'], function (Collection, Filter
 
 
         /* Scrubs/Seek to frame 
-         * ---------------------------------------------------------------------- */        
+         * ---------------------------------------------------------------------- */
 
         seek: function (frame) {
             if (this.playing) {
-                this.stop();    
-            }            
+                this.stop();
+            }
             this._frame = !isNaN(frame) ? frame : this._frame;
             this.collection.trigger('seek', this._frame, this.collection.totalFrames);
-            
-            log('dfghjkldfghjkl')
-           
             window.App.player.setSource(this.collection.getActive());
             window.App.filter = window.App.timeline.collection.getFilter(this._frame);
         },
 
-        
+
         /* Syncs all the layers and sends the current layer to the Player API
          * ---------------------------------------------------------------------- */
-        
+
         frame: function () {
 
             this.collection.trigger('frame-sync', this._frame, this.collection.totalFrames);

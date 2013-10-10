@@ -25,7 +25,8 @@ define([], function () {
 
         toggleVideo: function (e) {
             if (window.App.timeline.playing) {
-                window.App.timeline.stop();
+                //todo: pause video rather than stop it.
+                window.App.timeline.play();
             } else {
                 window.App.timeline.play();
             }
@@ -53,10 +54,15 @@ define([], function () {
 
         showPanels: function () {
             this.title.animate({'margin-left': '20px'});
+
             var newWidth = (window.innerWidth - 620) + 'px';
             this.$el.animate({'left': '310px', 'right': '310px', 'width': newWidth}, function () {
                 $('footer').animate({bottom: '0px'}).css('display', 'block');
-                $('#library').slideDown();
+                if(window.App.views.edit.active){
+                    $('#edit').slideDown();
+                }else{
+                    $('#library').slideDown();
+                }
                 $('#effects').slideDown();
             });
         }

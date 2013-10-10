@@ -144,6 +144,7 @@ define(['app/views/panel',
             this.active = false;
             $('#edit').slideUp(500, function () {
                 $('#library').slideDown(500);
+                $('.media').removeClass('selected');
             });
         },
 
