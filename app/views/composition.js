@@ -25,7 +25,6 @@ define([], function () {
 
         toggleVideo: function (e) {
             if (window.App.timeline.playing) {
-                //todo: pause video rather than stop it.
                 window.App.timeline.play();
             } else {
                 window.App.timeline.play();
