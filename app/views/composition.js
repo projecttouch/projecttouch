@@ -17,12 +17,15 @@ define([], function () {
         initialize: function () {
             _.bindAll(this, 'togglePanels', 'toggleVideo', 'hidePanels', 'showPanels');
             this.title = this.$('h2');
-            log(this.title);
             this.hammertime = Hammer(this.el);
             this.hammertime.on('doubletap', this.togglePanels);
-//            this.hammertime.on('pinchin', this.showPanels);
+//            this.hammertime.on('pinchin', this.pinch);
 //            this.hammertime.on('pinchout', this.hidePanels);
             this.hammertime.on('tap', this.toggleVideo);
+        },
+
+        pinch: function(e){
+            log(e);
         },
 
         toggleVideo: function () {
