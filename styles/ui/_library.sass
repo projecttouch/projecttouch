@@ -35,14 +35,16 @@
   .library-item
     width: $panelWidth
     height: $libraryItemHeight
+    background: rgba( 0, 0, 0, 0.5 ) no-repeat center center
+    background-size: cover
 
     > *
       position: absolute
 
     h3
-      opacity: 0
       background: rgba( 0, 0, 0, 0.5 )
       width: 100%
+      padding: 5px
       line-height: 1.5em
       text-indent: 5px
 
@@ -50,9 +52,8 @@
       color: black
       height: 34px
       width: 34px
-      bottom: 15px
-      right: 15px
-      margin: $libraryItemHeight - 30 5px 0 -2px
+      bottom: 10px
+      right: 10px
       position: absolute
       +imageAfter($interface-sprite, $interface-sprite2x, button-zoom-in,8,8)
       +hide-text()
@@ -64,4 +65,11 @@
     &:hover
       h3
         opacity: 1
+        
+    &.audio
+      height: 95px
+      h3
+        opacity: 1
+        padding: 5px 50px 5px 5px
+        background: none
 

@@ -9,6 +9,7 @@ footer
   padding-bottom: 20px
   color: #999999
   font-size: 14px
+  z-index: 999999999
   
   h2
     position: absolute
@@ -185,6 +186,11 @@ footer
       .media
         .middle
           +background(linear-gradient(top, #4cffa7, #3dcd87))
+          
+    &.audio
+      .media
+        .middle
+          +background(linear-gradient(top, #EEEEEE, #C1C1C1))
     
     .media
       position: absolute

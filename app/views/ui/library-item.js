@@ -36,7 +36,8 @@ define(["app/views/player", "app/filters"], function (Player, Filter) {
             var templateResult = this.template({
                     filename: this.options.model.get('file').name.substr(0,this.options.model.get('file').name.indexOf('.'))
                 });
-
+                
+            this.$el.addClass(this.options.model.get('file').type.substr(0,this.options.model.get('file').type.indexOf('/')));
             this.$el.attr('data-id', this.options.model.cid);
             this.$el.html(templateResult);
 
@@ -65,9 +66,7 @@ define(["app/views/player", "app/filters"], function (Player, Filter) {
         },
 
         addThumb: function () {
-            var img = new Image();
-            this.$el.prepend(img);
-            img.src = this.options.model.get('thumb');
+            this.el.style.backgroundImage = 'url(' + this.options.model.get('thumb') + ')';
         }
 
     });

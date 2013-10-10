@@ -53,6 +53,21 @@ define([], function () {
                 }, this);
                 this.initializeVideo();
             }
+            
+            if (this.get("type") === "audio") {
+                this.on('change:trim', function() {
+                    this.set('status', 'idle');
+                    this.syncFrame();
+                    window.App.timeline.stop();
+                }, this);
+                this.collection.on('pause', this.pause, this);
+                this.collection.on('kill', this.kill, this);
+                this.collection.on('frame-sync', this.sync, this);
+                this.collection.on('seek', this.seek, this);
+                this.initializeVideo();  
+                this.video.volume = 1; 
+            }
+            
         },
 
         

@@ -30,8 +30,10 @@ define(['app/views/panel',
             this.scaleView = new LevelView({el: '#level-scale', type: 'scale'});
             this.rotationView = new LevelView({el: '#level-rotation', type: 'rotation'});
             this.volumeView = new LevelView({el: '#level-volume', type: 'volume'});
+            
+            
             this.hammertime = Hammer(window.App.composition.el);
-            this.hammertime.on('pinch', this.pinch);
+            this.hammertime.on('transform', this.pinch);
 
         },
 

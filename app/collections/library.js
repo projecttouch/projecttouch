@@ -15,23 +15,35 @@ define(['app/models/library'], function (Model) {
     return Backbone.Collection.extend({
 
         model: Model,
-        
+
         initialize: function () {
-          this.on('layer', function (model) {
-            window.App.timeline.collection.add({type:"video",media:model});  
-          });
+            this.on('layer', function (model) {
+
+                if (model.get('file').type === 'audio/mp3') {
+                    window.App.timeline.collection.add({
+                        type: "audio",
+                        media: model
+                    });    
+                } else {
+                    window.App.timeline.collection.add({
+                        type: "video",
+                        media: model
+                    });
+                }
+                
+            });
         },
-        
+
         add: function (model) {
             var exist = 0;
-            _.each(this.models, function (m) {                        
+            _.each(this.models, function (m) {
                 if (model.get('file').name === m.get('file').name && model.get('file').size === m.get('file').size && model.get('file').type === m.get('file').type) {
                     exist += 1;
-//                    this.trigger('add', m);
+                    //                    this.trigger('add', m);
                 }
             }, this);
-            
-            if(exist === 0) {
+
+            if (exist === 0) {
                 Backbone.Collection.prototype.add.apply(this, arguments);
             }
         }

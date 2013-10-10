@@ -82,8 +82,7 @@ define(['app/views/panel',
                     model: model
                 });
 
-            this.ul.appendChild(item.render()
-                .el);
+            this.ul.insertBefore(item.render().el, this.ul.getElementsByTagName("li")[1]);
             this.delegateEvents();
         }
 
