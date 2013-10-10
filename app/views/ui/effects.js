@@ -30,32 +30,36 @@ define(['app/views/panel', 'app/filters', 'app/models/layer'], function (Panel, 
         
         reloadEffects: function (model) {
             
-            var video = document.createElement('video'),
-                self = this;
-                
-            video.addEventListener('loadedmetadata', function(){
-                window.App.utils.captureAsCanvas(video, { width: 280, height: 155, time: parseInt(video.duration/2) }, function (canvas) {
-                    
-                    var ctx = canvas.getContext('2d'),
-                        src,
-                        pixels,
-                        newPixels,
-                        newCanvas,
-                        ctx2;
-                        
-                    $('#effects li').each(function(index, li){
-                        newCanvas = document.createElement('canvas');
-                        ctx2 = newCanvas.getContext('2d');
-                        pixels = ctx.getImageData(0, 0, 280, 155);
-                        newPixels = App.player.filterImage(Filter[li.getAttribute('data-effect')], pixels);
-                        ctx2.putImageData(newPixels, 0, 0);
-                        src = newCanvas.toDataURL();
-                        li.style.backgroundImage = 'url(' + src + ')';
-                    });
-                })
-            }, false);
+            if (model.get('type') === "video") {
             
-            video.src = model.get('media').get('blob');
+                var video = document.createElement('video'),
+                    self = this;
+                
+                video.addEventListener('loadedmetadata', function(){
+                    window.App.utils.captureAsCanvas(video, { width: 280, height: 155, time: parseInt(video.duration/2) }, function (canvas) {
+                    
+                        var ctx = canvas.getContext('2d'),
+                            src,
+                            pixels,
+                            newPixels,
+                            newCanvas,
+                            ctx2;
+                        
+                        $('#effects li').each(function(index, li){
+                            newCanvas = document.createElement('canvas');
+                            ctx2 = newCanvas.getContext('2d');
+                            pixels = ctx.getImageData(0, 0, 280, 155);
+                            newPixels = App.player.filterImage(Filter[li.getAttribute('data-effect')], pixels);
+                            ctx2.putImageData(newPixels, 0, 0);
+                            src = newCanvas.toDataURL();
+                            li.style.backgroundImage = 'url(' + src + ')';
+                        });
+                    })
+                }, false);
+            
+                video.src = model.get('media').get('blob');
+            
+            }
              
         },
         

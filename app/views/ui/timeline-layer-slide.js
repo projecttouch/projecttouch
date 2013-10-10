@@ -73,7 +73,11 @@ define([], function () {
         },
         
         select: function (e) {
-           this.options.model.trigger('open', this.options.model);            
+            
+            if(this.options.model.get('type') === 'video') {
+                this.options.model.trigger('open', this.options.model); 
+            } 
+                      
         },
         
         
