@@ -7,9 +7,9 @@
 /*global define, window, document, $, requirejs, require  */
 
 define(['app/views/panel',
-        'app/views/ui/library-item',
-        'app/collections/library', 
-        'app/models/library'], function (Panel) {
+    'app/views/ui/library-item',
+    'app/collections/library',
+    'app/models/library'], function (Panel) {
 
     return Panel.extend({
 
@@ -23,10 +23,10 @@ define(['app/views/panel',
 
         initialize: function () {
             Panel.prototype.initialize.call(this);
-            var Collection = require('app/collections/library')
+            var Collection = require('app/collections/library');
             this.collection = new Collection();
             this.collection.on('add', this.add, this);
-            
+
             _.bindAll(this, 'handleFileSelect', 'add');
         },
 
@@ -50,27 +50,28 @@ define(['app/views/panel',
             return this;
         },
 
+
         handleFileSelect: function (evt) {
 
-            var files, 
+            var files,
                 Model = require('app/models/library');
 
             if (evt.type === 'change') {
                 files = evt.target.files;
-            } else if( evt.dataTransfer ) {
+            } else if (evt.dataTransfer) {
                 files = evt.dataTransfer.files;
                 evt.preventDefault();
                 evt.stopPropagation();
             } else {
-	            console.warn('no files found in the event', evt);
+                console.warn('no files found in the event', evt);
             }
 
             _.each(files, function (file) {
-                
+
                 this.collection.add(new Model({
                     file: file
                 }));
-                
+
             }, this);
 
         },
@@ -80,7 +81,7 @@ define(['app/views/panel',
                 item = new LibraryItem({
                     model: model
                 });
-                
+
             this.ul.appendChild(item.render()
                 .el);
             this.delegateEvents();

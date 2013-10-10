@@ -27,8 +27,7 @@ define(["app/views/player", "app/filters"], function (Player, Filter) {
 
         initialize: function () {
             _.bindAll(this, 'addThumb');
-            
-            log('new library item:',this.options.model.get('file').name);
+            log('new library item:', this.options.model.get('file').name);
             
             this.options.model.on('change:thumb', this.addThumb, this);
         },

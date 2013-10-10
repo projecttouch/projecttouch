@@ -54,6 +54,7 @@ define(['app/views/panel',
             });
         },
 
+
         render: function () {
             Panel.prototype.render.call(this);
             return this;

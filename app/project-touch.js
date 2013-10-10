@@ -47,7 +47,6 @@ define(['app/views/player', 'app/filters', 'app/views/ui/library', 'app/views/ui
         },
 
         render: function () {
-
             var Library = require('app/views/ui/library'),
                 Effects = require('app/views/ui/effects'),
                 Edit = require('app/views/ui/edit'),
