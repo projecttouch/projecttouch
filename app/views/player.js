@@ -120,8 +120,6 @@ define([], function () {
                     posX,
                     posY;
 
-                    log(this.source.length)
-
                 if (this.source.length > 1) {
                     _.each(this.source, this.rendering, this);
                 } else {

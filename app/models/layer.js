@@ -40,7 +40,7 @@ define([], function() {
             }
 
             if (this.get("type") === "video") {
-                this.on('trim:preview', this.trim, this);
+                this.on('trim:preview', this.setFrame, this);
                 this.collection.on('seek', this.seek, this);
                 this.collection.on('frame-sync', this.sync, this);
                 this.collection.on('kill', this.kill, this);
@@ -48,8 +48,8 @@ define([], function() {
                 this.on('change:volume', this.setVolume, this);
                 this.on('change:trim', function() {
                     this.set('status', 'idle');
-                    this.syncFrame();
-                    window.App.timeline.stop();
+//                    this.syncFrame();
+//                    window.App.timeline.stop();
                 }, this);
                 this.initializeVideo();
             }
@@ -133,8 +133,6 @@ define([], function() {
 
         syncFrame: function() {
             
-            log(App.timeline._frame)
-
             var frame,
                 offset = this.get('offset'),
                 frames = this.get('frames'),
@@ -168,8 +166,6 @@ define([], function() {
 		
         sync: function(frame) {
             
-            log('sync')
-
             var offset = this.get('offset'),
                 trim = this.get('trim'),
                 frames = this.get('frames'),
@@ -184,12 +180,10 @@ define([], function() {
         },
 
         
-		/* THIS SETS THE FRAME OF THE VIDEO IF IT NEEDS TO BE SET
+		/* Check if the video is in frame and sets the time
          * ---------------------------------------------------------------------- */
         
         seek: function(frame) {
-            
-            log('seek')
             
             var offset = this.get('offset'),
                 trim = this.get('trim'),
@@ -199,23 +193,25 @@ define([], function() {
                 if (this.get('status') === 'playing') {
                     this.video.pause();
                 }
-                this.video.currentTime = frame / 25;
-                this.set('status', 'seeking');                
+                
+                this.setFrame(frame);
+                this.set('status', 'seeking');
+                                
             } else {
                 this.set('status', 'idle');
             }
         },
 
 
-		/* THIS SETS THE CURRENTFRAME OF THE VIDEO TO PREVIEW THE SEEK POSITION
+		/* Sets the current time to the correct frame
 		 * ---------------------------------------------------------------------- */
 		
-        trim: function(frame) {
+        setFrame: function(frame) {
             this.video.currentTime = frame / 25;
         },
 
 
-        /* THIS WILL KILL THE VIDEO
+        /* kills the video
          * ---------------------------------------------------------------------- */
 
         kill: function() {
@@ -225,7 +221,7 @@ define([], function() {
         },
 
 
-		/* THIS WILL RETURN THE STARTFRAME RELATIVE TO THE TIMELINE
+		/* Returns the start frame
 		 * ---------------------------------------------------------------------- */
 		
         getStart: function() {

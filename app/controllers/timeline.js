@@ -94,6 +94,8 @@ define(['app/collections/timeline', 'app/filters'], function (Collection, Filter
             }            
             this._frame = !isNaN(frame) ? frame : this._frame;
             this.collection.trigger('seek', this._frame, this.collection.totalFrames);
+            
+            log('dfghjkldfghjkl')
            
             window.App.player.setSource(this.collection.getActive());
             window.App.filter = window.App.timeline.collection.getFilter(this._frame);
