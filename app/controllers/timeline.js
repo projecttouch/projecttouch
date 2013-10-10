@@ -13,9 +13,7 @@ define(['app/collections/timeline', 'app/filters'], function (Collection, Filter
     'use strict';
 
     var Timeline = function () {
-
         this.initialize();
-
     };
 
     Timeline.prototype = {
@@ -43,11 +41,6 @@ define(['app/collections/timeline', 'app/filters'], function (Collection, Filter
 
         addEventListeners: function () {
             document.querySelector('header').addEventListener('click', this.play);
-//            this.collection.initTime();
-//            this.collection.on('play', this.play);
-//            this.collection.on('stop', this.stop);
-//            App.Views.interface.effects.on('change', this.changeFilter);
-
         },
 
         changeFilter: function (filter) {
@@ -101,10 +94,10 @@ define(['app/collections/timeline', 'app/filters'], function (Collection, Filter
             window.App.filter = window.App.timeline.collection.getFilter(this._frame);
         },
 
-        /*
-         * Syncs all the layers and sends the current layer to the Player API
-         */
-
+        
+        /* Syncs all the layers and sends the current layer to the Player API
+         * ---------------------------------------------------------------------- */
+        
         frame: function () {
 
             this.collection.trigger('frame-sync', this._frame, this.collection.totalFrames);

@@ -27,15 +27,14 @@ define(["app/views/player", "app/filters"], function (Player, Filter) {
 
         initialize: function () {
             _.bindAll(this, 'addThumb');
-            
-            log('new library item:',this.options.model.get('file').name);
-            
+            log('new library item:',this.options.model.get('file').name);            
             this.options.model.on('change:thumb', this.addThumb, this);
         },
 
         render: function () {
+            
             var templateResult = this.template({
-                    filename: this.options.model.get('file')
+                    filename: this.options.model.get('file').name.substr(0,this.options.model.get('file').name.indexOf('.'))
                 });
 
             this.$el.attr('data-id', this.options.model.cid);
@@ -58,6 +57,7 @@ define(["app/views/player", "app/filters"], function (Player, Filter) {
 
             video.play();
         },
+        
         edit: function () {
             log('edit');
             $('#library').slideUp(500, function(){

@@ -24,9 +24,12 @@ define(['app/views/panel', 'app/filters', 'app/models/layer'], function (Panel, 
                 this.$el.find('ul').append('<li class="off" data-effect="' + id + '"><span></span><a href="' + id+ '">' +id + '</a></li>');
             }, this);
             
-            this.options.collection.on('add', this.reloadEffects, this);            
+            this.options.collection.on('add open', this.reloadEffects, this);            
         },
         
+        
+        /* Reloads the effect preview for the current video model
+         * ---------------------------------------------------------------------- */
         
         reloadEffects: function (model) {
             
@@ -71,15 +74,15 @@ define(['app/views/panel', 'app/filters', 'app/models/layer'], function (Panel, 
             e.preventDefault();
             var filterName = e.currentTarget.getAttribute('href');
             var effect = window.App.timeline.collection.findWhere({name: filterName});
-            if (effect) {
-                e.currentTarget.offsetParent.className = 'off';
-                var m = window.App.timeline.collection.findWhere({name: filterName});
-                m.destroy();
-            } else {
+            // if (effect) {
+            //     e.currentTarget.offsetParent.className = 'off';
+            //     var m = window.App.timeline.collection.findWhere({name: filterName});
+            //     m.destroy();
+            // } else {
                 e.currentTarget.offsetParent.className = 'on';
                 var layer = new Layer({type: "effect", name: filterName, frames: 5000});
                 window.App.timeline.collection.add(layer);
-            }
+            // }
         },
         
         
