@@ -38,10 +38,6 @@ define(['app/views/panel',
             
             
             this.hammertime = Hammer(window.App.composition.el);
-
-            this.hammertime.on('touch', function (e) {
-                e.preventDefault();
-            });
             this.hammertime.on('transformstart', this.pinch);
             this.hammertime.on('transform', this.pinch);
             this.hammertime.on('transformend', this.pinch);

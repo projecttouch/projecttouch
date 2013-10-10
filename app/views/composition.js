@@ -42,6 +42,7 @@ define([], function () {
         hidePanels: function () {
             this.title.animate({'margin-left': '40px'});
             var klass = this;
+            $('#edit').slideUp();
             $('#library').slideUp();
             $('footer').animate({bottom: '-400px'});
             $('#effects').slideUp({complete: function () {
