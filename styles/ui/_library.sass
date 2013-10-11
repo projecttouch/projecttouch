@@ -50,10 +50,10 @@
 
     button
       color: black
-      height: 34px
+      height: 34px 
       width: 34px
       bottom: 10px
-      right: 10px
+      right: 10px 
       position: absolute
       +imageAfter($interface-sprite, $interface-sprite2x, button-zoom-in,8,8)
       +hide-text()
@@ -68,6 +68,11 @@
         
     &.audio
       height: 95px
+      
+      +imageAfter($interface-sprite, $interface-sprite2x, icon-sound,16,16)
+
+      &:after
+        background-color: white
       h3
         opacity: 1
         padding: 5px 50px 5px 5px
