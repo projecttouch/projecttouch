@@ -40,7 +40,7 @@ define([], function () {
             }
 
             if (this.get("type") === "video") {
-                this.on('trim:preview', this.trim, this);
+                this.on('trim:preview', this.setFrame, this);
                 this.collection.on('seek', this.seek, this);
                 this.collection.on('frame-sync', this.sync, this);
                 this.collection.on('kill', this.kill, this);
@@ -162,12 +162,8 @@ define([], function () {
             
             if (App.timeline._frame < (this.get('offset') + frames - trim.end) && App.timeline._frame >= (trim.start + this.get('offset'))) {
                 
-                log(this.get('offset'), App.timeline._frame - this.get('offset'))
-                
                 frame = App.timeline._frame - this.get('offset')
-                
-                
-                
+                                
             }
             
             this.video.currentTime = frame / 25;

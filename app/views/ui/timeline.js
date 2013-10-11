@@ -75,9 +75,14 @@ define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer)
             switch (e.currentTarget.getAttribute('class')) {
             case 'play':
                 window.App.timeline.play();
+                e.currentTarget.setAttribute('class', 'pause');
                 break;
                 
             case 'pause':
+                window.App.timeline.play();
+                e.currentTarget.setAttribute('class', 'play');
+                break;
+                
             case 'stop':
                 window.App.timeline.stop();
                 break;

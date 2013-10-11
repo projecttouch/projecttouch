@@ -163,8 +163,10 @@ define([], function () {
                 
                 margin = parseInt(this.el.style.width) - margin;
             }
-
-            this.options.model.trigger('trim:preview', parseInt((margin / parseInt(this.el.style.width)) * this.options.model.get('frames')));
+            
+            if (this.options.model.get('type') === 'video') {
+                this.options.model.trigger('trim:preview', parseInt((margin / parseInt(this.el.style.width)) * this.options.model.get('frames')));
+            }
         },
         
         
