@@ -30,6 +30,7 @@ define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer)
             
             this.time = this.el.querySelector('#time .line');
             this.collection = window.App.timeline.collection;
+            window.App.timeline.on('play pause stop', this.setState, this);
             this.collection.on('add', this.add, this);
             this.collection.on('remove', this.remove, this);
             this.collection.on('frame-sync seek kill', this.progress, this);
@@ -75,12 +76,10 @@ define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer)
             switch (e.currentTarget.getAttribute('class')) {
             case 'play':
                 window.App.timeline.play();
-                e.currentTarget.setAttribute('class', 'pause');
                 break;
                 
             case 'pause':
                 window.App.timeline.play();
-                e.currentTarget.setAttribute('class', 'play');
                 break;
                 
             case 'stop':
@@ -103,6 +102,19 @@ define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer)
                 break;
             }
 
+        },
+        
+        setState: function (event) {
+            switch (event) {
+            case 'play':
+                document.getElementById('play-pause').setAttribute('class', 'pause');
+                break;
+            case 'pause':
+            case 'stop':
+                document.getElementById('play-pause').setAttribute('class', 'play');
+                break;
+                
+            }
         },
         
         

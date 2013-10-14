@@ -21,16 +21,7 @@ define([], function () {
             this.title = this.$('h2');
             this.hammertime = Hammer(this.el);
             this.hammertime.on('doubletap', this.togglePanels);
-            this.hammertime.on('tap', this.toggleVideo);
 
-        },
-
-        toggleVideo: function (e) {
-            if (window.App.timeline.playing) {
-                window.App.timeline.play();
-            } else {
-                window.App.timeline.play();
-            }
         },
 
         togglePanels: function () {
