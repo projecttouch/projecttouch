@@ -69,10 +69,12 @@ define(['app/views/panel',
             }
             scalePositions = this.calculateScalePositions(this.scaleStartPaddingRight, scale, this.levelWidth);
             rotationPositions = this.calculateRotationPositions(this.rotationStartPaddingRight, rotation, this.levelWidth);
+            
             this.scaleHolder.css('padding-right', scalePositions.padding);
             this.scaleRight.css('right', scalePositions.right);
             this.rotationHolder.css('padding-right', rotationPositions.padding);
             this.rotationRight.css('right', rotationPositions.right);
+            
             if (e.type === 'transformend') {
                 this.scaleStartPaddingRight = null;
                 this.rotationStartPaddingRight = null;
@@ -97,6 +99,8 @@ define(['app/views/panel',
             newValues.padding += 'px';
             return newValues;
         },
+        
+        
         //The rotation property seems to jump randomly from say 93 to -267.
         //This function tries to fix that.
         normalizeRotation: function (prevRotation, newRotation) {
