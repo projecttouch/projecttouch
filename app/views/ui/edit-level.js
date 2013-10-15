@@ -1,13 +1,8 @@
-/**
- * projecttouch
- *
- * @namespace
- * @name edit-level
- * @author rupertrutland | Code d'Azur
- * @date: 26/09/2013 10:20
- */
+/* Microsoft Video Editor
+ * @author: T.M.P. Kleist / Code D'azur <thierry@codedazur.nl>
+ * ============================================================================== */
 
-/*global define, window, document, $, requirejs, require  */
+/*global views, console, $, define  */
 
 define([], function () {
 

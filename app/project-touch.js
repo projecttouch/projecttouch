@@ -1,10 +1,8 @@
-/**
- * Project Touch
- *
- * @date: 6/18/13
- */
+/* Microsoft Video Editor
+ * @author: T.M.P. Kleist / Code D'azur <thierry@codedazur.nl>
+ * ============================================================================== */
 
-/*global define, window, document, $, requirejs, require, console  */
+/*global views, console, $, define  */
 
 Number.prototype.toMMSS = function () {
     var sec_num = parseInt(this, 10); // don't forget the second parm

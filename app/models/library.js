@@ -1,12 +1,8 @@
-/**
- * Microsoft Video Editor
- *
- * @namespace models
- * @name media
- * @author Thierry M.P. Kleist <thierry@codedazur.nl>
- * @date: 4/24/13
- */
-/*global views, console, $, $$, TweenLite, TweenMax, TimelineLite, TimelineMax, Ease, Linear, Power0, Power1, Power2, Power3, Power4, Quad, Cubic, Quart, Strong, Back, Bounce, Circ, Elastic, Expo, Sine, SlowMo  */
+/* Microsoft Video Editor
+ * @author: T.M.P. Kleist / Code D'azur <thierry@codedazur.nl>
+ * ============================================================================== */
+
+/*global views, console, $, define  */
 
 define([], function () {
 
@@ -26,6 +22,10 @@ define([], function () {
                 this.getThumb();
             }
         },
+        
+
+        /* Gets the base64 thumb of the video element
+         * ---------------------------------------------------------------------- */
 
         getThumb: function () {
 
@@ -46,7 +46,11 @@ define([], function () {
 
             video.src = this.get('blob');
         },
-
+        
+        
+        /* Clears the ObjectURL
+         * ---------------------------------------------------------------------- */
+        
         clear: function () {
             window.URL.revokeObjectURL(this.get('blob'));
             Backbone.Model.prototype.clear.apply(this, arguments);

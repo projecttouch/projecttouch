@@ -1,11 +1,7 @@
-/**
- * Microsoft Video Editor
- *
- * @namespace collections
- * @name media
- * @author Thierry M.P. Kleist <thierry@codedazur.nl>
- * @date: 4/24/13
- */
+/* Microsoft Video Editor
+ * @author: T.M.P. Kleist / Code D'azur <thierry@codedazur.nl>
+ * ============================================================================== */
+
 /*global views, console, $, define  */
 
 define(['app/models/layer', 'app/filters'], function (Model, Filter) {

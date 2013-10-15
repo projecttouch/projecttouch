@@ -1,12 +1,8 @@
-/**
- * Microsoft Video Editor
- *
- * @namespace models
- * @name media
- * @author Thierry M.P. Kleist <thierry@codedazur.nl>
- * @date: 4/24/13
- */
-/*global views, console, $, $$, TweenLite, TweenMax, TimelineLite, TimelineMax, Ease, Linear, Power0, Power1, Power2, Power3, Power4, Quad, Cubic, Quart, Strong, Back, Bounce, Circ, Elastic, Expo, Sine, SlowMo  */
+/* Microsoft Video Editor
+ * @author: T.M.P. Kleist / Code D'azur <thierry@codedazur.nl>
+ * ============================================================================== */
+
+/*global views, console, $, define  */
 
 define([], function () {
 
@@ -98,7 +94,11 @@ define([], function () {
             return true;
 
         },
-
+        
+        
+        /* Sets the volume for the video
+         * ---------------------------------------------------------------------- */
+        
         setVolume: function() {
             if (this.video) {
                 this.video.volume = this.get('volume');
@@ -143,7 +143,7 @@ define([], function () {
         },
 
 
-		/* THIS SETS ALL THE POSITIONS OF THE TRIM TO THE VALUES
+		/* this will set all the correct trim positions for the video/audio
 		 * ---------------------------------------------------------------------- */
 
         syncFrame: function() {
@@ -171,8 +171,7 @@ define([], function () {
         },
 
 
-		/* THIS CHECKS IF THE CLIP NEEDS TO BE PLAYED ACORDING TO THE CURRENT 
-		 * FRAME OF THE TIMELINE
+		/* Checks if the video/audio needs to be played
 		 * ---------------------------------------------------------------------- */
 		
         sync: function(frame) {

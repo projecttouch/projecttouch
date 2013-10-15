@@ -1,10 +1,8 @@
-/**
- * Project Touch
- *
- * @date: 6/18/13
- */
+/* Microsoft Video Editor
+ * @author: T.M.P. Kleist / Code D'azur <thierry@codedazur.nl>
+ * ============================================================================== */
 
-/*global define, window, document, $, requirejs, require  */
+/*global views, console, $, define  */
 
 define(['app/views/panel',
     'app/views/ui/edit-level'], function (Panel, LevelView) {
@@ -16,6 +14,11 @@ define(['app/views/panel',
         id: 'edit',
         el: '#edit',
         active: false,
+        
+        levelWidth: null,
+        usablePixels: null,
+        scaleStartPaddingRight: null,
+        rotationStartPaddingRight: null,
 
         events: {
             "click #btnCloseEdit": "closeEdit"
@@ -43,11 +46,13 @@ define(['app/views/panel',
             this.hammertime.on('transformend', this.pinch);
             
         },
+        
 
-        levelWidth: null,
-        usablePixels: null,
-        scaleStartPaddingRight: null,
-        rotationStartPaddingRight: null,
+        render: function () {
+            Panel.prototype.render.call(this);
+            return this;
+        },
+        
 
         pinch: function (e) {
             if (!this.active) {
@@ -75,6 +80,7 @@ define(['app/views/panel',
                 this.rotationStartPaddingRight = null;
             }
         },
+        
 
         calculateScalePositions: function (startPadding, scale, levelWidth) {
             var newValues = {};
@@ -94,6 +100,7 @@ define(['app/views/panel',
             newValues.padding += 'px';
             return newValues;
         },
+        
 
         calculateRotationPositions: function (startPadding, rotation, levelWidth) {
             log('Rotation', rotation);
@@ -139,6 +146,7 @@ define(['app/views/panel',
                 $('#edit').slideDown(500);
             });
         },
+        
 
         closeEdit: function () {
             this.active = false;
@@ -146,12 +154,6 @@ define(['app/views/panel',
                 $('#library').slideDown(500);
                 $('.media').removeClass('selected');
             });
-        },
-
-
-        render: function () {
-            Panel.prototype.render.call(this);
-            return this;
         }
 
     });

@@ -1,10 +1,8 @@
-/**
- * Project Touch
- *
- * @date: 6/18/13
- */
+/* Microsoft Video Editor
+ * @author: T.M.P. Kleist / Code D'azur <thierry@codedazur.nl>
+ * ============================================================================== */
 
-/*global define, window, document, $, requirejs, require  */
+/*global views, console, $, define  */
 
 define(["app/views/player", "app/filters"], function (Player, Filter) {
 
@@ -18,18 +16,21 @@ define(["app/views/player", "app/filters"], function (Player, Filter) {
 	            <h3><%= filename %></h3>\
 	            <button class="add">Add</button>\
 	      '),
+          
 
         events: {
             'click .add': 'add',
-            'click .play': 'play',
             'click .edit': 'edit'
         },
+        
 
         initialize: function () {
             _.bindAll(this, 'addThumb');
+            
             log('new library item:',this.options.model.get('file').name);            
             this.options.model.on('change:thumb', this.addThumb, this);
         },
+        
 
         render: function () {
             
@@ -43,28 +44,20 @@ define(["app/views/player", "app/filters"], function (Player, Filter) {
 
             return this;
         },
+        
 
         add: function () {
             this.options.model.collection.trigger('layer', this.options.model);
         },
-
-        play: function () {
-            log('play');
-            var video = document.createElement('video');
-            video.src = this.options.model.get('blob');
-
-            this.$el.find('img')
-                .after(video);
-
-            video.play();
-        },
+        
+        
         edit: function () {
-            log('edit');
             $('#library').slideUp(500, function(){
                 $('#edit').slideDown(500);
             });
         },
-
+        
+        
         addThumb: function () {
             this.el.style.backgroundImage = 'url(' + this.options.model.get('thumb') + ')';
         }

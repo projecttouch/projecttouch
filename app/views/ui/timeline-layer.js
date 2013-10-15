@@ -1,10 +1,8 @@
-/**
- * Project Touch
- *
- * @date: 6/18/13
- */
+/* Microsoft Video Editor
+ * @author: T.M.P. Kleist / Code D'azur <thierry@codedazur.nl>
+ * ============================================================================== */
 
-/*global define, window, document, $, requirejs, require  */
+/*global views, console, $, define  */
 
 define(['app/views/ui/timeline-layer-slide'], function (Slide) {
 
@@ -22,6 +20,7 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
             <div class='layer'>\
             </div>\
         "),
+        
 
         initialize: function () {
 
@@ -37,12 +36,7 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
                 this.options.model.on("change:frames", this.resize, this);
             }
         },
-
-        clone: function () {
-
-            log(this.options.model.collection.add(this.options.model.toJSON()))
-
-        },
+        
 
         render: function () {
 
@@ -58,17 +52,31 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
             }
 
             this.hammertime = Hammer(this.media.el);
-            this.hammertime.on("dragstart", this.mouseDown);
-            this.hammertime.on("drag", this.moveMedia);
-            this.hammertime.on("dragend", this.endTrim);
+            
+            this.hammertime.on("dragstart", this.trimStart);
+            this.hammertime.on("drag", this.trim);
+            this.hammertime.on("dragend", this.trimEnd);
 
             window.addEventListener('resize', this.resize, false);
 
             return this;
 
         },
+        
+        
+        /* Clones the selected layer
+         * ---------------------------------------------------------------------- */
+        
+        clone: function () {
+            this.options.model.collection.add(this.options.model.toJSON());
 
-        mouseDown: function (e) {
+        },
+        
+        
+        /* Start of the drag/trim
+         * ---------------------------------------------------------------------- */
+        
+        trimStart: function (e) {
 
             if (e.target.getAttribute('class') === 'left' || e.target.getAttribute('class') === 'right') {
                 return;
@@ -80,21 +88,28 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
             this.moving = true;
 
         },
-
-        moveMedia: function (e) {
+        
+        
+        /* Dragging the media
+         * ---------------------------------------------------------------------- */
+        
+        trim: function (e) {
 
             if (this.moving) {
                 this.media.el.style.left = (e.gesture.deltaX - this.startMove) + 'px';
             }
 
         },
+        
 
-        endTrim: function () {
+        /* The End of the media trim move
+         * ---------------------------------------------------------------------- */
+
+        trimEnd: function () {
 
             this.media.endTrim();
 
             if (this.moving) {
-
                 window.App.dragging = false;
 
                 var frame = (parseInt(this.media.el.style.left) / this.$('.layer').width()) * this.options.model.collection.totalFrames;
@@ -103,13 +118,12 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
                     this.options.model.syncFrame();
                 }
 
-                log(this.options.model);
-
                 window.removeEventListener('mousemove', this.moveMedia, true);
                 this.moving = false;
             }
 
         },
+        
 
         resize: function () {
 
@@ -125,6 +139,7 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
             }
 
         },
+        
 
         remove: function () {
             Backbone.View.prototype.remove.call(this);

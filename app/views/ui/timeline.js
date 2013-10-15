@@ -1,10 +1,8 @@
-/**
- * Project Touch
- *
- * @date: 6/18/13
- */
+/* Microsoft Video Editor
+ * @author: T.M.P. Kleist / Code D'azur <thierry@codedazur.nl>
+ * ============================================================================== */
 
-/*global define, window, document, $, requirejs, require  */
+/*global views, console, $, define  */
 
 define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer) {
 
@@ -103,6 +101,10 @@ define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer)
             }
 
         },
+        
+        
+        /* Sets the play and pause state of the button
+         * ---------------------------------------------------------------------- */
         
         setState: function (event) {
             switch (event) {

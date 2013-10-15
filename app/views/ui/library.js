@@ -1,10 +1,8 @@
-/**
- * Project Touch
- *
- * @date: 6/18/13
- */
+/* Microsoft Video Editor
+ * @author: T.M.P. Kleist / Code D'azur <thierry@codedazur.nl>
+ * ============================================================================== */
 
-/*global define, window, document, $, requirejs, require  */
+/*global views, console, $, define  */
 
 define(['app/views/panel',
     'app/views/ui/library-item',
@@ -21,6 +19,7 @@ define(['app/views/panel',
             'click .file-selector': 'handleFileSelect'
         },
 
+
         initialize: function () {
             Panel.prototype.initialize.call(this);
             var Collection = require('app/collections/library');
@@ -29,6 +28,7 @@ define(['app/views/panel',
 
             _.bindAll(this, 'handleFileSelect', 'add');
         },
+
 
         render: function () {
             Panel.prototype.render.call(this);
@@ -75,6 +75,7 @@ define(['app/views/panel',
             }, this);
 
         },
+        
 
         add: function (model) {
             var LibraryItem = require('app/views/ui/library-item'),
@@ -82,11 +83,11 @@ define(['app/views/panel',
                     model: model
                 });
 
-                if (this.ul.getElementsByTagName("li").length > 1) {
-                    this.ul.insertBefore(item.render().el, this.ul.getElementsByTagName("li")[1]);        
-                } else {
-                    this.ul.appendChild(item.render().el);
-                }
+            if (this.ul.getElementsByTagName("li").length > 1) {
+                this.ul.insertBefore(item.render().el, this.ul.getElementsByTagName("li")[1]);        
+            } else {
+                this.ul.appendChild(item.render().el);
+            }
             
             this.delegateEvents();
         }
