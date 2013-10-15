@@ -56,26 +56,23 @@ define(['app/views/panel',
             if (!this.active) {
                 return;
             }
+            var newDegree = this.convertDegree(e.gesture.rotation);
+            this.rotationView.setLevel(newDegree);
+
             var klass = this,
                 right,
                 scalePositions,
-                rotationPositions,
                 scale = e.gesture.scale,
                 rotation = e.gesture.rotation;
             this.levelWidth = parseInt(window.App.views.edit.scaleView.levelWidth);
             if (e.type === 'transformstart') {
                 this.scaleStartPaddingRight = parseInt(window.App.views.edit.scaleView.holder.style.paddingRight);
-                this.rotationStartPaddingRight = parseInt(window.App.views.edit.rotationView.holder.style.paddingRight);
             }
             scalePositions = this.calculateScalePositions(this.scaleStartPaddingRight, scale, this.levelWidth);
-            rotationPositions = this.calculateRotationPositions(this.rotationStartPaddingRight, rotation, this.levelWidth);
             this.scaleHolder.css('padding-right', scalePositions.padding);
             this.scaleRight.css('right', scalePositions.right);
-            this.rotationHolder.css('padding-right', rotationPositions.padding);
-            this.rotationRight.css('right', rotationPositions.right);
             if (e.type === 'transformend') {
                 this.scaleStartPaddingRight = null;
-                this.rotationStartPaddingRight = null;
             }
         },
 
@@ -97,55 +94,23 @@ define(['app/views/panel',
             newValues.padding += 'px';
             return newValues;
         },
-        //The rotation property seems to jump randomly from say 93 to -267.
-        //This function tries to fix that.
-        normalizeRotation: function (prevRotation, newRotation) {
-            var diff;
-            if (prevRotation === null) {
-                return newRotation;
+        convertDegree: function (degree) {
+            //Convert -270 to 90 and compare to current level
+            if (degree < -180) {
+                degree =  360 + degree;
+            } else if (degree > 180) {
+                degree = -360 + degree;
             }
-            if ((prevRotation > 0 && newRotation <= 0) || (prevRotation <= 0 && newRotation > 0)) {
-                diff = Math.abs(prevRotation) + Math.abs(newRotation);
-                if (diff > 100) {
-                    if (newRotation < 0) {
-                        newRotation = 360 + newRotation;
-                    } else {
-                        newRotation = -360 + newRotation;
-                    }
-                }
-            } else if (prevRotation > 0 && newRotation > 0) {
-                diff = Math.abs(prevRotation - newRotation);
-                if (diff > 100) {
-                    newRotation = 360;
-                }
+
+            degree = degree + this.rotationView.getLevel();
+            if(degree > 180){
+                degree = 180;
             }
-            return newRotation;
+            if(degree < -180){
+                degree = -180;
+            }
+            return degree;
         },
-
-        calculateRotationPositions: function (startPadding, rotation, levelWidth) {
-            rotation = this.normalizeRotation(this.prevRotation, rotation);
-            this.prevRotation = rotation;
-            var degree = levelWidth / 360,
-                startingPoint = startPadding * degree,
-                newDegreePoint = startingPoint - rotation,
-                newPadding = newDegreePoint / degree,
-                newRight,
-                newRotationPositions;
-            if (newPadding > levelWidth) {
-                newPadding = levelWidth;
-            }
-
-            if (newPadding < 0) {
-                newPadding = 0;
-            }
-            newRight = (newPadding - 22) + 'px';
-            newRotationPositions = {
-                padding: newPadding + 'px',
-                right: newRight
-            };
-            return newRotationPositions;
-        },
-
 
         /* this will be triggered when a layer is selected
          * ---------------------------------------------------------------------- */

@@ -11,6 +11,7 @@ define([], function () {
     return Backbone.View.extend({
         tagName: 'div',
         className: 'level',
+        previousLevel: null,
 
         initialize: function () {
             _.bindAll(this, 'mouseDownRight', 'trim');
@@ -21,6 +22,7 @@ define([], function () {
             this.levelWidth = 235;
             this.scrubberOffset = 22;
             this.level = 0;
+            this.prevLevel = 0;
             this.holder = this.$('.holder')[0];
             this.render();
         },
@@ -30,6 +32,8 @@ define([], function () {
             this.hammertimeR = Hammer(this.right);
             this.hammertimeR.on("dragstart", this.mouseDownRight);
             this.hammertimeR.on("drag", this.trim);
+            this.setLevel(this.level);
+            this.prevLevel = this.level;
             return this;
 
         },
@@ -60,13 +64,29 @@ define([], function () {
         },
 
         setLevel: function (level) {
+            log('level', level);
             var paddingRight;
+
+
             if (this.options.type === 'rotation') {
+                if (this.prevLevel === 180 && level < 0) {
+                    return;
+                }
+                if (this.prevLevel === -180 && level > 0) {
+                    return;
+                }
+                this.level = level;
                 paddingRight = ((360 - (level + 180)) / 360) * this.levelWidth;
             } else {
+                this.level = level;
                 paddingRight = (1 - level) * this.levelWidth;
             }
             this.setPositions(paddingRight);
+            this.prevLevel = this.level;
+        },
+
+        getLevel: function () {
+            return this.level;
         },
 
         setPositions: function (paddingRight) {
