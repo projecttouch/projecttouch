@@ -78,6 +78,7 @@ define(['app/views/player',
             
             
             this.composition.el.appendChild(this.player.render().el);
+            $('#player').height($('#player').width() / 1.7778);
 
         }
 

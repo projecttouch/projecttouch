@@ -27,7 +27,8 @@ define(['app/views/panel',
         initialize: function () {
             Panel.prototype.initialize.call(this);
             this.options.collection.on("open", this.open, this);
-
+            var self = this;
+            
             _.bindAll(this, 'transform', 'transformstart');
 
             this.scaleRight = $('#level-scale .right');
@@ -36,13 +37,13 @@ define(['app/views/panel',
             this.rotationRight = $('#level-rotation .right');
             this.rotationHolder = $('#level-rotation .holder');
 
-
             this.scaleView = new LevelView({el: '#level-scale', type: 'scale'});
             this.rotationView = new LevelView({el: '#level-rotation', type: 'rotation'});
             this.volumeView = new LevelView({el: '#level-volume', type: 'volume'});
             this.hammertime = Hammer(window.App.composition.el);
-            this.hammertime.on('transformstart', this.transform);
-            this.hammertime.on('transformstart', this.transformstart);
+            this.hammertime.on('transformstart', function (e) {
+                self.transformstart(e);
+            });
             this.hammertime.on('transform', this.transform);
             this.hammertime.on('transformend', this.transform);
 
@@ -55,9 +56,10 @@ define(['app/views/panel',
         },
 
         transformstart: function (event) {
-            this.startRotation = event.gesture.rotation;
-            this.startScale = event.gesture.scale;            
-            log(this.startRotation)
+            
+            this.rotationView.prevLevel = this.rotationView.level
+            this.scaleView.prevLevel = this.scaleView.level
+                  
         },
 
         transform: function (e) {
@@ -67,7 +69,7 @@ define(['app/views/panel',
 
             var newDegree = this.convertDegree(e.gesture.rotation);
             this.rotationView.setLevel(newDegree / 5);
-            this.scaleView.setLevel(e.gesture.scale / 5);
+            this.scaleView.setLevel(e.gesture.scale);
             
         },
 

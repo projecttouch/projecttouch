@@ -12,7 +12,7 @@ define([], function () {
         tagName: 'div',
         className: 'level',
         previousLevel: null,
-        level: 0,
+        level: 1,
 
         initialize: function () {
             _.bindAll(this, 'mouseDownRight', 'trim', 'setLevel');
@@ -22,8 +22,8 @@ define([], function () {
             };
             this.levelWidth = 235;
             this.scrubberOffset = 22;
-            this.level = 0;
-            this.prevLevel = 0;
+            this.level = 1;
+            this.prevLevel = 1;
             this.holder = this.$('.holder')[0];
             this.render();
         },
@@ -84,14 +84,15 @@ define([], function () {
             } else if (this.options.type === 'scale') {
                 //scale is 0 -10
                 var scale = level;
+                
                 var step = 0.05;
-                if (scale > 10) {
-                    scale = 10;
-                }
+                
+                
+                
                 if (scale > 1) {
                     this.level = this.prevLevel + (step * scale);
                 } else {
-                    this.level = this.prevLevel - (step * scale);
+                    this.level = this.prevLevel - step * scale;
                 }
                 if (this.level > 1) {
                     this.level = 1;
@@ -99,7 +100,7 @@ define([], function () {
                 if (this.level < 0) {
                     this.level = 0;
                 }
-                log('this.level', this.level);
+                
                 paddingRight = (1 - this.level) * this.levelWidth;
                 if (paddingRight > this.levelWidth) {
                     paddingRight = this.levelWidth;
@@ -109,8 +110,7 @@ define([], function () {
                 }
             }
             this.setPositions(paddingRight);
-            this.model.set(this.options.type, this.level);
-            this.prevLevel = this.level;
+            
             
             if(this.model) {
                 this.model.set(this.options.type, this.level);
