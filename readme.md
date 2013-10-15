@@ -22,5 +22,9 @@ Check out the [ProjectTouch microsite](http://www.theinternetoftouch.com) for up
 Editing installation
 --------------------
 
+git clone git@github.com:projecttouch/projecttouch.git
+
+gem install compass
+gem install compass-colors
 
 
