@@ -71,10 +71,10 @@ define([], function () {
 
 
             if (this.options.type === 'rotation') {
-                if (this.prevLevel === 180 && level < 0) {
+                if (this.prevLevel === 180 && level < 170) {
                     return;
                 }
-                if (this.prevLevel === -180 && level > 0) {
+                if (this.prevLevel === -180 && level > -170) {
                     return;
                 }
                 this.level = level;
