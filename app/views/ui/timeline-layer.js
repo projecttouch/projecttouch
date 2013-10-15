@@ -24,7 +24,7 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
 
         initialize: function () {
 
-            _.bindAll(this, 'resize', 'endTrim', 'mouseDown', 'moveMedia', 'resize', 'clone');
+            _.bindAll(this, 'resize', 'trimEnd', 'trimStart', 'trim', 'resize', 'clone');
 
             this.moving = false;
             this.startMove = 0;
