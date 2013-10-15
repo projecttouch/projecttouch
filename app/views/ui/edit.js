@@ -56,6 +56,9 @@ define(['app/views/panel',
             if (!this.active) {
                 return;
             }
+            
+            log(e.gesture.direction)
+            
             var klass = this,
                 right,
                 scalePositions,
