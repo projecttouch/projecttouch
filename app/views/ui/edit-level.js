@@ -66,7 +66,6 @@ define([], function () {
         },
 
         setLevel: function (level) {
-            log('level', level);
             var paddingRight;
 
 
@@ -79,9 +78,32 @@ define([], function () {
                 }
                 this.level = level;
                 paddingRight = ((360 - (level + 180)) / 360) * this.levelWidth;
-            } else {
-                this.level = level;
-                paddingRight = (1 - level) * this.levelWidth;
+            } else if (this.options.type === 'scale') {
+                //scale is 0 -10
+                var scale = level;
+                var step = 0.05;
+                if (scale > 10) {
+                    scale = 10;
+                }
+                if (scale > 1) {
+                    this.level = this.prevLevel + (step * scale);
+                } else {
+                    this.level = this.prevLevel - (step * scale);
+                }
+                if (this.level > 1) {
+                    this.level = 1;
+                }
+                if (this.level < 0) {
+                    this.level = 0;
+                }
+                log('this.level', this.level);
+                paddingRight = (1 - this.level) * this.levelWidth;
+                if (paddingRight > this.levelWidth) {
+                    paddingRight = this.levelWidth;
+                }
+                if (paddingRight < 0) {
+                    paddingRight = 0;
+                }
             }
             this.setPositions(paddingRight);
             this.prevLevel = this.level;

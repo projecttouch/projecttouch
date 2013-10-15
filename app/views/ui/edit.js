@@ -13,7 +13,7 @@ define(['app/views/panel',
 
         id: 'edit',
         el: '#edit',
-        active: false,
+        active: true,
         levelWidth: null,
         usablePixels: null,
         scaleStartPaddingRight: null,
@@ -58,22 +58,8 @@ define(['app/views/panel',
             }
             var newDegree = this.convertDegree(e.gesture.rotation);
             this.rotationView.setLevel(newDegree);
+            this.scaleView.setLevel(e.gesture.scale);
 
-            var klass = this,
-                right,
-                scalePositions,
-                scale = e.gesture.scale,
-                rotation = e.gesture.rotation;
-            this.levelWidth = parseInt(window.App.views.edit.scaleView.levelWidth);
-            if (e.type === 'transformstart') {
-                this.scaleStartPaddingRight = parseInt(window.App.views.edit.scaleView.holder.style.paddingRight);
-            }
-            scalePositions = this.calculateScalePositions(this.scaleStartPaddingRight, scale, this.levelWidth);
-            this.scaleHolder.css('padding-right', scalePositions.padding);
-            this.scaleRight.css('right', scalePositions.right);
-            if (e.type === 'transformend') {
-                this.scaleStartPaddingRight = null;
-            }
         },
 
 
@@ -97,16 +83,15 @@ define(['app/views/panel',
         convertDegree: function (degree) {
             //Convert -270 to 90 and compare to current level
             if (degree < -180) {
-                degree =  360 + degree;
+                degree = 360 + degree;
             } else if (degree > 180) {
                 degree = -360 + degree;
             }
-
             degree = degree + this.rotationView.getLevel();
-            if(degree > 180){
+            if (degree > 180) {
                 degree = 180;
             }
-            if(degree < -180){
+            if (degree < -180) {
                 degree = -180;
             }
             return degree;
