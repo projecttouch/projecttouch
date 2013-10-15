@@ -17,3 +17,10 @@ Videos you can use for testing:
 - [Trailer](https://www.theinternetoftouch.com/videos/trailer.zip) 
 
 Check out the [ProjectTouch microsite](http://www.theinternetoftouch.com) for updates.
+
+
+Editing installation
+--------------------
+
+
+
