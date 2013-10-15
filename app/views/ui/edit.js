@@ -28,13 +28,6 @@ define(['app/views/panel',
             Panel.prototype.initialize.call(this);
             this.options.collection.on("open", this.open, this);
             _.bindAll(this, 'transform');
-
-            this.scaleRight = $('#level-scale .right');
-            this.scaleHolder = $('#level-scale .holder');
-
-            this.rotationRight = $('#level-rotation .right');
-            this.rotationHolder = $('#level-rotation .holder');
-
             this.scaleView = new LevelView({el: '#level-scale', type: 'scale'});
             this.rotationView = new LevelView({el: '#level-rotation', type: 'rotation'});
             this.volumeView = new LevelView({el: '#level-volume', type: 'volume'});
@@ -62,24 +55,6 @@ define(['app/views/panel',
 
         },
 
-
-        calculateScalePositions: function (startPadding, scale, levelWidth) {
-            var newValues = {};
-            if (startPadding === 0) {
-                newValues.padding = this.levelWidth - (levelWidth * scale);
-            } else {
-                newValues.padding = startPadding / scale;
-            }
-            if (newValues.padding > levelWidth) {
-                newValues.padding = levelWidth;
-            }
-            if (newValues.padding < 0) {
-                newValues.padding = 0;
-            }
-            newValues.right = (newValues.padding - 22) + 'px';
-            newValues.padding += 'px';
-            return newValues;
-        },
         convertDegree: function (degree) {
             //Convert -270 to 90 and compare to current level
             if (degree < -180) {
