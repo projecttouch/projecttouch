@@ -15,16 +15,17 @@ define(['app/views/panel',
 
         id: 'edit',
         el: '#edit',
-        active: false,
+        active: true,
 
         events: {
             "click #btnCloseEdit": "closeEdit"
         },
+        currentRotation: null,
 
         initialize: function () {
             Panel.prototype.initialize.call(this);
             this.options.collection.on("open", this.open, this);
-            _.bindAll(this, 'pinch');
+            _.bindAll(this, 'transform');
 
             this.scaleRight = $('#level-scale .right');
             this.scaleHolder = $('#level-scale .holder');
@@ -35,13 +36,13 @@ define(['app/views/panel',
             this.scaleView = new LevelView({el: '#level-scale', type: 'scale'});
             this.rotationView = new LevelView({el: '#level-rotation', type: 'rotation'});
             this.volumeView = new LevelView({el: '#level-volume', type: 'volume'});
-            
-            
+
+
             this.hammertime = Hammer(window.App.composition.el);
-            this.hammertime.on('transformstart', this.pinch);
-            this.hammertime.on('transform', this.pinch);
-            this.hammertime.on('transformend', this.pinch);
-            
+            this.hammertime.on('transformstart', this.transform);
+            this.hammertime.on('transform', this.transform);
+            this.hammertime.on('transformend', this.transform);
+
         },
 
         levelWidth: null,
@@ -49,7 +50,7 @@ define(['app/views/panel',
         scaleStartPaddingRight: null,
         rotationStartPaddingRight: null,
 
-        pinch: function (e) {
+        transform: function (e) {
             if (!this.active) {
                 return;
             }
@@ -83,7 +84,6 @@ define(['app/views/panel',
             } else {
                 newValues.padding = startPadding / scale;
             }
-
             if (newValues.padding > levelWidth) {
                 newValues.padding = levelWidth;
             }
@@ -94,11 +94,36 @@ define(['app/views/panel',
             newValues.padding += 'px';
             return newValues;
         },
+        //The rotation property seems to jump randomly from say 93 to -267.
+        //This function tries to fix that.
+        normalizeRotation: function (prevRotation, newRotation) {
+            var r, diff;
+            log('input', newRotation);
+            if (prevRotation === null) {
+                return newRotation;
+            }
+            if ((prevRotation > 0 && newRotation <= 0) || (prevRotation <= 0 && newRotation > 0)) {
+                diff = Math.abs(prevRotation) + Math.abs(newRotation);
+                if (diff > 100) {
+                    if (newRotation < 0) {
+                        newRotation = 360 + newRotation;
+                    } else {
+                        newRotation = -360 + newRotation;
+                    }
+                }
+            } else if (prevRotation > 0 && newRotation > 0) {
+                diff = Math.abs(prevRotation - newRotation);
+                if (diff > 100) {
+                    newRotation = 360;
+                }
+            }
+
+            return newRotation;
+        },
 
         calculateRotationPositions: function (startPadding, rotation, levelWidth) {
-            log('Rotation', rotation);
-//            return;
-
+            rotation = this.normalizeRotation(this.prevRotation, rotation);
+            this.prevRotation = rotation;
             var degree = levelWidth / 360,
                 startingPoint = startPadding * degree,
                 newDegreePoint = startingPoint - rotation,
@@ -112,9 +137,7 @@ define(['app/views/panel',
             if (newPadding < 0) {
                 newPadding = 0;
             }
-            log('New padding', newPadding);
             newRight = (newPadding - 22) + 'px';
-
             newRotationPositions = {
                 padding: newPadding + 'px',
                 right: newRight
