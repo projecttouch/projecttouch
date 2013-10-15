@@ -13,7 +13,7 @@ define(['app/views/panel',
 
         id: 'edit',
         el: '#edit',
-        active: true,
+        active: false,
         levelWidth: null,
         usablePixels: null,
         scaleStartPaddingRight: null,
