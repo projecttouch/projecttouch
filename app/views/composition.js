@@ -16,11 +16,17 @@ define([], function () {
         el: '#composition',
 
         initialize: function () {
-            _.bindAll(this, 'togglePanels', 'toggleVideo', 'hidePanels', 'showPanels');
+            _.bindAll(this, 'togglePanels', 'hidePanels', 'showPanels');
 
             this.title = this.$('h2');
             this.hammertime = Hammer(this.el);
             this.hammertime.on('doubletap', this.togglePanels);
+            
+            $(window).resize(function(){
+               $('#player').height($('#player').width() / 1.7778);
+            });
+            
+            $('#player').height($('#player').width() / 1.7778);
 
         },
 
@@ -45,10 +51,17 @@ define([], function () {
             $('#effects').slideUp({
                 complete: function () {
                     klass.$el.animate({
-                        'left': 0,
-                        'width': '100%',
+                        'left': '15%',
+                        'width': '70%',
                         'height': '100%'
+                    }, function () {
+                        $('#player').animate({
+                            'height': $('#player').width() / 1.7778
+                        });   
                     });
+                    
+                   
+                                        
                     $('footer').css('display', 'none');
                 }
             });
@@ -60,10 +73,14 @@ define([], function () {
             });
 
             var newWidth = (window.innerWidth - 620) + 'px';
+            
+            
+
             this.$el.animate({
                 'left': '310px',
                 'right': '310px',
-                'width': newWidth
+                'width': newWidth,
+                'height': '80%'
             }, function () {
                 $('footer').animate({
                     bottom: '0px'
@@ -74,6 +91,9 @@ define([], function () {
                     $('#library').slideDown();
                 }
                 $('#effects').slideDown();
+                $('#player').animate({
+                    'height': $('#player').width() / 1.7778
+                });
             });
         }
 
