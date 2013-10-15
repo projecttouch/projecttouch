@@ -52,12 +52,14 @@ define([], function () {
             paddingRight = paddingRight > this.levelWidth ? this.levelWidth : paddingRight;
             this.setPositions(paddingRight);
             var difference = this.levelWidth - paddingRight;
+
             if (this.options.type === 'rotation') {
                 level = difference / (this.levelWidth / 360);
                 level = level - 180;
             } else {
                 level = difference / this.levelWidth;
             }
+
             //DEVELOPMENT: Put this back in when finished.
             this.model.set(this.options.type, level);
             log(this.options.type, level);

@@ -28,10 +28,33 @@ define([], function () {
 
             this.width = 640;
             this.height = 360;
-            this.volume = 70;
+
+        },
+        
+        
+        render: function () {
+
+            this.effectCanvas = document.createElement('canvas');
+            this.effectContext = this.effectCanvas.getContext('2d');
+            this.effectCanvas.width = this.width;
+            this.effectCanvas.height = this.height;
+
+            this.el.setAttribute('id', 'player');
+            this.el.width = this.width;
+            this.el.height = this.height;
+
+            this.context = this.el.getContext('2d');
+            this.renderLoop();
+            this.el.addEventListener('click', this.toggleEffect, false);
+
+            return this;
 
         },
 
+        
+        /* Sets the source of the player
+         * ---------------------------------------------------------------------- */
+        
         setSource: function (model) {
 
             if (model !== undefined && model !== null) {
@@ -43,14 +66,14 @@ define([], function () {
 
         },
 
-        setEffect: function (effect) {
 
-        },
+        setEffect: function (effect) { },
+        setOverLay: function (overlay) { },
 
-        setOverLay: function (overlay) {
 
-        },
-
+        /* Filters an image with a specific filter
+         * ---------------------------------------------------------------------- */
+        
         filterImage: function (filter, data, var_args) {
             var args = [data];
 
@@ -60,34 +83,20 @@ define([], function () {
 
             return filter.apply(App, args);
         },
+        
 
-        render: function () {
-
-            this.effectCanvas = document.createElement('canvas');
-            this.effectContext = this.effectCanvas.getContext('2d');
-
-            this.effectCanvas.width = this.width;
-            this.effectCanvas.height = this.height;
-
-            this.el.setAttribute('id', 'player');
-
-            this.el.width = this.width;
-            this.el.height = this.height;
-
-            this.context = this.el.getContext('2d');
-
-            this.renderLoop();
-
-            this.el.addEventListener('click', this.toggleEffect, false);
-
-            return this;
-
-        },
-
+        /* toggles the effect
+         * ---------------------------------------------------------------------- */
+        
         toggleEffect: function () {
             this.effect = this.effect === false;
+            
         },
-
+        
+        
+        /* The function that's being triggered every frame per video
+         * ---------------------------------------------------------------------- */
+        
         rendering: function (source, opacity) {
             var width,
                 height,
@@ -108,7 +117,11 @@ define([], function () {
                 this.context.restore();
             }
         },
+        
 
+        /* The render loop that's being triggered every frame
+         * ---------------------------------------------------------------------- */
+        
         renderLoop: function () {
 
             if (this.source !== null && this.source !== undefined) {
@@ -131,11 +144,6 @@ define([], function () {
 
             window.requestAnimationFrame(this.renderLoop);
 
-        },
-
-        setVolume: function (volume) {
-            this.volume = volume;
-            console.log(this.volume);
         }
 
     });
