@@ -48,11 +48,11 @@ define([], function () {
             paddingRight = paddingRight > this.levelWidth ? this.levelWidth : paddingRight;
             this.setPositions(paddingRight);
             var difference = this.levelWidth - paddingRight;
-            
-            if(this.options.type === 'rotation'){
-                level = difference / (this.levelWidth/360);
+
+            if (this.options.type === 'rotation') {
+                level = difference / (this.levelWidth / 360);
                 level = level - 180;
-            }else{
+            } else {
                 level = difference / this.levelWidth;
             }
             
@@ -61,17 +61,17 @@ define([], function () {
             log(this.options.type, level);
         },
 
-        setLevel: function(level){
+        setLevel: function (level) {
             var paddingRight;
             if (this.options.type === 'rotation') {
-                paddingRight = ((360 - (level + 180))/360) * this.levelWidth;
+                paddingRight = ((360 - (level + 180)) / 360) * this.levelWidth;
             } else {
                 paddingRight = (1 - level) * this.levelWidth;
             }
             this.setPositions(paddingRight);
         },
 
-        setPositions: function(paddingRight){
+        setPositions: function (paddingRight) {
             this.$('.right').css('right', paddingRight - this.scrubberOffset);
             this.holder.style.paddingRight = paddingRight + 'px';
         }
