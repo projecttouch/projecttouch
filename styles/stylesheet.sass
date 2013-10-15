@@ -1,3 +1,7 @@
+/* Stylesheet
+ * @author: T.M.P. Kleist / Code D'azur
+ * ============================================================================== */
+
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300)
 @import compass/reset
 @import compass/css3/images
@@ -5,6 +9,10 @@
 @import compass/css3/transition
 @import compass/utilities/text/replacement
 @import compass/css3/opacity
+
+
+/* Variables
+ * ---------------------------------------------------------------------- */
 
 $interface-sprite: sprite-map("interface/*.png", $layout: smart)
 $interface-sprite2x: sprite-map("interface2x/*.png", $layout: smart)
@@ -25,15 +33,15 @@ $panelMargin: 10px
 $libraryItemHeight: 155px
 
 
-/* ==============================
- * ===- BASE
- * ==============================
+/* Base
+ * ---------------------------------------------------------------------- */
 
 *
   -webkit-box-sizing: border-box
   -moz-box-sizing: border-box
   -o-box-sizing: border-box
   box-sizing: border-box
+  
   -webkit-touch-callout: none
   -webkit-user-select: none
   -khtml-user-select: none
@@ -95,41 +103,21 @@ div.video
   width: 100%
   height: $panelHeightPct 
   
-/* ==============================
- * ===- IMPORT
- * ==============================
-
+  
+/* Imports
+ * ---------------------------------------------------------------------- */
+    
 @import ui/footer
 @import ui/panel
 @import ui/effects
 @import ui/edit
 @import ui/library
 @import ui/composition
+@import ui/player
 @import ui/scrollbars
 
-#composition
-  position: absolute
-  //background: darkslateblue;
-  left: $panelWidth + $sideMargin + $panelMargin
-  right: $panelWidth + $sideMargin + $panelMargin
-  height: $panelHeightPct
-  
-  .controls
-    z-index: 1
-    position: absolute
-    vertical-position: bottom
-    top: 500px
-    left: 20px
 
-#player
-  width: 100%
-  pointer-events: none
-  //background: darkolivegreen;
 
-#fps
-  position: absolute
-  top: 10px
-  right: 10px
 
 
 
