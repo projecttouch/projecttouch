@@ -106,6 +106,7 @@ define([], function () {
                 }
             }
             this.setPositions(paddingRight);
+            this.model.set(this.options.type, this.level);
             this.prevLevel = this.level;
         },
 
