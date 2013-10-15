@@ -1,10 +1,8 @@
-/**
- * Project Touch
- *
- * @date: 6/18/13
- */
+/* Microsoft Video Editor
+ * @author: T.M.P. Kleist / Code D'azur <thierry@codedazur.nl>
+ * ============================================================================== */
 
-/*global define, window, document, $, requirejs, require  */
+/*global views, console, $, define  */
 
 define(['app/views/panel',
     'app/views/ui/edit-level'], function (Panel, LevelView) {
@@ -16,11 +14,15 @@ define(['app/views/panel',
         id: 'edit',
         el: '#edit',
         active: true,
+        levelWidth: null,
+        usablePixels: null,
+        scaleStartPaddingRight: null,
+        rotationStartPaddingRight: null,
+        currentRotation: null,
 
         events: {
             "click #btnCloseEdit": "closeEdit"
         },
-        currentRotation: null,
 
         initialize: function () {
             Panel.prototype.initialize.call(this);
@@ -36,8 +38,6 @@ define(['app/views/panel',
             this.scaleView = new LevelView({el: '#level-scale', type: 'scale'});
             this.rotationView = new LevelView({el: '#level-rotation', type: 'rotation'});
             this.volumeView = new LevelView({el: '#level-volume', type: 'volume'});
-
-
             this.hammertime = Hammer(window.App.composition.el);
             this.hammertime.on('transformstart', this.transform);
             this.hammertime.on('transform', this.transform);
@@ -45,10 +45,12 @@ define(['app/views/panel',
 
         },
 
-        levelWidth: null,
-        usablePixels: null,
-        scaleStartPaddingRight: null,
-        rotationStartPaddingRight: null,
+
+        render: function () {
+            Panel.prototype.render.call(this);
+            return this;
+        },
+
 
         transform: function (e) {
             if (!this.active) {
@@ -77,6 +79,7 @@ define(['app/views/panel',
             }
         },
 
+
         calculateScalePositions: function (startPadding, scale, levelWidth) {
             var newValues = {};
             if (startPadding === 0) {
@@ -97,8 +100,7 @@ define(['app/views/panel',
         //The rotation property seems to jump randomly from say 93 to -267.
         //This function tries to fix that.
         normalizeRotation: function (prevRotation, newRotation) {
-            var r, diff;
-            log('input', newRotation);
+            var diff;
             if (prevRotation === null) {
                 return newRotation;
             }
@@ -117,7 +119,6 @@ define(['app/views/panel',
                     newRotation = 360;
                 }
             }
-
             return newRotation;
         },
 
@@ -163,18 +164,13 @@ define(['app/views/panel',
             });
         },
 
+
         closeEdit: function () {
             this.active = false;
             $('#edit').slideUp(500, function () {
                 $('#library').slideDown(500);
                 $('.media').removeClass('selected');
             });
-        },
-
-
-        render: function () {
-            Panel.prototype.render.call(this);
-            return this;
         }
 
     });

@@ -1,13 +1,10 @@
-/**
- * Project Touch
- *
- * @date: 6/18/13
- */
+/* Microsoft Video Editor
+ * @author: T.M.P. Kleist / Code D'azur <thierry@codedazur.nl>
+ * ============================================================================== */
 
-/*global define, window, document, $, requirejs, require  */
+/*global views, console, $, define  */
 
 define([], function () {
-	
 	
     return {
         
@@ -134,40 +131,8 @@ define([], function () {
             return pixels;
         },
 
-        // grayscale: function (pixels) {
-//             var source = pixels.data;
-//             
-//             
-//             
-//                 var data32 = new Uint32Array(source),
-//                 r = 0,
-//                 g = 0,
-//                 b = 0,
-//                 v = 0;
-// 
-//             for (var y = 0; y < 360; ++y) {
-//                 for (var x = 0; x < 720; ++x) {
-//                     
-//                     var b = (data32[y * 720 + x] >> 16) & 0xff;
-//                     var g = (data32[y * 720 + x] >> 8) & 0xff;
-//                     var r = (data32[y * 720 + x] >> 0) & 0xff;
-//             
-//                     var v = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-//             
-//                     data32[y * 720 + x] =
-//                         (255    << 24)   |
-//                         (v      << 16)   |
-//                         (v      <<  8)   |
-//                           v;
-//                 }
-//             }
-//             
-//             pixels.data = data32;
-//             
-//             return pixels;
-//         },
 
-        // hipster: function (pixels) {
+//          hipster: function (pixels) {
 //             
 //             var ar = App.R,
 //                 ag = App.G,
@@ -185,9 +150,9 @@ define([], function () {
 //                 r = ((data32[ii] >> 0) & 0xff) * App.R;
 //         
 //                 // data32[ii] = (255 << 24) | 
-//  //                             ((b > 255 ? 255 : b) << 16) | 
-//  //                             ((g > 255 ? 255 : g) << 8) | 
-//  //                             (r > 255 ? 255 : r);
+//                                 ((b > 255 ? 255 : b) << 16) | 
+//                                 ((g > 255 ? 255 : g) << 8) | 
+//                                 (r > 255 ? 255 : r);
 //             }
 //         
 //             return pixels;

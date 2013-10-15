@@ -1,10 +1,8 @@
-/**
- * Project Touch
- *
- * @date: 6/18/13
- */
+/* Microsoft Video Editor
+ * @author: T.M.P. Kleist / Code D'azur <thierry@codedazur.nl>
+ * ============================================================================== */
 
-/*global define, window, document, $, requirejs, require  */
+/*global views, console, $, define  */
 
 define([], function () {
 
@@ -73,7 +71,6 @@ define([], function () {
         },
         
         select: function (e) {
-            
             if(this.options.model.get('type') === 'video') {
                 this.options.model.trigger('open', this.options.model); 
             } 

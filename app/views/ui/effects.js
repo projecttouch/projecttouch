@@ -1,10 +1,8 @@
-/**
- * Project Touch
- *
- * @date: 6/18/13
- */
+/* Microsoft Video Editor
+ * @author: T.M.P. Kleist / Code D'azur <thierry@codedazur.nl>
+ * ============================================================================== */
 
-/*global define, window, document, $, requirejs, require  */
+/*global views, console, $, define  */
 
 define(['app/views/panel', 'app/filters', 'app/models/layer'], function (Panel, Filter, Layer) {
 
@@ -16,39 +14,43 @@ define(['app/views/panel', 'app/filters', 'app/models/layer'], function (Panel, 
         events: {
             "click ul a": "addEffect"
         },
-        
+
         initialize: function () {
             Panel.prototype.initialize.call(this);
-            
+
             _.each(Filter, function (f, id) {
-                this.$el.find('ul').append('<li class="off" data-effect="' + id + '"><span></span><a href="' + id+ '">' +id + '</a></li>');
+                this.$el.find('ul').append('<li class="off" data-effect="' + id + '"><span></span><a href="' + id + '">' + id + '</a></li>');
             }, this);
-            
-            this.options.collection.on('add open', this.reloadEffects, this);            
+
+            this.options.collection.on('add open', this.reloadEffects, this);
         },
-        
-        
+
+
         /* Reloads the effect preview for the current video model
          * ---------------------------------------------------------------------- */
-        
+
         reloadEffects: function (model) {
-            
+
             if (model.get('type') === "video") {
-            
-                var video = document.createElement('video'),
-                    self = this;
-                
-                video.addEventListener('loadedmetadata', function(){
-                    window.App.utils.captureAsCanvas(video, { width: 280, height: 155, time: parseInt(video.duration/2) }, function (canvas) {
-                    
+
+                var self = this,
+                    video = document.createElement('video');
+
+                video.addEventListener('loadedmetadata', function () {
+                    window.App.utils.captureAsCanvas(video, {
+                        width: 280,
+                        height: 155,
+                        time: parseInt(video.duration / 2)
+                    }, function (canvas) {
+
                         var ctx = canvas.getContext('2d'),
                             src,
                             pixels,
                             newPixels,
                             newCanvas,
                             ctx2;
-                        
-                        $('#effects li').each(function(index, li){
+
+                        $('#effects li').each(function (index, li) {
                             newCanvas = document.createElement('canvas');
                             ctx2 = newCanvas.getContext('2d');
                             pixels = ctx.getImageData(0, 0, 280, 155);
@@ -59,33 +61,30 @@ define(['app/views/panel', 'app/filters', 'app/models/layer'], function (Panel, 
                         });
                     })
                 }, false);
-            
+
                 video.src = model.get('media').get('blob');
-            
+
             }
-             
+
         },
-        
-        
+
+
         /* Adds the effect to the timeline
          * ---------------------------------------------------------------------- */
-        
+
         addEffect: function (e) {
             e.preventDefault();
-            var filterName = e.currentTarget.getAttribute('href');
-            var effect = window.App.timeline.collection.findWhere({name: filterName});
-            // if (effect) {
-            //     e.currentTarget.offsetParent.className = 'off';
-            //     var m = window.App.timeline.collection.findWhere({name: filterName});
-            //     m.destroy();
-            // } else {
-                e.currentTarget.offsetParent.className = 'on';
-                var layer = new Layer({type: "effect", name: filterName, frames: 5000});
-                window.App.timeline.collection.add(layer);
-            // }
+            e.currentTarget.offsetParent.className = 'on';
+
+            window.App.timeline.collection.add(new Layer({
+                type: "effect",
+                name: e.currentTarget.getAttribute('href'),
+                frames: 5000
+            }));
+
         },
-        
-        
+
+
         render: function () {
             Panel.prototype.render.call(this);
             return this;

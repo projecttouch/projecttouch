@@ -1,8 +1,8 @@
 #library
-  //display: none
+  display: none
   .file-selector
     width: $panelWidth
-    +imageBefore($interface-sprite, $interface-sprite2x, button-add, 47,110)
+    +imageBefore($interface-sprite, $interface-sprite2x, button-add, 47, 110)
 
     form
       cursor: pointer
@@ -10,7 +10,7 @@
       width: $panelWidth
       height: 100%
       overflow: hidden
-      
+
     input
       +opacity(0)
       width: $panelWidth * 2
@@ -19,7 +19,7 @@
       right: 0
       &::-ms-browse
         width: 300px
-      
+
     label
       cursor: pointer
       opacity: 0
@@ -35,14 +35,14 @@
   .library-item
     width: $panelWidth
     height: $libraryItemHeight
-    background: rgba( 0, 0, 0, 0.5 ) no-repeat center center
+    background: rgba(0, 0, 0, 0.5) no-repeat center center
     background-size: cover
 
     > *
       position: absolute
 
     h3
-      background: rgba( 0, 0, 0, 0.5 )
+      background: rgba(0, 0, 0, 0.5)
       width: 100%
       padding: 5px
       line-height: 1.5em
@@ -50,12 +50,12 @@
 
     button
       color: black
-      height: 34px 
+      height: 34px
       width: 34px
       bottom: 10px
-      right: 10px 
+      right: 10px
       position: absolute
-      +imageAfter($interface-sprite, $interface-sprite2x, button-zoom-in,8,8)
+      +imageAfter($interface-sprite, $interface-sprite2x, button-zoom-in, 8, 8)
       +hide-text()
 
     img, video
@@ -65,11 +65,11 @@
     &:hover
       h3
         opacity: 1
-        
+
     &.audio
       height: 95px
-      
-      +imageAfter($interface-sprite, $interface-sprite2x, icon-sound,16,16)
+
+      +imageAfter($interface-sprite, $interface-sprite2x, icon-sound, 16, 16)
 
       &:after
         background-color: white

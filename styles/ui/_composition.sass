@@ -1,6 +1,18 @@
 #composition
+  position: absolute
+  left: $panelWidth + $sideMargin + $panelMargin
+  right: $panelWidth + $sideMargin + $panelMargin
+  height: $panelHeightPct
   z-index: 99999999
+  
   &.fullwidth
     h2
       margin-left: 40px
-  
+      
+  .controls
+    z-index: 1
+    position: absolute
+    vertical-position: bottom
+    top: 500px
+    left: 20px
+    

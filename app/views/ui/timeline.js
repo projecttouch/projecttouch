@@ -1,10 +1,8 @@
-/**
- * Project Touch
- *
- * @date: 6/18/13
- */
+/* Microsoft Video Editor
+ * @author: T.M.P. Kleist / Code D'azur <thierry@codedazur.nl>
+ * ============================================================================== */
 
-/*global define, window, document, $, requirejs, require  */
+/*global views, console, $, define  */
 
 define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer) {
 
@@ -30,6 +28,7 @@ define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer)
             
             this.time = this.el.querySelector('#time .line');
             this.collection = window.App.timeline.collection;
+            window.App.timeline.on('play pause stop', this.setState, this);
             this.collection.on('add', this.add, this);
             this.collection.on('remove', this.remove, this);
             this.collection.on('frame-sync seek kill', this.progress, this);
@@ -75,12 +74,10 @@ define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer)
             switch (e.currentTarget.getAttribute('class')) {
             case 'play':
                 window.App.timeline.play();
-                e.currentTarget.setAttribute('class', 'pause');
                 break;
                 
             case 'pause':
                 window.App.timeline.play();
-                e.currentTarget.setAttribute('class', 'play');
                 break;
                 
             case 'stop':
@@ -103,6 +100,23 @@ define(['app/views/ui/timeline-layer', 'app/views/ui/effects'], function (Layer)
                 break;
             }
 
+        },
+        
+        
+        /* Sets the play and pause state of the button
+         * ---------------------------------------------------------------------- */
+        
+        setState: function (event) {
+            switch (event) {
+            case 'play':
+                document.getElementById('play-pause').setAttribute('class', 'pause');
+                break;
+            case 'pause':
+            case 'stop':
+                document.getElementById('play-pause').setAttribute('class', 'play');
+                break;
+                
+            }
         },
         
         

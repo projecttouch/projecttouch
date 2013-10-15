@@ -1,12 +1,8 @@
-/**
- * Microsoft Video Editor
- *
- * @namespace controllers
- * @name timeline
- * @author Thierry M.P. Kleist <thierry@codedazur.nl>
- * @date: 4/24/13
- */
-/*global views, console, $, $$, TweenLite, TweenMax, TimelineLite, TimelineMax, Ease, Linear, Power0, Power1, Power2, Power3, Power4, Quad, Cubic, Quart, Strong, Back, Bounce, Circ, Elastic, Expo, Sine, SlowMo  */
+/* Microsoft Video Editor
+ * @author: T.M.P. Kleist / Code D'azur <thierry@codedazur.nl>
+ * ============================================================================== */
+
+/*global views, console, $, define  */
 
 define(['app/collections/timeline', 'app/filters'], function (Collection, Filter) {
 
@@ -68,10 +64,13 @@ define(['app/collections/timeline', 'app/filters'], function (Collection, Filter
 
                 window.clearInterval(this.timer);
                 this.collection.trigger('pause');
+                
+                this.trigger('pause', 'pause');
 
                 return;
             }
 
+            this.trigger('play', 'play');
             this.playing = true;
             this.timer = window.setInterval(this.frame, 40);
 
@@ -112,6 +111,7 @@ define(['app/collections/timeline', 'app/filters'], function (Collection, Filter
         stop: function () {
 
             this.playing = false;
+            this.trigger('stop', 'stop');
 
             window.clearInterval(this.timer);
             window.App.player.setSource();
