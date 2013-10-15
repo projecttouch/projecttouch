@@ -15,17 +15,11 @@ define(['app/models/library'], function (Model) {
         initialize: function () {
             this.on('layer', function (model) {
 
-                if (model.get('file').type === 'audio/mp3') {
-                    window.App.timeline.collection.add({
-                        type: "audio",
-                        media: model
-                    });    
-                } else {
-                    window.App.timeline.collection.add({
-                        type: "video",
-                        media: model
-                    });
-                }
+                window.App.timeline.collection.add({
+                    type: model.get('type'),
+                    media: model
+                });    
+           
                 
             });
         },

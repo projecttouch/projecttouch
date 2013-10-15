@@ -18,9 +18,13 @@ define([], function () {
         initialize: function () {
             this.set('blob', window.URL.createObjectURL(this.get('file')));
             
-            if (this.get('file').type !== 'audio/mp3') {
+            if (this.get('file').type.indexOf('audio') === -1) {
                 this.getThumb();
+                this.set('type', 'video');
+            } else {
+                this.set('type', 'audio');
             }
+            
         },
         
 

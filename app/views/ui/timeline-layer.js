@@ -47,8 +47,9 @@ define(['app/views/ui/timeline-layer-slide'], function (Slide) {
 
             this.$el.html(this.template());
             this.el.querySelector('.layer').appendChild(this.media.render().el);
+                        
             if (this.model.get('type') !== 'video') {
-                this.$('.layer').addClass(this.model.get('type'));
+                this.$('.layer').addClass(this.model.get('type').replace('/','-'));
             }
 
             this.hammertime = Hammer(this.media.el);

@@ -38,7 +38,7 @@ define(["app/views/player", "app/filters"], function (Player, Filter) {
                     filename: this.options.model.get('file').name.substr(0,this.options.model.get('file').name.indexOf('.'))
                 });
                 
-            this.$el.addClass(this.options.model.get('file').type.substr(0,this.options.model.get('file').type.indexOf('/')));
+            this.$el.addClass(this.options.model.get('type'));
             this.$el.attr('data-id', this.options.model.cid);
             this.$el.html(templateResult);
 
