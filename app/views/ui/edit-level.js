@@ -12,9 +12,10 @@ define([], function () {
         tagName: 'div',
         className: 'level',
         previousLevel: null,
+        level: 0,
 
         initialize: function () {
-            _.bindAll(this, 'mouseDownRight', 'trim');
+            _.bindAll(this, 'mouseDownRight', 'trim', 'setLevel');
             this._trim = {
                 start: 0,
                 end: 0
@@ -59,16 +60,18 @@ define([], function () {
             } else {
                 level = difference / this.levelWidth;
             }
+            
+            this.level = level
 
             //DEVELOPMENT: Put this back in when finished.
             this.model.set(this.options.type, level);
-            log(this.options.type, level);
+            
         },
 
         setLevel: function (level) {
-            log('level', level);
+            
+            
             var paddingRight;
-
 
             if (this.options.type === 'rotation') {
                 if (this.prevLevel === 180 && level < 170) {
@@ -85,6 +88,12 @@ define([], function () {
             }
             this.setPositions(paddingRight);
             this.prevLevel = this.level;
+            
+            if(this.model) {
+                this.model.set(this.options.type, this.level);
+            }
+            
+            
         },
 
         getLevel: function () {

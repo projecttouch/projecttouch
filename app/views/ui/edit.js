@@ -27,7 +27,7 @@ define(['app/views/panel',
         initialize: function () {
             Panel.prototype.initialize.call(this);
             this.options.collection.on("open", this.open, this);
-            _.bindAll(this, 'transform');
+            _.bindAll(this, 'transform', 'transformstart');
 
             this.scaleRight = $('#level-scale .right');
             this.scaleHolder = $('#level-scale .holder');
@@ -40,6 +40,7 @@ define(['app/views/panel',
             this.volumeView = new LevelView({el: '#level-volume', type: 'volume'});
             this.hammertime = Hammer(window.App.composition.el);
             this.hammertime.on('transformstart', this.transform);
+            this.hammertime.on('transformstart', this.transformstart);
             this.hammertime.on('transform', this.transform);
             this.hammertime.on('transformend', this.transform);
 
@@ -51,27 +52,36 @@ define(['app/views/panel',
             return this;
         },
 
+        transformstart: function (event) {
+            this.startRotation = event.gesture.rotation;
+            this.startScale = event.gesture.scale;            
+            log(this.startRotation)
+        },
 
         transform: function (e) {
             if (!this.active) {
                 return;
             }
 
-            var newDegree = this.convertDegree(e.gesture.rotation);
+            var newDegree = this.convertDegree(e.gesture.rotation) / 5;
             this.rotationView.setLevel(newDegree);
-
+            
             var klass = this,
                 right,
                 scalePositions,
-                scale = e.gesture.scale,
+                scale = this.startScale - e.gesture.scale,
                 rotation = e.gesture.rotation;
             this.levelWidth = parseInt(window.App.views.edit.scaleView.levelWidth);
+            
             if (e.type === 'transformstart') {
                 this.scaleStartPaddingRight = parseInt(window.App.views.edit.scaleView.holder.style.paddingRight);
             }
+            
+            
             scalePositions = this.calculateScalePositions(this.scaleStartPaddingRight, scale, this.levelWidth);
             this.scaleHolder.css('padding-right', scalePositions.padding);
             this.scaleRight.css('right', scalePositions.right);
+            
             if (e.type === 'transformend') {
                 this.scaleStartPaddingRight = null;
             }
