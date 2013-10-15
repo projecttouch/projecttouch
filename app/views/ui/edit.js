@@ -27,6 +27,7 @@ define(['app/views/panel',
         initialize: function () {
             Panel.prototype.initialize.call(this);
             this.options.collection.on("open", this.open, this);
+
             _.bindAll(this, 'transform', 'transformstart');
 
             this.scaleRight = $('#level-scale .right');
@@ -34,6 +35,7 @@ define(['app/views/panel',
 
             this.rotationRight = $('#level-rotation .right');
             this.rotationHolder = $('#level-rotation .holder');
+
 
             this.scaleView = new LevelView({el: '#level-scale', type: 'scale'});
             this.rotationView = new LevelView({el: '#level-rotation', type: 'rotation'});
@@ -63,61 +65,24 @@ define(['app/views/panel',
                 return;
             }
 
-            var newDegree = this.convertDegree(e.gesture.rotation) / 5;
-            this.rotationView.setLevel(newDegree);
+            var newDegree = this.convertDegree(e.gesture.rotation);
+            this.rotationView.setLevel(newDegree / 5);
+            this.scaleView.setLevel(e.gesture.scale / 5);
             
-            var klass = this,
-                right,
-                scalePositions,
-                scale = this.startScale - e.gesture.scale,
-                rotation = e.gesture.rotation;
-            this.levelWidth = parseInt(window.App.views.edit.scaleView.levelWidth);
-            
-            if (e.type === 'transformstart') {
-                this.scaleStartPaddingRight = parseInt(window.App.views.edit.scaleView.holder.style.paddingRight);
-            }
-            
-            
-            scalePositions = this.calculateScalePositions(this.scaleStartPaddingRight, scale, this.levelWidth);
-            this.scaleHolder.css('padding-right', scalePositions.padding);
-            this.scaleRight.css('right', scalePositions.right);
-            
-            if (e.type === 'transformend') {
-                this.scaleStartPaddingRight = null;
-            }
         },
 
-
-        calculateScalePositions: function (startPadding, scale, levelWidth) {
-            var newValues = {};
-            if (startPadding === 0) {
-                newValues.padding = this.levelWidth - (levelWidth * scale);
-            } else {
-                newValues.padding = startPadding / scale;
-            }
-            if (newValues.padding > levelWidth) {
-                newValues.padding = levelWidth;
-            }
-            if (newValues.padding < 0) {
-                newValues.padding = 0;
-            }
-            newValues.right = (newValues.padding - 22) + 'px';
-            newValues.padding += 'px';
-            return newValues;
-        },
         convertDegree: function (degree) {
             //Convert -270 to 90 and compare to current level
             if (degree < -180) {
-                degree =  360 + degree;
+                degree = 360 + degree;
             } else if (degree > 180) {
                 degree = -360 + degree;
             }
-
             degree = degree + this.rotationView.getLevel();
-            if(degree > 180){
+            if (degree > 180) {
                 degree = 180;
             }
-            if(degree < -180){
+            if (degree < -180) {
                 degree = -180;
             }
             return degree;
